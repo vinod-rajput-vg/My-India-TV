@@ -64,8 +64,8 @@ private class HomeView(context: Context) : View(context) {
 
             val icon = icons[i]
             if (icon != null) {
-                val pad = dp(42f)
-                val bottomPad = dp(68f)
+                val pad = dp(20f)
+                val bottomPad = dp(58f)
                 val iconRect = RectF(r.left + pad, r.top + pad, r.right - pad, r.bottom - bottomPad)
                 icon.setBounds(iconRect.left.toInt(), iconRect.top.toInt(), iconRect.right.toInt(), iconRect.bottom.toInt())
                 icon.draw(c)
