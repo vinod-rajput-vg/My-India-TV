@@ -3,7 +3,6 @@ package com.myindiatv
 import android.app.Activity
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -20,16 +19,16 @@ class MainActivity : Activity() {
 private class HomeView(context: Context) : View(context) {
     private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids")
     private val accents = listOf(Color.rgb(255,35,70), Color.rgb(0,180,255), Color.rgb(255,190,30), Color.rgb(235,20,230), Color.rgb(0,240,100))
-    private val iconIds = listOf(
-        R.drawable.icon_entertainment,
-        R.drawable.icon_imfotainment,
-        R.drawable.icon_news,
-        R.drawable.icon_musics,
-        R.drawable.icon_kids
+    private val emojiSets = listOf(
+        listOf("🎬" to Pair(-55f, -30f), "🍿" to Pair(55f, 20f), "⭐" to Pair(105f, 80f)),
+        listOf("🌍" to Pair(-25f, 0f), "🔍" to Pair(55f, 45f)),
+        listOf("📰" to Pair(0f, 0f)),
+        listOf("🎧" to Pair(-35f, 5f), "🎵" to Pair(55f, 45f)),
+        listOf("👦" to Pair(15f, -25f), "🧸" to Pair(-70f, 70f), "⭐" to Pair(85f, 75f))
     )
-    private val icons: List<Drawable?> = iconIds.map { context.getDrawable(it) }
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.LTGRAY }
+    private val emojiPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { typeface = Typeface.create("sans-serif", Typeface.NORMAL) }
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)
     private var selected = 0
     private var settings = false
@@ -62,18 +61,24 @@ private class HomeView(context: Context) : View(context) {
             p.color = accents[i]
             c.drawRoundRect(r, dp(28f), dp(28f), p)
 
-            val icon = icons[i]
-            if (icon != null) {
-                val pad = dp(20f)
-                val bottomPad = dp(58f)
-                val iconRect = RectF(r.left + pad, r.top + pad, r.right - pad, r.bottom - bottomPad)
-                icon.setBounds(iconRect.left.toInt(), iconRect.top.toInt(), iconRect.right.toInt(), iconRect.bottom.toInt())
-                icon.draw(c)
-            }
+            drawCategoryEmojis(c, i, r)
 
             title.textAlign = Paint.Align.CENTER
             title.textSize = dp(22f)
             c.drawText(names[i], r.centerX(), r.bottom + dp(34f), title)
+        }
+    }
+
+    private fun drawCategoryEmojis(c: Canvas, index: Int, r: RectF) {
+        emojiPaint.textSize = dp(82f)
+        emojiPaint.textAlign = Paint.Align.CENTER
+        val centerX = r.centerX()
+        val centerY = r.top + r.height() * .48f
+        val scale = r.width() / dp(220f)
+        for ((emoji, offset) in emojiSets[index]) {
+            val x = centerX + dp(offset.first) * scale
+            val y = centerY + dp(offset.second) * scale
+            c.drawText(emoji, x, y, emojiPaint)
         }
     }
 
