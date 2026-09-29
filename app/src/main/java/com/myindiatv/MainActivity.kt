@@ -3,6 +3,7 @@ package com.myindiatv
 import android.app.Activity
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -19,7 +20,14 @@ class MainActivity : Activity() {
 private class HomeView(context: Context) : View(context) {
     private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids")
     private val accents = listOf(Color.rgb(255,35,70), Color.rgb(0,180,255), Color.rgb(255,190,30), Color.rgb(235,20,230), Color.rgb(0,240,100))
-    private val symbols = listOf("▶", "◎", "N", "♪", "★")
+    private val iconIds = listOf(
+        R.drawable.icon_entertainment,
+        R.drawable.icon_imfotainment,
+        R.drawable.icon_news,
+        R.drawable.icon_musics,
+        R.drawable.icon_kids
+    )
+    private val icons: List<Drawable?> = iconIds.map { context.getDrawable(it) }
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.LTGRAY }
     private val p = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -53,9 +61,17 @@ private class HomeView(context: Context) : View(context) {
             p.strokeWidth = if (i == selected) dp(5f) else dp(3f)
             p.color = accents[i]
             c.drawRoundRect(r, dp(28f), dp(28f), p)
+
+            val icon = icons[i]
+            if (icon != null) {
+                val pad = dp(42f)
+                val bottomPad = dp(68f)
+                val iconRect = RectF(r.left + pad, r.top + pad, r.right - pad, r.bottom - bottomPad)
+                icon.setBounds(iconRect.left.toInt(), iconRect.top.toInt(), iconRect.right.toInt(), iconRect.bottom.toInt())
+                icon.draw(c)
+            }
+
             title.textAlign = Paint.Align.CENTER
-            title.textSize = dp(72f)
-            c.drawText(symbols[i], r.centerX(), r.centerY() + dp(24f), title)
             title.textSize = dp(22f)
             c.drawText(names[i], r.centerX(), r.bottom + dp(34f), title)
         }
