@@ -23,8 +23,8 @@ private class HomeView(context: Context) : View(context) {
         R.drawable.entertainment,
         R.drawable.imfotainment,
         R.drawable.news,
-        R.drawable.icon_musics,
-        R.drawable.icon_kids
+        R.drawable.music,
+        R.drawable.kids
     )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -77,8 +77,8 @@ private class HomeView(context: Context) : View(context) {
             return
         }
 
-        val safe = RectF(r.left + dp(12f), r.top + dp(12f), r.right - dp(12f), r.bottom - dp(12f))
-        val maxSize = minOf(safe.width(), safe.height()) * 0.90f
+        val safe = RectF(r.left + dp(14f), r.top + dp(14f), r.right - dp(14f), r.bottom - dp(14f))
+        val maxSize = minOf(safe.width(), safe.height()) * 0.72f
         val visibleWidth = visible.width().toFloat()
         val visibleHeight = visible.height().toFloat()
         val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
