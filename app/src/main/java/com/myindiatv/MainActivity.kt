@@ -33,18 +33,15 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private fun drawHome(c: Canvas) {
-        title.textAlign = Paint.Align.LEFT
-        title.textSize = dp(28f)
-        c.drawText("My India TV", dp(42f), dp(48f), title)
         body.textAlign = Paint.Align.RIGHT
         body.textSize = dp(18f)
         c.drawText("SETTINGS", width - dp(42f), dp(46f), body)
 
         val side = dp(52f)
         val gap = dp(22f)
-        val top = dp(125f)
+        val top = dp(95f)
         val cw = (width - side * 2 - gap * 4) / 5f
-        val ch = minOf(dp(290f), height * .52f)
+        val ch = cw
 
         repeat(5) { i ->
             val left = side + i * (cw + gap)
@@ -58,9 +55,9 @@ private class HomeView(context: Context) : View(context) {
             c.drawRoundRect(r, dp(28f), dp(28f), p)
             title.textAlign = Paint.Align.CENTER
             title.textSize = dp(72f)
-            c.drawText(symbols[i], r.centerX(), r.top + r.height() * .47f, title)
+            c.drawText(symbols[i], r.centerX(), r.centerY() + dp(24f), title)
             title.textSize = dp(22f)
-            c.drawText(names[i], r.centerX(), r.bottom - dp(32f), title)
+            c.drawText(names[i], r.centerX(), r.bottom + dp(34f), title)
         }
     }
 
