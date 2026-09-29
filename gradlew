@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-GRADLE_VERSION=9.6
+GRADLE_VERSION=9.6.0
 GRADLE_HOME="$HOME/.gradle/wrapper/dists/gradle-$GRADLE_VERSION"
 GRADLE_DIR="$GRADLE_HOME/gradle-$GRADLE_VERSION"
 if [ ! -x "$GRADLE_DIR/bin/gradle" ]; then
