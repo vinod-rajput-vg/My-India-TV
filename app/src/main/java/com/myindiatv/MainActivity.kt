@@ -27,7 +27,7 @@ private class HomeView(context: Context) : View(context) {
         R.drawable.kids
     )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
-    private val body = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.LTGRAY }
+    private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val bitmaps = Array(5) { i -> BitmapFactory.decodeResource(resources, icons[i]) }
     private var selected = 0
@@ -40,6 +40,7 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private fun drawHome(c: Canvas) {
+        body.color = Color.LTGRAY
         body.textAlign = Paint.Align.RIGHT
         body.textSize = dp(18f)
         c.drawText("SETTINGS", width - dp(42f), dp(46f), body)
@@ -68,23 +69,66 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private fun drawCategoryIcon(c: Canvas, index: Int, r: RectF) {
-        val safe = RectF(r.left + dp(18f), r.top + dp(18f), r.right - dp(18f), r.bottom - dp(18f))
-        val bitmap = bitmaps[index] ?: return
-        val maxSize = minOf(safe.width(), safe.height()) * 0.78f
-        val scale = minOf(maxSize / bitmap.width, maxSize / bitmap.height)
-        val dstW = bitmap.width * scale
-        val dstH = bitmap.height * scale
+        val bitmap = bitmaps[index]
+        if (bitmap == null || bitmap.isRecycled) return
+
+        // Use the visible (non-transparent) bounds of each image so transparent
+        // padding inside the source image does not make the icon look tiny.
+        val visible = findVisibleBounds(bitmap)
+        if (visible == null) {
+            if (index == 4) drawKidsFallback(c, r)
+            return
+        }
+
+        val safe = RectF(r.left + dp(12f), r.top + dp(12f), r.right - dp(12f), r.bottom - dp(12f))
+        val maxSize = minOf(safe.width(), safe.height()) * 0.90f
+        val visibleWidth = visible.width().toFloat()
+        val visibleHeight = visible.height().toFloat()
+        val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
+        val dstW = visibleWidth * scale
+        val dstH = visibleHeight * scale
         val dst = RectF(
             safe.centerX() - dstW / 2f,
             safe.centerY() - dstH / 2f,
             safe.centerX() + dstW / 2f,
             safe.centerY() + dstH / 2f
         )
+
         c.save()
-        c.clipRect(safe)
-        p.style = Paint.Style.FILL
-        c.drawBitmap(bitmap, null, dst, p)
+        c.clipPath(Path().apply { addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW) })
+        c.drawBitmap(bitmap, visible, dst, p)
         c.restore()
+    }
+
+    private fun findVisibleBounds(bitmap: Bitmap): Rect? {
+        val width = bitmap.width
+        val height = bitmap.height
+        var left = width
+        var top = height
+        var right = -1
+        var bottom = -1
+
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                if (Color.alpha(bitmap.getPixel(x, y)) > 12) {
+                    if (x < left) left = x
+                    if (x > right) right = x
+                    if (y < top) top = y
+                    if (y > bottom) bottom = y
+                }
+            }
+        }
+        return if (right >= left && bottom >= top) Rect(left, top, right + 1, bottom + 1) else null
+    }
+
+    private fun drawKidsFallback(c: Canvas, r: RectF) {
+        val fallback = BitmapFactory.decodeResource(resources, R.drawable.icon_kids)
+        if (fallback != null) {
+            val safe = RectF(r.left + dp(16f), r.top + dp(16f), r.right - dp(16f), r.bottom - dp(16f))
+            val size = minOf(safe.width(), safe.height()) * 0.72f
+            val dst = RectF(safe.centerX() - size / 2f, safe.centerY() - size / 2f, safe.centerX() + size / 2f, safe.centerY() + size / 2f)
+            c.drawBitmap(fallback, null, dst, p)
+        }
     }
 
     private fun drawSettings(c: Canvas) {
@@ -99,6 +143,7 @@ private class HomeView(context: Context) : View(context) {
         c.drawText("Settings",b.left+dp(30f),b.top+dp(55f),title)
         title.textSize = dp(21f)
         c.drawText("Default Player",b.left+dp(30f),b.top+dp(110f),title)
+        body.color = Color.LTGRAY
         body.textAlign = Paint.Align.LEFT
         body.textSize = dp(18f)
         c.drawText("Built-in / Web Player",b.left+dp(30f),b.top+dp(155f),body)
