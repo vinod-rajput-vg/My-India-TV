@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:top="20dp" android:left="12dp" android:right="70dp" android:bottom="70dp"><rotate android:fromDegrees="-10" android:pivotX="50%" android:pivotY="50%"><shape><solid android:color="#202020"/><stroke android:width="3dp" android:color="#EEEEEE"/></shape></rotate></item>
-    <item android:left="65dp" android:right="12dp" android:top="78dp" android:bottom="12dp"><shape android:shape="rectangle"><solid android:color="#E51C23"/><corners android:radius="12dp"/><stroke android:width="3dp" android:color="#FFFFFF"/></shape></item>
-    <item android:left="68dp" android:right="15dp" android:top="72dp" android:bottom="72dp"><shape android:shape="rectangle"><solid android:color="#FFFFFF"/></shape></item>
-</layer-list>
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="128dp" android:height="128dp" android:viewportWidth="128" android:viewportHeight="128">
+    <path android:fillColor="#202020" android:strokeColor="#EEEEEE" android:strokeWidth="4" android:pathData="M18,24 L82,10 L94,68 L30,82 Z"/>
+    <path android:fillColor="#E51C23" android:pathData="M45,65 L108,52 L118,104 L55,117 Z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M54,69 L109,58 L112,67 L56,79 Z"/>
+    <path android:fillColor="#FFD400" android:pathData="M28,76 L34,89 L48,91 L37,100 L40,114 L28,106 L16,114 L19,100 L8,91 L22,89 Z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M25,34 L76,23 L79,30 L27,41 Z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M30,47 L80,36 L83,43 L32,54 Z"/>
+</vector>
