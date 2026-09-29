@@ -23,8 +23,8 @@ private class HomeView(context: Context) : View(context) {
         R.drawable.entertainment,
         R.drawable.imfotainment,
         R.drawable.news,
-        R.drawable.music,
-        R.drawable.kids
+        R.drawable.icon_musics,
+        R.drawable.icon_kids
     )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -72,11 +72,8 @@ private class HomeView(context: Context) : View(context) {
         val bitmap = bitmaps[index]
         if (bitmap == null || bitmap.isRecycled) return
 
-        // Use the visible (non-transparent) bounds of each image so transparent
-        // padding inside the source image does not make the icon look tiny.
         val visible = findVisibleBounds(bitmap)
         if (visible == null) {
-            if (index == 4) drawKidsFallback(c, r)
             return
         }
 
@@ -119,16 +116,6 @@ private class HomeView(context: Context) : View(context) {
             }
         }
         return if (right >= left && bottom >= top) Rect(left, top, right + 1, bottom + 1) else null
-    }
-
-    private fun drawKidsFallback(c: Canvas, r: RectF) {
-        val fallback = BitmapFactory.decodeResource(resources, R.drawable.icon_kids)
-        if (fallback != null) {
-            val safe = RectF(r.left + dp(16f), r.top + dp(16f), r.right - dp(16f), r.bottom - dp(16f))
-            val size = minOf(safe.width(), safe.height()) * 0.72f
-            val dst = RectF(safe.centerX() - size / 2f, safe.centerY() - size / 2f, safe.centerX() + size / 2f, safe.centerY() + size / 2f)
-            c.drawBitmap(fallback, null, dst, p)
-        }
     }
 
     private fun drawSettings(c: Canvas) {
