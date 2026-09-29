@@ -3,6 +3,7 @@ package com.myindiatv
 import android.app.Activity
 import android.content.Context
 import android.graphics.*
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -23,13 +24,14 @@ private class HomeView(context: Context) : View(context) {
         R.drawable.entertainment,
         R.drawable.imfotainment,
         R.drawable.news,
-        R.drawable.music,
-        R.drawable.kids
+        R.drawable.icon_musics,
+        R.drawable.icon_kids
     )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val p = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
-    private val bitmaps = Array(5) { i -> BitmapFactory.decodeResource(resources, icons[i]) }
+    private val bitmaps = Array<Bitmap?> (5) { i -> BitmapFactory.decodeResource(resources, icons[i]) }
+    private val drawables = Array<Drawable?> (5) { i -> if (bitmaps[i] == null) resources.getDrawable(icons[i], context.theme) else null }
     private var selected = 0
     private var settings = false
 
@@ -70,31 +72,46 @@ private class HomeView(context: Context) : View(context) {
 
     private fun drawCategoryIcon(c: Canvas, index: Int, r: RectF) {
         val bitmap = bitmaps[index]
-        if (bitmap == null || bitmap.isRecycled) return
+        val drawable = drawables[index]
+        val safe = RectF(r.left + dp(14f), r.top + dp(14f), r.right - dp(14f), r.bottom - dp(14f))
+        val maxSize = minOf(safe.width(), safe.height()) * 0.82f
 
-        val visible = findVisibleBounds(bitmap)
-        if (visible == null) {
+        if (bitmap != null && !bitmap.isRecycled) {
+            val visible = findVisibleBounds(bitmap) ?: return
+            val visibleWidth = visible.width().toFloat()
+            val visibleHeight = visible.height().toFloat()
+            val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
+            val dstW = visibleWidth * scale
+            val dstH = visibleHeight * scale
+            val dst = RectF(
+                safe.centerX() - dstW / 2f,
+                safe.centerY() - dstH / 2f,
+                safe.centerX() + dstW / 2f,
+                safe.centerY() + dstH / 2f
+            )
+            c.save()
+            c.clipPath(Path().apply { addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW) })
+            c.drawBitmap(bitmap, visible, dst, p)
+            c.restore()
             return
         }
 
-        val safe = RectF(r.left + dp(14f), r.top + dp(14f), r.right - dp(14f), r.bottom - dp(14f))
-        val maxSize = minOf(safe.width(), safe.height()) * 0.72f
-        val visibleWidth = visible.width().toFloat()
-        val visibleHeight = visible.height().toFloat()
-        val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
-        val dstW = visibleWidth * scale
-        val dstH = visibleHeight * scale
-        val dst = RectF(
-            safe.centerX() - dstW / 2f,
-            safe.centerY() - dstH / 2f,
-            safe.centerX() + dstW / 2f,
-            safe.centerY() + dstH / 2f
-        )
-
-        c.save()
-        c.clipPath(Path().apply { addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW) })
-        c.drawBitmap(bitmap, visible, dst, p)
-        c.restore()
+        if (drawable != null) {
+            val intrinsicW = if (drawable.intrinsicWidth > 0) drawable.intrinsicWidth.toFloat() else 128f
+            val intrinsicH = if (drawable.intrinsicHeight > 0) drawable.intrinsicHeight.toFloat() else 128f
+            val scale = minOf(maxSize / intrinsicW, maxSize / intrinsicH)
+            val dstW = intrinsicW * scale
+            val dstH = intrinsicH * scale
+            val left = (safe.centerX() - dstW / 2f).toInt()
+            val top = (safe.centerY() - dstH / 2f).toInt()
+            val right = (safe.centerX() + dstW / 2f).toInt()
+            val bottom = (safe.centerY() + dstH / 2f).toInt()
+            drawable.setBounds(left, top, right, bottom)
+            c.save()
+            c.clipPath(Path().apply { addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW) })
+            drawable.draw(c)
+            c.restore()
+        }
     }
 
     private fun findVisibleBounds(bitmap: Bitmap): Rect? {
