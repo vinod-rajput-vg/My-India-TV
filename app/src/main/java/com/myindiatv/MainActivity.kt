@@ -6,7 +6,6 @@ import android.graphics.*
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
-import android.widget.Toast
 
 class MainActivity : Activity() {
     private lateinit var homeView: HomeView
@@ -187,7 +186,7 @@ private class HomeView(context: Context) : View(context) {
                 return true
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-                Toast.makeText(context, names[selected] + " selected", Toast.LENGTH_SHORT).show()
+                // Selection is visual only. Do not show any text/toast.
                 return true
             }
             KeyEvent.KEYCODE_MENU -> {
