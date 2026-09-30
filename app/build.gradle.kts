@@ -13,8 +13,8 @@ android {
         applicationId = "com.myindiatv"
         minSdk = 23
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.0.2"
+        versionCode = 4
+        versionName = "1.0.3"
     }
 
     buildTypes {
@@ -30,10 +30,10 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
     doLast {
         outputDir.mkdirs()
 
-        // Download the PNG icons directly from the repository default branch.
-        // Do not use Git blob SHAs or a commit SHA here; raw.githubusercontent.com
-        // supports the branch ref and the files are present at these exact paths.
-        val iconBaseUrl = "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons"
+        // Use the GitHub Contents API with the raw media type instead of
+        // raw.githubusercontent.com. This avoids the HTTP 404 encountered
+        // by GitHub Actions while fetching the binary PNG files.
+        val apiBaseUrl = "https://api.github.com/repos/vinod-rajput-vg/My-Live-TV-M3U-Manager/contents/Icons"
         val icons = mapOf(
             "entertainment.png" to "Entertainment.png",
             "imfotainment.png" to "Imfotainment.png",
@@ -43,7 +43,7 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
         )
 
         icons.forEach { (fileName, sourceName) ->
-            val urlString = "$iconBaseUrl/$sourceName"
+            val urlString = "$apiBaseUrl/$sourceName?ref=main"
             val destination = File(outputDir, fileName)
             var lastError: Exception? = null
 
@@ -57,8 +57,7 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
                         doInput = true
                         useCaches = false
                         setRequestProperty("User-Agent", "My-India-TV Android Build")
-                        setRequestProperty("Accept", "image/png,*/*;q=0.8")
-                        setRequestProperty("Accept-Encoding", "identity")
+                        setRequestProperty("Accept", "application/vnd.github.raw+json")
                     }
 
                     try {
