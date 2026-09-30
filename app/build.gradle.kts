@@ -1,8 +1,8 @@
+import org.gradle.api.tasks.Copy
+
 plugins {
     id("com.android.application")
 }
-
-import org.gradle.api.tasks.Copy
 
 android {
     namespace = "com.myindiatv"
