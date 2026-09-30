@@ -197,7 +197,6 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("MTV", "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:mtvindia.smil/playlist.m3u8", iconResId = iconId("mtv")),
             Channel("MTV HD", "http://27.116.22.53:5001/live/1145.m3u8", iconResId = iconId("mtv_hd_plus")),
             Channel("Music India", "http://27.116.22.53:5001/live/250.m3u8", iconResId = iconId("music_india")),
-            Channel("9XM", "https://9xjio.wiseplayout.com/9XM/master.m3u8", iconResId = iconId("9xm")),
             Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         else -> listOf(
