@@ -22,10 +22,6 @@ Zee Horror Nights
 https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ZeeHorrorNights.png
 
-Colors Cineplex
-http://149.71.34.166:8000/play/a036/index.m3u8
-https://jiotvimages.cdn.jio.com/dare_images/images/Colors_Cineplex.png
-
 Colors Cineplex Bollywood
 http://202.70.146.135:8000/play/a058/index.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ColorsCineplexBollywood.png
