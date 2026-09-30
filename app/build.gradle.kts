@@ -30,9 +30,10 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
     doLast {
         outputDir.mkdirs()
 
-        // Use the actual commit SHA, not the individual Git blob SHAs.
-        // All five PNG icons are present in this commit.
-        val iconCommit = "fbfbbaa809a9146558e33e4be56672d697f52ccf"
+        // Download the PNG icons directly from the repository default branch.
+        // Do not use Git blob SHAs or a commit SHA here; raw.githubusercontent.com
+        // supports the branch ref and the files are present at these exact paths.
+        val iconBaseUrl = "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons"
         val icons = mapOf(
             "entertainment.png" to "Entertainment.png",
             "imfotainment.png" to "Imfotainment.png",
@@ -42,16 +43,11 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
         )
 
         icons.forEach { (fileName, sourceName) ->
-            val urlString = "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/$iconCommit/Icons/$sourceName"
+            val urlString = "$iconBaseUrl/$sourceName"
             val destination = File(outputDir, fileName)
             var lastError: Exception? = null
 
             repeat(3) { attempt ->
-                if (destination.exists() && destination.length() > 0L) {
-                    lastError = null
-                    return@repeat
-                }
-
                 try {
                     val connection = (URL(urlString).openConnection() as HttpURLConnection).apply {
                         requestMethod = "GET"
@@ -87,6 +83,8 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
                     } finally {
                         connection.disconnect()
                     }
+
+                    return@repeat
                 } catch (e: Exception) {
                     lastError = e
                     if (attempt < 2) Thread.sleep(1000L)
