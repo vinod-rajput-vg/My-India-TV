@@ -1,0 +1,3 @@
+B4U Music
+https://cdn.pishow.tv/ott/live/415/master.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/B4U_Music.png

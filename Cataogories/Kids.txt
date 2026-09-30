@@ -1,0 +1,19 @@
+Nick Hindi
+http://103.185.24.134:3001/NICK/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Nick_Hindi.png
+
+Sonic Hindi
+http://103.185.24.134:3001/SONIC/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Sonic_Hindi.png
+
+Hungama TV
+http://103.185.24.134:3001/HUNGAMA/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Hungama.png
+
+Super Hungama
+http://103.185.24.134:3001/SUPER-HUNGAMA/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/SuperHungama.png
+
+Disney Channel (India) HD
+http://66.102.126.10:8000/play/a013/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Disney_Channel.png

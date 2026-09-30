@@ -1,0 +1,19 @@
+Discovery HD Hindi
+http://202.70.146.135:8000/play/a05z/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/DiscoveryHDHindi.png
+
+Sony BBC Earth
+http://202.70.146.135:8000/play/a067/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/SonyBBCEarth.png
+
+Nat Geo Wild HD
+http://202.70.146.135:8000/play/a05j/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Nat_Geo_Wild_HD.png
+
+National Geographic HD
+http://202.70.146.135:8000/play/a05o/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/National_Geographic_HD.png
+
+Gujarat  Wild TV
+https://newsliveindia.com:4433/wildlife/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Gujarat_Wild_TV.png
