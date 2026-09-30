@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
 }
 
+import org.gradle.api.tasks.Copy
+
 android {
     namespace = "com.myindiatv"
     compileSdk = 36
@@ -14,9 +16,24 @@ android {
         versionName = "1.0.5"
     }
 
+    sourceSets {
+        getByName("main") {
+            res.srcDir(layout.buildDirectory.dir("generated/res/channelIcons"))
+        }
+    }
+
     buildTypes {
         release { isMinifyEnabled = false }
     }
+}
+
+tasks.register<Copy>("copyChannelIcons") {
+    from(layout.projectDirectory.dir("src/main/res/ch-drawable-nodpi"))
+    into(layout.buildDirectory.dir("generated/res/channelIcons/drawable-nodpi"))
+}
+
+tasks.named("preBuild") {
+    dependsOn("copyChannelIcons")
 }
 
 kotlin { jvmToolchain(17) }
