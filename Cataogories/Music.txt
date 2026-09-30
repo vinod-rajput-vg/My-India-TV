@@ -14,10 +14,6 @@ Music India
 http://27.116.22.53:5001/live/250.m3u8
 https://jiotvimages.cdn.jio.com/dare_images/images/Music_India.png
 
-9XM
-https://9xjio.wiseplayout.com/9XM/master.m3u8
-https://jiotvimages.cdn.jio.com/dare_images/images/9xm.png
-
 Shemaroo Filmy Gaane
 https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8
 https://jiotvimages.cdn.jio.com/dare_images/images/smrfgn.png
