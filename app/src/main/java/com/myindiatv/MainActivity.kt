@@ -9,10 +9,23 @@ import android.view.View
 import android.widget.Toast
 
 class MainActivity : Activity() {
+    private lateinit var homeView: HomeView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        setContentView(HomeView(this))
+        homeView = HomeView(this)
+        setContentView(homeView)
+        homeView.requestFocus()
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN && ::homeView.isInitialized) {
+            if (homeView.handleDpadKey(event.keyCode)) {
+                return true
+            }
+        }
+        return super.dispatchKeyEvent(event)
     }
 }
 
@@ -42,13 +55,16 @@ private class HomeView(context: Context) : View(context) {
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
         color = Color.WHITE
-        strokeWidth = 3f
         isAntiAlias = true
     }
 
     private val bitmaps = arrayOfNulls<Bitmap>(5)
 
     init {
+        isFocusable = true
+        isFocusableInTouchMode = true
+        requestFocus()
+
         for (i in iconIds.indices) {
             bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])
         }
@@ -74,14 +90,12 @@ private class HomeView(context: Context) : View(context) {
             val left = side + i * (cw + gap)
             val r = RectF(left, top, left + cw, top + ch)
 
-            // Gray category background.
             iconPaint.style = Paint.Style.FILL
             iconPaint.color = Color.rgb(96, 96, 96)
             c.drawRoundRect(r, dp(28f), dp(28f), iconPaint)
 
             drawCategoryIcon(c, i, r)
 
-            // White outer selection border for the currently selected category.
             if (i == selected) {
                 val outer = RectF(
                     r.left - dp(3f),
@@ -110,11 +124,11 @@ private class HomeView(context: Context) : View(context) {
             r.bottom - dp(5f)
         )
 
-        // Icons are 5% larger than the previous size.
+        // Icons are approximately 10% larger than the previous size.
         val scale = minOf(
             safe.width() / bitmap.width.toFloat(),
             safe.height() / bitmap.height.toFloat()
-        ) * 0.987f
+        ) * 1.08f
 
         val dstW = bitmap.width * scale
         val dstH = bitmap.height * scale
@@ -126,7 +140,6 @@ private class HomeView(context: Context) : View(context) {
             safe.centerY() + dstH / 2f
         )
 
-        // Draw the PNG directly; do not add any generated icon or border.
         c.drawBitmap(bitmap, null, dst, iconPaint)
     }
 
@@ -152,23 +165,24 @@ private class HomeView(context: Context) : View(context) {
         c.drawText("Built-in / Web Player", b.left + dp(30f), b.top + dp(155f), body)
     }
 
-    override fun onKeyDown(k: Int, e: KeyEvent): Boolean {
+    fun handleDpadKey(k: Int): Boolean {
         if (settings) {
             if (k == KeyEvent.KEYCODE_BACK || k == KeyEvent.KEYCODE_DPAD_CENTER) {
                 settings = false
                 invalidate()
+                requestFocus()
             }
             return true
         }
 
         when (k) {
             KeyEvent.KEYCODE_DPAD_LEFT -> {
-                selected = (selected + 4) % 5
+                selected = (selected + names.size - 1) % names.size
                 invalidate()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                selected = (selected + 1) % 5
+                selected = (selected + 1) % names.size
                 invalidate()
                 return true
             }
@@ -184,7 +198,11 @@ private class HomeView(context: Context) : View(context) {
             KeyEvent.KEYCODE_BACK -> return true
         }
 
-        return super.onKeyDown(k, e)
+        return false
+    }
+
+    override fun onKeyDown(k: Int, e: KeyEvent): Boolean {
+        return if (handleDpadKey(k)) true else super.onKeyDown(k, e)
     }
 
     private fun dp(v: Float) = v * resources.displayMetrics.density
