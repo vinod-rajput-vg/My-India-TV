@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import java.net.HttpURLConnection
+import java.net.URL
 
 class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,25 +47,58 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private val bitmaps = arrayOfNulls<Bitmap>(5)
+    private val visibleBounds = arrayOfNulls<Rect>(5)
 
     init {
         for (i in iconUrls.indices) {
-            Thread {
+            loadIcon(i)
+        }
+    }
+
+    private fun loadIcon(index: Int) {
+        Thread {
+            var loaded: Bitmap? = null
+
+            repeat(3) { attempt ->
+                if (loaded != null) return@repeat
                 try {
-                    val connection = java.net.URL(iconUrls[i]).openConnection() as java.net.HttpURLConnection
-                    connection.connectTimeout = 10000
-                    connection.readTimeout = 10000
-                    connection.doInput = true
-                    connection.connect()
-                    connection.inputStream.use { input ->
-                        bitmaps[i] = BitmapFactory.decodeStream(input)
+                    val connection = (URL(iconUrls[index]).openConnection() as HttpURLConnection).apply {
+                        requestMethod = "GET"
+                        connectTimeout = 15000
+                        readTimeout = 15000
+                        doInput = true
+                        useCaches = true
+                        setRequestProperty("User-Agent", "Mozilla/5.0 (Android; My India TV)")
+                        setRequestProperty("Accept", "image/webp,image/*,*/*;q=0.8")
+                    }
+
+                    try {
+                        connection.connect()
+                        if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                            connection.inputStream.use { input ->
+                                loaded = BitmapFactory.decodeStream(input)
+                            }
+                        }
+                    } finally {
+                        connection.disconnect()
                     }
                 } catch (_: Exception) {
-                } finally {
-                    postInvalidate()
+                    if (attempt < 2) {
+                        try {
+                            Thread.sleep(750L)
+                        } catch (_: InterruptedException) {
+                        }
+                    }
                 }
-            }.start()
-        }
+            }
+
+            if (loaded != null && !loaded!!.isRecycled) {
+                bitmaps[index] = loaded
+                visibleBounds[index] = findVisibleBounds(loaded!!)
+            }
+
+            postInvalidate()
+        }.start()
     }
 
     private var selected = 0
@@ -119,7 +154,7 @@ private class HomeView(context: Context) : View(context) {
             r.bottom - dp(14f)
         )
         val maxSize = minOf(safe.width(), safe.height()) * 0.82f
-        val visible = findVisibleBounds(bitmap) ?: return
+        val visible = visibleBounds[index] ?: return
 
         val visibleWidth = visible.width().toFloat()
         val visibleHeight = visible.height().toFloat()
