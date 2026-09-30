@@ -1,9 +1,8 @@
-name: Build My India TV
+name: Build My India TV Debug
 
 on:
   push:
     branches: [main, master]
-    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -17,7 +16,6 @@ env:
 jobs:
   build:
     name: Build Debug APK
-    if: ${{ github.event_name != 'workflow_dispatch' && !startsWith(github.ref, 'refs/tags/') }}
     runs-on: ubuntu-latest
 
     steps:
@@ -71,147 +69,3 @@ jobs:
           name: My-India-TV-debug
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
-
-  signed-release:
-    name: Build production-signed APK
-    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.ref, 'refs/tags/') }}
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    env:
-      ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
-      ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
-      ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
-      ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v5
-
-      - name: Verify release signing secrets
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          test -n "$ANDROID_KEYSTORE_BASE64" || {
-            echo "Missing ANDROID_KEYSTORE_BASE64 secret"
-            exit 1
-          }
-
-          test -n "$ANDROID_KEYSTORE_PASSWORD" || {
-            echo "Missing ANDROID_KEYSTORE_PASSWORD secret"
-            exit 1
-          }
-
-          test -n "$ANDROID_KEY_ALIAS" || {
-            echo "Missing ANDROID_KEY_ALIAS secret"
-            exit 1
-          }
-
-          test -n "$ANDROID_KEY_PASSWORD" || {
-            echo "Missing ANDROID_KEY_PASSWORD secret"
-            exit 1
-          }
-
-      - name: Set up JDK 17
-        uses: actions/setup-java@v5
-        with:
-          distribution: temurin
-          java-version: '17'
-          cache: gradle
-
-      - name: Configure Android SDK
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
-
-          if [ ! -x "$SDKMANAGER" ]; then
-            SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/16.0/bin/sdkmanager"
-          fi
-
-          yes | "$SDKMANAGER" --licenses >/dev/null || true
-
-          "$SDKMANAGER" \
-            "platform-tools" \
-            "platforms;android-36" \
-            "build-tools;36.0.0"
-
-      - name: Restore release keystore
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          echo "$ANDROID_KEYSTORE_BASE64" \
-            | base64 --decode \
-            > "$GITHUB_WORKSPACE/release.keystore"
-
-          test -s "$GITHUB_WORKSPACE/release.keystore"
-
-      - name: Verify restored keystore
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          test -f "$GITHUB_WORKSPACE/release.keystore"
-
-          keytool \
-            -list \
-            -keystore "$GITHUB_WORKSPACE/release.keystore" \
-            -alias "$ANDROID_KEY_ALIAS" \
-            -storepass "$ANDROID_KEYSTORE_PASSWORD" \
-            >/dev/null
-
-          echo "Release keystore verified successfully."
-
-      - name: Build signed Release APK
-        run: |
-          sh gradlew --no-daemon clean assembleRelease --stacktrace
-
-      - name: Verify APK exists
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          APK="app/build/outputs/apk/release/app-release.apk"
-
-          test -f "$APK"
-
-          echo "APK found:"
-          ls -lh "$APK"
-
-      - name: Verify APK signature
-        shell: bash
-        run: |
-          set -euo pipefail
-
-          APK="app/build/outputs/apk/release/app-release.apk"
-
-          "$ANDROID_HOME/build-tools/36.0.0/apksigner" \
-            verify \
-            --verbose \
-            "$APK"
-
-      - name: Upload signed APK artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: My-India-TV-${{ github.ref_name }}-production-signed
-          path: app/build/outputs/apk/release/app-release.apk
-          if-no-files-found: error
-
-      - name: Publish GitHub Release
-        if: ${{ github.ref_type == 'tag' }}
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          generate_release_notes: true
-          files: app/build/outputs/apk/release/app-release.apk
-
-      - name: Remove signing keystore
-        if: always()
-        shell: bash
-        run: |
-          rm -f "$GITHUB_WORKSPACE/release.keystore"
