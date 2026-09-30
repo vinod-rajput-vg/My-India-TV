@@ -7,9 +7,6 @@ http://27.116.22.53:5001/live/575.m3u8
 Sony BBC Earth
 http://202.70.146.135:8000/play/a067/index.m3u8
 
-Animal Planet HD Hindi
-http://66.102.126.10:8000/play/a001/index.m3u8
-
 Nat Geo Wild HD
 http://202.70.146.135:8000/play/a05j/index.m3u8
 
