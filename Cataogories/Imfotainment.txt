@@ -14,6 +14,6 @@ National Geographic HD
 http://202.70.146.135:8000/play/a05o/index.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/National_Geographic_HD.png
 
-Gujarat  Wild TV
-https://newsliveindia.com:4433/wildlife/index.m3u8
-https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/Gujarat_Wild_TV.png
+History TV18 HD
+http://202.70.146.135:8000/play/a065/index.m3u8
+https://jiotvimages.cdn.jio.com/dare_images/images/History_HD.png
