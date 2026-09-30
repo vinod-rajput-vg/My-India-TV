@@ -201,7 +201,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("TV9 Bharatvarsh", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8", R.drawable.tv9_bharatvarsh),
             Channel("TV9 Gujarati", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9guj3ki8lu/liveabr/playlist.m3u8", R.drawable.tv_9_gujarat),
             Channel("TV9 Marathi", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9marlygv8h/liveabr/playlist.m3u8", R.drawable.tv9_maharashtra),
-            Channel("Zee 24 Kalak", "https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/497f7199-758d-495d-9d2f-a5489231c428/14b7c8ec-16da-47f2-8d7e-5bbaec67b3e2/3.m3u8", R.drawable.zee_24_kakak),
+            Channel("Zee 24 Kalak", "https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/497f7199-758d-495d-9d2f-a5489231c428/14b7c8ec-16da-47f2-8d7e-5bbaec67b3e2/3.m3u8", R.drawable.zee_24_kalak),
             Channel("News Nation", "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8", R.drawable.news_nation),
             Channel("Aaj Tak HD", "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8", R.drawable.aaj_tak),
             Channel("ABP News", "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8", R.drawable.abp_news_india),
@@ -264,90 +264,55 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
                 c.drawRoundRect(outer, dp(15f), dp(15f), selectionPaint)
             }
             textPaint.textSize = dp(16f)
-            drawChannelName(c, channel.name, rect.centerX(), rect.bottom + dp(24f))
+            c.drawText(channel.name, rect.centerX(), rect.bottom + dp(24f), textPaint)
         }
         c.restore()
     }
 
     private fun drawChannelIcon(c: Canvas, channel: Channel, r: RectF) {
-        if (channel.iconResId == 0) return
-        val bitmap = BitmapFactory.decodeResource(resources, channel.iconResId) ?: return
-        if (bitmap.isRecycled) return
+        val id = channel.iconResId ?: return
+        val bitmap = BitmapFactory.decodeResource(resources, id) ?: return
         val safe = RectF(r.left + dp(8f), r.top + dp(8f), r.right - dp(8f), r.bottom - dp(8f))
-        val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 0.72f
+        val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat())
         val dstW = bitmap.width * scale
         val dstH = bitmap.height * scale
         val dst = RectF(safe.centerX() - dstW / 2f, safe.centerY() - dstH / 2f, safe.centerX() + dstW / 2f, safe.centerY() + dstH / 2f)
         c.drawBitmap(bitmap, null, dst, iconPaint)
-    }
-
-    private fun drawChannelName(c: Canvas, name: String, centerX: Float, centerY: Float) {
-        val maxWidth = dp(150f)
-        val words = name.split(" ")
-        val lines = mutableListOf<String>()
-        var current = ""
-        for (word in words) {
-            val candidate = if (current.isEmpty()) word else "$current $word"
-            if (textPaint.measureText(candidate) <= maxWidth) current = candidate
-            else {
-                if (current.isNotEmpty()) lines += current
-                current = word
-            }
-        }
-        if (current.isNotEmpty()) lines += current
-        val shownLines = lines.take(3)
-        val lineHeight = dp(20f)
-        val startY = centerY - (shownLines.size - 1) * lineHeight / 2f - (textPaint.ascent() + textPaint.descent()) / 2f
-        shownLines.forEachIndexed { lineIndex, line -> c.drawText(line, centerX, startY + lineIndex * lineHeight, textPaint) }
+        bitmap.recycle()
     }
 
     fun handleDpadKey(k: Int): Boolean {
-        if (channels.isEmpty()) {
-            if (k == KeyEvent.KEYCODE_BACK || k == KeyEvent.KEYCODE_ESCAPE) {
-                (context as? MainActivity)?.showHome()
-                return true
-            }
-            return true
-        }
+        val maxIndex = channels.lastIndex
+        if (maxIndex < 0) return true
         when (k) {
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-                // At the first column, move to the last column of the previous row.
-                // This makes LEFT work naturally across the 4-column grid.
-                if (selected % columns == 0) {
-                    if (selected > 0) selected--
-                } else {
-                    selected--
-                }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                if (selected < maxIndex) selected++
                 ensureSelectedVisible()
                 invalidate()
                 return true
             }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                // At the fourth column, continue at the first column of the next row.
-                if (selected < channels.lastIndex) selected++
+            KeyEvent.KEYCODE_DPAD_LEFT -> {
+                if (selected > 0) selected--
+                ensureSelectedVisible()
+                invalidate()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
+                val next = selected + columns
+                if (next <= maxIndex) selected = next
                 ensureSelectedVisible()
                 invalidate()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_UP -> {
-                if (selected >= columns) {
-                    selected -= columns
-                    ensureSelectedVisible()
-                    invalidate()
-                }
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
-                val next = selected + columns
-                if (next < channels.size) {
-                    selected = next
-                    ensureSelectedVisible()
-                    invalidate()
-                }
+                val prev = selected - columns
+                if (prev >= 0) selected = prev
+                ensureSelectedVisible()
+                invalidate()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-                (context as? MainActivity)?.openStream(channels[selected].streamUrl)
+                (context as? MainActivity)?.openStream(channels[selected].url)
                 return true
             }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
@@ -359,24 +324,16 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     }
 
     private fun ensureSelectedVisible() {
-        val rows = (channels.size + columns - 1) / columns
-        val top = dp(42f)
-        val gapY = dp(22f)
-        val side = dp(42f)
-        val gapX = dp(18f)
-        val baseCardW = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
-        val cardW = baseCardW * 0.75f
-        val cardH = cardW * 0.75f
-        val rowStep = cardH + gapY
-        val selectedRow = selected / columns
-        val visibleRows = maxOf(1, ((height - top) / rowStep).toInt())
-        if (selectedRow < scrollRow) scrollRow = selectedRow
-        else if (selectedRow >= scrollRow + visibleRows) scrollRow = selectedRow - visibleRows + 1
-        scrollRow = scrollRow.coerceIn(0, maxOf(0, rows - visibleRows))
+        val row = selected / columns
+        val visibleRows = maxOf(1, ((height - dp(42f)) / (dp(120f) + dp(22f))).toInt())
+        if (row < scrollRow) scrollRow = row
+        else if (row >= scrollRow + visibleRows) scrollRow = row - visibleRows + 1
+        val maxRow = (channels.lastIndex / columns)
+        scrollRow = scrollRow.coerceIn(0, maxRow)
     }
 
     override fun onKeyDown(k: Int, e: KeyEvent): Boolean = if (handleDpadKey(k)) true else super.onKeyDown(k, e)
     private fun dp(v: Float) = v * resources.displayMetrics.density
 }
 
-data class Channel(val name: String, val streamUrl: String, val iconResId: Int)
+data class Channel(val name: String, val url: String, val iconResId: Int? = null)
