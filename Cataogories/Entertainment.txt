@@ -1,3 +1,7 @@
+Star Gold 2 HD
+http://202.70.146.135:8000/play/a04q/index.m3u8
+https://jiotvimages.cdn.jio.com/dare_images/images/Star_Gold_2_HD.png
+
 Zee Cinema
 https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ZeeCinema.png
@@ -6,9 +10,29 @@ Zee Cine Classic
 https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ZeeCineClassic.png
 
+Star Movies
+http://27.116.22.53:5001/live/1115.m3u8
+https://jiotvimages.cdn.jio.com/dare_images/images/Star_Movies.png
+
+Star Movies Select
+http://27.116.22.53:5001/live/3276.m3u8
+https://jiotvimages.cdn.jio.com/dare_images/images/Star_Movies_Select.png
+
 Zee Horror Nights
 https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ZeeHorrorNights.png
+
+Colors Cineplex
+http://149.71.34.166:8000/play/a036/index.m3u8
+https://jiotvimages.cdn.jio.com/dare_images/images/Colors_Cineplex.png
+
+Colors Cineplex Bollywood
+http://202.70.146.135:8000/play/a058/index.m3u8
+https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ColorsCineplexBollywood.png
+
+Shemaroo Bollywood
+https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8
+https://jiotvimages.cdn.jio.com/dare_images/images/smrbol.png
 
 B4U Kadak
 https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8
@@ -17,10 +41,6 @@ https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e88
 B4U Movies
 https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/B4U_Movies.png
-
-Colors Cineplex Bollywood
-http://202.70.146.135:8000/play/a058/index.m3u8
-https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ColorsCineplexBollywood.png
 
 Goldmines
 https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8
