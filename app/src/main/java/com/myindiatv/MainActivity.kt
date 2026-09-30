@@ -208,7 +208,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Disney Channel (India) HD", "http://66.102.126.10:8000/play/a013/index.m3u8", iconResId = iconId("disney_channel"))
         )
         else -> listOf(
-            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("movies"))
+            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
         )
     }
 
@@ -299,6 +299,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         scrollRow = scrollRow.coerceIn(0, channels.lastIndex / columns)
     }
 
-    override fun onKeyDown(k: Int, e: KeyEvent): Boolean = if (handleDpadKey(k)) true else super.onKeyDown(k, e)
     private fun dp(v: Float) = v * resources.displayMetrics.density
 }
+
+private data class Channel(val name: String, val streamUrl: String, val iconResId: Int)
