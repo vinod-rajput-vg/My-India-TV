@@ -37,9 +37,16 @@ android {
     if (hasReleaseSigning) {
         signingConfigs {
             create("release") {
-                val keystoreFile = layout.buildDirectory.file("signing/release.keystore").get().asFile
-                keystoreFile.parentFile.mkdirs()
-                keystoreFile.writeBytes(Base64.getDecoder().decode(releaseKeystoreBase64))
+                // Keep the keystore outside app/build because `clean` deletes app/build.
+                // The GitHub Actions workflow restores it here before Gradle runs.
+                val keystoreFile = rootProject.file("release.keystore")
+
+                if (!keystoreFile.exists()) {
+                    keystoreFile.writeBytes(
+                        Base64.getDecoder().decode(releaseKeystoreBase64)
+                    )
+                }
+
                 storeFile = keystoreFile
                 storePassword = releaseKeystorePassword
                 keyAlias = releaseKeyAlias
