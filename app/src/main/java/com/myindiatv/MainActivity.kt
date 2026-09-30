@@ -238,20 +238,7 @@ private class HomeView(context: Context) : View(context) {
     private fun dp(v: Float) = v * resources.displayMetrics.density
 }
 
-private data class Channel(
-    val name: String,
-    val streamUrl: String
-)
-
 private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
-    private val categoryNames = arrayOf(
-        "Entertainment",
-        "Imfotainment",
-        "News",
-        "Musics",
-        "Kids"
-    )
-
     private val channels: List<Channel> = when (categoryIndex) {
         0 -> listOf(
             Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8"),
@@ -337,10 +324,9 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val cardW = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
         val cardH = cardW * 0.75f
         val rowStep = cardH + gapY
-        val visibleBottom = height.toFloat()
 
         c.save()
-        c.clipRect(0f, 0f, width.toFloat(), visibleBottom)
+        c.clipRect(0f, 0f, width.toFloat(), height.toFloat())
 
         channels.forEachIndexed { index, channel ->
             val row = index / columns
@@ -349,7 +335,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             val topPos = top + (row - scrollRow) * rowStep
             val rect = RectF(left, topPos, left + cardW, topPos + cardH)
 
-            if (rect.bottom < 0f || rect.top > visibleBottom) return@forEachIndexed
+            if (rect.bottom < 0f || rect.top > height.toFloat()) return@forEachIndexed
 
             c.drawRoundRect(rect, dp(14f), dp(14f), cardPaint)
 
@@ -364,12 +350,12 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             }
 
             textPaint.textSize = dp(18f)
-            drawChannelName(c, channel.name, rect.centerX(), rect.centerY(), cardH)
+            drawChannelName(c, channel.name, rect.centerX(), rect.centerY())
         }
         c.restore()
     }
 
-    private fun drawChannelName(c: Canvas, name: String, centerX: Float, centerY: Float, cardH: Float) {
+    private fun drawChannelName(c: Canvas, name: String, centerX: Float, centerY: Float) {
         val maxWidth = dp(210f)
         val words = name.split(" ")
         val lines = mutableListOf<String>()
@@ -386,8 +372,8 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         }
         if (current.isNotEmpty()) lines += current
 
-        val lineHeight = dp(22f)
         val shownLines = lines.take(3)
+        val lineHeight = dp(22f)
         val startY = centerY - (shownLines.size - 1) * lineHeight / 2f - (textPaint.ascent() + textPaint.descent()) / 2f
         shownLines.forEachIndexed { lineIndex, line ->
             c.drawText(line, centerX, startY + lineIndex * lineHeight, textPaint)
