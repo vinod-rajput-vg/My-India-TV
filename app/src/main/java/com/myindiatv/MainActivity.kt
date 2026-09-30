@@ -3,7 +3,6 @@ package com.myindiatv
 import android.app.Activity
 import android.content.Context
 import android.graphics.*
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -27,20 +26,12 @@ private class HomeView(context: Context) : View(context) {
         Color.rgb(0, 240, 100)
     )
 
-    private val icons = intArrayOf(
-        R.drawable.entertainment,
-        R.drawable.imfotainment,
-        R.drawable.news,
-        R.drawable.music,
-        R.drawable.kids
-    )
-
-    private val fallbackIcons = intArrayOf(
-        0,
-        0,
-        0,
-        R.drawable.icon_musics,
-        R.drawable.icon_kids
+    private val iconUrls = arrayOf(
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Entertainment.webp",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Imfotainment.webp",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/News.webp",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Music.webp",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Kids.webp"
     )
 
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -53,13 +44,27 @@ private class HomeView(context: Context) : View(context) {
         isAntiAlias = true
     }
 
-    private val bitmaps = arrayOf<Bitmap?>(
-        BitmapFactory.decodeResource(resources, icons[0]),
-        BitmapFactory.decodeResource(resources, icons[1]),
-        BitmapFactory.decodeResource(resources, icons[2]),
-        BitmapFactory.decodeResource(resources, icons[3]),
-        BitmapFactory.decodeResource(resources, icons[4])
-    )
+    private val bitmaps = arrayOfNulls<Bitmap>(5)
+
+    init {
+        for (i in iconUrls.indices) {
+            Thread {
+                try {
+                    val connection = java.net.URL(iconUrls[i]).openConnection() as java.net.HttpURLConnection
+                    connection.connectTimeout = 10000
+                    connection.readTimeout = 10000
+                    connection.doInput = true
+                    connection.connect()
+                    connection.inputStream.use { input ->
+                        bitmaps[i] = BitmapFactory.decodeStream(input)
+                    }
+                } catch (_: Exception) {
+                } finally {
+                    postInvalidate()
+                }
+            }.start()
+        }
+    }
 
     private var selected = 0
     private var settings = false
@@ -104,53 +109,37 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private fun drawCategoryIcon(c: Canvas, index: Int, r: RectF) {
-        val bitmap = bitmaps[index]
-        if (bitmap != null && !bitmap.isRecycled) {
-            val safe = RectF(
-                r.left + dp(14f),
-                r.top + dp(14f),
-                r.right - dp(14f),
-                r.bottom - dp(14f)
-            )
-            val maxSize = minOf(safe.width(), safe.height()) * 0.82f
-            val visible = findVisibleBounds(bitmap)
+        val bitmap = bitmaps[index] ?: return
+        if (bitmap.isRecycled) return
 
-            if (visible != null) {
-                val visibleWidth = visible.width().toFloat()
-                val visibleHeight = visible.height().toFloat()
-                val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
-                val dstW = visibleWidth * scale
-                val dstH = visibleHeight * scale
+        val safe = RectF(
+            r.left + dp(14f),
+            r.top + dp(14f),
+            r.right - dp(14f),
+            r.bottom - dp(14f)
+        )
+        val maxSize = minOf(safe.width(), safe.height()) * 0.82f
+        val visible = findVisibleBounds(bitmap) ?: return
 
-                val dst = RectF(
-                    safe.centerX() - dstW / 2f,
-                    safe.centerY() - dstH / 2f,
-                    safe.centerX() + dstW / 2f,
-                    safe.centerY() + dstH / 2f
-                )
+        val visibleWidth = visible.width().toFloat()
+        val visibleHeight = visible.height().toFloat()
+        val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
+        val dstW = visibleWidth * scale
+        val dstH = visibleHeight * scale
 
-                c.save()
-                c.clipPath(Path().apply {
-                    addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW)
-                })
-                c.drawBitmap(bitmap, visible, dst, p)
-                c.restore()
-                return
-            }
-        }
+        val dst = RectF(
+            safe.centerX() - dstW / 2f,
+            safe.centerY() - dstH / 2f,
+            safe.centerX() + dstW / 2f,
+            safe.centerY() + dstH / 2f
+        )
 
-        val fallbackId = fallbackIcons[index]
-        if (fallbackId != 0) {
-            val drawable: Drawable = resources.getDrawable(fallbackId, context.theme)
-            val pad = dp(30f).toInt()
-            drawable.setBounds(
-                r.left.toInt() + pad,
-                r.top.toInt() + pad,
-                r.right.toInt() - pad,
-                r.bottom.toInt() - pad
-            )
-            drawable.draw(c)
-        }
+        c.save()
+        c.clipPath(Path().apply {
+            addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW)
+        })
+        c.drawBitmap(bitmap, visible, dst, p)
+        c.restore()
     }
 
     private fun findVisibleBounds(bitmap: Bitmap): Rect? {
