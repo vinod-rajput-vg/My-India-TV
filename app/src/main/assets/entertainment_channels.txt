@@ -1,0 +1,41 @@
+Sony Max HD
+https://sonyliv.07in.workers.dev/live/999/999/sony-max-hd.m3u8
+
+Sony Max
+https://sonyliv.07in.workers.dev/live/999/999/sony-max.m3u8
+
+Star Gold HD
+http://202.70.146.135:8000/play/a02a/index.m3u8
+
+Zee Cinema HD
+http://27.116.22.53:5001/live/165.m3u8
+
+Zee Cine Classic
+https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8
+
+Zee Cinema
+https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8
+
+Zee Classic
+http://107.167.16.138/zeeclassic/index.m3u8?token=test
+
+Zee Horror Nights
+https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8
+
+B4U Kadak
+https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8
+
+B4U Movies
+https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8
+
+Colors Cineplex Bollywood
+http://202.70.146.135:8000/play/a058/index.m3u8
+
+Goldmines
+https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8
+
+Goldmines 2
+https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8
+
+Goldmines Bollywood
+https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8
