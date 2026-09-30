@@ -55,13 +55,13 @@ class MainActivity : Activity() {
 }
 
 private class HomeView(context: Context) : View(context) {
-    private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids")
-    private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids)
+    private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Movies")
+    private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.movies)
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
-    private val bitmaps = arrayOfNulls<Bitmap>(5)
+    private val bitmaps = arrayOfNulls<Bitmap>(6)
     private var selected = 0
     private var settings = false
     private var lastBackPressTime = 0L
@@ -75,16 +75,16 @@ private class HomeView(context: Context) : View(context) {
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
-        val side = dp(52f)
-        val gap = dp(22f)
+        val side = dp(38f)
+        val gap = dp(16f)
         val top = dp(95f)
-        val cw = (width - side * 2 - gap * 4) / 5f
-        repeat(5) { i ->
+        val cw = (width - side * 2 - gap * 5) / 6f
+        repeat(6) { i ->
             val left = side + i * (cw + gap)
             val r = RectF(left, top, left + cw, top + cw)
             iconPaint.style = Paint.Style.FILL
             iconPaint.color = Color.rgb(96, 96, 96)
-            c.drawRoundRect(r, dp(28f), dp(28f), iconPaint)
+            c.drawRoundRect(r, dp(24f), dp(24f), iconPaint)
             val bitmap = bitmaps[i]
             if (bitmap != null && !bitmap.isRecycled) {
                 val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
@@ -95,11 +95,11 @@ private class HomeView(context: Context) : View(context) {
             }
             if (i == selected) {
                 selectionPaint.strokeWidth = dp(3f)
-                c.drawRoundRect(RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f)), dp(31f), dp(31f), selectionPaint)
+                c.drawRoundRect(RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f)), dp(27f), dp(27f), selectionPaint)
             }
             title.textAlign = Paint.Align.CENTER
-            title.textSize = dp(22f)
-            c.drawText(names[i], r.centerX(), r.bottom + dp(34f), title)
+            title.textSize = dp(17f)
+            c.drawText(names[i], r.centerX(), r.bottom + dp(30f), title)
         }
         if (settings) drawSettings(c)
     }
@@ -159,7 +159,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = iconId("zeecinema")),
             Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
             Channel("Zee Horror Nights", "https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8", iconResId = iconId("zeehorrornights")),
-Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
+            Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
             Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
             Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8", iconResId = iconId("b4u_kadak")),
             Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8", iconResId = iconId("b4u_movies")),
@@ -196,7 +196,7 @@ Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index
             Channel("Music India", "http://27.116.22.53:5001/live/250.m3u8", iconResId = iconId("music_india")),
             Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
-        else -> listOf(
+        4 -> listOf(
             Channel("Nick Hindi", "http://103.185.24.134:3001/NICK/index.m3u8", iconResId = iconId("nick_hindi")),
             Channel("Sonic Hindi", "http://103.185.24.134:3001/SONIC/index.m3u8", iconResId = iconId("sonic_hindi")),
             Channel("Pogo Hindi", "http://27.116.22.53:5001/live/559.m3u8", iconResId = iconId("pogo_hindi")),
@@ -206,6 +206,9 @@ Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index
             Channel("Hungama TV", "http://103.185.24.134:3001/HUNGAMA/index.m3u8", iconResId = iconId("hungama")),
             Channel("Super Hungama", "http://103.185.24.134:3001/SUPER-HUNGAMA/index.m3u8", iconResId = iconId("superhungama")),
             Channel("Disney Channel (India) HD", "http://66.102.126.10:8000/play/a013/index.m3u8", iconResId = iconId("disney_channel"))
+        )
+        else -> listOf(
+            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("movies"))
         )
     }
 
