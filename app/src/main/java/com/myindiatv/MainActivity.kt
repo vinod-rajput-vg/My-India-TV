@@ -301,5 +301,3 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
 
     private fun dp(v: Float) = v * resources.displayMetrics.density
 }
-
-private data class Channel(val name: String, val streamUrl: String, val iconResId: Int)
