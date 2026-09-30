@@ -1,0 +1,23 @@
+Nick Hindi
+http://202.70.146.135:8000/play/a04c/index.m3u8
+
+Pogo Hindi
+http://27.116.22.53:5001/live/559.m3u8
+
+Sonic Hindi
+http://202.70.146.135:8000/play/a02t/index.m3u8
+
+Cartoon Network Hindi
+http://27.116.22.53:5001/live/816.m3u8
+
+Hungama TV
+http://103.185.24.134:3001/HUNGAMA/index.m3u8
+
+Super Hungama
+http://103.185.24.134:3001/SUPER-HUNGAMA/index.m3u8
+
+Disney Channel (India) HD
+http://66.102.126.10:8000/play/a013/index.m3u8
+
+Disney International HD
+http://202.70.146.135:8000/play/a04p/index.m3u8
