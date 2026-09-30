@@ -51,7 +51,7 @@ private class HomeView(context: Context) : View(context) {
     private var settings = false
 
     override fun onDraw(c: Canvas) {
-        c.drawColor(Color.BLACK)
+        c.drawColor(Color.rgb(32, 32, 32))
         drawHome(c)
         if (settings) drawSettings(c)
     }
@@ -99,7 +99,7 @@ private class HomeView(context: Context) : View(context) {
         val scale = minOf(
             safe.width() / bitmap.width.toFloat(),
             safe.height() / bitmap.height.toFloat()
-        ) * 0.94f
+        ) * 0.987f
 
         val dstW = bitmap.width * scale
         val dstH = bitmap.height * scale
