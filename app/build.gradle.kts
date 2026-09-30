@@ -13,8 +13,8 @@ android {
         applicationId = "com.myindiatv"
         minSdk = 23
         targetSdk = 36
-        versionCode = 5
-        versionName = "1.0.4"
+        versionCode = 6
+        versionName = "1.0.5"
     }
 
     buildTypes {
@@ -30,9 +30,10 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
     doLast {
         outputDir.mkdirs()
 
-        // Use the exact commit containing the five verified PNG files.
-        // Do not use main: the files are not present at the current main path.
-        val baseUrl = "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Icons"
+        // The icons are stored at this exact commit. Use the GitHub Contents
+        // API with the raw media type instead of raw.githubusercontent.com.
+        val apiBaseUrl = "https://api.github.com/repos/vinod-rajput-vg/My-Live-TV-M3U-Manager/contents/Icons"
+        val ref = "7b85e8897b67e42a3d4349a955c0096a837d4522"
         val icons = mapOf(
             "entertainment.png" to "Entertainment.png",
             "imfotainment.png" to "Imfotainment.png",
@@ -42,7 +43,7 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
         )
 
         icons.forEach { (fileName, sourceName) ->
-            val urlString = "$baseUrl/$sourceName"
+            val urlString = "$apiBaseUrl/$sourceName?ref=$ref"
             val destination = File(outputDir, fileName)
             var lastError: Exception? = null
 
@@ -57,7 +58,7 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
                         connection.doInput = true
                         connection.useCaches = false
                         connection.setRequestProperty("User-Agent", "My-India-TV Android Build")
-                        connection.setRequestProperty("Accept", "image/png")
+                        connection.setRequestProperty("Accept", "application/vnd.github.raw")
 
                         connection.connect()
                         check(connection.responseCode == HttpURLConnection.HTTP_OK) {
