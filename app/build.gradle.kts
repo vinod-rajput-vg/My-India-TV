@@ -2,7 +2,6 @@ import org.gradle.api.tasks.Copy
 
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
 }
 
 android {
