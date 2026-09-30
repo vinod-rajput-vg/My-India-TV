@@ -10,10 +10,6 @@ Zee Cine Classic
 https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8
 https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Channel%20Icons/ZeeCineClassic.png
 
-Star Movies
-http://27.116.22.53:5001/live/1115.m3u8
-https://jiotvimages.cdn.jio.com/dare_images/images/Star_Movies.png
-
 Star Movies Select
 http://27.116.22.53:5001/live/3276.m3u8
 https://jiotvimages.cdn.jio.com/dare_images/images/Star_Movies_Select.png
