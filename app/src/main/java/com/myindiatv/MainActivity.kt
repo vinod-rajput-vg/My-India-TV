@@ -194,7 +194,10 @@ private class HomeView(context: Context) : View(context) {
                 invalidate()
                 return true
             }
-            KeyEvent.KEYCODE_BACK -> return true
+            KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
+                (context as? Activity)?.finish()
+                return true
+            }
         }
 
         return false
