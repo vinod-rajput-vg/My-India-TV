@@ -16,8 +16,6 @@ http://27.116.22.53:5001/live/3276.m3u8
 Zee Horror Nights
 https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8
 
-Colors Cineplex
-http://149.71.34.166:8000/play/a036/index.m3u8
 
 Colors Cineplex Bollywood
 http://202.70.146.135:8000/play/a058/index.m3u8
