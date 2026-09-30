@@ -13,8 +13,8 @@ android {
         applicationId = "com.myindiatv"
         minSdk = 23
         targetSdk = 36
-        versionCode = 4
-        versionName = "1.0.3"
+        versionCode = 5
+        versionName = "1.0.4"
     }
 
     buildTypes {
@@ -30,10 +30,9 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
     doLast {
         outputDir.mkdirs()
 
-        // Use the GitHub Contents API with the raw media type instead of
-        // raw.githubusercontent.com. This avoids the HTTP 404 encountered
-        // by GitHub Actions while fetching the binary PNG files.
-        val apiBaseUrl = "https://api.github.com/repos/vinod-rajput-vg/My-Live-TV-M3U-Manager/contents/Icons"
+        // Use the exact commit containing the five verified PNG files.
+        // Do not use main: the files are not present at the current main path.
+        val baseUrl = "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/7b85e8897b67e42a3d4349a955c0096a837d4522/Icons"
         val icons = mapOf(
             "entertainment.png" to "Entertainment.png",
             "imfotainment.png" to "Imfotainment.png",
@@ -43,24 +42,23 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
         )
 
         icons.forEach { (fileName, sourceName) ->
-            val urlString = "$apiBaseUrl/$sourceName?ref=main"
+            val urlString = "$baseUrl/$sourceName"
             val destination = File(outputDir, fileName)
             var lastError: Exception? = null
 
             repeat(3) { attempt ->
                 try {
-                    val connection = (URL(urlString).openConnection() as HttpURLConnection).apply {
-                        requestMethod = "GET"
-                        connectTimeout = 20000
-                        readTimeout = 20000
-                        instanceFollowRedirects = true
-                        doInput = true
-                        useCaches = false
-                        setRequestProperty("User-Agent", "My-India-TV Android Build")
-                        setRequestProperty("Accept", "application/vnd.github.raw+json")
-                    }
-
+                    val connection = URL(urlString).openConnection() as HttpURLConnection
                     try {
+                        connection.requestMethod = "GET"
+                        connection.connectTimeout = 20000
+                        connection.readTimeout = 20000
+                        connection.instanceFollowRedirects = true
+                        connection.doInput = true
+                        connection.useCaches = false
+                        connection.setRequestProperty("User-Agent", "My-India-TV Android Build")
+                        connection.setRequestProperty("Accept", "image/png")
+
                         connection.connect()
                         check(connection.responseCode == HttpURLConnection.HTTP_OK) {
                             "HTTP ${connection.responseCode} while downloading $urlString"
