@@ -7,9 +7,6 @@ https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8
 Zee Cine Classic
 https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8
 
-Star Movies
-http://27.116.22.53:5001/live/1115.m3u8
-
 Star Movies Select
 http://27.116.22.53:5001/live/3276.m3u8
 
