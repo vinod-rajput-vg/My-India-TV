@@ -30,17 +30,19 @@ val downloadCategoryIcons = tasks.register("downloadCategoryIcons") {
     doLast {
         outputDir.mkdirs()
 
-        // Pin the source files to the exact PNG blobs in My-Live-TV-M3U-Manager.
-        // This avoids branch/raw URL changes and prevents the previous 404 problem.
+        // Use the actual commit SHA, not the individual Git blob SHAs.
+        // All five PNG icons are present in this commit.
+        val iconCommit = "fbfbbaa809a9146558e33e4be56672d697f52ccf"
         val icons = mapOf(
-            "entertainment.png" to "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/17ccb8e378853be8bf6385b41430aa66b6975139/Icons/Entertainment.png",
-            "imfotainment.png" to "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/c7330f93b7408bdfe75e2fe0e24510cc142251b7/Icons/Imfotainment.png",
-            "news.png" to "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/851dfdd25c66306e810161c159a87a67f7ff15bf/Icons/News.png",
-            "music.png" to "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/1ed007db6e09e761217156b03bc4685a9764fefe/Icons/Music.png",
-            "kids.png" to "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/4174077de41dc2dea11d5ce134e67b0b9ee89b0b/Icons/Kids.png"
+            "entertainment.png" to "Entertainment.png",
+            "imfotainment.png" to "Imfotainment.png",
+            "news.png" to "News.png",
+            "music.png" to "Music.png",
+            "kids.png" to "Kids.png"
         )
 
-        icons.forEach { (fileName, urlString) ->
+        icons.forEach { (fileName, sourceName) ->
+            val urlString = "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/$iconCommit/Icons/$sourceName"
             val destination = File(outputDir, fileName)
             var lastError: Exception? = null
 
