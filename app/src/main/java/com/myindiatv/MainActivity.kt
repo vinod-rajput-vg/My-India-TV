@@ -238,15 +238,12 @@ private class HomeView(context: Context) : View(context) {
     private fun dp(v: Float) = v * resources.displayMetrics.density
 }
 
-private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
-    private val categoryFiles = arrayOf(
-        "entertainment_channels.txt",
-        "imfotainment_channels.txt",
-        "news_channels.txt",
-        "music_channels.txt",
-        "kids_channels.txt"
-    )
+private data class Channel(
+    val name: String,
+    val streamUrl: String
+)
 
+private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
     private val categoryNames = arrayOf(
         "Entertainment",
         "Imfotainment",
@@ -255,10 +252,54 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         "Kids"
     )
 
-    private val channels: List<Channel> = loadChannels(categoryFiles[categoryIndex])
+    private val channels: List<Channel> = when (categoryIndex) {
+        0 -> listOf(
+            Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8"),
+            Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8"),
+            Channel("Zee Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test"),
+            Channel("Zee Horror Nights", "https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8"),
+            Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8"),
+            Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8"),
+            Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8"),
+            Channel("Goldmines", "https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8"),
+            Channel("Goldmines 2", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8"),
+            Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8")
+        )
+        1 -> listOf(
+            Channel("Discovery HD Hindi", "http://202.70.146.135:8000/play/a05z/index.m3u8"),
+            Channel("Sony BBC Earth", "http://202.70.146.135:8000/play/a067/index.m3u8"),
+            Channel("Animal Planet HD Hindi", "http://66.102.126.10:8000/play/a001/index.m3u8"),
+            Channel("Nat Geo Wild HD", "http://202.70.146.135:8000/play/a05j/index.m3u8"),
+            Channel("National Geographic HD", "http://202.70.146.135:8000/play/a05o/index.m3u8"),
+            Channel("Gujarat  Wild TV", "https://newsliveindia.com:4433/wildlife/index.m3u8")
+        )
+        2 -> listOf(
+            Channel("TV9 Bharatvarsh", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8"),
+            Channel("TV9 Gujarati", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9guj3ki8lu/liveabr/playlist.m3u8"),
+            Channel("TV9 Marathi", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9marlygv8h/liveabr/playlist.m3u8"),
+            Channel("Zee 24 Kalak", "https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/497f7199-758d-495d-9d2f-a5489231c428/14b7c8ec-16da-47f2-8d7e-5bbaec67b3e2/3.m3u8"),
+            Channel("News Nation", "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8"),
+            Channel("Aaj Tak HD", "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8"),
+            Channel("ABP News", "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8"),
+            Channel("Times Now Navbharat HD", "https://yupprestreamliveus.akamaized.net/v1/vglive-sk-717514/main.m3u8"),
+            Channel("India TV", "https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8"),
+            Channel("Zee 24 Taas", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8")
+        )
+        3 -> listOf(
+            Channel("B4U Music", "https://cdn.pishow.tv/ott/live/415/master.m3u8")
+        )
+        else -> listOf(
+            Channel("Nick Hindi", "http://103.185.24.134:3001/NICK/index.m3u8"),
+            Channel("Sonic Hindi", "http://103.185.24.134:3001/SONIC/index.m3u8"),
+            Channel("Hungama TV", "http://103.185.24.134:3001/HUNGAMA/index.m3u8"),
+            Channel("Super Hungama", "http://103.185.24.134:3001/SUPER-HUNGAMA/index.m3u8"),
+            Channel("Disney Channel (India) HD", "http://66.102.126.10:8000/play/a013/index.m3u8")
+        )
+    }
+
     private var selected = 0
+    private var scrollRow = 0
     private val columns = 4
-    private var lastBackPressTime = 0L
 
     private val cardPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.FILL
@@ -287,22 +328,28 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
-
         if (channels.isEmpty()) return
 
         val side = dp(42f)
         val gapX = dp(18f)
         val gapY = dp(22f)
-        val top = dp(48f)
+        val top = dp(42f)
         val cardW = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
         val cardH = cardW * 0.75f
+        val rowStep = cardH + gapY
+        val visibleBottom = height.toFloat()
+
+        c.save()
+        c.clipRect(0f, 0f, width.toFloat(), visibleBottom)
 
         channels.forEachIndexed { index, channel ->
             val row = index / columns
             val column = index % columns
             val left = side + column * (cardW + gapX)
-            val topPos = top + row * (cardH + gapY)
+            val topPos = top + (row - scrollRow) * rowStep
             val rect = RectF(left, topPos, left + cardW, topPos + cardH)
+
+            if (rect.bottom < 0f || rect.top > visibleBottom) return@forEachIndexed
 
             c.drawRoundRect(rect, dp(14f), dp(14f), cardPaint)
 
@@ -319,10 +366,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             textPaint.textSize = dp(18f)
             drawChannelName(c, channel.name, rect.centerX(), rect.centerY(), cardH)
         }
+        c.restore()
     }
 
     private fun drawChannelName(c: Canvas, name: String, centerX: Float, centerY: Float, cardH: Float) {
-        val maxWidth = dp(240f)
+        val maxWidth = dp(210f)
         val words = name.split(" ")
         val lines = mutableListOf<String>()
         var current = ""
@@ -339,8 +387,9 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         if (current.isNotEmpty()) lines += current
 
         val lineHeight = dp(22f)
-        val startY = centerY - (lines.size - 1) * lineHeight / 2f - (textPaint.ascent() + textPaint.descent()) / 2f
-        lines.take(3).forEachIndexed { lineIndex, line ->
+        val shownLines = lines.take(3)
+        val startY = centerY - (shownLines.size - 1) * lineHeight / 2f - (textPaint.ascent() + textPaint.descent()) / 2f
+        shownLines.forEachIndexed { lineIndex, line ->
             c.drawText(line, centerX, startY + lineIndex * lineHeight, textPaint)
         }
     }
@@ -356,23 +405,36 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
 
         when (k) {
             KeyEvent.KEYCODE_DPAD_LEFT -> {
-                selected = if (selected % columns == 0) selected else selected - 1
-                invalidate()
+                if (selected % columns > 0) {
+                    selected--
+                    ensureSelectedVisible()
+                    invalidate()
+                }
                 return true
             }
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                selected = if (selected % columns == columns - 1 || selected == channels.lastIndex) selected else selected + 1
-                invalidate()
+                if (selected % columns < columns - 1 && selected < channels.lastIndex) {
+                    selected++
+                    ensureSelectedVisible()
+                    invalidate()
+                }
                 return true
             }
             KeyEvent.KEYCODE_DPAD_UP -> {
-                selected = maxOf(0, selected - columns)
-                invalidate()
+                if (selected >= columns) {
+                    selected -= columns
+                    ensureSelectedVisible()
+                    invalidate()
+                }
                 return true
             }
             KeyEvent.KEYCODE_DPAD_DOWN -> {
-                selected = minOf(channels.lastIndex, selected + columns)
-                invalidate()
+                val next = selected + columns
+                if (next < channels.size) {
+                    selected = next
+                    ensureSelectedVisible()
+                    invalidate()
+                }
                 return true
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
@@ -387,30 +449,29 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         return false
     }
 
-    override fun onKeyDown(k: Int, e: KeyEvent): Boolean {
-        return if (handleDpadKey(k)) true else super.onKeyDown(k, e)
+    private fun ensureSelectedVisible() {
+        val rows = (channels.size + columns - 1) / columns
+        val side = dp(42f)
+        val gapX = dp(18f)
+        val gapY = dp(22f)
+        val top = dp(42f)
+        val cardW = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
+        val cardH = cardW * 0.75f
+        val rowStep = cardH + gapY
+        val selectedRow = selected / columns
+        val visibleRows = maxOf(1, ((height - top) / rowStep).toInt())
+
+        if (selectedRow < scrollRow) {
+            scrollRow = selectedRow
+        } else if (selectedRow >= scrollRow + visibleRows) {
+            scrollRow = selectedRow - visibleRows + 1
+        }
+
+        scrollRow = scrollRow.coerceIn(0, maxOf(0, rows - visibleRows))
     }
 
-    private fun loadChannels(fileName: String): List<Channel> {
-        return try {
-            val text = resources.assets.open(fileName).bufferedReader().use { it.readText() }
-            val lines = text.lineSequence().map { it.trim() }.filter { it.isNotEmpty() }.toList()
-            val result = mutableListOf<Channel>()
-            var i = 0
-            while (i + 1 < lines.size) {
-                val name = lines[i]
-                val url = lines[i + 1]
-                if (url.startsWith("http://") || url.startsWith("https://")) {
-                    result += Channel(name = name, streamUrl = url)
-                    i += 2
-                } else {
-                    i++
-                }
-            }
-            result
-        } catch (_: Exception) {
-            emptyList()
-        }
+    override fun onKeyDown(k: Int, e: KeyEvent): Boolean {
+        return if (handleDpadKey(k)) true else super.onKeyDown(k, e)
     }
 
     private fun dp(v: Float) = v * resources.displayMetrics.density
