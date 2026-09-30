@@ -9,10 +9,6 @@ on:
 permissions:
   contents: read
 
-env:
-  ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
-  ANDROID_HOME: /usr/local/lib/android/sdk
-
 jobs:
   build:
     name: Build Debug APK
@@ -29,38 +25,19 @@ jobs:
           java-version: '17'
           cache: gradle
 
-      - name: Configure Android SDK
+      - name: Build Debug APK
         shell: bash
         run: |
           set -euo pipefail
-
-          SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager"
-
-          if [ ! -x "$SDKMANAGER" ]; then
-            SDKMANAGER="$ANDROID_SDK_ROOT/cmdline-tools/16.0/bin/sdkmanager"
-          fi
-
-          yes | "$SDKMANAGER" --licenses >/dev/null || true
-
-          "$SDKMANAGER" \
-            "platform-tools" \
-            "platforms;android-36" \
-            "build-tools;36.0.0"
-
-      - name: Build Debug APK
-        run: |
-          sh gradlew --no-daemon clean assembleDebug --stacktrace
+          chmod +x ./gradlew
+          ./gradlew --no-daemon clean assembleDebug --stacktrace
 
       - name: Verify Debug APK
         shell: bash
         run: |
           set -euo pipefail
-
           APK="app/build/outputs/apk/debug/app-debug.apk"
-
           test -f "$APK"
-
-          echo "Debug APK found:"
           ls -lh "$APK"
 
       - name: Upload Debug APK
