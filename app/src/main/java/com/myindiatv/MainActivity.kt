@@ -20,15 +20,7 @@ class MainActivity : Activity() {
 
 private class HomeView(context: Context) : View(context) {
     private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids")
-    private val accents = listOf(
-        Color.rgb(255, 35, 70),
-        Color.rgb(0, 180, 255),
-        Color.rgb(255, 190, 30),
-        Color.rgb(235, 20, 230),
-        Color.rgb(0, 240, 100)
-    )
 
-    // Category icons are loaded from the PNG assets in My-Live-TV-M3U-Manager.
     private val iconUrls = arrayOf(
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Entertainment.png",
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Imfotainment.png",
@@ -37,7 +29,6 @@ private class HomeView(context: Context) : View(context) {
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Kids.png"
     )
 
-    // CDN fallback uses the same PNG files.
     private val fallbackIconUrls = arrayOf(
         "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Entertainment.png",
         "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Imfotainment.png",
@@ -67,7 +58,6 @@ private class HomeView(context: Context) : View(context) {
     private fun loadIcon(index: Int) {
         Thread {
             var loaded: Bitmap? = null
-
             val urls = arrayOf(iconUrls[index], fallbackIconUrls[index])
 
             for (url in urls) {
@@ -85,18 +75,15 @@ private class HomeView(context: Context) : View(context) {
                             useCaches = false
                             instanceFollowRedirects = true
                             setRequestProperty("User-Agent", "Mozilla/5.0 (Android; My India TV)")
-                            setRequestProperty("Accept", "image/webp,image/*,*/*;q=0.8")
+                            setRequestProperty("Accept", "image/png,image/*,*/*;q=0.8")
                             setRequestProperty("Accept-Encoding", "identity")
                             setRequestProperty("Cache-Control", "no-cache")
                         }
 
                         try {
                             connection.connect()
-
                             if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-                                val bytes = connection.inputStream.use { input ->
-                                    input.readBytes()
-                                }
+                                val bytes = connection.inputStream.use { input -> input.readBytes() }
                                 loaded = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                             }
                         } finally {
@@ -150,11 +137,6 @@ private class HomeView(context: Context) : View(context) {
 
             p.style = Paint.Style.FILL
             p.color = Color.rgb(10, 10, 10)
-            c.drawRoundRect(r, dp(28f), dp(28f), p)
-
-            p.style = Paint.Style.STROKE
-            p.strokeWidth = if (i == selected) dp(5f) else dp(3f)
-            p.color = accents[i]
             c.drawRoundRect(r, dp(28f), dp(28f), p)
 
             drawCategoryIcon(c, i, r)
