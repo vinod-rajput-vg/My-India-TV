@@ -18,7 +18,7 @@ android {
 
     sourceSets {
         getByName("main") {
-            res.srcDir(layout.buildDirectory.dir("generated/res/channelIcons"))
+            res.srcDir(layout.buildDirectory.dir("generated/res/channelIcons").get().asFile)
         }
     }
 
