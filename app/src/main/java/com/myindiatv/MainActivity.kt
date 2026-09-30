@@ -37,9 +37,11 @@ class MainActivity : Activity() {
     }
 
     fun openStream(url: String) {
+        if (url.isBlank()) return
         try {
             startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
         } catch (_: ActivityNotFoundException) {
+            Toast.makeText(this, "No compatible player installed", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -73,43 +75,33 @@ private class HomeView(context: Context) : View(context) {
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
-        drawHome(c)
-        if (settings) drawSettings(c)
-    }
-
-    private fun drawHome(c: Canvas) {
         val side = dp(52f)
         val gap = dp(22f)
         val top = dp(95f)
         val cw = (width - side * 2 - gap * 4) / 5f
-        val ch = cw
         repeat(5) { i ->
             val left = side + i * (cw + gap)
-            val r = RectF(left, top, left + cw, top + ch)
+            val r = RectF(left, top, left + cw, top + cw)
             iconPaint.style = Paint.Style.FILL
             iconPaint.color = Color.rgb(96, 96, 96)
             c.drawRoundRect(r, dp(28f), dp(28f), iconPaint)
-            drawCategoryIcon(c, i, r)
+            val bitmap = bitmaps[i]
+            if (bitmap != null && !bitmap.isRecycled) {
+                val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
+                val w = bitmap.width * scale
+                val h = bitmap.height * scale
+                c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)
+            }
             if (i == selected) {
-                val outer = RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f))
                 selectionPaint.strokeWidth = dp(3f)
-                c.drawRoundRect(outer, dp(31f), dp(31f), selectionPaint)
+                c.drawRoundRect(RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f)), dp(31f), dp(31f), selectionPaint)
             }
             title.textAlign = Paint.Align.CENTER
             title.textSize = dp(22f)
             c.drawText(names[i], r.centerX(), r.bottom + dp(34f), title)
         }
-    }
-
-    private fun drawCategoryIcon(c: Canvas, index: Int, r: RectF) {
-        val bitmap = bitmaps[index] ?: return
-        if (bitmap.isRecycled) return
-        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-        val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
-        val dstW = bitmap.width * scale
-        val dstH = bitmap.height * scale
-        val dst = RectF(safe.centerX() - dstW / 2f, safe.centerY() - dstH / 2f, safe.centerX() + dstW / 2f, safe.centerY() + dstH / 2f)
-        c.drawBitmap(bitmap, null, dst, iconPaint)
+        if (settings) drawSettings(c)
     }
 
     private fun drawSettings(c: Canvas) {
@@ -140,29 +132,13 @@ private class HomeView(context: Context) : View(context) {
             return true
         }
         when (k) {
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-                selected = (selected + names.size - 1) % names.size
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                selected = (selected + 1) % names.size
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-                (context as? MainActivity)?.openCategory(selected)
-                return true
-            }
-            KeyEvent.KEYCODE_MENU -> {
-                settings = true
-                postInvalidateOnAnimation()
-                return true
-            }
+            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+            KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
                 val now = System.currentTimeMillis()
-                if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish()
-                else {
+                if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else {
                     lastBackPressTime = now
                     Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show()
                 }
@@ -179,12 +155,17 @@ private class HomeView(context: Context) : View(context) {
 private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
     private val channels: List<Channel> = when (categoryIndex) {
         0 -> listOf(
+            Channel("Star Gold 2 HD", "http://202.70.146.135:8000/play/a04q/index.m3u8", iconResId = iconId("star_gold_2_hd")),
             Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = iconId("zeecinema")),
             Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
+            Channel("Star Movies", "http://27.116.22.53:5001/live/1115.m3u8", iconResId = iconId("star_movies")),
+            Channel("Star Movies Select", "http://27.116.22.53:5001/live/3276.m3u8", iconResId = iconId("star_movies_select")),
             Channel("Zee Horror Nights", "https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8", iconResId = iconId("zeehorrornights")),
+            Channel("Colors Cineplex", "http://149.71.34.166:8000/play/a036/index.m3u8", iconResId = iconId("colors_cineplex")),
+            Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
+            Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
             Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8", iconResId = iconId("b4u_kadak")),
             Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8", iconResId = iconId("b4u_movies")),
-            Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
             Channel("Goldmines", "https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8", iconResId = iconId("goldmines")),
             Channel("Goldmines 2", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8", iconResId = iconId("goldmines_2")),
             Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8", iconResId = iconId("goldmines_bollywood"))
@@ -192,8 +173,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         1 -> listOf(
             Channel("Discovery HD Hindi", "http://202.70.146.135:8000/play/a05z/index.m3u8", iconResId = iconId("discoveryhdhindi")),
             Channel("Sony BBC Earth", "http://202.70.146.135:8000/play/a067/index.m3u8", iconResId = iconId("sonybbcearth")),
+            Channel("Animal Planet Hindi", "http://27.116.22.53:5001/live/566.m3u8", iconResId = iconId("animal_planet_hindi")),
             Channel("Nat Geo Wild HD", "http://202.70.146.135:8000/play/a05j/index.m3u8", iconResId = iconId("nat_geo_wild_hd")),
             Channel("National Geographic HD", "http://202.70.146.135:8000/play/a05o/index.m3u8", iconResId = iconId("national_geographic_hd")),
+            Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = iconId("discovery_science_hindi")),
+            Channel("History TV18 HD Hindi", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = iconId("history_18_hindi")),
             Channel("Gujarat Wild TV", "https://newsliveindia.com:4433/wildlife/index.m3u8", iconResId = iconId("gujarat_wild_tv"))
         )
         2 -> listOf(
@@ -209,11 +193,20 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Zee 24 Taas", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8", iconResId = iconId("zee_24_taas"))
         )
         3 -> listOf(
-            Channel("B4U Music", "https://cdn.pishow.tv/ott/live/415/master.m3u8", iconResId = iconId("b4u_music"))
+            Channel("B4U Music", "https://cdn.pishow.tv/ott/live/415/master.m3u8", iconResId = iconId("b4u_music")),
+            Channel("MTV", "https://da86m1sqpm3o0.cloudfront.net/28072023/smil:mtvindia.smil/playlist.m3u8", iconResId = iconId("mtv")),
+            Channel("MTV HD", "http://27.116.22.53:5001/live/1145.m3u8", iconResId = iconId("mtv_hd_plus")),
+            Channel("Music India", "http://27.116.22.53:5001/live/250.m3u8", iconResId = iconId("music_india")),
+            Channel("9XM", "https://9xjio.wiseplayout.com/9XM/master.m3u8", iconResId = iconId("9xm")),
+            Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         else -> listOf(
             Channel("Nick Hindi", "http://103.185.24.134:3001/NICK/index.m3u8", iconResId = iconId("nick_hindi")),
             Channel("Sonic Hindi", "http://103.185.24.134:3001/SONIC/index.m3u8", iconResId = iconId("sonic_hindi")),
+            Channel("Pogo Hindi", "http://27.116.22.53:5001/live/559.m3u8", iconResId = iconId("pogo_hindi")),
+            Channel("Cartoon Network Hindi", "http://27.116.22.53:5001/live/816.m3u8", iconResId = iconId("cartoon_network_hindi")),
+            Channel("Cartoon Network HD+ Hindi", "http://27.116.22.53:5001/live/3436.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
+            Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/554.m3u8", iconResId = iconId("discovery_kids_hindi")),
             Channel("Hungama TV", "http://103.185.24.134:3001/HUNGAMA/index.m3u8", iconResId = iconId("hungama")),
             Channel("Super Hungama", "http://103.185.24.134:3001/SUPER-HUNGAMA/index.m3u8", iconResId = iconId("superhungama")),
             Channel("Disney Channel (India) HD", "http://66.102.126.10:8000/play/a013/index.m3u8", iconResId = iconId("disney_channel"))
@@ -223,7 +216,6 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     private var selected = 0
     private var scrollRow = 0
     private val columns = 4
-
     private val cardPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.FILL; color = Color.rgb(96, 96, 96) }
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; strokeWidth = dp(3f); isAntiAlias = true }
@@ -236,16 +228,13 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         requestFocus()
         for (channel in channels) {
             val id = channel.iconResId
-            if (id != 0 && !bitmapCache.containsKey(id)) {
-                BitmapFactory.decodeResource(resources, id)?.let { bitmapCache[id] = it }
-            }
+            if (id != 0 && !bitmapCache.containsKey(id)) BitmapFactory.decodeResource(resources, id)?.let { bitmapCache[id] = it }
         }
     }
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
         if (channels.isEmpty()) return
-
         val side = dp(48f)
         val gapX = dp(18f)
         val gapY = dp(26f)
@@ -266,15 +255,9 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             val topPos = top + (row - scrollRow) * rowStep
             val rect = RectF(left, topPos, left + cardW, topPos + cardH)
             if (rect.bottom < 0f || rect.top > height.toFloat()) return@forEachIndexed
-
             c.drawRoundRect(rect, dp(12f), dp(12f), cardPaint)
             drawChannelIcon(c, channel, rect)
-
-            if (index == selected) {
-                val outer = RectF(rect.left - dp(3f), rect.top - dp(3f), rect.right + dp(3f), rect.bottom + dp(3f))
-                c.drawRoundRect(outer, dp(15f), dp(15f), selectionPaint)
-            }
-
+            if (index == selected) c.drawRoundRect(RectF(rect.left - dp(3f), rect.top - dp(3f), rect.right + dp(3f), rect.bottom + dp(3f)), dp(15f), dp(15f), selectionPaint)
             textPaint.textSize = dp(16f)
             c.drawText(channel.name, rect.centerX(), rect.bottom + dp(24f), textPaint)
         }
@@ -284,63 +267,25 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     private fun drawChannelIcon(c: Canvas, channel: Channel, r: RectF) {
         val bitmap = bitmapCache[channel.iconResId] ?: return
         if (bitmap.isRecycled) return
-
         val safe = RectF(r.left + dp(8f), r.top + dp(8f), r.right - dp(8f), r.bottom - dp(8f))
         val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat())
-        val dstW = bitmap.width * scale
-        val dstH = bitmap.height * scale
-        val dst = RectF(
-            safe.centerX() - dstW / 2f,
-            safe.centerY() - dstH / 2f,
-            safe.centerX() + dstW / 2f,
-            safe.centerY() + dstH / 2f
-        )
-        c.drawBitmap(bitmap, null, dst, iconPaint)
+        val w = bitmap.width * scale
+        val h = bitmap.height * scale
+        c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2f, safe.centerY() - h / 2f, safe.centerX() + w / 2f, safe.centerY() + h / 2f), iconPaint)
     }
 
-    private fun iconId(name: String): Int {
-        return resources.getIdentifier(name, "drawable", context.packageName)
-    }
+    private fun iconId(name: String): Int = resources.getIdentifier(name, "drawable", context.packageName)
 
     fun handleDpadKey(k: Int): Boolean {
         val maxIndex = channels.lastIndex
         if (maxIndex < 0) return true
-
         when (k) {
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                if (selected < maxIndex) selected++
-                ensureSelectedVisible()
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-                if (selected > 0) selected--
-                ensureSelectedVisible()
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
-                val next = selected + columns
-                if (next <= maxIndex) selected = next
-                ensureSelectedVisible()
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_UP -> {
-                val prev = selected - columns
-                if (prev >= 0) selected = prev
-                ensureSelectedVisible()
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-                (context as? MainActivity)?.openStream(channels[selected].streamUrl)
-                return true
-            }
-            KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
-                (context as? MainActivity)?.showHome()
-                return true
-            }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < maxIndex) selected++; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) selected--; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + columns; if (next <= maxIndex) selected = next; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> { val prev = selected - columns; if (prev >= 0) selected = prev; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openStream(channels[selected].streamUrl); return true }
+            KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> { (context as? MainActivity)?.showHome(); return true }
         }
         return false
     }
@@ -348,19 +293,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     private fun ensureSelectedVisible() {
         val row = selected / columns
         val cardW = ((width - dp(48f) * 2 - dp(18f) * (columns - 1)) / columns.toFloat()) * 0.93f
-        val cardH = cardW * 0.75f
-        val rowStep = cardH + dp(26f)
-        val top = dp(42f)
-        val visibleRows = maxOf(1, ((height - top) / rowStep).toInt())
-
-        if (row < scrollRow) {
-            scrollRow = row
-        } else if (row >= scrollRow + visibleRows) {
-            scrollRow = row - visibleRows + 1
-        }
-
-        val maxRow = channels.lastIndex / columns
-        scrollRow = scrollRow.coerceIn(0, maxRow)
+        val rowStep = cardW * 0.75f + dp(26f)
+        val visibleRows = maxOf(1, ((height - dp(42f)) / rowStep).toInt())
+        if (row < scrollRow) scrollRow = row
+        else if (row >= scrollRow + visibleRows) scrollRow = row - visibleRows + 1
+        scrollRow = scrollRow.coerceIn(0, channels.lastIndex / columns)
     }
 
     override fun onKeyDown(k: Int, e: KeyEvent): Boolean = if (handleDpadKey(k)) true else super.onKeyDown(k, e)
