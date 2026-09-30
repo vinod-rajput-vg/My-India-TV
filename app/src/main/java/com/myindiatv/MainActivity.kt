@@ -28,12 +28,22 @@ private class HomeView(context: Context) : View(context) {
         Color.rgb(0, 240, 100)
     )
 
+    // Primary icons: loaded directly from the URLs requested by the user.
     private val iconUrls = arrayOf(
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Entertainment.webp",
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Imfotainment.webp",
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/News.webp",
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Music.webp",
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Kids.webp"
+    )
+
+    // Fallback only if raw.githubusercontent.com is unavailable on the device/network.
+    private val fallbackIconUrls = arrayOf(
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Entertainment.webp",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Imfotainment.webp",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/News.webp",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Music.webp",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Kids.webp"
     )
 
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply {
@@ -47,7 +57,6 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private val bitmaps = arrayOfNulls<Bitmap>(5)
-    private val visibleBounds = arrayOfNulls<Rect>(5)
 
     init {
         for (i in iconUrls.indices) {
@@ -59,45 +68,58 @@ private class HomeView(context: Context) : View(context) {
         Thread {
             var loaded: Bitmap? = null
 
-            repeat(3) { attempt ->
-                if (loaded != null) return@repeat
-                try {
-                    val connection = (URL(iconUrls[index]).openConnection() as HttpURLConnection).apply {
-                        requestMethod = "GET"
-                        connectTimeout = 15000
-                        readTimeout = 15000
-                        doInput = true
-                        useCaches = true
-                        setRequestProperty("User-Agent", "Mozilla/5.0 (Android; My India TV)")
-                        setRequestProperty("Accept", "image/webp,image/*,*/*;q=0.8")
-                    }
+            val urls = arrayOf(iconUrls[index], fallbackIconUrls[index])
+
+            for (url in urls) {
+                if (loaded != null) break
+
+                repeat(3) { attempt ->
+                    if (loaded != null) return@repeat
 
                     try {
-                        connection.connect()
-                        if (connection.responseCode == HttpURLConnection.HTTP_OK) {
-                            connection.inputStream.use { input ->
-                                loaded = BitmapFactory.decodeStream(input)
-                            }
+                        val connection = (URL(url).openConnection() as HttpURLConnection).apply {
+                            requestMethod = "GET"
+                            connectTimeout = 15000
+                            readTimeout = 15000
+                            doInput = true
+                            useCaches = false
+                            instanceFollowRedirects = true
+                            setRequestProperty("User-Agent", "Mozilla/5.0 (Android; My India TV)")
+                            setRequestProperty("Accept", "image/webp,image/*,*/*;q=0.8")
+                            setRequestProperty("Accept-Encoding", "identity")
+                            setRequestProperty("Cache-Control", "no-cache")
                         }
-                    } finally {
-                        connection.disconnect()
-                    }
-                } catch (_: Exception) {
-                    if (attempt < 2) {
+
                         try {
-                            Thread.sleep(750L)
-                        } catch (_: InterruptedException) {
+                            connection.connect()
+
+                            if (connection.responseCode == HttpURLConnection.HTTP_OK) {
+                                val bytes = connection.inputStream.use { input ->
+                                    input.readBytes()
+                                }
+                                loaded = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                            }
+                        } finally {
+                            connection.disconnect()
+                        }
+                    } catch (_: Exception) {
+                        if (attempt < 2) {
+                            try {
+                                Thread.sleep(500L)
+                            } catch (_: InterruptedException) {
+                            }
                         }
                     }
                 }
             }
 
             if (loaded != null && !loaded!!.isRecycled) {
-                bitmaps[index] = loaded
-                visibleBounds[index] = findVisibleBounds(loaded!!)
+                val bitmap = loaded
+                post {
+                    bitmaps[index] = bitmap
+                    invalidate()
+                }
             }
-
-            postInvalidate()
         }.start()
     }
 
@@ -148,19 +170,19 @@ private class HomeView(context: Context) : View(context) {
         if (bitmap.isRecycled) return
 
         val safe = RectF(
-            r.left + dp(14f),
-            r.top + dp(14f),
-            r.right - dp(14f),
-            r.bottom - dp(14f)
+            r.left + dp(8f),
+            r.top + dp(8f),
+            r.right - dp(8f),
+            r.bottom - dp(8f)
         )
-        val maxSize = minOf(safe.width(), safe.height()) * 0.82f
-        val visible = visibleBounds[index] ?: return
 
-        val visibleWidth = visible.width().toFloat()
-        val visibleHeight = visible.height().toFloat()
-        val scale = minOf(maxSize / visibleWidth, maxSize / visibleHeight)
-        val dstW = visibleWidth * scale
-        val dstH = visibleHeight * scale
+        val scale = minOf(
+            safe.width() / bitmap.width.toFloat(),
+            safe.height() / bitmap.height.toFloat()
+        ) * 0.94f
+
+        val dstW = bitmap.width * scale
+        val dstH = bitmap.height * scale
 
         val dst = RectF(
             safe.centerX() - dstW / 2f,
@@ -173,34 +195,8 @@ private class HomeView(context: Context) : View(context) {
         c.clipPath(Path().apply {
             addRoundRect(safe, dp(20f), dp(20f), Path.Direction.CW)
         })
-        c.drawBitmap(bitmap, visible, dst, p)
+        c.drawBitmap(bitmap, null, dst, p)
         c.restore()
-    }
-
-    private fun findVisibleBounds(bitmap: Bitmap): Rect? {
-        val width = bitmap.width
-        val height = bitmap.height
-        var left = width
-        var top = height
-        var right = -1
-        var bottom = -1
-
-        for (y in 0 until height) {
-            for (x in 0 until width) {
-                if (Color.alpha(bitmap.getPixel(x, y)) > 12) {
-                    if (x < left) left = x
-                    if (x > right) right = x
-                    if (y < top) top = y
-                    if (y > bottom) bottom = y
-                }
-            }
-        }
-
-        return if (right >= left && bottom >= top) {
-            Rect(left, top, right + 1, bottom + 1)
-        } else {
-            null
-        }
     }
 
     private fun drawSettings(c: Canvas) {
