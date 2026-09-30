@@ -72,9 +72,9 @@ private class HomeView(context: Context) : View(context) {
             val left = side + i * (cw + gap)
             val r = RectF(left, top, left + cw, top + ch)
 
-            // Plain black card. No colored outer border.
+            // Gray category background.
             iconPaint.style = Paint.Style.FILL
-            iconPaint.color = Color.BLACK
+            iconPaint.color = Color.rgb(96, 96, 96)
             c.drawRoundRect(r, dp(28f), dp(28f), iconPaint)
 
             drawCategoryIcon(c, i, r)
@@ -96,6 +96,7 @@ private class HomeView(context: Context) : View(context) {
             r.bottom - dp(5f)
         )
 
+        // Icons are 5% larger than the previous 0.94 scale.
         val scale = minOf(
             safe.width() / bitmap.width.toFloat(),
             safe.height() / bitmap.height.toFloat()
@@ -111,7 +112,7 @@ private class HomeView(context: Context) : View(context) {
             safe.centerY() + dstH / 2f
         )
 
-        // Draw the PNG directly; do not add any border, background, or generated icon.
+        // Draw the PNG directly; do not add any generated icon or border.
         c.drawBitmap(bitmap, null, dst, iconPaint)
     }
 
