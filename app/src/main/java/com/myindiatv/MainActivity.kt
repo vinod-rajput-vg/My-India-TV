@@ -71,6 +71,7 @@ private class HomeView(context: Context) : View(context) {
 
     private var selected = 0
     private var settings = false
+    private var lastBackPressTime = 0L
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
@@ -166,7 +167,7 @@ private class HomeView(context: Context) : View(context) {
 
     fun handleDpadKey(k: Int): Boolean {
         if (settings) {
-            if (k == KeyEvent.KEYCODE_BACK || k == KeyEvent.KEYCODE_DPAD_CENTER) {
+            if (k == KeyEvent.KEYCODE_BACK || k == KeyEvent.KEYCODE_ESCAPE || k == KeyEvent.KEYCODE_DPAD_CENTER) {
                 settings = false
                 invalidate()
                 requestFocus()
@@ -195,7 +196,12 @@ private class HomeView(context: Context) : View(context) {
                 return true
             }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
-                (context as? Activity)?.finish()
+                val now = System.currentTimeMillis()
+                if (now - lastBackPressTime <= 2000L) {
+                    (context as? Activity)?.finish()
+                } else {
+                    lastBackPressTime = now
+                }
                 return true
             }
         }
