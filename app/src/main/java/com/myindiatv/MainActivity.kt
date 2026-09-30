@@ -33,7 +33,7 @@ class MainActivity : Activity() {
         channelView = null
         setContentView(homeView)
         homeView.requestFocus()
-        homeView.invalidate()
+        homeView.postInvalidateOnAnimation()
     }
 
     fun openStream(url: String) {
@@ -134,7 +134,7 @@ private class HomeView(context: Context) : View(context) {
         if (settings) {
             if (k == KeyEvent.KEYCODE_BACK || k == KeyEvent.KEYCODE_ESCAPE || k == KeyEvent.KEYCODE_DPAD_CENTER) {
                 settings = false
-                invalidate()
+                postInvalidateOnAnimation()
                 requestFocus()
             }
             return true
@@ -142,12 +142,12 @@ private class HomeView(context: Context) : View(context) {
         when (k) {
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 selected = (selected + names.size - 1) % names.size
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
                 selected = (selected + 1) % names.size
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
@@ -156,7 +156,7 @@ private class HomeView(context: Context) : View(context) {
             }
             KeyEvent.KEYCODE_MENU -> {
                 settings = true
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
@@ -229,25 +229,33 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; strokeWidth = dp(3f); isAntiAlias = true }
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; textAlign = Paint.Align.CENTER; typeface = Typeface.DEFAULT_BOLD; isAntiAlias = true }
+    private val bitmapCache = HashMap<Int, Bitmap>()
 
     init {
         isFocusable = true
         isFocusableInTouchMode = true
         requestFocus()
+        for (channel in channels) {
+            val id = channel.iconResId
+            if (id != 0 && !bitmapCache.containsKey(id)) {
+                BitmapFactory.decodeResource(resources, id)?.let { bitmapCache[id] = it }
+            }
+        }
     }
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
         if (channels.isEmpty()) return
-        val side = dp(42f)
+
+        val side = dp(48f)
         val gapX = dp(18f)
-        val gapY = dp(22f)
+        val gapY = dp(26f)
         val top = dp(42f)
-        val baseCardW = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
-        val cardW = baseCardW
-        val cardH = cardW * 0.75f
+        val availableWidth = width - side * 2 - gapX * (columns - 1)
+        val cardW = (availableWidth / columns.toFloat()) * 0.93f
         val gridWidth = cardW * columns + gapX * (columns - 1)
         val gridLeft = (width - gridWidth) / 2f
+        val cardH = cardW * 0.75f
         val rowStep = cardH + gapY
 
         c.save()
@@ -259,12 +267,15 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             val topPos = top + (row - scrollRow) * rowStep
             val rect = RectF(left, topPos, left + cardW, topPos + cardH)
             if (rect.bottom < 0f || rect.top > height.toFloat()) return@forEachIndexed
+
             c.drawRoundRect(rect, dp(12f), dp(12f), cardPaint)
             drawChannelIcon(c, channel, rect)
+
             if (index == selected) {
                 val outer = RectF(rect.left - dp(3f), rect.top - dp(3f), rect.right + dp(3f), rect.bottom + dp(3f))
                 c.drawRoundRect(outer, dp(15f), dp(15f), selectionPaint)
             }
+
             textPaint.textSize = dp(16f)
             c.drawText(channel.name, rect.centerX(), rect.bottom + dp(24f), textPaint)
         }
@@ -272,15 +283,19 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     }
 
     private fun drawChannelIcon(c: Canvas, channel: Channel, r: RectF) {
-        val id = channel.iconResId
-        if (id == 0) return
-        val bitmap = BitmapFactory.decodeResource(resources, id) ?: return
+        val bitmap = bitmapCache[channel.iconResId] ?: return
         if (bitmap.isRecycled) return
+
         val safe = RectF(r.left + dp(8f), r.top + dp(8f), r.right - dp(8f), r.bottom - dp(8f))
         val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat())
         val dstW = bitmap.width * scale
         val dstH = bitmap.height * scale
-        val dst = RectF(safe.centerX() - dstW / 2f, safe.centerY() - dstH / 2f, safe.centerX() + dstW / 2f, safe.centerY() + dstH / 2f)
+        val dst = RectF(
+            safe.centerX() - dstW / 2f,
+            safe.centerY() - dstH / 2f,
+            safe.centerX() + dstW / 2f,
+            safe.centerY() + dstH / 2f
+        )
         c.drawBitmap(bitmap, null, dst, iconPaint)
     }
 
@@ -291,31 +306,32 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     fun handleDpadKey(k: Int): Boolean {
         val maxIndex = channels.lastIndex
         if (maxIndex < 0) return true
+
         when (k) {
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
                 if (selected < maxIndex) selected++
                 ensureSelectedVisible()
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_LEFT -> {
                 if (selected > 0) selected--
                 ensureSelectedVisible()
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_DOWN -> {
                 val next = selected + columns
                 if (next <= maxIndex) selected = next
                 ensureSelectedVisible()
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_UP -> {
                 val prev = selected - columns
                 if (prev >= 0) selected = prev
                 ensureSelectedVisible()
-                invalidate()
+                postInvalidateOnAnimation()
                 return true
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
@@ -332,9 +348,18 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
 
     private fun ensureSelectedVisible() {
         val row = selected / columns
-        val visibleRows = maxOf(1, ((height - dp(42f)) / (dp(120f) + dp(22f))).toInt())
-        if (row < scrollRow) scrollRow = row
-        else if (row >= scrollRow + visibleRows) scrollRow = row - visibleRows + 1
+        val cardW = ((width - dp(48f) * 2 - dp(18f) * (columns - 1)) / columns.toFloat()) * 0.93f
+        val cardH = cardW * 0.75f
+        val rowStep = cardH + dp(26f)
+        val top = dp(42f)
+        val visibleRows = maxOf(1, ((height - top) / rowStep).toInt())
+
+        if (row < scrollRow) {
+            scrollRow = row
+        } else if (row >= scrollRow + visibleRows) {
+            scrollRow = row - visibleRows + 1
+        }
+
         val maxRow = channels.lastIndex / columns
         scrollRow = scrollRow.coerceIn(0, maxRow)
     }
