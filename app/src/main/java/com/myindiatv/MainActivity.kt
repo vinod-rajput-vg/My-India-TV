@@ -6,6 +6,7 @@ import android.graphics.*
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.widget.Toast
 
 class MainActivity : Activity() {
     private lateinit var homeView: HomeView
@@ -201,6 +202,7 @@ private class HomeView(context: Context) : View(context) {
                     (context as? Activity)?.finish()
                 } else {
                     lastBackPressTime = now
+                    Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show()
                 }
                 return true
             }
