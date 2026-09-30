@@ -1,20 +1,9 @@
-import java.util.Base64
 import org.gradle.api.tasks.Copy
 
 plugins {
     id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
-
-val releaseKeystoreBase64 = System.getenv("ANDROID_KEYSTORE_BASE64")
-val releaseKeystorePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
-val releaseKeyAlias = System.getenv("ANDROID_KEY_ALIAS")
-val releaseKeyPassword = System.getenv("ANDROID_KEY_PASSWORD")
-val hasReleaseSigning = listOf(
-    releaseKeystoreBase64,
-    releaseKeystorePassword,
-    releaseKeyAlias,
-    releaseKeyPassword
-).all { !it.isNullOrBlank() }
 
 android {
     namespace = "com.myindiatv"
@@ -34,33 +23,9 @@ android {
         }
     }
 
-    if (hasReleaseSigning) {
-        signingConfigs {
-            create("release") {
-                // Keep the keystore outside app/build because `clean` deletes app/build.
-                // The GitHub Actions workflow restores it here before Gradle runs.
-                val keystoreFile = rootProject.file("release.keystore")
-
-                if (!keystoreFile.exists()) {
-                    keystoreFile.writeBytes(
-                        Base64.getDecoder().decode(releaseKeystoreBase64)
-                    )
-                }
-
-                storeFile = keystoreFile
-                storePassword = releaseKeystorePassword
-                keyAlias = releaseKeyAlias
-                keyPassword = releaseKeyPassword
-            }
-        }
-    }
-
     buildTypes {
-        release {
+        debug {
             isMinifyEnabled = false
-            if (hasReleaseSigning) {
-                signingConfig = signingConfigs.getByName("release")
-            }
         }
     }
 }
@@ -74,4 +39,6 @@ tasks.named("preBuild") {
     dependsOn("copyChannelIcons")
 }
 
-kotlin { jvmToolchain(17) }
+kotlin {
+    jvmToolchain(17)
+}
