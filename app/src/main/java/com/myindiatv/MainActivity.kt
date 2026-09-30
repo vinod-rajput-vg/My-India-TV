@@ -244,7 +244,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val gapY = dp(22f)
         val top = dp(42f)
         val baseCardW = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
-        val cardW = baseCardW * 0.75f
+        val cardW = baseCardW
         val cardH = cardW * 0.75f
         val gridWidth = cardW * columns + gapX * (columns - 1)
         val gridLeft = (width - gridWidth) / 2f
