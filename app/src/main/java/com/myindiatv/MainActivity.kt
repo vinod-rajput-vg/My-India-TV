@@ -39,6 +39,13 @@ private class HomeView(context: Context) : View(context) {
         isAntiAlias = true
     }
 
+    private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        style = Paint.Style.STROKE
+        color = Color.WHITE
+        strokeWidth = 3f
+        isAntiAlias = true
+    }
+
     private val bitmaps = arrayOfNulls<Bitmap>(5)
 
     init {
@@ -57,11 +64,6 @@ private class HomeView(context: Context) : View(context) {
     }
 
     private fun drawHome(c: Canvas) {
-        body.color = Color.LTGRAY
-        body.textAlign = Paint.Align.RIGHT
-        body.textSize = dp(18f)
-        c.drawText("SETTINGS", width - dp(42f), dp(46f), body)
-
         val side = dp(52f)
         val gap = dp(22f)
         val top = dp(95f)
@@ -78,6 +80,18 @@ private class HomeView(context: Context) : View(context) {
             c.drawRoundRect(r, dp(28f), dp(28f), iconPaint)
 
             drawCategoryIcon(c, i, r)
+
+            // White outer selection border for the currently selected category.
+            if (i == selected) {
+                val outer = RectF(
+                    r.left - dp(3f),
+                    r.top - dp(3f),
+                    r.right + dp(3f),
+                    r.bottom + dp(3f)
+                )
+                selectionPaint.strokeWidth = dp(3f)
+                c.drawRoundRect(outer, dp(31f), dp(31f), selectionPaint)
+            }
 
             title.textAlign = Paint.Align.CENTER
             title.textSize = dp(22f)
@@ -96,7 +110,7 @@ private class HomeView(context: Context) : View(context) {
             r.bottom - dp(5f)
         )
 
-        // Icons are 5% larger than the previous 0.94 scale.
+        // Icons are 5% larger than the previous size.
         val scale = minOf(
             safe.width() / bitmap.width.toFloat(),
             safe.height() / bitmap.height.toFloat()
