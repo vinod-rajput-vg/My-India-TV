@@ -28,22 +28,22 @@ private class HomeView(context: Context) : View(context) {
         Color.rgb(0, 240, 100)
     )
 
-    // Primary icons: loaded directly from the URLs requested by the user.
+    // Category icons are loaded from the PNG assets in My-Live-TV-M3U-Manager.
     private val iconUrls = arrayOf(
-        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Entertainment.webp",
-        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Imfotainment.webp",
-        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/News.webp",
-        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Music.webp",
-        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Kids.webp"
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Entertainment.png",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Imfotainment.png",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/News.png",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Music.png",
+        "https://raw.githubusercontent.com/vinod-rajput-vg/My-Live-TV-M3U-Manager/main/Icons/Kids.png"
     )
 
-    // Fallback only if raw.githubusercontent.com is unavailable on the device/network.
+    // CDN fallback uses the same PNG files.
     private val fallbackIconUrls = arrayOf(
-        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Entertainment.webp",
-        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Imfotainment.webp",
-        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/News.webp",
-        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Music.webp",
-        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Kids.webp"
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Entertainment.png",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Imfotainment.png",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/News.png",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Music.png",
+        "https://cdn.jsdelivr.net/gh/vinod-rajput-vg/My-Live-TV-M3U-Manager@main/Icons/Kids.png"
     )
 
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply {
