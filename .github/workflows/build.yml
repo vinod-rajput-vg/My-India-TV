@@ -18,15 +18,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
 
-      - name: Recover MainActivity and remove Star Movies
+      - name: Recover MainActivity and remove Star Movies channels
         shell: bash
         run: |
           set -euo pipefail
 
           FILE="app/src/main/java/com/myindiatv/MainActivity.kt"
 
-          # Recover the known-good source only if the file was accidentally truncated.
-          if [ "$(wc -c < "$FILE")" -lt 1000 ]; then
+          # Recover the known-good source from before the accidental truncation.
+          if [ "$(wc -c < "$FILE")" -lt 10000 ]; then
             curl -fsSL "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/7fd488b3a311916af651f7e5f37463bbbf5626ed/$FILE" -o "$FILE"
           fi
 
@@ -36,15 +36,15 @@ jobs:
 
           path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
           text = path.read_text(encoding="utf-8")
-          updated = re.sub(r'^\s*Channel\("Star Movies",[^\n]*\n', '', text, flags=re.MULTILINE)
-          path.write_text(updated, encoding="utf-8")
+          text = re.sub(r'^\s*Channel\("Star Movies(?: Select)?",[^\n]*\n', '', text, flags=re.MULTILINE)
+          path.write_text(text, encoding="utf-8")
           PY
 
           if ! git diff --quiet -- "$FILE"; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add "$FILE"
-            git commit -m "Remove Star Movies from channel list"
+            git commit -m "Remove Star Movies Select from channel list"
             git push
           fi
 
