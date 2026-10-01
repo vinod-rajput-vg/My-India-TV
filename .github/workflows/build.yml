@@ -36,7 +36,66 @@ jobs:
 
           path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
           text = path.read_text(encoding="utf-8")
+
+          # Remove Star Movies and Star Movies Select channel entries.
           text = re.sub(r'^\s*Channel\("Star Movies(?: Select)?",[^\n]*\n', '', text, flags=re.MULTILINE)
+
+          # Keep exactly 5 category columns. Additional categories start on the next row.
+          old_draw = '''        val side = dp(38f)
+        val gap = dp(16f)
+        val top = dp(95f)
+        val cw = (width - side * 2 - gap * 5) / 6f
+        repeat(6) { i ->
+            val left = side + i * (cw + gap)
+            val r = RectF(left, top, left + cw, top + cw)'''
+          new_draw = '''        val columns = 5
+        val side = dp(38f)
+        val gap = dp(16f)
+        val rowGap = dp(85f)
+        val top = dp(95f)
+        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        repeat(names.size) { i ->
+            val row = i / columns
+            val column = i % columns
+            val left = side + column * (cw + gap)
+            val cardTop = top + row * (cw + rowGap)
+            val r = RectF(left, cardTop, left + cw, cardTop + cw)'''
+          if old_draw not in text:
+              raise SystemExit("Expected category grid block was not found")
+          text = text.replace(old_draw, new_draw, 1)
+
+          old_keys = '''        when (k) {
+            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+            KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }'''
+          new_keys = '''        when (k) {
+            KeyEvent.KEYCODE_DPAD_LEFT -> {
+                if (selected % 5 > 0) selected--
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                if (selected % 5 < 4 && selected + 1 < names.size) selected++
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                if (selected - 5 >= 0) selected -= 5
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
+                if (selected + 5 < names.size) selected += 5
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+            KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }'''
+          if old_keys not in text:
+              raise SystemExit("Expected category D-pad block was not found")
+          text = text.replace(old_keys, new_keys, 1)
+
           path.write_text(text, encoding="utf-8")
           PY
 
@@ -44,7 +103,7 @@ jobs:
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
             git add "$FILE"
-            git commit -m "Remove Star Movies Select from channel list"
+            git commit -m "Set category grid to 5 columns"
             git push
           fi
 
