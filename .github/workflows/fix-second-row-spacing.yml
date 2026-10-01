@@ -1,0 +1,65 @@
+name: Fix Second Row Category Spacing
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: ${{ !contains(github.event.head_commit.message, 'Fix second row category spacing') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix category grid
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          s = path.read_text(encoding='utf-8')
+
+          old = '''        val side = dp(38f)
+        val gap = dp(16f)
+        val top = dp(95f)
+        val cw = (width - side * 2 - gap * 5) / 6f
+        repeat(6) { i ->
+            val left = side + i * (cw + gap)
+            val r = RectF(left, top, left + cw, top + cw)'''
+
+          new = '''        val side = dp(38f)
+        val gap = dp(16f)
+        val top = dp(95f)
+        val columns = 5
+        val rowGap = dp(105f)
+        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        repeat(6) { i ->
+            val row = i / columns
+            val column = i % columns
+            val left = side + column * (cw + gap)
+            val topPos = top + row * (cw + rowGap)
+            val r = RectF(left, topPos, left + cw, topPos + cw)'''
+
+          if old not in s:
+              raise SystemExit('Expected original 6-column category grid block was not found')
+
+          path.write_text(s.replace(old, new, 1), encoding='utf-8')
+          PY
+
+      - name: Commit fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/src/main/java/com/myindiatv/MainActivity.kt .github/workflows/fix-second-row-spacing.yml
+          git commit -m 'Fix second row category spacing'
+          git push origin HEAD:main
