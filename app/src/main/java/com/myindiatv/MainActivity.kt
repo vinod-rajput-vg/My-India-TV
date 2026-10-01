@@ -78,10 +78,15 @@ private class HomeView(context: Context) : View(context) {
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(95f)
-        val cw = (width - side * 2 - gap * 5) / 6f
-        repeat(6) { i ->
-            val left = side + i * (cw + gap)
-            val r = RectF(left, top, left + cw, top + cw)
+        val columns = 5
+        val rowGap = dp(100f)
+        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        repeat(names.size) { i ->
+            val row = i / columns
+            val column = i % columns
+            val left = side + column * (cw + gap)
+            val topPos = top + row * (cw + rowGap)
+            val r = RectF(left, topPos, left + cw, topPos + cw)
             iconPaint.style = Paint.Style.FILL
             iconPaint.color = Color.rgb(96, 96, 96)
             c.drawRoundRect(r, dp(24f), dp(24f), iconPaint)
