@@ -1,0 +1,121 @@
+name: Fix 5-column category grid
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.head_commit.message != 'Set category grid to 5 columns'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch HomeView category grid
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          text = path.read_text(encoding='utf-8')
+
+          old_draw = '''        val side = dp(38f)
+          val gap = dp(16f)
+          val top = dp(95f)
+          val cw = (width - side * 2 - gap * 5) / 6f
+          repeat(6) { i ->
+              val left = side + i * (cw + gap)
+              val r = RectF(left, top, left + cw, top + cw)
+              iconPaint.style = Paint.Style.FILL
+              iconPaint.color = Color.rgb(96, 96, 96)
+              c.drawRoundRect(r, dp(24f), dp(24f), iconPaint)
+              val bitmap = bitmaps[i]
+              if (bitmap != null && !bitmap.isRecycled) {
+                  val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                  val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
+                  val w = bitmap.width * scale
+                  val h = bitmap.height * scale
+                  c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)
+              }
+              if (i == selected) {
+                  selectionPaint.strokeWidth = dp(3f)
+                  c.drawRoundRect(RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f)), dp(27f), dp(27f), selectionPaint)
+              }
+              title.textAlign = Paint.Align.CENTER
+              title.textSize = dp(17f)
+              c.drawText(names[i], r.centerX(), r.bottom + dp(30f), title)
+          }
+'''
+
+          new_draw = '''        val side = dp(38f)
+          val gapX = dp(16f)
+          val top = dp(95f)
+          val columns = 5
+          val cw = (width - side * 2 - gapX * (columns - 1)) / columns.toFloat()
+          val rowStep = cw + dp(62f)
+          names.indices.forEach { i ->
+              val row = i / columns
+              val column = i % columns
+              val left = side + column * (cw + gapX)
+              val topPos = top + row * rowStep
+              val r = RectF(left, topPos, left + cw, topPos + cw)
+              iconPaint.style = Paint.Style.FILL
+              iconPaint.color = Color.rgb(96, 96, 96)
+              c.drawRoundRect(r, dp(24f), dp(24f), iconPaint)
+              val bitmap = bitmaps[i]
+              if (bitmap != null && !bitmap.isRecycled) {
+                  val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                  val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
+                  val w = bitmap.width * scale
+                  val h = bitmap.height * scale
+                  c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)
+              }
+              if (i == selected) {
+                  selectionPaint.strokeWidth = dp(3f)
+                  c.drawRoundRect(RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f)), dp(27f), dp(27f), selectionPaint)
+              }
+              title.textAlign = Paint.Align.CENTER
+              title.textSize = dp(17f)
+              c.drawText(names[i], r.centerX(), r.bottom + dp(30f), title)
+          }
+'''
+
+          if old_draw not in text:
+              raise SystemExit('Expected 6-column HomeView draw block was not found')
+          text = text.replace(old_draw, new_draw, 1)
+
+          old_keys = '''            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+'''
+          new_keys = '''            KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected % 5 > 0) selected--; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < names.lastIndex && selected % 5 < 4) selected++; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> { val prev = selected - 5; if (prev >= 0) selected = prev; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + 5; if (next < names.size) selected = next; postInvalidateOnAnimation(); return true }
+'''
+
+          if old_keys not in text:
+              raise SystemExit('Expected 6-column HomeView D-pad block was not found')
+          text = text.replace(old_keys, new_keys, 1)
+
+          path.write_text(text, encoding='utf-8')
+
+      - name: Verify, build, commit
+        run: |
+          grep -q 'val columns = 5' app/src/main/java/com/myindiatv/MainActivity.kt
+          grep -q 'selected + 5' app/src/main/java/com/myindiatv/MainActivity.kt
+          git diff --check
+          chmod +x gradlew || true
+          ./gradlew --no-daemon clean assembleDebug
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/fix-5-column-category-grid.yml
+          git add app/src/main/java/com/myindiatv/MainActivity.kt .github/workflows/fix-5-column-category-grid.yml
+          git commit -m 'Set category grid to 5 columns'
+          git push
