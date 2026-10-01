@@ -1,0 +1,72 @@
+name: Fix Home Category DPAD Navigation
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix home category navigation
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+'''
+
+          new = '''            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                val previous = selected - columns
+                if (previous >= 0) selected = previous
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
+                val next = selected + columns
+                if (next < names.size) selected = next
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+'''
+
+          if old not in text:
+              raise SystemExit("Expected home category DPAD block was not found")
+
+          if "val columns = 5" not in text:
+              raise SystemExit("Expected 5-column home grid was not found")
+
+          path.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
+
+      - name: Commit fix and remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          rm -f .github/workflows/fix-home-category-dpad.yml
+          git add -A .github/workflows/fix-home-category-dpad.yml
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "Fix home category up down navigation"
+          git push
