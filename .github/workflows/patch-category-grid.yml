@@ -1,0 +1,125 @@
+name: Apply 5-column category grid
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: github.event.head_commit.message != 'Set category grid to 5 columns'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch category grid
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
+          text = path.read_text(encoding="utf-8")
+
+          if "private val categoryColumns = 5" not in text:
+              marker = "    private var lastBackPressTime = 0L\n"
+              if marker not in text:
+                  raise SystemExit("Could not find HomeView state marker")
+              text = text.replace(marker, marker + "    private val categoryColumns = 5\n", 1)
+
+          pattern = re.compile(
+              r'''        val side = dp\(38f\)\n'
+              r'''        val gap = dp\(16f\)\n'
+              r'''        val top = dp\(95f\)\n'
+              r'''        val cw = \(width - side \* 2 - gap \* 5\) / 6f\n'
+              r'''        repeat\(6\) \{ i ->\n'
+              r'''            val left = side \+ i \* \(cw \+ gap\)\n'
+              r'''            val r = RectF\(left, top, left \+ cw, top \+ cw\)\n'
+              r'''            iconPaint\.style = Paint\.Style\.FILL\n'
+              r'''            iconPaint\.color = Color\.rgb\(96, 96, 96\)\n'
+              r'''            c\.drawRoundRect\(r, dp\(24f\), dp\(24f\), iconPaint\)\n'
+              r'''            val bitmap = bitmaps\[i\]\n'
+              r'''            if \(bitmap != null && !bitmap\.isRecycled\) \{\n'
+              r'''                val safe = RectF\(r\.left \+ dp\(5f\), r\.top \+ dp\(5f\), r\.right - dp\(5f\), r\.bottom - dp\(5f\)\)\n'
+              r'''                val scale = minOf\(safe\.width\(\) / bitmap\.width\.toFloat\(\), safe\.height\(\) / bitmap\.height\.toFloat\(\)\) \* 1\.08f\n'
+              r'''                val w = bitmap\.width \* scale\n'
+              r'''                val h = bitmap\.height \* scale\n'
+              r'''                c\.drawBitmap\(bitmap, null, RectF\(safe\.centerX\(\) - w / 2, safe\.centerY\(\) - h / 2, safe\.centerX\(\) \+ w / 2, safe\.centerY\(\) \+ h / 2\), iconPaint\)\n'
+              r'''            \}\n'
+              r'''            if \(i == selected\) \{\n'
+              r'''                selectionPaint\.strokeWidth = dp\(3f\)\n'
+              r'''                c\.drawRoundRect\(RectF\(r\.left - dp\(3f\), r\.top - dp\(3f\), r\.right \+ dp\(3f\), r\.bottom \+ dp\(3f\)\), dp\(27f\), dp\(27f\), selectionPaint\)\n'
+              r'''            \}\n'
+              r'''            title\.textAlign = Paint\.Align\.CENTER\n'
+              r'''            title\.textSize = dp\(17f\)\n'
+              r'''            c\.drawText\(names\[i\], r\.centerX\(\), r\.bottom \+ dp\(30f\), title\)\n'
+              r'''        \}\n''',
+              re.MULTILINE,
+          )
+
+          replacement = '''        val side = dp(38f)
+          val gapX = dp(16f)
+          val gapY = dp(34f)
+          val top = dp(95f)
+          val cw = (width - side * 2 - gapX * (categoryColumns - 1)) / categoryColumns.toFloat()
+          val rowStep = cw + dp(62f)
+          names.indices.forEach { i ->
+              val row = i / categoryColumns
+              val column = i % categoryColumns
+              val left = side + column * (cw + gapX)
+              val topPos = top + row * rowStep
+              val r = RectF(left, topPos, left + cw, topPos + cw)
+              iconPaint.style = Paint.Style.FILL
+              iconPaint.color = Color.rgb(96, 96, 96)
+              c.drawRoundRect(r, dp(24f), dp(24f), iconPaint)
+              val bitmap = bitmaps[i]
+              if (bitmap != null && !bitmap.isRecycled) {
+                  val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                  val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
+                  val w = bitmap.width * scale
+                  val h = bitmap.height * scale
+                  c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)
+              }
+              if (i == selected) {
+                  selectionPaint.strokeWidth = dp(3f)
+                  c.drawRoundRect(RectF(r.left - dp(3f), r.top - dp(3f), r.right + dp(3f), r.bottom + dp(3f)), dp(27f), dp(27f), selectionPaint)
+              }
+              title.textAlign = Paint.Align.CENTER
+              title.textSize = dp(17f)
+              c.drawText(names[i], r.centerX(), r.bottom + dp(30f), title)
+          }
+'''
+
+          text, count = pattern.subn(replacement, text, count=1)
+          if count != 1:
+              raise SystemExit(f"Category grid block replacement count: {count}")
+
+          old_keys = '''            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+'''
+          new_keys = '''            KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected % categoryColumns > 0) selected--; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < names.lastIndex && selected % categoryColumns < categoryColumns - 1) selected++; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> { val prev = selected - categoryColumns; if (prev >= 0) selected = prev; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + categoryColumns; if (next < names.size) selected = next; postInvalidateOnAnimation(); return true }
+'''
+          if old_keys not in text:
+              raise SystemExit("Could not find category D-pad navigation")
+          text = text.replace(old_keys, new_keys, 1)
+
+          path.write_text(text, encoding="utf-8")
+
+      - name: Commit patch and remove one-shot workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/patch-category-grid.yml
+          git add app/src/main/java/com/myindiatv/MainActivity.kt .github/workflows/patch-category-grid.yml
+          git diff --cached --check
+          git diff --cached -- app/src/main/java/com/myindiatv/MainActivity.kt
+          git commit -m "Set category grid to 5 columns"
+          git push
