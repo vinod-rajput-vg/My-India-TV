@@ -91,7 +91,12 @@ private class HomeView(context: Context) : View(context) {
                 val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
                 val w = bitmap.width * scale
                 val h = bitmap.height * scale
-                c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)
+                val dst = RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2)
+                val clipPath = Path().apply { addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) }
+                c.save()
+                c.clipPath(clipPath)
+                c.drawBitmap(bitmap, null, dst, iconPaint)
+                c.restore()
             }
             if (i == selected) {
                 selectionPaint.strokeWidth = dp(3f)
