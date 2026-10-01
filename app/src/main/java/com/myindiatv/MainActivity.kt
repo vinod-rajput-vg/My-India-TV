@@ -79,7 +79,7 @@ private class HomeView(context: Context) : View(context) {
         val gap = dp(16f)
         val top = dp(95f)
         val columns = 5
-        val rowGap = dp(100f)
+        val rowGap = dp(150f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         repeat(names.size) { i ->
             val row = i / columns
