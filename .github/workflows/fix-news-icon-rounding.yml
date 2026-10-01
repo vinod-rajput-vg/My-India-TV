@@ -1,0 +1,45 @@
+name: Fix News Category Icon Rounding
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Apply rounded icon clipping
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
+          text = path.read_text(encoding="utf-8")
+
+          old = '''                c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)'''
+          new = '''                val save = c.save()
+                val clipPath = Path().apply {
+                    addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW)
+                }
+                c.clipPath(clipPath)
+                c.drawBitmap(bitmap, null, RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2), iconPaint)
+                c.restoreToCount(save)'''
+
+          if old not in text:
+              raise SystemExit("Expected News/category bitmap draw line was not found")
+
+          path.write_text(text.replace(old, new, 1), encoding="utf-8")
+          PY
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          git rm .github/workflows/fix-news-icon-rounding.yml
+          git commit -m "Fix category icon rounded clipping"
+          git push
