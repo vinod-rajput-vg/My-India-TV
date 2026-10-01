@@ -62,6 +62,7 @@ private class HomeView(context: Context) : View(context) {
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
     private val bitmaps = arrayOfNulls<Bitmap>(6)
+    private val columns = 5
     private var selected = 0
     private var settings = false
     private var lastBackPressTime = 0L
@@ -78,7 +79,6 @@ private class HomeView(context: Context) : View(context) {
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(95f)
-        val columns = 5
         val rowGap = dp(70f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         repeat(names.size) { i ->
@@ -144,6 +144,8 @@ private class HomeView(context: Context) : View(context) {
         when (k) {
             KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> { val previous = selected - columns; if (previous >= 0) selected = previous; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + columns; if (next < names.size) selected = next; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
             KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
