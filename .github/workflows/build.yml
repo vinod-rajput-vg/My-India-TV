@@ -24,41 +24,54 @@ jobs:
           set -euo pipefail
           python3 <<'PY'
           from pathlib import Path
-          import re
 
           path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
           text = path.read_text(encoding="utf-8")
 
-          old_grid = '''        val cw = (width - side * 2 - gap * 5) / 6f
-          repeat(6) { i ->
-              val left = side + i * (cw + gap)
-              val r = RectF(left, top, left + cw, top + cw)'''
+          # Convert the HomeView category layout from 6 columns to 5 columns.
+          old_cw = "val cw = (width - side * 2 - gap * 5) / 6f"
+          if old_cw in text:
+              text = text.replace(
+                  old_cw,
+                  "val columns = 5\n        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()",
+                  1,
+              )
 
-          new_grid = '''        val columns = 5
-          val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-          repeat(names.size) { i ->
-              val row = i / columns
-              val column = i % columns
-              val left = side + column * (cw + gap)
-              val topPos = top + row * (cw + gap)
-              val r = RectF(left, topPos, left + cw, topPos + cw)'''
+          old_repeat = "repeat(6) { i ->"
+          if old_repeat in text:
+              text = text.replace(old_repeat, "repeat(names.size) { i ->", 1)
 
-          if old_grid not in text:
-              raise SystemExit("Expected 6-column category grid block was not found")
-          text = text.replace(old_grid, new_grid, 1)
+          old_left = "val left = side + i * (cw + gap)"
+          if old_left in text:
+              text = text.replace(
+                  old_left,
+                  "val row = i / columns\n            val column = i % columns\n            val left = side + column * (cw + gap)\n            val topPos = top + row * (cw + gap)",
+                  1,
+              )
 
-          old_key = '''            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }'''
+          old_rect = "val r = RectF(left, top, left + cw, top + cw)"
+          if old_rect in text:
+              text = text.replace(old_rect, "val r = RectF(left, topPos, left + cw, topPos + cw)", 1)
 
-          new_key = '''            KeyEvent.KEYCODE_DPAD_DOWN -> { if (selected + 5 < names.size) selected += 5; postInvalidateOnAnimation(); return true }
-              KeyEvent.KEYCODE_DPAD_UP -> { if (selected - 5 >= 0) selected -= 5; postInvalidateOnAnimation(); return true }
-              KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }'''
+          # Add vertical D-pad navigation for the second row.
+          center = "KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }"
+          if "KeyEvent.KEYCODE_DPAD_DOWN ->" not in text and center in text:
+              replacement = (
+                  "KeyEvent.KEYCODE_DPAD_DOWN -> { if (selected + 5 < names.size) selected += 5; postInvalidateOnAnimation(); return true }\n"
+                  "            KeyEvent.KEYCODE_DPAD_UP -> { if (selected - 5 >= 0) selected -= 5; postInvalidateOnAnimation(); return true }\n"
+                  + center
+              )
+              text = text.replace(center, replacement, 1)
 
-          if old_key not in text:
-              raise SystemExit("Expected category D-pad handler was not found")
-          text = text.replace(old_key, new_key, 1)
+          if "val columns = 5" not in text:
+              raise SystemExit("Category grid replacement failed: columns declaration not found")
+          if "val topPos = top + row * (cw + gap)" not in text:
+              raise SystemExit("Category grid replacement failed: row positioning not found")
+          if "KeyEvent.KEYCODE_DPAD_DOWN ->" not in text:
+              raise SystemExit("Category grid replacement failed: D-pad row navigation not found")
 
           path.write_text(text, encoding="utf-8")
-          print("Category grid fixed: 5 columns with additional categories on the next row.")
+          print("Category grid fixed successfully: 5 columns, remaining categories continue on the next row.")
           PY
 
       - name: Set up JDK 17
