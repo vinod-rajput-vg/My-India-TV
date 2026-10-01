@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Apply category grid fix
         shell: bash
@@ -33,9 +35,11 @@ jobs:
           if old_cw in text:
               text = text.replace(
                   old_cw,
-                  "val columns = 5\n        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()",
+                  "val columns = 5\n        val rowGap = dp(100f)\n        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()",
                   1,
               )
+          elif "val columns = 5" in text and "val rowGap = dp(100f)" not in text:
+              text = text.replace("val columns = 5\n", "val columns = 5\n        val rowGap = dp(100f)\n", 1)
 
           old_repeat = "repeat(6) { i ->"
           if old_repeat in text:
@@ -45,7 +49,7 @@ jobs:
           if old_left in text:
               text = text.replace(
                   old_left,
-                  "val row = i / columns\n            val column = i % columns\n            val left = side + column * (cw + gap)\n            val topPos = top + row * (cw + gap)",
+                  "val row = i / columns\n            val column = i % columns\n            val left = side + column * (cw + gap)\n            val topPos = top + row * (cw + rowGap)",
                   1,
               )
 
@@ -65,14 +69,30 @@ jobs:
 
           if "val columns = 5" not in text:
               raise SystemExit("Category grid replacement failed: columns declaration not found")
-          if "val topPos = top + row * (cw + gap)" not in text:
+          if "val rowGap = dp(100f)" not in text:
+              raise SystemExit("Category grid replacement failed: row gap declaration not found")
+          if "val topPos = top + row * (cw + rowGap)" not in text:
               raise SystemExit("Category grid replacement failed: row positioning not found")
           if "KeyEvent.KEYCODE_DPAD_DOWN ->" not in text:
               raise SystemExit("Category grid replacement failed: D-pad row navigation not found")
 
           path.write_text(text, encoding="utf-8")
-          print("Category grid fixed successfully: 5 columns, remaining categories continue on the next row.")
+          print("Category grid fixed: 5 columns and 100dp vertical row gap.")
           PY
+
+      - name: Persist category grid source fix
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          if ! git diff --cached --quiet; then
+            git commit -m 'Fix category grid second row spacing'
+            git push origin HEAD:main || echo 'Source push was not permitted; continuing with the fixed build artifact.'
+          else
+            echo 'Category grid source already contains the fix.'
+          fi
 
       - name: Set up JDK 17
         uses: actions/setup-java@v5
