@@ -2,7 +2,7 @@ Nick Hindi
 http://103.185.24.134:3001/NICK/index.m3u8
 
 Sonic Hindi
-http://103.185.24.134:3001/SONIC/index.m3u8
+http://202.70.146.135:8000/play/a02t/index.m3u8
 
 Pogo Hindi
 http://27.116.22.53:5001/live/559.m3u8
