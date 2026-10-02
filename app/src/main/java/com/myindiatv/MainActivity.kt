@@ -144,14 +144,20 @@ private class HomeView(context: Context) : View(context) {
         when (k) {
             KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_UP -> { val previous = selected - columns; if (previous >= 0) selected = previous; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                val currentRow = selected / columns
+                if (currentRow > 0) {
+                    val previousRowLast = minOf(names.size - 1, currentRow * columns - 1)
+                    selected = previousRowLast
+                }
+                postInvalidateOnAnimation()
+                return true
+            }
             KeyEvent.KEYCODE_DPAD_DOWN -> {
-                val next = selected + columns
-                if (next < names.size) {
-                    selected = next
-                } else {
-                    val nextRowFirst = ((selected / columns) + 1) * columns
-                    if (nextRowFirst < names.size) selected = nextRowFirst
+                val currentRow = selected / columns
+                val nextRowFirst = (currentRow + 1) * columns
+                if (nextRowFirst < names.size) {
+                    selected = minOf(names.size - 1, nextRowFirst + columns - 1)
                 }
                 postInvalidateOnAnimation()
                 return true
@@ -303,8 +309,26 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         when (k) {
             KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < maxIndex) selected++; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) selected--; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + columns; if (next <= maxIndex) selected = next else { val nextRowFirst = ((selected / columns) + 1) * columns; if (nextRowFirst <= maxIndex) selected = nextRowFirst }; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_UP -> { val prev = selected - columns; if (prev >= 0) selected = prev; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
+                val currentRow = selected / columns
+                val nextRowFirst = (currentRow + 1) * columns
+                if (nextRowFirst <= maxIndex) {
+                    selected = minOf(maxIndex, nextRowFirst + columns - 1)
+                }
+                ensureSelectedVisible()
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_UP -> {
+                val currentRow = selected / columns
+                if (currentRow > 0) {
+                    val previousRowLast = minOf(maxIndex, currentRow * columns - 1)
+                    selected = previousRowLast
+                }
+                ensureSelectedVisible()
+                postInvalidateOnAnimation()
+                return true
+            }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openStream(channels[selected].streamUrl); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> { (context as? MainActivity)?.showHome(); return true }
         }
