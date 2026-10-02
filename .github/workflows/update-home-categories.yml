@@ -1,0 +1,55 @@
+name: Update Home Categories
+
+on:
+  push:
+    paths:
+      - '.github/workflows/update-home-categories.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update home categories
+        shell: python
+        run: |
+          from pathlib import Path
+          p = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          s = p.read_text(encoding='utf-8')
+
+          old_names = 'private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Movies")'
+          new_names = 'private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Drama", "Movies")'
+          s = s.replace(old_names, new_names, 1)
+
+          old_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.movies)'
+          new_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, 0, R.drawable.movies)'
+          s = s.replace(old_icons, new_icons, 1)
+
+          s = s.replace('private val bitmaps = arrayOfNulls<Bitmap>(6)', 'private val bitmaps = arrayOfNulls<Bitmap>(7)', 1)
+          s = s.replace('for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 'for (i in iconIds.indices) if (iconIds[i] != 0) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 1)
+
+          old_when = '''        5 -> listOf(
+            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
+        )'''
+          new_when = '''        5 -> emptyList()
+        6 -> listOf(
+            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
+        )'''
+          if old_when not in s:
+              raise SystemExit('Expected Movies category block was not found')
+          s = s.replace(old_when, new_when, 1)
+
+          p.write_text(s, encoding='utf-8')
+
+      - name: Commit source update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          git diff --cached --quiet && exit 0
+          git commit -m "Add Drama category before Movies"
+          git push
