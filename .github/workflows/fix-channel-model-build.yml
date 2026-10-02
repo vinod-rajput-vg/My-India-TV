@@ -1,0 +1,54 @@
+name: Fix Channel model build
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix duplicate Channel model and stream URL property
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          path = Path("app/src/main/java/com/myindiatv/MainActivity.kt")
+          text = path.read_text(encoding="utf-8")
+
+          old_call = "(context as? MainActivity)?.openStream(channels[selected].url)"
+          new_call = "(context as? MainActivity)?.openStream(channels[selected].streamUrl)"
+          if old_call not in text:
+              raise SystemExit("Expected Channel URL call was not found")
+          text = text.replace(old_call, new_call)
+
+          duplicate = "\nprivate data class Channel(val name: String, val url: String, val iconResId: Int = 0)"
+          if duplicate not in text:
+              raise SystemExit("Expected duplicate Channel declaration was not found")
+          text = text.replace(duplicate, "", 1)
+
+          path.write_text(text, encoding="utf-8")
+          PY
+
+          test "$(grep -c '^private data class Channel' app/src/main/java/com/myindiatv/MainActivity.kt)" -eq 0
+          grep -q 'channels\[selected\]\.streamUrl' app/src/main/java/com/myindiatv/MainActivity.kt
+          grep -q '^data class Channel' app/src/main/java/com/myindiatv/Channel.kt
+
+      - name: Commit fix and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/com/myindiatv/MainActivity.kt .github/workflows/fix-channel-model-build.yml
+          git commit -m "Fix duplicate Channel model compilation errors"
+          git push
