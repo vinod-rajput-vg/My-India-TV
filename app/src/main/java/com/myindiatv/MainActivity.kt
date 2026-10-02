@@ -303,7 +303,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         when (k) {
             KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < maxIndex) selected++; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) selected--; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + columns; if (next <= maxIndex) selected = next; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + columns; if (next <= maxIndex) selected = next else { val nextRowFirst = ((selected / columns) + 1) * columns; if (nextRowFirst <= maxIndex) selected = nextRowFirst }; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_UP -> { val prev = selected - columns; if (prev >= 0) selected = prev; ensureSelectedVisible(); postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openStream(channels[selected].streamUrl); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> { (context as? MainActivity)?.showHome(); return true }
