@@ -1,0 +1,60 @@
+name: Fix MainActivity Build
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix nullable ChannelView usage
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          text = path.read_text()
+          old = '''    fun openCategory(index: Int) {
+          channelView = ChannelView(this, index)
+          setContentView(channelView)
+          channelView?.requestFocus()
+      }
+          '''
+          new = '''    fun openCategory(index: Int) {
+          val view = ChannelView(this, index)
+          channelView = view
+          setContentView(view)
+          view.requestFocus()
+      }
+          '''
+          if old not in text:
+              raise SystemExit('Expected openCategory block was not found')
+          path.write_text(text.replace(old, new, 1))
+          PY
+
+      - name: Verify source change
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -A6 -B1 'fun openCategory' app/src/main/java/com/myindiatv/MainActivity.kt
+
+      - name: Commit source fix and remove temporary workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          rm -f .github/workflows/fix-mainactivity-build.yml
+          git add app/src/main/java/com/myindiatv/MainActivity.kt .github/workflows/fix-mainactivity-build.yml
+          git diff --cached --quiet && exit 0
+          git commit -m 'Fix MainActivity build error'
+          git push
