@@ -1,5 +1,6 @@
 name: Fix channel card size and icon rendering
 
+# Applies the channel-card-only 376:288 layout while preserving each icon's native aspect ratio.
 on:
   push:
     paths:
