@@ -231,11 +231,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         )
         4 -> listOf(
             Channel("Nick Hindi", "http://51.75.127.199:3141/nickhindi/index.m3u8", iconResId = iconId("nick_hindi")),
-            Channel("Pogo Hindi", "http://51.75.127.199:3141/pogohindi/index.m3u8", iconResId = iconId("pogo_hindi")),
-            Channel("Sonic Hindi", "http://51.75.127.199:3141/sonichindi/index.m3u8", iconResId = iconId("sonic_hindi")),
-            Channel("Cartoon Network Hindi", "http://51.75.127.199:3141/cartoonnetworkhindi/index.m3u8", iconResId = iconId("cartoon_network_hindi")),
-            Channel("Cartoon Network HD Plus Hindi", "http://51.75.127.199:3141/cartoonnetworkhdplus/index.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
-            Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/3452.m3u8", iconResId = iconId("discovery_kids_hindi")),
+            Channel("Pogo Hindi", "http://27.116.22.53:5001/live/559.m3u8", iconResId = iconId("pogo_hindi")),
+            Channel("Sonic Hindi", "http://202.70.146.135:8000/play/a02t/index.m3u8", iconResId = iconId("sonic_hindi")),
+            Channel("Cartoon Network Hindi", "http://27.116.22.53:5001/live/816.m3u8", iconResId = iconId("cartoon_network_hindi")),
+            Channel("Cartoon Network HD Plus Hindi", "http://27.116.22.53:5001/live/3436.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
+            Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/554.m3u8", iconResId = iconId("discovery_kids_hindi")),
             Channel("Hungama", "http://51.75.127.199:3141/hungama/index.m3u8", iconResId = iconId("hungama")),
             Channel("Super Hungama", "http://51.75.127.199:3141/superhungama/index.m3u8", iconResId = iconId("superhungama")),
             Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
