@@ -1,5 +1,8 @@
 name: Sort Kids Channels
 
+# Triggered after the workflow was corrected to target category index 4.
+# The workflow only watches its own file, so its MainActivity commit does not loop.
+
 on:
   push:
     paths:
