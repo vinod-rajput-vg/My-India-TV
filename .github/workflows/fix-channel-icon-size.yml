@@ -1,0 +1,85 @@
+name: Fix channel icon aspect ratio
+
+on:
+  push:
+    paths:
+      - '.github/workflows/fix-channel-icon-size.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply 376x288 channel icon ratio
+        shell: python
+        run: |
+          from pathlib import Path
+
+          path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          text = path.read_text(encoding='utf-8')
+
+          old = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                        val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
+                        val w = bitmap.width * scale
+                        val h = bitmap.height * scale
+                        val dst = RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2)
+                        c.save()
+                        c.clipPath(Path().apply { addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) })
+                        c.drawBitmap(bitmap, null, dst, iconPaint)
+                        c.restore()'''
+
+          new = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                        val targetAspect = 376f / 288f
+                        var targetWidth = safe.width()
+                        var targetHeight = targetWidth / targetAspect
+                        if (targetHeight > safe.height()) {
+                            targetHeight = safe.height()
+                            targetWidth = targetHeight * targetAspect
+                        }
+                        val dst = RectF(
+                            safe.centerX() - targetWidth / 2,
+                            safe.centerY() - targetHeight / 2,
+                            safe.centerX() + targetWidth / 2,
+                            safe.centerY() + targetHeight / 2
+                        )
+
+                        val sourceAspect = bitmap.width.toFloat() / bitmap.height.toFloat()
+                        val src: Rect
+                        if (sourceAspect > targetAspect) {
+                            val srcWidth = (bitmap.height * targetAspect).toInt().coerceAtLeast(1)
+                            val leftCrop = ((bitmap.width - srcWidth) / 2).coerceAtLeast(0)
+                            src = Rect(leftCrop, 0, (leftCrop + srcWidth).coerceAtMost(bitmap.width), bitmap.height)
+                        } else {
+                            val srcHeight = (bitmap.width / targetAspect).toInt().coerceAtLeast(1)
+                            val topCrop = ((bitmap.height - srcHeight) / 2).coerceAtLeast(0)
+                            src = Rect(0, topCrop, bitmap.width, (topCrop + srcHeight).coerceAtMost(bitmap.height))
+                        }
+
+                        c.save()
+                        c.clipPath(Path().apply { addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) })
+                        c.drawBitmap(bitmap, src, dst, iconPaint)
+                        c.restore()'''
+
+          if old not in text:
+              raise SystemExit('Expected channel icon drawing block was not found; no changes made.')
+
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+
+      - name: Commit and push
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          if git diff --cached --quiet; then
+            echo 'No changes needed.'
+            exit 0
+          fi
+          git commit -m 'Fix channel icons to 376x288 aspect ratio'
+          git push
