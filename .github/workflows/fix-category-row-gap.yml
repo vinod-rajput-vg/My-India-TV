@@ -1,0 +1,37 @@
+name: Fix category row gap
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Change category row gap to 50dp
+        shell: bash
+        run: |
+          set -euo pipefail
+          file="app/src/main/java/com/myindiatv/MainActivity.kt"
+          grep -q 'val rowGap = dp(70f)' "$file"
+          sed -i 's/val rowGap = dp(70f)/val rowGap = dp(50f)/' "$file"
+          grep -q 'val rowGap = dp(50f)' "$file"
+
+      - name: Commit and push
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          git commit -m "Set category row gap to 50dp"
+          git push origin HEAD:main
