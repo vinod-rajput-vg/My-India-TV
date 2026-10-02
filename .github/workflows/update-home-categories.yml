@@ -14,33 +14,51 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Update home categories
+      - name: Update home categories and Drama channels
         shell: python
         run: |
           from pathlib import Path
           p = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
           s = p.read_text(encoding='utf-8')
 
-          old_names = 'private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Movies")'
-          new_names = 'private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Drama", "Movies")'
-          s = s.replace(old_names, new_names, 1)
-
-          old_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.movies)'
-          new_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.drama, R.drawable.movies)'
-          s = s.replace(old_icons, new_icons, 1)
-
+          s = s.replace(
+              'private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Movies")',
+              'private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Drama", "Movies")',
+              1
+          )
+          s = s.replace(
+              'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.movies)',
+              'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.drama, R.drawable.movies)',
+              1
+          )
           s = s.replace('private val bitmaps = arrayOfNulls<Bitmap>(6)', 'private val bitmaps = arrayOfNulls<Bitmap>(7)', 1)
-          s = s.replace('for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 'for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 1)
 
-          old_when = '''        5 -> listOf(
-            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
-        )'''
-          new_when = '''        5 -> emptyList()
+          drama = '''        5 -> listOf(
+            Channel("Zee TV", "http://51.75.127.199:3141/zeetv/index.m3u8", iconResId = iconId("zee_tv")),
+            Channel("Star Plus HD", "http://202.70.146.135:8000/play/a009/index.m3u8", iconResId = iconId("star_plus_hd")),
+            Channel("Colors", "http://51.75.127.199:3141/colorssd/index.m3u8", iconResId = iconId("colors")),
+            Channel("Colors Gujarati", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8", iconResId = iconId("colors_gujarati")),
+            Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = iconId("star_utsav")),
+            Channel("&TV HD", "http://202.70.146.135:8000/play/a06c/index.m3u8", iconResId = iconId("and_tv_hd"))
+        )
         6 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
         )'''
-          if old_when in s:
-              s = s.replace(old_when, new_when, 1)
+
+          old_movie = '''        5 -> listOf(
+            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
+        )'''
+          old_shifted = '''        5 -> emptyList()
+        6 -> listOf(
+            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
+        )'''
+
+          if old_movie in s:
+              s = s.replace(old_movie, drama, 1)
+          elif old_shifted in s:
+              s = s.replace(old_shifted, drama, 1)
+          elif '5 -> listOf(' not in s:
+              raise SystemExit('Could not locate category 5/Movies block')
 
           p.write_text(s, encoding='utf-8')
 
@@ -50,5 +68,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add app/src/main/java/com/myindiatv/MainActivity.kt
           git diff --cached --quiet && exit 0
-          git commit -m "Set Drama category icon"
+          git commit -m "Add Drama category channels"
           git push
