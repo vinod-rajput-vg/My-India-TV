@@ -9,7 +9,6 @@ permissions:
 
 jobs:
   fix:
-    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -23,19 +22,8 @@ jobs:
           from pathlib import Path
           path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
           text = path.read_text()
-          old = '''    fun openCategory(index: Int) {
-          channelView = ChannelView(this, index)
-          setContentView(channelView)
-          channelView?.requestFocus()
-      }
-          '''
-          new = '''    fun openCategory(index: Int) {
-          val view = ChannelView(this, index)
-          channelView = view
-          setContentView(view)
-          view.requestFocus()
-      }
-          '''
+          old = '        channelView = ChannelView(this, index)\n        setContentView(channelView)\n        channelView?.requestFocus()'
+          new = '        val view = ChannelView(this, index)\n        channelView = view\n        setContentView(view)\n        view.requestFocus()'
           if old not in text:
               raise SystemExit('Expected openCategory block was not found')
           path.write_text(text.replace(old, new, 1))
@@ -45,7 +33,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -A6 -B1 'fun openCategory' app/src/main/java/com/myindiatv/MainActivity.kt
+          grep -A7 -B1 'fun openCategory' app/src/main/java/com/myindiatv/MainActivity.kt
 
       - name: Commit source fix and remove temporary workflow
         shell: bash
