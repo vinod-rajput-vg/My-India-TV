@@ -1,0 +1,72 @@
+name: Sort Kids Channels
+
+on:
+  push:
+    paths:
+      - '.github/workflows/sort-kids-channels.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  sort:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply Kids channel order
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          text = path.read_text(encoding='utf-8')
+
+          replacement = '''5 -> listOf(
+              Channel("Nick Hindi", "http://51.75.127.199:3141/nickhindi/index.m3u8", iconResId = iconId("nick_hindi")),
+              Channel("Pogo Hindi", "http://51.75.127.199:3141/pogohindi/index.m3u8", iconResId = iconId("pogo_hindi")),
+              Channel("Sonic Hindi", "http://51.75.127.199:3141/sonichindi/index.m3u8", iconResId = iconId("sonic_hindi")),
+              Channel("Cartoon Network Hindi", "http://51.75.127.199:3141/cartoonnetworkhindi/index.m3u8", iconResId = iconId("cartoon_network_hindi")),
+              Channel("Cartoon Network HD Plus Hindi", "http://51.75.127.199:3141/cartoonnetworkhdplus/index.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
+              Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/3452.m3u8", iconResId = iconId("discovery_kids_hindi")),
+              Channel("Hungama", "http://51.75.127.199:3141/hungama/index.m3u8", iconResId = iconId("hungama")),
+              Channel("Super Hungama", "http://51.75.127.199:3141/superhungama/index.m3u8", iconResId = iconId("superhungama")),
+              Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
+          )'''
+
+          pattern = r'5 -> listOf\(.*?\n        \)\n    }\n\n    private fun dp'
+          updated, count = re.subn(pattern, replacement + '\n    }\n\n    private fun dp', text, count=1, flags=re.S)
+          if count != 1:
+              raise SystemExit('Kids category block not found; no changes made.')
+
+          path.write_text(updated, encoding='utf-8')
+
+      - name: Verify order
+        shell: python
+        run: |
+          from pathlib import Path
+          text = Path('app/src/main/java/com/myindiatv/MainActivity.kt').read_text(encoding='utf-8')
+          expected = [
+              'Nick Hindi', 'Pogo Hindi', 'Sonic Hindi',
+              'Cartoon Network Hindi', 'Cartoon Network HD Plus Hindi',
+              'Discovery Kids Hindi', 'Hungama', 'Super Hungama', 'Disney Channel'
+          ]
+          block = text[text.index('5 -> listOf('):text.index('5 -> listOf(') + 5000]
+          positions = [block.index(f'Channel("{name}"') for name in expected]
+          if positions != sorted(positions):
+              raise SystemExit('Kids channel order verification failed.')
+
+      - name: Commit sorted order
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/java/com/myindiatv/MainActivity.kt
+          if git diff --cached --quiet; then
+            echo "Kids channel order is already correct."
+            exit 0
+          fi
+          git commit -m "Sort Kids category channels"
+          git push
