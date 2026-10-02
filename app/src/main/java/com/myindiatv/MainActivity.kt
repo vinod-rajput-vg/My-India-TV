@@ -145,7 +145,17 @@ private class HomeView(context: Context) : View(context) {
             KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_UP -> { val previous = selected - columns; if (previous >= 0) selected = previous; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_DOWN -> { val next = selected + columns; if (next < names.size) selected = next; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
+                val next = selected + columns
+                if (next < names.size) {
+                    selected = next
+                } else {
+                    val nextRowFirst = ((selected / columns) + 1) * columns
+                    if (nextRowFirst < names.size) selected = nextRowFirst
+                }
+                postInvalidateOnAnimation()
+                return true
+            }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
             KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
