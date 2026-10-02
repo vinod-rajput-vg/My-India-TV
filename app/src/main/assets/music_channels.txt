@@ -1,17 +1,5 @@
 B4U Music
 https://cdn.pishow.tv/ott/live/415/master.m3u8
 
-MTV
-https://da86m1sqpm3o0.cloudfront.net/28072023/smil:mtvindia.smil/playlist.m3u8
-
-MTV HD
-http://27.116.22.53:5001/live/1145.m3u8
-
-Music India
-http://27.116.22.53:5001/live/250.m3u8
-
-9XM
-https://9xjio.wiseplayout.com/9XM/master.m3u8
-
 Shemaroo Filmy Gaane
 https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8
