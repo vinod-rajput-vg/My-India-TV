@@ -224,7 +224,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         4 -> listOf(
-            Channel("Nick Hindi", "http://51.75.127.199:3141/nickhindi/index.m3u8", iconResId = iconId("nick_hindi")),
+            Channel("Nick Hindi", "http://103.185.24.134:3001/NICK/index.m3u8", iconResId = iconId("nick_hindi")),
             Channel("Pogo Hindi", "http://27.116.22.53:5001/live/559.m3u8", iconResId = iconId("pogo_hindi")),
             Channel("Sonic Hindi", "http://202.70.146.135:8000/play/a02t/index.m3u8", iconResId = iconId("sonic_hindi")),
             Channel("Cartoon Network Hindi", "http://27.116.22.53:5001/live/816.m3u8", iconResId = iconId("cartoon_network_hindi")),
