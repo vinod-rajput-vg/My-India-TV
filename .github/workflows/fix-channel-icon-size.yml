@@ -16,7 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Apply channel card and icon rendering fix
+      - name: Apply 376x288 channel cards and preserve icon appearance
         shell: bash
         run: |
           set -euo pipefail
@@ -34,37 +34,27 @@ jobs:
           head = text[:start]
           tail = text[start:]
 
-          old_row = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-        val rowHeight = cw + rowGap'''
-          new_row = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+          # Only the channel card/column aspect ratio is changed to 376:288.
+          # Category cards and all other sizing remain untouched.
+          old_square = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         val cardHeight = cw
         val rowHeight = cardHeight + rowGap'''
+          new_ratio = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val cardHeight = cw * (288f / 376f)
+        val rowHeight = cardHeight + rowGap'''
 
-          if old_row in tail:
-              tail = tail.replace(old_row, new_row, 1)
-          elif '        val cardHeight = cw\n        val rowHeight = cardHeight + rowGap' not in tail:
+          old_ratio = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val cardHeight = cw * 288f / 376f
+        val rowHeight = cardHeight + rowGap'''
+
+          if old_square in tail:
+              tail = tail.replace(old_square, new_ratio, 1)
+          elif old_ratio not in tail:
               raise SystemExit('Expected ChannelView row sizing block not found.')
 
-          old_rect = '''                    val r = RectF(left, topPos, left + cw, topPos + cw)'''
-          new_rect = '''                    val r = RectF(left, topPos, left + cw, topPos + cardHeight)'''
-          if old_rect in tail:
-              tail = tail.replace(old_rect, new_rect, 1)
-
-          old_icon = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-                        val targetAspect = 376f / 288f
-                        var targetWidth = safe.width()
-                        var targetHeight = targetWidth / targetAspect
-                        if (targetHeight > safe.height()) {
-                            targetHeight = safe.height()
-                            targetWidth = targetHeight * targetAspect
-                        }
-                        val dst = RectF(
-                            safe.centerX() - targetWidth / 2,
-                            safe.centerY() - targetHeight / 2,
-                            safe.centerX() + targetWidth / 2,
-                            safe.centerY() + targetHeight / 2
-                        )'''
-          new_icon = '''                        val safe = RectF(r.left + dp(12f), r.top + dp(12f), r.right - dp(12f), r.bottom - dp(12f))
+          # Keep every channel icon's own aspect ratio. Do not force/stretch
+          # icons to 376:288; only the card itself uses that ratio.
+          old_forced_icon = '''                        val safe = RectF(r.left + dp(12f), r.top + dp(12f), r.right - dp(12f), r.bottom - dp(12f))
                         val targetAspect = 376f / 288f
                         var targetWidth = safe.width()
                         var targetHeight = targetWidth / targetAspect
@@ -79,13 +69,44 @@ jobs:
                             safe.centerY() + targetHeight / 2
                         )'''
 
-          if old_icon in tail:
-              tail = tail.replace(old_icon, new_icon, 1)
-          elif 'val targetAspect = 376f / 288f' not in tail:
+          old_forced_icon_5dp = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                        val targetAspect = 376f / 288f
+                        var targetWidth = safe.width()
+                        var targetHeight = targetWidth / targetAspect
+                        if (targetHeight > safe.height()) {
+                            targetHeight = safe.height()
+                            targetWidth = targetHeight * targetAspect
+                        }
+                        val dst = RectF(
+                            safe.centerX() - targetWidth / 2,
+                            safe.centerY() - targetHeight / 2,
+                            safe.centerX() + targetWidth / 2,
+                            safe.centerY() + targetHeight / 2
+                        )'''
+
+          natural_icon = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+                        val scale = minOf(
+                            safe.width() / bitmap.width.toFloat(),
+                            safe.height() / bitmap.height.toFloat()
+                        )
+                        val targetWidth = bitmap.width * scale
+                        val targetHeight = bitmap.height * scale
+                        val dst = RectF(
+                            safe.centerX() - targetWidth / 2,
+                            safe.centerY() - targetHeight / 2,
+                            safe.centerX() + targetWidth / 2,
+                            safe.centerY() + targetHeight / 2
+                        )'''
+
+          if old_forced_icon in tail:
+              tail = tail.replace(old_forced_icon, natural_icon, 1)
+          elif old_forced_icon_5dp in tail:
+              tail = tail.replace(old_forced_icon_5dp, natural_icon, 1)
+          elif 'val scale = minOf(\n                            safe.width() / bitmap.width.toFloat(),' not in tail:
               raise SystemExit('Expected channel icon rendering block not found.')
 
           path.write_text(head + tail, encoding='utf-8')
-          print('Applied square channel cards and safe 376x288 icon rendering.')
+          print('Applied 376x288 channel cards while preserving each icon aspect ratio.')
           PY
 
       - name: Commit and push
@@ -98,5 +119,5 @@ jobs:
             echo 'No changes needed.'
             exit 0
           fi
-          git commit -m 'Fix channel card size and icon rendering'
+          git commit -m 'Set channel cards to 376x288 and preserve icons'
           git push
