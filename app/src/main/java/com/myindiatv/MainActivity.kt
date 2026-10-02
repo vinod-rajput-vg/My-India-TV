@@ -222,11 +222,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Zee 24 Taas", "https://zeefta.akamaized.net/ptnr-yupptv/title-zee24taas/v1/manifest/3.m3u8", iconResId = iconId("zee_24_taas"))
         )
         3 -> listOf(
-            Channel("9XM", "https://streams.tangotv.in/9XM/ORIGIN/index.m3u8", iconResId = iconId("9xm")),
             Channel("B4U Music", "https://streams.tangotv.in/B4UMUSIC/ORIGIN/index.m3u8", iconResId = iconId("b4u_music")),
-            Channel("MTV", "http://51.75.127.199:3141/mtv/index.m3u8", iconResId = iconId("mtv")),
-            Channel("MTV HD Plus", "http://51.75.127.199:3141/mtvhdplus/index.m3u8", iconResId = iconId("mtv_hd_plus")),
-            Channel("Music India", "http://51.75.127.199:3141/musicindia/index.m3u8", iconResId = iconId("music_india")),
             Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfilmygaane/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         4 -> listOf(
