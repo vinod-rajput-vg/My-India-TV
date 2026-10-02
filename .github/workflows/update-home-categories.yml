@@ -26,11 +26,11 @@ jobs:
           s = s.replace(old_names, new_names, 1)
 
           old_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.movies)'
-          new_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, 0, R.drawable.movies)'
+          new_icons = 'private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.drama, R.drawable.movies)'
           s = s.replace(old_icons, new_icons, 1)
 
           s = s.replace('private val bitmaps = arrayOfNulls<Bitmap>(6)', 'private val bitmaps = arrayOfNulls<Bitmap>(7)', 1)
-          s = s.replace('for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 'for (i in iconIds.indices) if (iconIds[i] != 0) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 1)
+          s = s.replace('for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 'for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])', 1)
 
           old_when = '''        5 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
@@ -39,9 +39,8 @@ jobs:
         6 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
         )'''
-          if old_when not in s:
-              raise SystemExit('Expected Movies category block was not found')
-          s = s.replace(old_when, new_when, 1)
+          if old_when in s:
+              s = s.replace(old_when, new_when, 1)
 
           p.write_text(s, encoding='utf-8')
 
@@ -51,5 +50,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add app/src/main/java/com/myindiatv/MainActivity.kt
           git diff --cached --quiet && exit 0
-          git commit -m "Add Drama category before Movies"
+          git commit -m "Set Drama category icon"
           git push
