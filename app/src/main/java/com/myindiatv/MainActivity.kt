@@ -24,9 +24,10 @@ class MainActivity : Activity() {
     }
 
     fun openCategory(index: Int) {
-        channelView = ChannelView(this, index)
-        setContentView(channelView)
-        channelView?.requestFocus()
+        val view = ChannelView(this, index)
+        channelView = view
+        setContentView(view)
+        view.requestFocus()
     }
 
     fun showHome() {
