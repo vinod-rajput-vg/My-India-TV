@@ -156,8 +156,16 @@ private class HomeView(context: Context) : View(context) {
             return true
         }
         when (k) {
-            KeyEvent.KEYCODE_DPAD_LEFT -> { selected = (selected + names.size - 1) % names.size; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> { selected = (selected + 1) % names.size; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_LEFT -> {
+                if (selected > 0) selected--
+                postInvalidateOnAnimation()
+                return true
+            }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                if (selected < names.lastIndex) selected++
+                postInvalidateOnAnimation()
+                return true
+            }
             KeyEvent.KEYCODE_DPAD_UP -> {
                 adjacentRowTarget(selected, names.size, columns, -1)?.let { selected = it }
                 postInvalidateOnAnimation()
