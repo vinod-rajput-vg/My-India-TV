@@ -299,13 +299,12 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
                     val bitmap = bitmaps[i]
                     if (bitmap != null && !bitmap.isRecycled) {
                         val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-                        val targetAspect = 376f / 288f
-                        var targetWidth = safe.width()
-                        var targetHeight = targetWidth / targetAspect
-                        if (targetHeight > safe.height()) {
-                            targetHeight = safe.height()
-                            targetWidth = targetHeight * targetAspect
-                        }
+                        val scale = minOf(
+                            safe.width() / bitmap.width.toFloat(),
+                            safe.height() / bitmap.height.toFloat()
+                        )
+                        val targetWidth = bitmap.width * scale
+                        val targetHeight = bitmap.height * scale
                         val dst = RectF(
                             safe.centerX() - targetWidth / 2,
                             safe.centerY() - targetHeight / 2,
