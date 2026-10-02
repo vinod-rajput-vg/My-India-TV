@@ -304,13 +304,63 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
                     val bitmap = bitmaps[i]
                     if (bitmap != null && !bitmap.isRecycled) {
                         val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-                        val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
-                        val w = bitmap.width * scale
-                        val h = bitmap.height * scale
-                        val dst = RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2)
+
+                        val targetAspect = 376f / 288f
+
+                        var targetWidth = safe.width()
+
+                        var targetHeight = targetWidth / targetAspect
+
+                        if (targetHeight > safe.height()) {
+
+                            targetHeight = safe.height()
+
+                            targetWidth = targetHeight * targetAspect
+
+                        }
+
+                        val dst = RectF(
+
+                            safe.centerX() - targetWidth / 2,
+
+                            safe.centerY() - targetHeight / 2,
+
+                            safe.centerX() + targetWidth / 2,
+
+                            safe.centerY() + targetHeight / 2
+
+                        )
+
+
+                        val sourceAspect = bitmap.width.toFloat() / bitmap.height.toFloat()
+
+                        val src: Rect
+
+                        if (sourceAspect > targetAspect) {
+
+                            val srcWidth = (bitmap.height * targetAspect).toInt().coerceAtLeast(1)
+
+                            val leftCrop = ((bitmap.width - srcWidth) / 2).coerceAtLeast(0)
+
+                            src = Rect(leftCrop, 0, (leftCrop + srcWidth).coerceAtMost(bitmap.width), bitmap.height)
+
+                        } else {
+
+                            val srcHeight = (bitmap.width / targetAspect).toInt().coerceAtLeast(1)
+
+                            val topCrop = ((bitmap.height - srcHeight) / 2).coerceAtLeast(0)
+
+                            src = Rect(0, topCrop, bitmap.width, (topCrop + srcHeight).coerceAtMost(bitmap.height))
+
+                        }
+
+
                         c.save()
+
                         c.clipPath(Path().apply { addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) })
-                        c.drawBitmap(bitmap, null, dst, iconPaint)
+
+                        c.drawBitmap(bitmap, src, dst, iconPaint)
+
                         c.restore()
                     }
 
