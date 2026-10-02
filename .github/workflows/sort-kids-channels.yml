@@ -24,39 +24,105 @@ jobs:
           path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
           text = path.read_text(encoding='utf-8')
 
-          replacement = '''5 -> listOf(
-              Channel("Nick Hindi", "http://51.75.127.199:3141/nickhindi/index.m3u8", iconResId = iconId("nick_hindi")),
-              Channel("Pogo Hindi", "http://51.75.127.199:3141/pogohindi/index.m3u8", iconResId = iconId("pogo_hindi")),
-              Channel("Sonic Hindi", "http://51.75.127.199:3141/sonichindi/index.m3u8", iconResId = iconId("sonic_hindi")),
-              Channel("Cartoon Network Hindi", "http://51.75.127.199:3141/cartoonnetworkhindi/index.m3u8", iconResId = iconId("cartoon_network_hindi")),
-              Channel("Cartoon Network HD Plus Hindi", "http://51.75.127.199:3141/cartoonnetworkhdplus/index.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
-              Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/3452.m3u8", iconResId = iconId("discovery_kids_hindi")),
-              Channel("Hungama", "http://51.75.127.199:3141/hungama/index.m3u8", iconResId = iconId("hungama")),
-              Channel("Super Hungama", "http://51.75.127.199:3141/superhungama/index.m3u8", iconResId = iconId("superhungama")),
-              Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
-          )'''
+          expected = [
+              'Nick',
+              'Pogo',
+              'Sonic',
+              'Cartoon Network Hindi',
+              'Cartoon Network HD Plus Hindi',
+              'Discovery Kids Hindi',
+              'Hungama',
+              'Super Hungama',
+              'Disney Channel',
+          ]
 
-          pattern = r'5 -> listOf\(.*?\n        \)\n    }\n\n    private fun dp'
-          updated, count = re.subn(pattern, replacement + '\n    }\n\n    private fun dp', text, count=1, flags=re.S)
-          if count != 1:
+          # Match only the final Kids (category index 5) list. Do not depend on
+          # what methods happen to follow the when-expression in MainActivity.
+          pattern = r'(\n\s*5\s*->\s*listOf\()(.*?)(\n\s*\)\s*\n\s*\})'
+          match = re.search(pattern, text, flags=re.S)
+          if not match:
               raise SystemExit('Kids category block not found; no changes made.')
 
-          path.write_text(updated, encoding='utf-8')
+          block = match.group(2)
+          lines = re.findall(r'(?m)^\s*Channel\("([^"]+)".*$', block)
+          if not lines:
+              raise SystemExit('Kids category contains no Channel entries; no changes made.')
+
+          def find_channel(name):
+              exact = [line for line in block.splitlines() if f'Channel("{name}"' in line]
+              if exact:
+                  return exact[0].strip()
+              # Allow existing Hindi suffixes for the first three requested names.
+              aliases = {
+                  'Nick': ('Nick Hindi',),
+                  'Pogo': ('Pogo Hindi',),
+                  'Sonic': ('Sonic Hindi',),
+              }
+              for alias in aliases.get(name, ()):
+                  exact = [line for line in block.splitlines() if f'Channel("{alias}"' in line]
+                  if exact:
+                      return exact[0].strip()
+              return None
+
+          ordered_lines = []
+          for name in expected:
+              line = find_channel(name)
+              if line is None:
+                  raise SystemExit(f'Kids channel not found: {name}')
+              ordered_lines.append('            ' + line)
+
+          # Preserve any additional Kids channels after the requested order.
+          requested_names = set()
+          for name in expected:
+              line = find_channel(name)
+              m = re.search(r'Channel\("([^"]+)"', line)
+              if m:
+                  requested_names.add(m.group(1))
+
+          for line in block.splitlines():
+              if 'Channel("' not in line:
+                  continue
+              m = re.search(r'Channel\("([^"]+)"', line)
+              if not m or m.group(1) in requested_names:
+                  continue
+              ordered_lines.append('            ' + line.strip())
+
+          replacement = match.group(1) + '\n' + ',\n'.join(ordered_lines) + match.group(3)
+          updated = text[:match.start()] + replacement + text[match.end():]
+
+          if updated == text:
+              print('Kids channel order is already correct.')
+          else:
+              path.write_text(updated, encoding='utf-8')
+              print('Kids category reordered successfully.')
 
       - name: Verify order
         shell: python
         run: |
           from pathlib import Path
+          import re
+
           text = Path('app/src/main/java/com/myindiatv/MainActivity.kt').read_text(encoding='utf-8')
+          pattern = r'\n\s*5\s*->\s*listOf\((.*?)(\n\s*\)\s*\n\s*\})'
+          match = re.search(pattern, text, flags=re.S)
+          if not match:
+              raise SystemExit('Kids category block not found during verification.')
+
+          block = match.group(1)
           expected = [
               'Nick Hindi', 'Pogo Hindi', 'Sonic Hindi',
               'Cartoon Network Hindi', 'Cartoon Network HD Plus Hindi',
               'Discovery Kids Hindi', 'Hungama', 'Super Hungama', 'Disney Channel'
           ]
-          block = text[text.index('5 -> listOf('):text.index('5 -> listOf(') + 5000]
-          positions = [block.index(f'Channel("{name}"') for name in expected]
+          positions = []
+          for name in expected:
+              pos = block.find(f'Channel("{name}"')
+              if pos < 0:
+                  raise SystemExit(f'Kids channel missing during verification: {name}')
+              positions.append(pos)
           if positions != sorted(positions):
               raise SystemExit('Kids channel order verification failed.')
+          print('Kids channel order verified.')
 
       - name: Commit sorted order
         shell: bash
@@ -70,5 +136,3 @@ jobs:
           fi
           git commit -m "Sort Kids category channels"
           git push
-
-      # One-time ordering fix for the Kids category.
