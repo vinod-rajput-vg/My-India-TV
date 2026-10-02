@@ -1,4 +1,4 @@
-name: Fix channel icon aspect ratio
+name: Fix channel card aspect ratio
 
 on:
   push:
@@ -16,68 +16,43 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Apply 376x288 channel icon ratio
+      - name: Apply 376x288 channel card ratio
         shell: bash
         run: |
+          set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
-          import re
 
           path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
           text = path.read_text(encoding='utf-8')
 
-          pattern = re.compile(
-              r'''(?P<indent>\s*)val safe = RectF\(r\.left \+ dp\(5f\), r\.top \+ dp\(5f\), r\.right - dp\(5f\), r\.bottom - dp\(5f\)\)\n'''
-              r'''\s*val scale = minOf\(safe\.width\(\) / bitmap\.width\.toFloat\(\), safe\.height\(\) / bitmap\.height\.toFloat\(\)\) \* 1\.08f\n'''
-              r'''\s*val w = bitmap\.width \* scale\n'''
-              r'''\s*val h = bitmap\.height \* scale\n'''
-              r'''\s*val dst = RectF\(safe\.centerX\(\) - w / 2, safe\.centerY\(\) - h / 2, safe\.centerX\(\) \+ w / 2, safe\.centerY\(\) \+ h / 2\)\n'''
-              r'''\s*c\.save\(\)\n'''
-              r'''\s*c\.clipPath\(Path\(\)\.apply \{ addRoundRect\(r, dp\(24f\), dp\(24f\), Path\.Direction\.CW\) \}\)\n'''
-              r'''\s*c\.drawBitmap\(bitmap, null, dst, iconPaint\)\n'''
-              r'''\s*c\.restore\(\)'''
-          )
+          marker = 'private class ChannelView(context: Context, categoryIndex: Int) : View(context) {'
+          start = text.find(marker)
+          if start < 0:
+              raise SystemExit('ChannelView declaration not found.')
 
-          replacement = '''{indent}val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-          {indent}val targetAspect = 376f / 288f
-          {indent}var targetWidth = safe.width()
-          {indent}var targetHeight = targetWidth / targetAspect
-          {indent}if (targetHeight > safe.height()) {{
-          {indent}    targetHeight = safe.height()
-          {indent}    targetWidth = targetHeight * targetAspect
-          {indent}}}
-          {indent}val dst = RectF(
-          {indent}    safe.centerX() - targetWidth / 2,
-          {indent}    safe.centerY() - targetHeight / 2,
-          {indent}    safe.centerX() + targetWidth / 2,
-          {indent}    safe.centerY() + targetHeight / 2
-          {indent})
-          
-          {indent}val sourceAspect = bitmap.width.toFloat() / bitmap.height.toFloat()
-          {indent}val src: Rect
-          {indent}if (sourceAspect > targetAspect) {{
-          {indent}    val srcWidth = (bitmap.height * targetAspect).toInt().coerceAtLeast(1)
-          {indent}    val leftCrop = ((bitmap.width - srcWidth) / 2).coerceAtLeast(0)
-          {indent}    src = Rect(leftCrop, 0, (leftCrop + srcWidth).coerceAtMost(bitmap.width), bitmap.height)
-          {indent}}} else {{
-          {indent}    val srcHeight = (bitmap.width / targetAspect).toInt().coerceAtLeast(1)
-          {indent}    val topCrop = ((bitmap.height - srcHeight) / 2).coerceAtLeast(0)
-          {indent}    src = Rect(0, topCrop, bitmap.width, (topCrop + srcHeight).coerceAtMost(bitmap.height))
-          {indent}}}
-          
-          {indent}c.save()
-          {indent}c.clipPath(Path().apply {{ addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) }})
-          {indent}c.drawBitmap(bitmap, src, dst, iconPaint)
-          {indent}c.restore()'''
+          head = text[:start]
+          tail = text[start:]
 
-          match = pattern.search(text)
-          if not match:
-              raise SystemExit('Expected channel icon drawing block was not found; no changes made.')
+          old_row = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val rowHeight = cw + rowGap'''
+          new_row = '''        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val cardHeight = cw * (288f / 376f)
+        val rowHeight = cardHeight + rowGap'''
 
-          new_text = replacement.format(indent=match.group('indent'))
-          text = text[:match.start()] + new_text + text[match.end():]
-          path.write_text(text, encoding='utf-8')
-          print('Applied 376x288 channel icon ratio.')
+          if old_row not in tail:
+              raise SystemExit('Expected ChannelView row sizing block not found.')
+          tail = tail.replace(old_row, new_row, 1)
+
+          old_rect = '''                    val r = RectF(left, topPos, left + cw, topPos + cw)'''
+          new_rect = '''                    val r = RectF(left, topPos, left + cw, topPos + cardHeight)'''
+
+          if old_rect not in tail:
+              raise SystemExit('Expected ChannelView card rectangle block not found.')
+          tail = tail.replace(old_rect, new_rect, 1)
+
+          path.write_text(head + tail, encoding='utf-8')
+          print('Applied 376x288 channel card ratio to ChannelView.')
           PY
 
       - name: Commit and push
@@ -90,5 +65,5 @@ jobs:
             echo 'No changes needed.'
             exit 0
           fi
-          git commit -m 'Fix channel icons to 376x288 aspect ratio'
+          git commit -m 'Set channel cards to 376x288 aspect ratio'
           git push
