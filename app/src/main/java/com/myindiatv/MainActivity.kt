@@ -268,7 +268,8 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val top = dp(70f)
         val rowGap = dp(30f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-        val rowHeight = cw + rowGap
+        val cardHeight = cw * 288f / 376f
+        val rowHeight = cardHeight + rowGap
         val rowCount = (channels.size + columns - 1) / columns
         val contentBottom = top + rowCount * rowHeight - rowGap + dp(26f)
         val maxScroll = maxOf(0f, contentBottom - height + dp(12f))
@@ -289,7 +290,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
                     val column = i % columns
                     val left = side + column * (cw + gap)
                     val topPos = top + row * rowHeight
-                    val r = RectF(left, topPos, left + cw, topPos + cw)
+                    val r = RectF(left, topPos, left + cw, topPos + cardHeight)
 
                     iconPaint.style = Paint.Style.FILL
                     iconPaint.color = Color.rgb(96, 96, 96)
@@ -349,10 +350,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val top = dp(70f)
         val rowGap = dp(30f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-        val rowHeight = cw + rowGap
+        val cardHeight = cw * 288f / 376f
+        val rowHeight = cardHeight + rowGap
         val row = selected / columns
         val itemTop = top + row * rowHeight
-        val itemBottom = itemTop + cw + dp(26f)
+        val itemBottom = itemTop + cardHeight + dp(26f)
         val visibleTop = scrollOffset
         val visibleBottom = scrollOffset + height
 
@@ -384,7 +386,8 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val top = dp(70f)
         val rowGap = dp(30f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-        val rowHeight = cw + rowGap
+        val cardHeight = cw * 288f / 376f
+        val rowHeight = cardHeight + rowGap
         val rowCount = (channels.size + columns - 1) / columns
         val contentBottom = top + rowCount * rowHeight - rowGap + dp(26f)
         val maxScroll = maxOf(0f, contentBottom - height + dp(12f))
