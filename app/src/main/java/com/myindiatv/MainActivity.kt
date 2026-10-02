@@ -319,7 +319,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < channels.lastIndex) selected++; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, channels.size, columns, -1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, channels.size, columns, +1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openStream(channels[selected].url); return true }
+            KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openStream(channels[selected].streamUrl); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> { (context as? MainActivity)?.showHome(); return true }
         }
         return false
@@ -332,4 +332,3 @@ private fun iconId(name: String): Int = try {
     com.myindiatv.R.drawable::class.java.getField(name).getInt(null)
 } catch (_: Exception) { 0 }
 
-private data class Channel(val name: String, val url: String, val iconResId: Int = 0)
