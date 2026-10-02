@@ -266,7 +266,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(70f)
-        val rowGap = dp(30f)
+        val rowGap = dp(50f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         val cardHeight = cw * 288f / 376f
         val rowHeight = cardHeight + rowGap
@@ -348,7 +348,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(70f)
-        val rowGap = dp(30f)
+        val rowGap = dp(50f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         val cardHeight = cw * 288f / 376f
         val rowHeight = cardHeight + rowGap
@@ -384,7 +384,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(70f)
-        val rowGap = dp(30f)
+        val rowGap = dp(50f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         val cardHeight = cw * 288f / 376f
         val rowHeight = cardHeight + rowGap
