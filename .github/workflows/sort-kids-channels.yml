@@ -70,3 +70,5 @@ jobs:
           fi
           git commit -m "Sort Kids category channels"
           git push
+
+      # One-time ordering fix for the Kids category.
