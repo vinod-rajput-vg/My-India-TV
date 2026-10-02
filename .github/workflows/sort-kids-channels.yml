@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/sort-kids-channels.yml'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -25,9 +26,9 @@ jobs:
           text = path.read_text(encoding='utf-8')
 
           expected = [
-              'Nick',
-              'Pogo',
-              'Sonic',
+              'Nick Hindi',
+              'Pogo Hindi',
+              'Sonic Hindi',
               'Cartoon Network Hindi',
               'Cartoon Network HD Plus Hindi',
               'Discovery Kids Hindi',
@@ -36,58 +37,41 @@ jobs:
               'Disney Channel',
           ]
 
-          # Match only the final Kids (category index 5) list. Do not depend on
-          # what methods happen to follow the when-expression in MainActivity.
-          pattern = r'(\n\s*5\s*->\s*listOf\()(.*?)(\n\s*\)\s*\n\s*\})'
-          match = re.search(pattern, text, flags=re.S)
+          # Kids is category index 4 in the current home menu.
+          # Match to the next category/else branch, not to following methods.
+          pattern = r'(?ms)^(\s*)4\s*->\s*listOf\((.*?)^\s*(?=5\s*->|else\s*->)'
+          match = re.search(pattern, text)
           if not match:
-              raise SystemExit('Kids category block not found; no changes made.')
+              raise SystemExit('Kids category (4 -> listOf) not found; no changes made.')
 
+          indent = match.group(1)
           block = match.group(2)
-          lines = re.findall(r'(?m)^\s*Channel\("([^"]+)".*$', block)
-          if not lines:
-              raise SystemExit('Kids category contains no Channel entries; no changes made.')
 
           def find_channel(name):
-              exact = [line for line in block.splitlines() if f'Channel("{name}"' in line]
-              if exact:
-                  return exact[0].strip()
-              # Allow existing Hindi suffixes for the first three requested names.
-              aliases = {
-                  'Nick': ('Nick Hindi',),
-                  'Pogo': ('Pogo Hindi',),
-                  'Sonic': ('Sonic Hindi',),
-              }
-              for alias in aliases.get(name, ()):
-                  exact = [line for line in block.splitlines() if f'Channel("{alias}"' in line]
-                  if exact:
-                      return exact[0].strip()
+              for line in block.splitlines():
+                  if re.search(rf'Channel\("{re.escape(name)}"\s*,', line):
+                      return line.strip()
               return None
 
           ordered_lines = []
+          used_names = set()
           for name in expected:
               line = find_channel(name)
               if line is None:
                   raise SystemExit(f'Kids channel not found: {name}')
-              ordered_lines.append('            ' + line)
-
-          # Preserve any additional Kids channels after the requested order.
-          requested_names = set()
-          for name in expected:
-              line = find_channel(name)
-              m = re.search(r'Channel\("([^"]+)"', line)
-              if m:
-                  requested_names.add(m.group(1))
+              ordered_lines.append(indent + '    ' + line)
+              used_names.add(name)
 
           for line in block.splitlines():
-              if 'Channel("' not in line:
+              channel_match = re.search(r'Channel\("([^"]+)"\s*,', line)
+              if not channel_match:
                   continue
-              m = re.search(r'Channel\("([^"]+)"', line)
-              if not m or m.group(1) in requested_names:
+              name = channel_match.group(1)
+              if name in used_names:
                   continue
-              ordered_lines.append('            ' + line.strip())
+              ordered_lines.append(indent + '    ' + line.strip())
 
-          replacement = match.group(1) + '\n' + ',\n'.join(ordered_lines) + match.group(3)
+          replacement = indent + '4 -> listOf(\n' + ',\n'.join(ordered_lines) + '\n' + indent + ')\n'
           updated = text[:match.start()] + replacement + text[match.end():]
 
           if updated == text:
@@ -103,10 +87,10 @@ jobs:
           import re
 
           text = Path('app/src/main/java/com/myindiatv/MainActivity.kt').read_text(encoding='utf-8')
-          pattern = r'\n\s*5\s*->\s*listOf\((.*?)(\n\s*\)\s*\n\s*\})'
-          match = re.search(pattern, text, flags=re.S)
+          pattern = r'(?ms)^\s*4\s*->\s*listOf\((.*?)^\s*(?=5\s*->|else\s*->)'
+          match = re.search(pattern, text)
           if not match:
-              raise SystemExit('Kids category block not found during verification.')
+              raise SystemExit('Kids category (4 -> listOf) not found during verification.')
 
           block = match.group(1)
           expected = [
@@ -114,19 +98,23 @@ jobs:
               'Cartoon Network Hindi', 'Cartoon Network HD Plus Hindi',
               'Discovery Kids Hindi', 'Hungama', 'Super Hungama', 'Disney Channel'
           ]
+
           positions = []
           for name in expected:
               pos = block.find(f'Channel("{name}"')
               if pos < 0:
                   raise SystemExit(f'Kids channel missing during verification: {name}')
               positions.append(pos)
+
           if positions != sorted(positions):
               raise SystemExit('Kids channel order verification failed.')
+
           print('Kids channel order verified.')
 
       - name: Commit sorted order
         shell: bash
         run: |
+          set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add app/src/main/java/com/myindiatv/MainActivity.kt
