@@ -17,59 +17,68 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Apply 376x288 channel icon ratio
-        shell: python
+        shell: bash
         run: |
+          python3 - <<'PY'
           from pathlib import Path
+          import re
 
           path = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
           text = path.read_text(encoding='utf-8')
 
-          old = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-                        val scale = minOf(safe.width() / bitmap.width.toFloat(), safe.height() / bitmap.height.toFloat()) * 1.08f
-                        val w = bitmap.width * scale
-                        val h = bitmap.height * scale
-                        val dst = RectF(safe.centerX() - w / 2, safe.centerY() - h / 2, safe.centerX() + w / 2, safe.centerY() + h / 2)
-                        c.save()
-                        c.clipPath(Path().apply { addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) })
-                        c.drawBitmap(bitmap, null, dst, iconPaint)
-                        c.restore()'''
+          pattern = re.compile(
+              r'''(?P<indent>\s*)val safe = RectF\(r\.left \+ dp\(5f\), r\.top \+ dp\(5f\), r\.right - dp\(5f\), r\.bottom - dp\(5f\)\)\n'''
+              r'''\s*val scale = minOf\(safe\.width\(\) / bitmap\.width\.toFloat\(\), safe\.height\(\) / bitmap\.height\.toFloat\(\)\) \* 1\.08f\n'''
+              r'''\s*val w = bitmap\.width \* scale\n'''
+              r'''\s*val h = bitmap\.height \* scale\n'''
+              r'''\s*val dst = RectF\(safe\.centerX\(\) - w / 2, safe\.centerY\(\) - h / 2, safe\.centerX\(\) \+ w / 2, safe\.centerY\(\) \+ h / 2\)\n'''
+              r'''\s*c\.save\(\)\n'''
+              r'''\s*c\.clipPath\(Path\(\)\.apply \{ addRoundRect\(r, dp\(24f\), dp\(24f\), Path\.Direction\.CW\) \}\)\n'''
+              r'''\s*c\.drawBitmap\(bitmap, null, dst, iconPaint\)\n'''
+              r'''\s*c\.restore\(\)'''
+          )
 
-          new = '''                        val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
-                        val targetAspect = 376f / 288f
-                        var targetWidth = safe.width()
-                        var targetHeight = targetWidth / targetAspect
-                        if (targetHeight > safe.height()) {
-                            targetHeight = safe.height()
-                            targetWidth = targetHeight * targetAspect
-                        }
-                        val dst = RectF(
-                            safe.centerX() - targetWidth / 2,
-                            safe.centerY() - targetHeight / 2,
-                            safe.centerX() + targetWidth / 2,
-                            safe.centerY() + targetHeight / 2
-                        )
+          replacement = '''{indent}val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
+          {indent}val targetAspect = 376f / 288f
+          {indent}var targetWidth = safe.width()
+          {indent}var targetHeight = targetWidth / targetAspect
+          {indent}if (targetHeight > safe.height()) {{
+          {indent}    targetHeight = safe.height()
+          {indent}    targetWidth = targetHeight * targetAspect
+          {indent}}}
+          {indent}val dst = RectF(
+          {indent}    safe.centerX() - targetWidth / 2,
+          {indent}    safe.centerY() - targetHeight / 2,
+          {indent}    safe.centerX() + targetWidth / 2,
+          {indent}    safe.centerY() + targetHeight / 2
+          {indent})
+          
+          {indent}val sourceAspect = bitmap.width.toFloat() / bitmap.height.toFloat()
+          {indent}val src: Rect
+          {indent}if (sourceAspect > targetAspect) {{
+          {indent}    val srcWidth = (bitmap.height * targetAspect).toInt().coerceAtLeast(1)
+          {indent}    val leftCrop = ((bitmap.width - srcWidth) / 2).coerceAtLeast(0)
+          {indent}    src = Rect(leftCrop, 0, (leftCrop + srcWidth).coerceAtMost(bitmap.width), bitmap.height)
+          {indent}}} else {{
+          {indent}    val srcHeight = (bitmap.width / targetAspect).toInt().coerceAtLeast(1)
+          {indent}    val topCrop = ((bitmap.height - srcHeight) / 2).coerceAtLeast(0)
+          {indent}    src = Rect(0, topCrop, bitmap.width, (topCrop + srcHeight).coerceAtMost(bitmap.height))
+          {indent}}}
+          
+          {indent}c.save()
+          {indent}c.clipPath(Path().apply {{ addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) }})
+          {indent}c.drawBitmap(bitmap, src, dst, iconPaint)
+          {indent}c.restore()'''
 
-                        val sourceAspect = bitmap.width.toFloat() / bitmap.height.toFloat()
-                        val src: Rect
-                        if (sourceAspect > targetAspect) {
-                            val srcWidth = (bitmap.height * targetAspect).toInt().coerceAtLeast(1)
-                            val leftCrop = ((bitmap.width - srcWidth) / 2).coerceAtLeast(0)
-                            src = Rect(leftCrop, 0, (leftCrop + srcWidth).coerceAtMost(bitmap.width), bitmap.height)
-                        } else {
-                            val srcHeight = (bitmap.width / targetAspect).toInt().coerceAtLeast(1)
-                            val topCrop = ((bitmap.height - srcHeight) / 2).coerceAtLeast(0)
-                            src = Rect(0, topCrop, bitmap.width, (topCrop + srcHeight).coerceAtMost(bitmap.height))
-                        }
-
-                        c.save()
-                        c.clipPath(Path().apply { addRoundRect(r, dp(24f), dp(24f), Path.Direction.CW) })
-                        c.drawBitmap(bitmap, src, dst, iconPaint)
-                        c.restore()'''
-
-          if old not in text:
+          match = pattern.search(text)
+          if not match:
               raise SystemExit('Expected channel icon drawing block was not found; no changes made.')
 
-          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          new_text = replacement.format(indent=match.group('indent'))
+          text = text[:match.start()] + new_text + text[match.end():]
+          path.write_text(text, encoding='utf-8')
+          print('Applied 376x288 channel icon ratio.')
+          PY
 
       - name: Commit and push
         shell: bash
