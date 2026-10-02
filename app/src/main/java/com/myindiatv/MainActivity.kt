@@ -270,7 +270,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         if (channels.isEmpty()) return
         val side = dp(48f)
         val gapX = dp(18f)
-        val gapY = dp(26f)
+        val gapY = dp(30f)
         val top = dp(42f)
         val availableWidth = width - side * 2 - gapX * (columns - 1)
         val cardW = (availableWidth / columns.toFloat()) * 0.93f
@@ -350,7 +350,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     private fun ensureSelectedVisible() {
         val row = selected / columns
         val cardW = ((width - dp(48f) * 2 - dp(18f) * (columns - 1)) / columns.toFloat()) * 0.93f
-        val rowStep = cardW * 0.75f + dp(26f)
+        val rowStep = cardW * 0.75f + dp(30f)
         val visibleRows = maxOf(1, ((height - dp(42f)) / rowStep).toInt())
         if (row < scrollRow) scrollRow = row
         else if (row >= scrollRow + visibleRows) scrollRow = row - visibleRows + 1
