@@ -1,0 +1,35 @@
+name: Fix Xplore icon filename
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rename invalid Android resource and map icon
+        run: |
+          set -e
+          old='app/src/main/res/ch-drawable-nodpi/&xplor_hd.png'
+          new='app/src/main/res/ch-drawable-nodpi/xplor_hd.png'
+          if [ -f "$old" ] && [ ! -f "$new" ]; then
+            git mv "$old" "$new"
+          fi
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('app/src/main/java/com/myindiatv/MainActivity.kt')
+          s = p.read_text()
+          old = 'Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = 0)'
+          new = 'Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = iconId("xplor_hd"))'
+          if old in s:
+              s = s.replace(old, new)
+          p.write_text(s)
+          PY
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git rm .github/workflows/fix-xplor-icon-name.yml
+          git commit -m 'Fix Xplore channel icon resource name'
+          git push
