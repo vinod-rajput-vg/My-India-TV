@@ -230,15 +230,15 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfilmygaane/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         4 -> listOf(
-            Channel("Cartoon Network Hindi", "http://51.75.127.199:3141/cartoonnetworkhindi/index.m3u8", iconResId = iconId("cartoon_network_hindi")),
-            Channel("Cartoon Network HD Plus Hindi", "http://51.75.127.199:3141/cartoonnetworkhdplus/index.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
-            Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/3452.m3u8", iconResId = iconId("discovery_kids_hindi")),
-            Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel")),
-            Channel("Hungama", "http://51.75.127.199:3141/hungama/index.m3u8", iconResId = iconId("hungama")),
             Channel("Nick Hindi", "http://51.75.127.199:3141/nickhindi/index.m3u8", iconResId = iconId("nick_hindi")),
             Channel("Pogo Hindi", "http://51.75.127.199:3141/pogohindi/index.m3u8", iconResId = iconId("pogo_hindi")),
             Channel("Sonic Hindi", "http://51.75.127.199:3141/sonichindi/index.m3u8", iconResId = iconId("sonic_hindi")),
-            Channel("Super Hungama", "http://51.75.127.199:3141/superhungama/index.m3u8", iconResId = iconId("superhungama"))
+            Channel("Cartoon Network Hindi", "http://51.75.127.199:3141/cartoonnetworkhindi/index.m3u8", iconResId = iconId("cartoon_network_hindi")),
+            Channel("Cartoon Network HD Plus Hindi", "http://51.75.127.199:3141/cartoonnetworkhdplus/index.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
+            Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/3452.m3u8", iconResId = iconId("discovery_kids_hindi")),
+            Channel("Hungama", "http://51.75.127.199:3141/hungama/index.m3u8", iconResId = iconId("hungama")),
+            Channel("Super Hungama", "http://51.75.127.199:3141/superhungama/index.m3u8", iconResId = iconId("superhungama")),
+            Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
         )
         5 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
