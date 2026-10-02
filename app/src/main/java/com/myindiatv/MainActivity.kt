@@ -184,10 +184,8 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = iconId("zeecinema")),
             Channel("Zee Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test", iconResId = iconId("zeeclassic")),
             Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
-            Channel("Zee Action", "http://107.167.16.138/zeeaction/index.m3u8?token=test", iconResId = iconId("zee_action")),
             Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = iconId("xplor_hd")),
             Channel("Colors Cineplex", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8", iconResId = iconId("colors_cineplex")),
-            Channel("Colors Cineplex HD", "http://51.75.127.199:3141/colorscineplexhd/index.m3u8", iconResId = iconId("colors_cineplex_hd")),
             Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
             Channel("Colors Cineplex Superhits", "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8", iconResId = iconId("colors_cineplex_superhits")),
             Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
@@ -217,13 +215,13 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("News Nation", "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8", iconResId = iconId("news_nation")),
             Channel("Aaj Tak HD", "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8", iconResId = iconId("aaj_tak")),
             Channel("ABP News", "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8", iconResId = iconId("abp_news_india")),
-            Channel("Times Now Navbharat", "https://pubads.g.doubleclick.net/ssai/event/0sQ8aT8yQ5O1xYxM5k7w1Q/master.m3u8", iconResId = iconId("times_now_navbharat")),
-            Channel("India TV", "https://itv.akamaized.net/hls/live/2008041/itv/index.m3u8", iconResId = iconId("india_tv")),
-            Channel("Zee 24 Taas", "https://zeefta.akamaized.net/ptnr-yupptv/title-zee24taas/v1/manifest/3.m3u8", iconResId = iconId("zee_24_taas"))
+            Channel("Times Now Navbharat", "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/a5ee7c4e7a2a4b15a22a3bcf523b9776/index.m3u8", iconResId = iconId("times_now_navbharat")),
+            Channel("India TV", "https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8", iconResId = iconId("india_tv")),
+            Channel("Zee 24 Taas", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8", iconResId = iconId("zee_24_taas"))
         )
         3 -> listOf(
             Channel("B4U Music", "https://streams.tangotv.in/B4UMUSIC/ORIGIN/index.m3u8", iconResId = iconId("b4u_music")),
-            Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfilmygaane/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
+            Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         4 -> listOf(
             Channel("Nick Hindi", "http://51.75.127.199:3141/nickhindi/index.m3u8", iconResId = iconId("nick_hindi")),
