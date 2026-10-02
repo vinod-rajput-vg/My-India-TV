@@ -157,7 +157,8 @@ private class HomeView(context: Context) : View(context) {
                 val currentRow = selected / columns
                 val nextRowFirst = (currentRow + 1) * columns
                 if (nextRowFirst < names.size) {
-                    selected = minOf(names.size - 1, nextRowFirst + columns - 1)
+                    val nextRowLast = minOf(names.size - 1, nextRowFirst + columns - 1)
+                    selected = nextRowLast
                 }
                 postInvalidateOnAnimation()
                 return true
@@ -313,7 +314,8 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
                 val currentRow = selected / columns
                 val nextRowFirst = (currentRow + 1) * columns
                 if (nextRowFirst <= maxIndex) {
-                    selected = minOf(maxIndex, nextRowFirst + columns - 1)
+                    val nextRowLast = minOf(maxIndex, nextRowFirst + columns - 1)
+                    selected = nextRowLast
                 }
                 ensureSelectedVisible()
                 postInvalidateOnAnimation()
