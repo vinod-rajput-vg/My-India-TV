@@ -56,13 +56,13 @@ class MainActivity : Activity() {
 }
 
 private class HomeView(context: Context) : View(context) {
-    private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Movies")
-    private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.movies)
+    private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Drama", "Movies")
+    private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.drama, R.drawable.movies)
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
-    private val bitmaps = arrayOfNulls<Bitmap>(6)
+    private val bitmaps = arrayOfNulls<Bitmap>(7)
     private val columns = 5
     private var selected = 0
     private var settings = false
@@ -235,6 +235,14 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
         )
         5 -> listOf(
+            Channel("Zee TV", "http://51.75.127.199:3141/zeetv/index.m3u8", iconResId = iconId("zee_tv")),
+            Channel("Star Plus HD", "http://202.70.146.135:8000/play/a009/index.m3u8", iconResId = iconId("star_plus_hd")),
+            Channel("Colors", "http://51.75.127.199:3141/colorssd/index.m3u8", iconResId = iconId("colors")),
+            Channel("Colors Gujarati", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8", iconResId = iconId("colors_gujarati")),
+            Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = iconId("star_utsav")),
+            Channel("&TV HD", "http://202.70.146.135:8000/play/a06c/index.m3u8", iconResId = iconId("and_tv_hd"))
+        )
+        6 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
         )
         else -> emptyList()
