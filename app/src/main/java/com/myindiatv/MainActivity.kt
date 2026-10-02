@@ -138,10 +138,8 @@ private class HomeView(context: Context) : View(context) {
         val currentColumn = index % columns
         val targetRow = currentRow + direction
         if (targetRow < 0) return null
-
         val targetStart = targetRow * columns
         if (targetStart >= itemCount) return null
-
         val targetEnd = minOf(itemCount - 1, targetStart + columns - 1)
         return minOf(targetStart + currentColumn, targetEnd)
     }
@@ -156,34 +154,15 @@ private class HomeView(context: Context) : View(context) {
             return true
         }
         when (k) {
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-                if (selected > 0) selected--
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-                if (selected < names.lastIndex) selected++
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_UP -> {
-                adjacentRowTarget(selected, names.size, columns, -1)?.let { selected = it }
-                postInvalidateOnAnimation()
-                return true
-            }
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
-                adjacentRowTarget(selected, names.size, columns, +1)?.let { selected = it }
-                postInvalidateOnAnimation()
-                return true
-            }
+            KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) selected--; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < names.lastIndex) selected++; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, names.size, columns, -1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
             KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
                 val now = System.currentTimeMillis()
-                if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else {
-                    lastBackPressTime = now
-                    Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show()
-                }
+                if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else { lastBackPressTime = now; Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show() }
                 return true
             }
         }
@@ -197,36 +176,36 @@ private class HomeView(context: Context) : View(context) {
 private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
     private val channels: List<Channel> = when (categoryIndex) {
         0 -> listOf(
-    Channel("Star Gold", "http://51.75.127.199:3141/stargold/index.m3u8", iconResId = iconId("star_gold")),
-    Channel("Star Gold 2 HD", "http://202.70.146.135:8000/play/a04q/index.m3u8", iconResId = iconId("star_gold_2_hd")),
-    Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = iconId("star_utsav_movies")),
-    Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = iconId("zeecinema")),
-    Channel("Zee Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test", iconResId = iconId("zeeclassic")),
-    Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
-    Channel("Colors Cineplex", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8", iconResId = iconId("colors_cineplex")),
-    Channel("Colors Cineplex HD", "http://51.75.127.199:3141/colorscineplexhd/index.m3u8", iconResId = iconId("colors_cineplex_hd")),
-    Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
-    Channel("Colors Cineplex Superhits", "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8", iconResId = iconId("colors_cineplex_superhits")),
-    Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
-    Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8", iconResId = iconId("b4u_kadak")),
-    Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8", iconResId = iconId("b4u_movies")),
-    Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = iconId("xplor_hd")),
-    Channel("Zee Horror Nights", "https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8", iconResId = iconId("zeehorrornights")),
-    Channel("Goldmines", "https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8", iconResId = iconId("goldmines")),
-    Channel("Goldmines 2", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8", iconResId = iconId("goldmines_2")),
-    Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8", iconResId = iconId("goldmines_bollywood"))
-)
+            Channel("Star Gold", "http://51.75.127.199:3141/stargold/index.m3u8", iconResId = iconId("star_gold")),
+            Channel("Star Gold 2 HD", "http://202.70.146.135:8000/play/a04q/index.m3u8", iconResId = iconId("star_gold_2_hd")),
+            Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = iconId("star_utsav_movies")),
+            Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = iconId("zeecinema")),
+            Channel("Zee Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test", iconResId = iconId("zeeclassic")),
+            Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
+            Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = iconId("xplor_hd")),
+            Channel("Colors Cineplex", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8", iconResId = iconId("colors_cineplex")),
+            Channel("Colors Cineplex HD", "http://51.75.127.199:3141/colorscineplexhd/index.m3u8", iconResId = iconId("colors_cineplex_hd")),
+            Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
+            Channel("Colors Cineplex Superhits", "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8", iconResId = iconId("colors_cineplex_superhits")),
+            Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
+            Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8", iconResId = iconId("b4u_kadak")),
+            Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8", iconResId = iconId("b4u_movies")),
+            Channel("Zee Horror Nights", "https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8", iconResId = iconId("zeehorrornights")),
+            Channel("Goldmines", "https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8", iconResId = iconId("goldmines")),
+            Channel("Goldmines 2", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8", iconResId = iconId("goldmines_2")),
+            Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8", iconResId = iconId("goldmines_bollywood"))
+        )
         1 -> listOf(
-    Channel("Discovery HD Hindi", "http://202.70.146.135:8000/play/a05z/index.m3u8", iconResId = iconId("discoveryhdhindi")),
-    Channel("Sony BBC Earth", "http://202.70.146.135:8000/play/a067/index.m3u8", iconResId = iconId("sonybbcearth")),
-    Channel("Animal Planet Hindi", "http://27.116.22.53:5001/live/566.m3u8", iconResId = iconId("animal_planet_hindi")),
-    Channel("Nat Geo Wild HD", "http://202.70.146.135:8000/play/a05j/index.m3u8", iconResId = iconId("nat_geo_wild_hd")),
-    Channel("National Geographic", "http://51.75.127.199:3141/natgeo/index.m3u8", iconResId = iconId("national_geographic")),
-    Channel("National Geographic HD", "http://202.70.146.135:8000/play/a05o/index.m3u8", iconResId = iconId("national_geographic_hd")),
-    Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = iconId("discovery_science_hindi")),
-    Channel("History TV18 HD Hindi", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = iconId("history_18_hindi")),
-    Channel("Gujarat Wild TV", "https://newsliveindia.com:4433/wildlife/index.m3u8", iconResId = iconId("gujarat_wild_tv"))
-)
+            Channel("Discovery HD Hindi", "http://202.70.146.135:8000/play/a05z/index.m3u8", iconResId = iconId("discoveryhdhindi")),
+            Channel("Sony BBC Earth", "http://202.70.146.135:8000/play/a067/index.m3u8", iconResId = iconId("sonybbcearth")),
+            Channel("Animal Planet Hindi", "http://27.116.22.53:5001/live/566.m3u8", iconResId = iconId("animal_planet_hindi")),
+            Channel("Nat Geo Wild HD", "http://202.70.146.135:8000/play/a05j/index.m3u8", iconResId = iconId("nat_geo_wild_hd")),
+            Channel("National Geographic", "http://51.75.127.199:3141/natgeo/index.m3u8", iconResId = iconId("national_geographic")),
+            Channel("National Geographic HD", "http://202.70.146.135:8000/play/a05o/index.m3u8", iconResId = iconId("national_geographic_hd")),
+            Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = iconId("discovery_science_hindi")),
+            Channel("History TV18 HD Hindi", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = iconId("history_18_hindi")),
+            Channel("Gujarat Wild TV", "https://newsliveindia.com:4433/wildlife/index.m3u8", iconResId = iconId("gujarat_wild_tv"))
+        )
         2 -> listOf(
             Channel("TV9 Bharatvarsh", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8", iconResId = iconId("tv9_bharatvarsh")),
             Channel("TV9 Gujarati", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9guj3ki8lu/liveabr/playlist.m3u8", iconResId = iconId("tv_9_gujarat")),
@@ -331,10 +310,8 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         val currentColumn = index % columns
         val targetRow = currentRow + direction
         if (targetRow < 0) return null
-
         val targetStart = targetRow * columns
         if (targetStart >= itemCount) return null
-
         val targetEnd = minOf(itemCount - 1, targetStart + columns - 1)
         return minOf(targetStart + currentColumn, targetEnd)
     }
