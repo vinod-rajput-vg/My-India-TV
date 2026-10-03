@@ -197,6 +197,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8", iconResId = iconId("goldmines_bollywood"))
         )
         1 -> listOf(
+            Channel("Discovery Channel Hindi", "http://27.116.22.53:5001/live/575.m3u8", iconResId = iconId("discovery_channel_hindi")),
             Channel("Discovery HD Hindi", "http://202.70.146.135:8000/play/a05z/index.m3u8", iconResId = iconId("discoveryhdhindi")),
             Channel("Sony BBC Earth", "http://202.70.146.135:8000/play/a067/index.m3u8", iconResId = iconId("sonybbcearth")),
             Channel("Animal Planet Hindi", "http://27.116.22.53:5001/live/566.m3u8", iconResId = iconId("animal_planet_hindi")),
