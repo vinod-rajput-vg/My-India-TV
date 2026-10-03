@@ -64,7 +64,7 @@ private class HomeView(context: Context) : View(context) {
         R.drawable.music,
         R.drawable.kids,
         R.drawable.drama,
-        0,
+        R.drawable.sports
         R.drawable.movies
     )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
