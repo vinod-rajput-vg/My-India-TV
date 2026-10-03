@@ -56,13 +56,22 @@ class MainActivity : Activity() {
 }
 
 private class HomeView(context: Context) : View(context) {
-    private val names = listOf("Entertainment", "Imfotainment", "News", "Musics", "Kids", "Drama", "Movies")
-    private val iconIds = intArrayOf(R.drawable.entertainment, R.drawable.imfotainment, R.drawable.news, R.drawable.music, R.drawable.kids, R.drawable.drama, R.drawable.movies)
+    private val names = listOf("Entertainment", "Infotainment", "News", "Music", "Kids", "Drama", "Sports", "Movies")
+    private val iconIds = intArrayOf(
+        R.drawable.entertainment,
+        R.drawable.imfotainment,
+        R.drawable.news,
+        R.drawable.music,
+        R.drawable.kids,
+        R.drawable.drama,
+        0,
+        R.drawable.movies
+    )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
-    private val bitmaps = arrayOfNulls<Bitmap>(7)
+    private val bitmaps = arrayOfNulls<Bitmap>(names.size)
     private val columns = 5
     private var selected = 0
     private var settings = false
@@ -72,7 +81,10 @@ private class HomeView(context: Context) : View(context) {
         isFocusable = true
         isFocusableInTouchMode = true
         requestFocus()
-        for (i in iconIds.indices) bitmaps[i] = BitmapFactory.decodeResource(resources, iconIds[i])
+        for (i in iconIds.indices) {
+            val resId = iconIds[i]
+            if (resId != 0) bitmaps[i] = BitmapFactory.decodeResource(resources, resId)
+        }
     }
 
     override fun onDraw(c: Canvas) {
@@ -249,10 +261,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Colors Gujarati", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8", iconResId = iconId("colors_gujarati")),
             Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = iconId("star_utsav")),
             Channel("Zing TV", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/970.ts", iconResId = iconId("zing_tv")),
-            Channel("&TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98852.ts", iconResId = iconId("and_tv_hd"))
+            Channel("&TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98852.ts", iconResId = iconId("and_tv_hd")),
             Channel("Sony Television HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98854.ts", iconResId = iconId("sony_television_hd"))
         )
-        6 -> listOf(
+        6 -> emptyList()
+        7 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
         )
         else -> emptyList()
@@ -431,7 +444,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
                 return true
             }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> {
-                (context as? MainActivity)?.openStream(channels[selected].streamUrl)
+                if (channels.isNotEmpty()) (context as? MainActivity)?.openStream(channels[selected].streamUrl)
                 return true
             }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
