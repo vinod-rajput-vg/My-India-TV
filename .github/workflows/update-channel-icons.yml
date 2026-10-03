@@ -1,0 +1,38 @@
+name: One-time channel icon update
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update-icons:
+    if: github.event.head_commit.message != 'Update channel icon mappings'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Update MainActivity icon mappings
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE="app/src/main/java/com/myindiatv/MainActivity.kt"
+          sed -i 's/iconId("sony_television_hd")/iconId("sony_entertainment_television_hd")/g' "$FILE"
+          sed -i 's/iconId("history_18_hd")/iconId("history_tv18_hd")/g' "$FILE"
+          sed -i 's/iconId("zing_tv")/iconId("zing")/g' "$FILE"
+          sed -i 's/iconId("and_picture_hd")/iconId("and_pictures_hd")/g' "$FILE"
+          git diff --check
+          git diff -- "$FILE"
+      - name: Commit updated mappings
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .github/workflows/update-channel-icons.yml
+          git add -A
+          git commit -m "Update channel icon mappings"
+          git push
