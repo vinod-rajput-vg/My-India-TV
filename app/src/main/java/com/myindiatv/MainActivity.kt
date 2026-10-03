@@ -178,7 +178,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
     private val channels: List<Channel> = when (categoryIndex) {
         0 -> listOf(
             Channel("Star Gold", "http://51.75.127.199:3141/stargold/index.m3u8", iconResId = iconId("star_gold")),
-            Channel("Star Gold 2 HD", "http://202.70.146.135:8000/play/a04q/index.m3u8", iconResId = iconId("star_gold_2_hd")),
+            Channel("Star Gold 2 HD", "", iconResId = iconId("star_gold_2_hd")),
             Channel("Sony Max HD", "http://dksmedia.tv/play/live.php?mac=00:1A:79:B6:60:3D&stream=156013&extension=ts&play_token=slNi06NyY0", iconResId = iconId("sony_max_hd")),
             Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = iconId("star_utsav_movies")),
             Channel("Star Gold Select HD", "http://51.75.127.199:3141/stargoldselecthd/index.m3u8", iconResId = iconId("star_gold_select_hd")),
@@ -188,12 +188,11 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Zee Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
             Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = iconId("xplor_hd")),
             Channel("Colors Cineplex", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8", iconResId = iconId("colors_cineplex")),
-            Channel("Colors Cineplex Bollywood", "http://202.70.146.135:8000/play/a058/index.m3u8", iconResId = iconId("colorscineplexbollywood")),
+            Channel("Colors Cineplex Bollywood", "", iconResId = iconId("colorscineplexbollywood")),
             Channel("Colors Cineplex Superhits", "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8", iconResId = iconId("colors_cineplex_superhits")),
             Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
             Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8", iconResId = iconId("b4u_kadak")),
             Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8", iconResId = iconId("b4u_movies")),
-            Channel("Zee Horror Nights", "https://amg00862-amg00862c7-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c7-amgplt0173/playlist.m3u8", iconResId = iconId("zeehorrornights")),
             Channel("Goldmines", "https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8", iconResId = iconId("goldmines")),
             Channel("Goldmines 2", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8", iconResId = iconId("goldmines_2")),
             Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8", iconResId = iconId("goldmines_bollywood"))
