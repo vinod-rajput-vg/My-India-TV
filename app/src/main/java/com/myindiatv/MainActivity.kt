@@ -195,7 +195,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Sony Max HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98857.ts", iconResId = iconId("sony_max_hd")),
             Channel("Sony Max 2", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/973.ts", iconResId = iconId("sony_max_2")),
             Channel("SONY PIX HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98846.ts", iconResId = iconId("sony_pix_hd")),
-            Channel("&PICTURE HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98856.ts", iconResId = iconId("and_picture_hd")),
+            Channel("&PICTURE HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98856.ts", iconResId = iconId("and_pictures_hd")),
             Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = iconId("star_utsav_movies")),
             Channel("Star Gold Select HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98859.ts", iconResId = iconId("star_gold_select_hd")),
             Channel("ZEE Cinema HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98860.ts", iconResId = iconId("zeecinema")),
@@ -223,7 +223,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Nat Geo Wild HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/9395.ts", iconResId = iconId("nat_geo_wild_hd")),
             Channel("National Geographic HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/7343.ts", iconResId = iconId("national_geographic_hd")),
             Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = iconId("discovery_science_hindi")),
-            Channel("History TV18 HD", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = iconId("history_18_hd")),
+            Channel("History TV18 HD", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = iconId("history_tv18_hd")),
         )
         2 -> listOf(
             Channel("TV9 Bharatvarsh", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8", iconResId = iconId("tv9_bharatvarsh")),
@@ -260,9 +260,9 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Colors HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98851.ts", iconResId = iconId("colors")),
             Channel("Colors Gujarati", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8", iconResId = iconId("colors_gujarati")),
             Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = iconId("star_utsav")),
-            Channel("Zing TV", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/970.ts", iconResId = iconId("zing_tv")),
+            Channel("Zing TV", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/970.ts", iconResId = iconId("zing")),
             Channel("&TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98852.ts", iconResId = iconId("and_tv_hd")),
-            Channel("Sony Television HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98854.ts", iconResId = iconId("sony_television_hd"))
+            Channel("Sony Television HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98854.ts", iconResId = iconId("sony_entertainment_television_hd"))
         )
         6 -> emptyList()
         7 -> listOf(
