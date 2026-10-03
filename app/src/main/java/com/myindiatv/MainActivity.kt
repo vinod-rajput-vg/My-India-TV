@@ -179,7 +179,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         0 -> listOf(
             Channel("Star Gold", "http://51.75.127.199:3141/stargold/index.m3u8", iconResId = iconId("star_gold")),
             Channel("Star Gold 2 HD", "", iconResId = iconId("star_gold_2_hd")),
-            Channel("Sony Max HD", "", iconResId = iconId("sony_max_hd")),
+            Channel("Sony Max HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98857.ts", iconResId = iconId("sony_max_hd")),
             Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = iconId("star_utsav_movies")),
             Channel("Star Gold Select HD", "http://51.75.127.199:3141/stargoldselecthd/index.m3u8", iconResId = iconId("star_gold_select_hd")),
             Channel("Zee Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = iconId("zeecinema")),
