@@ -191,7 +191,6 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
         0 -> listOf(
             Channel("Star Gold HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98858.ts", iconResId = iconId("star_gold_hd")),
             Channel("Star Gold 2 HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/157081.ts", iconResId = iconId("star_gold_2_hd")),
-            Channel("Star Gold Romance", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/972.ts", iconResId = iconId("star_gold_romance")),
             Channel("Star Gold Select HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98859.ts", iconResId = iconId("star_gold_select_hd")),
             Channel("Sony Max HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98857.ts", iconResId = iconId("sony_max_hd")),
             Channel("Sony Max 2", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/973.ts", iconResId = iconId("sony_max_2")),
