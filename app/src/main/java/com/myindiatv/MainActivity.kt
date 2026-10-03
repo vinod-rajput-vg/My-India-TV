@@ -64,7 +64,7 @@ private class HomeView(context: Context) : View(context) {
         R.drawable.music,
         R.drawable.kids,
         R.drawable.drama,
-        R.drawable.sports
+        R.drawable.sports,
         R.drawable.movies
     )
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
@@ -254,7 +254,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
         )
         5 -> listOf(
-            Channel("Zee TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/161.ts", iconResId = iconId("zee_tv")),
+            Channel("ZEE TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/161.ts", iconResId = iconId("zee_tv")),
             Channel("Star Plus HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/221.ts", iconResId = iconId("star_plus_hd")),
             Channel("SONY SAB HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98853.ts", iconResId = iconId("sony_sab_hd")),
             Channel("Colors HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98851.ts", iconResId = iconId("colors")),
@@ -264,7 +264,10 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("&TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98852.ts", iconResId = iconId("and_tv_hd")),
             Channel("Sony Television HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98854.ts", iconResId = iconId("sony_entertainment_television_hd"))
         )
-        6 -> emptyList()
+        6 -> listOf(
+            Channel("Star Sports 1 HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98866.ts", iconResId = iconId("star_sports_1_hd")),
+            Channel("Sony Ten 3 HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98863.ts", iconResId = iconId("sony_ten_3_hd")),
+        )
         7 -> listOf(
             Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = iconId("underworld_rise_of_the_lycans_hindi"))
         )
