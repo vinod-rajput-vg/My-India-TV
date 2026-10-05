@@ -1,27 +1,21 @@
 "ZEE TV"
 "http://51.75.127.199:3141/zeetv/index.m3u8"
-"zee_tv.png"
-
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-in.png"
 "ZEE TV HD"
 "https://d1rc86nwwc9fag.cloudfront.net/260723/zeetvapachd_800/chunks.m3u8"
-"zee_tv.png"
-
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png"
 "Colors"
 "http://51.75.127.199:3141/colorssd/index.m3u8"
-"colors.png"
-
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png"
 "Colors Gujarati"
 "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8"
-"colors_gujarati.png"
-
+""
 "Star Utsav"
 "http://51.75.127.199:3141/starutsav/index.m3u8"
-"star_utsav.png"
-
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png"
 "Zing TV"
 "http://107.167.16.138/zing/index.m3u8?token=test"
-"zing.png"
-
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zing-in.png"
 "Sony Television HD"
 "http://38.96.178.205/SONYHD/index.m3u8"
-"sony_entertainment_television_hd.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-entertainment-television-hd-in.png"
