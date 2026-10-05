@@ -35,7 +35,7 @@ The app keeps channel metadata and artwork inside the project, organizes channel
 
 | | Feature | Description |
 |---|---|---|
-| 🎮 | **TV Remote Ready** | D-pad navigation designed for Android TV |
+| 📺 | **TV Remote Ready** | D-pad navigation designed for Android TV |
 | 📂 | **Categories** | Browse channels by genre |
 | 🖼️ | **Channel Artwork** | Bundled channel icons for a polished grid |
 | ⚡ | **Lightweight** | Simple custom Canvas/Paint-based interface |
