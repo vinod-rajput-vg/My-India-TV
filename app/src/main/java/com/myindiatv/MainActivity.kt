@@ -38,11 +38,24 @@ class MainActivity : Activity() {
     }
 
     fun openStream(url: String) {
-        if (url.isBlank()) return
+        val streamUrl = url.trim()
+        if (streamUrl.isEmpty()) {
+            Toast.makeText(this, "Stream unavailable", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val uri = Uri.parse(streamUrl)
+        if (uri.scheme.isNullOrBlank() || uri.host.isNullOrBlank()) {
+            Toast.makeText(this, "Invalid stream URL", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         try {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+            startActivity(Intent(Intent.ACTION_VIEW, uri))
         } catch (_: ActivityNotFoundException) {
             Toast.makeText(this, "No compatible player installed", Toast.LENGTH_SHORT).show()
+        } catch (_: SecurityException) {
+            Toast.makeText(this, "Unable to open stream", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -263,7 +276,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = iconId("star_utsav")),
             Channel("Zing TV", "http://107.167.16.138/zing/index.m3u8?token=test", iconResId = iconId("zing")),
             Channel("&TV HD", "", iconResId = iconId("and_tv_hd")),
-            Channel("Sony Television HD", "http:\\38.96.178.205\SONYHD\index.m3u8", iconResId = iconId("sony_entertainment_television_hd"))
+            Channel("Sony Television HD", "", iconResId = iconId("sony_entertainment_television_hd"))
         )
         6 -> listOf(
             Channel("Star Sports 1 HD", "", iconResId = iconId("star_sports_1_hd")),
