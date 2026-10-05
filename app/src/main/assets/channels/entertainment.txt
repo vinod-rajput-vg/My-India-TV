@@ -59,7 +59,7 @@
 "sony_wah.png"
 
 "Colors Cineplex"
-"https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8"
+""
 "colors_cineplex.png"
 
 "Colors Cineplex HD"
