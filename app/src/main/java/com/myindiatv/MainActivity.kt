@@ -209,7 +209,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Sony Max 2", "", iconResId = R.drawable.sony_max_2),
             Channel("SONY PIX HD", "", iconResId = R.drawable.sony_pix_hd),
             Channel("&PICTURE HD", "", iconResId = R.drawable.and_pictures_hd),
-            Channel("ZEE Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = R.drawable.zee_cinema),
+            Channel("ZEE Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = R.drawable.zee_cinema_hd),
             Channel("ZEE Action", "", iconResId = R.drawable.zee_action),
             Channel("ZEE Bollywood", "", iconResId = R.drawable.zee_bollywood),
             Channel("ZEE Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test", iconResId = R.drawable.zeeclassic),
@@ -236,7 +236,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Nat Geo Wild HD", "", iconResId = R.drawable.nat_geo_wild_hd),
             Channel("National Geographic HD", "", iconResId = R.drawable.national_geographic_hd),
             Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = R.drawable.discovery_science_hindi),
-            Channel("History TV18", "http://51.75.127.199:3141/historytv18/index.m3u8", iconResId = R.drawable.history_tv18),
+            Channel("History TV18", "http://51.75.127.199:3141/historytv18/index.m3u8", iconResId = R.drawable.history_tv18_hd),
             Channel("History TV18 HD", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = R.drawable.history_tv18_hd),
         )
         2 -> listOf(
