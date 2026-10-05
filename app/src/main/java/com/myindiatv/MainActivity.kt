@@ -24,7 +24,8 @@ class MainActivity : Activity() {
     }
 
     fun openCategory(index: Int) {
-        val view = ChannelView(this, index)
+        val category = categories.getOrNull(index) ?: return
+        val view = ChannelView(this, loadChannels(this, category.fileName))
         channelView = view
         setContentView(view)
         view.requestFocus()
@@ -69,17 +70,8 @@ class MainActivity : Activity() {
 }
 
 private class HomeView(context: Context) : View(context) {
-    private val names = listOf("Entertainment", "Infotainment", "News", "Music", "Kids", "Drama", "Sports", "Movies")
-    private val iconIds = intArrayOf(
-        R.drawable.entertainment,
-        R.drawable.imfotainment,
-        R.drawable.news,
-        R.drawable.music,
-        R.drawable.kids,
-        R.drawable.drama,
-        R.drawable.sports,
-        R.drawable.movies
-    )
+    private val names = categories.map { it.name }
+    private val iconIds = categories.map { it.iconResId }.toIntArray()
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
@@ -199,94 +191,11 @@ private class HomeView(context: Context) : View(context) {
     private fun dp(v: Float) = v * resources.displayMetrics.density
 }
 
-private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
-    private val channels: List<Channel> = when (categoryIndex) {
-        0 -> listOf(
-            Channel("Star Gold", "http://51.75.127.199:3141/stargold/index.m3u8", iconResId = R.drawable.star_gold),
-            Channel("Star Gold 2 HD", "", iconResId = R.drawable.star_gold_2_hd),
-            Channel("Star Gold Select HD", "http://51.75.127.199:3141/stargoldselecthd/index.m3u8", iconResId = R.drawable.star_gold_select_hd),
-            Channel("Sony Max HD", "", iconResId = R.drawable.sony_max_hd),
-            Channel("Sony Max 2", "", iconResId = R.drawable.sony_max_2),
-            Channel("SONY PIX HD", "", iconResId = R.drawable.sony_pix_hd),
-            Channel("&PICTURE HD", "", iconResId = R.drawable.and_pictures_hd),
-            Channel("ZEE Cinema", "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8", iconResId = R.drawable.zee_cinema_hd),
-            Channel("ZEE Action", "", iconResId = R.drawable.zee_action),
-            Channel("ZEE Bollywood", "", iconResId = R.drawable.zee_bollywood),
-            Channel("ZEE Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test", iconResId = R.drawable.zeeclassic),
-            Channel("ZEE Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = R.drawable.zeecineclassic),
-            Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = R.drawable.xplor_hd),
-            Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = R.drawable.star_utsav_movies),
-            Channel("Sony Wah", "", iconResId = R.drawable.sony_wah),
-            Channel("Colors Cineplex", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8", iconResId = R.drawable.colors_cineplex),
-            Channel("Colors Cineplex HD", "http://51.75.127.199:3141/colorscineplexhd/index.m3u8", iconResId = R.drawable.colors_cineplex_hd),
-            Channel("Colors Cineplex Bollywood", "", iconResId = R.drawable.colorscineplexbollywood),
-            Channel("Colors Cineplex Superhits", "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8", iconResId = R.drawable.colors_cineplex_superhits),
-            Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = R.drawable.shemaroo_bollywood),
-            Channel("B4U Kadak", "https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8", iconResId = R.drawable.b4u_kadak),
-            Channel("B4U Movies", "https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8", iconResId = R.drawable.b4u_movies),
-            Channel("Goldmines", "https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8", iconResId = R.drawable.goldmines),
-            Channel("Goldmines 2", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8", iconResId = R.drawable.goldmines_2),
-            Channel("Goldmines Bollywood", "https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8", iconResId = R.drawable.goldmines_bollywood)
-        )
-        1 -> listOf(
-            Channel("Discovery HD Hindi", "", iconResId = R.drawable.discoveryhdhindi),
-            Channel("Sony BBC Earth HD", "", iconResId = R.drawable.sony_bbc_earth_hd),
-            Channel("TLC HD", "", iconResId = R.drawable.tlc_hd),
-            Channel("Animal Planet HD", "", iconResId = R.drawable.animal_planet_hd),
-            Channel("Nat Geo Wild HD", "", iconResId = R.drawable.nat_geo_wild_hd),
-            Channel("National Geographic HD", "", iconResId = R.drawable.national_geographic_hd),
-            Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = R.drawable.discovery_science_hindi),
-            Channel("History TV18", "http://51.75.127.199:3141/historytv18/index.m3u8", iconResId = R.drawable.history_tv18_hd),
-            Channel("History TV18 HD", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = R.drawable.history_tv18_hd),
-        )
-        2 -> listOf(
-            Channel("TV9 Bharatvarsh", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8", iconResId = R.drawable.tv9_bharatvarsh),
-            Channel("TV9 Gujarati", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9guj3ki8lu/liveabr/playlist.m3u8", iconResId = R.drawable.tv_9_gujarat),
-            Channel("TV9 Marathi", "https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9marlygv8h/liveabr/playlist.m3u8", iconResId = R.drawable.tv9_maharashtra),
-            Channel("Zee 24 Kalak", "https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/497f7199-758d-495d-9d2f-a5489231c428/14b7c8ec-16da-47f2-8d7e-5bbaec67b3e2/3.m3u8", iconResId = R.drawable.zee_24_kalak),
-            Channel("Republic Bharat", "https://cdn.pishow.tv/ott/live/1053/master.m3u8", iconResId = R.drawable.republic_bharat),
-            Channel("News Nation", "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8", iconResId = R.drawable.news_nation),
-            Channel("Aaj Tak HD", "https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8", iconResId = R.drawable.aaj_tak),
-            Channel("ABP News", "https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8", iconResId = R.drawable.abp_news_india),
-            Channel("Times Now Navbharat", "https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/a5ee7c4e7a2a4b15a22a3bcf523b9776/index.m3u8", iconResId = R.drawable.times_now_navbharat),
-            Channel("India TV", "https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8", iconResId = R.drawable.india_tv),
-            Channel("Zee 24 Taas", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8", iconResId = R.drawable.zee_24_taas)
-        )
-        3 -> listOf(
-            Channel("B4U Music", "https://streams.tangotv.in/B4UMUSIC/ORIGIN/index.m3u8", iconResId = R.drawable.b4u_music),
-            Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = R.drawable.shemaroo_filmy_gaane)
-        )
-        4 -> listOf(
-            Channel("Nick Hindi", "http://103.185.24.134:3001/NICK/index.m3u8", iconResId = R.drawable.nick_hindi),
-            Channel("Pogo Hindi", "", iconResId = R.drawable.pogo_hindi),
-            Channel("Sonic Hindi", "http://103.185.24.134:3001/SONIC/index.m3u8", iconResId = R.drawable.sonic_hindi),
-            Channel("Cartoon Network Hindi", "http://27.116.22.53:5001/live/816.m3u8", iconResId = R.drawable.cartoon_network_hindi),
-            Channel("Cartoon Network HD Plus Hindi", "http://27.116.22.53:5001/live/3436.m3u8", iconResId = R.drawable.cartoon_network_hd_plus_hindi),
-            Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/554.m3u8", iconResId = R.drawable.discovery_kids_hindi),
-            Channel("Hungama", "http://51.75.127.199:3141/hungama/index.m3u8", iconResId = R.drawable.hungama),
-            Channel("Super Hungama", "http://51.75.127.199:3141/superhungama/index.m3u8", iconResId = R.drawable.superhungama),
-            Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = R.drawable.disney_channel)
-        )
-        5 -> listOf(
-            Channel("ZEE TV", "http://51.75.127.199:3141/zeetv/index.m3u8", iconResId = R.drawable.zee_tv),
-            Channel("Star Plus HD", "", iconResId = R.drawable.star_plus_hd),
-            Channel("SONY SAB HD", "", iconResId = R.drawable.sony_sab_hd),
-            Channel("Colors HD", "", iconResId = R.drawable.colors),
-            Channel("Colors Gujarati", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8", iconResId = R.drawable.colors_gujarati),
-            Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = R.drawable.star_utsav),
-            Channel("Zing TV", "http://107.167.16.138/zing/index.m3u8?token=test", iconResId = R.drawable.zing),
-            Channel("&TV HD", "", iconResId = R.drawable.and_tv_hd),
-            Channel("Sony Television HD", "", iconResId = R.drawable.sony_entertainment_television_hd)
-        )
-        6 -> listOf(
-            Channel("Star Sports 1 HD", "", iconResId = R.drawable.star_sports_1_hd),
-            Channel("Sony Ten 3 HD", "", iconResId = R.drawable.sony_ten_3_hd),
-        )
-        7 -> listOf(
-            Channel("Underworld: Rise of the Lycans Hindi", "https://st9.febspot.com/videos/945000/945084/945084_720p.mp4", iconResId = R.drawable.underworld_rise_of_the_lycans_hindi)
-        )
-        else -> emptyList()
-    }
+private class ChannelView(
+    context: Context,
+    private val channels: List<Channel>
+) : View(context) {
+
 
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
