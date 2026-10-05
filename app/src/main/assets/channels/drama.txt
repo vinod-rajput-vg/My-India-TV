@@ -6,14 +6,6 @@
 "https://d1rc86nwwc9fag.cloudfront.net/260723/zeetvapachd_800/chunks.m3u8"
 "zee_tv.png"
 
-"Star Plus HD"
-""
-"star_plus_hd.png"
-
-"SONY SAB HD"
-""
-"sony_sab_hd.png"
-
 "Colors"
 "http://51.75.127.199:3141/colorssd/index.m3u8"
 "colors.png"
@@ -29,10 +21,6 @@
 "Zing TV"
 "http://107.167.16.138/zing/index.m3u8?token=test"
 "zing.png"
-
-"&TV HD"
-""
-"and_tv_hd.png"
 
 "Sony Television HD"
 "http://38.96.178.205/SONYHD/index.m3u8"
