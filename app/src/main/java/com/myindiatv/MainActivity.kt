@@ -10,6 +10,56 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import java.io.BufferedInputStream
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.Executors
+
+
+private object ChannelIconLoader {
+    private val executor = Executors.newFixedThreadPool(4)
+    private val cache = ConcurrentHashMap<String, Bitmap>()
+
+    fun load(url: String, view: View, onLoaded: (Bitmap) -> Unit) {
+        val key = url.trim()
+        if (key.isEmpty()) return
+
+        cache[key]?.let { bitmap ->
+            view.post { onLoaded(bitmap) }
+            return
+        }
+
+        executor.execute {
+            val bitmap = download(key)
+            if (bitmap != null) {
+                cache.putIfAbsent(key, bitmap)
+                val cached = cache[key] ?: bitmap
+                view.post { onLoaded(cached) }
+            }
+        }
+    }
+
+    private fun download(url: String): Bitmap? {
+        var connection: HttpURLConnection? = null
+        return try {
+            connection = URL(url).openConnection() as HttpURLConnection
+            connection.connectTimeout = 10_000
+            connection.readTimeout = 15_000
+            connection.instanceFollowRedirects = true
+            connection.setRequestProperty("User-Agent", "My-India-TV/1.0")
+            connection.connect()
+            if (connection.responseCode !in 200..299) return null
+            BufferedInputStream(connection.inputStream).use { input ->
+                BitmapFactory.decodeStream(input)
+            }
+        } catch (_: Exception) {
+            null
+        } finally {
+            connection?.disconnect()
+        }
+    }
+}
 
 class MainActivity : Activity() {
     private lateinit var homeView: HomeView
@@ -212,8 +262,11 @@ private class ChannelView(
         isFocusableInTouchMode = true
         requestFocus()
         for (i in channels.indices) {
-            val resId = channels[i].iconResId
-            if (resId != 0) bitmaps[i] = BitmapFactory.decodeResource(resources, resId)
+            val index = i
+            ChannelIconLoader.load(channels[index].iconUrl, this) { bitmap ->
+                bitmaps[index] = bitmap
+                postInvalidateOnAnimation()
+            }
         }
     }
 
