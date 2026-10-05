@@ -1,0 +1,35 @@
+"Discovery HD Hindi"
+""
+"discoveryhdhindi.png"
+
+"Sony BBC Earth HD"
+""
+"sony_bbc_earth_hd.png"
+
+"TLC HD"
+""
+"tlc_hd.png"
+
+"Animal Planet HD"
+""
+"animal_planet_hd.png"
+
+"Nat Geo Wild HD"
+""
+"nat_geo_wild_hd.png"
+
+"National Geographic HD"
+""
+"national_geographic_hd.png"
+
+"Discovery Science Hindi"
+"http://27.116.22.53:5001/live/3453.m3u8"
+"discovery_science_hindi.png"
+
+"History TV18"
+"http://51.75.127.199:3141/historytv18/index.m3u8"
+"history_tv18_hd.png"
+
+"History TV18 HD"
+"https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8"
+"history_tv18_hd.png"
