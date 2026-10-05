@@ -59,7 +59,7 @@
 "sony_wah.png"
 
 "Colors Cineplex"
-""
+"https://d1rc86nwwc9fag.cloudfront.net/260723/smil:rishteycineplexukdev.smil/chunklist_b1928000.m3u8"
 "colors_cineplex.png"
 
 "Colors Cineplex HD"
