@@ -4,7 +4,7 @@
 
 "Star Gold HD"
 "http://103.151.60.162:2122/play/a01n/index.m3u8?hls"
-"https://github.com/tv-logo/tv-logos/blob/main/countries/india/star-gold-hd-in.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/blob/main/countries/india/star-gold-hd-in.png"
 
 "Star Gold 2 HD"
 "http://103.151.60.162:2122/play/a01v/index.m3u8?hls"
@@ -16,15 +16,15 @@
 
 "Sony MAX"
 "https://drk6xq0vhn.gpcdn.net/live/max_hd_abr/index.m3u8"
-"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-in.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-in.png"
 
 "Sony MAX HD"
 "http://103.151.60.162:2122/play/a014/index.m3u8?hls"
-"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-hd-in.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-hd-in.png"
 
 "Sony MAX 2"
 "https://drk6xq0vhn.gpcdn.net/live/max_2_abr/index.m3u8"
-"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-2-in.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-2-in.png"
 
 "ZEE Cinema"
 "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8"
