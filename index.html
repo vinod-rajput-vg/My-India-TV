@@ -133,7 +133,7 @@ if(logoWall){
     const cards=[];
     for(let i=0;i<a.length;i+=2){
       const name=a[i].replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-      cards.push('<div class="logo-card reveal visible"><img loading="lazy" src="'+rawLogo+a[i+1]+'" alt="'+name+' logo" onerror="this.dataset.failed=\\'1\\'"><span class="logo-fallback">'+name+'</span><span class="logo-name">'+name+'</span></div>');
+      cards.push('<div class="logo-card reveal visible"><img loading="lazy" src="'+rawLogo+a[i+1]+'" alt="'+name+' logo" onerror="this.dataset.failed='1'"><span class="logo-fallback">'+name+'</span><span class="logo-name">'+name+'</span></div>');
     }
     return cards;
   }).join("");
