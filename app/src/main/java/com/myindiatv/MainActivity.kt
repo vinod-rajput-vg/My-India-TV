@@ -189,22 +189,23 @@ private class HomeView(context: Context) : View(context) {
 private class ChannelView(context: Context, categoryIndex: Int) : View(context) {
     private val channels: List<Channel> = when (categoryIndex) {
         0 -> listOf(
-            Channel("Star Gold HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98858.ts", iconResId = iconId("star_gold_hd")),
-            Channel("Star Gold 2 HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/157081.ts", iconResId = iconId("star_gold_2_hd")),
-            Channel("Star Gold Select HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98859.ts", iconResId = iconId("star_gold_select_hd")),
+            Channel("Star Gold", "http:\\51.75.127.199:3141\stargold\index.m3u8", iconResId = iconId("star_gold")),
+            Channel("Star Gold 2 HD", "", iconResId = iconId("star_gold_2_hd")),
+            Channel("Star Gold Select HD", "http:\\51.75.127.199:3141\stargoldselecthd\index.m3u8", iconResId = iconId("star_gold_select_hd")),
             Channel("Sony Max HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98857.ts", iconResId = iconId("sony_max_hd")),
             Channel("Sony Max 2", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/973.ts", iconResId = iconId("sony_max_2")),
             Channel("SONY PIX HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98846.ts", iconResId = iconId("sony_pix_hd")),
             Channel("&PICTURE HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98856.ts", iconResId = iconId("and_pictures_hd")),
-            Channel("ZEE Cinema HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98860.ts", iconResId = iconId("zee_cinema_hd")),
-            Channel("ZEE Action", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/967.ts", iconResId = iconId("zee_action")),
+            Channel("ZEE Cinema", "https:\\d1g8wgjurz8via.cloudfront.net\bpk-tv\NGCHD\default\NGCHD.m3u8", iconResId = iconId("zee_cinema")),
+            Channel("ZEE Action", "http:\\107.167.16.138\zeeaction\index.m3u8?token=test", iconResId = iconId("zee_action")),
             Channel("ZEE Bollywood", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/966.ts", iconResId = iconId("zee_bollywood")),
             Channel("ZEE Classic", "http://107.167.16.138/zeeclassic/index.m3u8?token=test", iconResId = iconId("zeeclassic")),
             Channel("ZEE Cine Classic", "https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8", iconResId = iconId("zeecineclassic")),
             Channel("&Xplore HD", "http://51.75.127.199:3141/andxplorehd/index.m3u8", iconResId = iconId("xplor_hd")),
             Channel("Star Utsav Movies", "http://51.75.127.199:3141/starutsavmovies/index.m3u8", iconResId = iconId("star_utsav_movies")),
             Channel("Sony Wah", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/4077.ts", iconResId = iconId("sony_wah")),
-            Channel("Colors Cineplex HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98908.ts", iconResId = iconId("colors_cineplex_hd")),
+            Channel("Colors Cineplex", "https:\\raw.githubusercontent.com\amazeyourself\adaptive-streams\refs\heads\main\streams\gb\YuppTV\ColorsCineplexUK.m3u8", iconResId = iconId("colors_cineplex")),
+            Channel("Colors Cineplex HD", "http:\\51.75.127.199:3141\colorscineplexhd\index.m3u8", iconResId = iconId("colors_cineplex_hd")),
             Channel("Colors Cineplex Bollywood", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/37074.ts", iconResId = iconId("colorscineplexbollywood")),
             Channel("Colors Cineplex Superhits", "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8", iconResId = iconId("colors_cineplex_superhits")),
             Channel("Shemaroo Bollywood", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8", iconResId = iconId("shemaroo_bollywood")),
@@ -222,6 +223,7 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Nat Geo Wild HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/9395.ts", iconResId = iconId("nat_geo_wild_hd")),
             Channel("National Geographic HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/7343.ts", iconResId = iconId("national_geographic_hd")),
             Channel("Discovery Science Hindi", "http://27.116.22.53:5001/live/3453.m3u8", iconResId = iconId("discovery_science_hindi")),
+            Channel("History TV18", "http:\\51.75.127.199:3141\historytv18\index.m3u8", iconResId = iconId("history_tv18")),
             Channel("History TV18 HD", "https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8", iconResId = iconId("history_tv18_hd")),
         )
         2 -> listOf(
@@ -242,9 +244,9 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Shemaroo Filmy Gaane", "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8", iconResId = iconId("shemaroo_filmy_gaane"))
         )
         4 -> listOf(
-            Channel("Nick Hindi", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/205.ts", iconResId = iconId("nick_hindi")),
+            Channel("Nick Hindi", "http:\\103.185.24.134:3001\NICK\index.m3u8", iconResId = iconId("nick_hindi")),
             Channel("Pogo Hindi", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/1918.ts", iconResId = iconId("pogo_hindi")),
-            Channel("Sonic Hindi", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/207.ts", iconResId = iconId("sonic_hindi")),
+            Channel("Sonic Hindi", "http:\\103.185.24.134:3001\SONIC\index.m3u8", iconResId = iconId("sonic_hindi")),
             Channel("Cartoon Network Hindi", "http://27.116.22.53:5001/live/816.m3u8", iconResId = iconId("cartoon_network_hindi")),
             Channel("Cartoon Network HD Plus Hindi", "http://27.116.22.53:5001/live/3436.m3u8", iconResId = iconId("cartoon_network_hd_plus_hindi")),
             Channel("Discovery Kids Hindi", "http://27.116.22.53:5001/live/554.m3u8", iconResId = iconId("discovery_kids_hindi")),
@@ -253,15 +255,15 @@ private class ChannelView(context: Context, categoryIndex: Int) : View(context) 
             Channel("Disney Channel", "http://51.75.127.199:3141/disneychannel/index.m3u8", iconResId = iconId("disney_channel"))
         )
         5 -> listOf(
-            Channel("ZEE TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/161.ts", iconResId = iconId("zee_tv")),
+            Channel("ZEE TV", "http:\\51.75.127.199:3141\zeetv\index.m3u8", iconResId = iconId("zee_tv")),
             Channel("Star Plus HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/221.ts", iconResId = iconId("star_plus_hd")),
             Channel("SONY SAB HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98853.ts", iconResId = iconId("sony_sab_hd")),
             Channel("Colors HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98851.ts", iconResId = iconId("colors")),
             Channel("Colors Gujarati", "https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/ColorsGujarati.m3u8", iconResId = iconId("colors_gujarati")),
             Channel("Star Utsav", "http://51.75.127.199:3141/starutsav/index.m3u8", iconResId = iconId("star_utsav")),
-            Channel("Zing TV", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/970.ts", iconResId = iconId("zing")),
+            Channel("Zing TV", "http:\\107.167.16.138\zing\index.m3u8?token=test", iconResId = iconId("zing")),
             Channel("&TV HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98852.ts", iconResId = iconId("and_tv_hd")),
-            Channel("Sony Television HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98854.ts", iconResId = iconId("sony_entertainment_television_hd"))
+            Channel("Sony Television HD", "http:\\38.96.178.205\SONYHD\index.m3u8", iconResId = iconId("sony_entertainment_television_hd"))
         )
         6 -> listOf(
             Channel("Star Sports 1 HD", "http://skyfilex.fun:80/live/5axHnPxfJG/automatic8meet/98866.ts", iconResId = iconId("star_sports_1_hd")),
