@@ -2,10 +2,6 @@
 "http://27.116.22.53:5001/live/575.m3u8"
 "discovery_channel_hindi.png"
 
-"Sony BBC Earth"
-"http://103.185.24.134:3001/SONY-BBC/index.m3u8"
-"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-bbc-earth-in.png"
-
 "TLC"
 "http://27.116.22.53:5001/live/571.m3u8"
 "tlc_hd.png"
