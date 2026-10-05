@@ -2,10 +2,6 @@
 "http://103.185.24.134:3001/NICK/index.m3u8"
 "nick_hindi.png"
 
-"Pogo Hindi"
-""
-"pogo_hindi.png"
-
 "Sonic Hindi"
 "http://103.185.24.134:3001/SONIC/index.m3u8"
 "sonic_hindi.png"
