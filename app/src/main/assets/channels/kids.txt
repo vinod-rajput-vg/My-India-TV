@@ -1,30 +1,30 @@
 "Nick Hindi"
 "http://103.185.24.134:3001/NICK/index.m3u8"
-"nick_hindi.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nick-in.png"
 
 "Sonic Hindi"
 "http://103.185.24.134:3001/SONIC/index.m3u8"
-"sonic_hindi.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nickelodeon-sonic-in.png"
 
 "Cartoon Network Hindi"
 "http://27.116.22.53:5001/live/816.m3u8"
-"cartoon_network_hindi.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-in.png"
 
 "Cartoon Network HD Plus Hindi"
 "http://27.116.22.53:5001/live/3436.m3u8"
-"cartoon_network_hd_plus_hindi.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-hd-plus-in.png"
 
 "Discovery Kids Hindi"
 "http://27.116.22.53:5001/live/554.m3u8"
-"discovery_kids_hindi.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/discovery-kids-in.png"
 
 "Hungama"
 "http://51.75.127.199:3141/hungama/index.m3u8"
-"hungama.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/hungama-in.png"
 
 "Super Hungama"
 "http://51.75.127.199:3141/superhungama/index.m3u8"
-"superhungama.png"
+"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/super-hungama-in.png"
 
 "Disney Channel"
 "http://51.75.127.199:3141/disneychannel/index.m3u8"
