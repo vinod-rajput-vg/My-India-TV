@@ -10,6 +10,51 @@ import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import java.net.HttpURLConnection
+import java.net.URL
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.Executors
+import android.os.Handler
+import android.os.Looper
+
+private object RemoteLogoCache {
+    private val cache = object : android.util.LruCache<String, Bitmap>(8 * 1024) {
+        override fun sizeOf(key: String, value: Bitmap): Int = value.byteCount / 1024
+    }
+    private val loading = ConcurrentHashMap.newKeySet<String>()
+    private val executor = Executors.newFixedThreadPool(4)
+    private val mainHandler = Handler(Looper.getMainLooper())
+
+    fun request(url: String, onLoaded: (Bitmap?) -> Unit) {
+        if (url.isBlank()) return
+        synchronized(cache) { cache.get(url) }?.let { onLoaded(it); return }
+        if (!loading.add(url)) return
+        executor.execute {
+            val bitmap = download(url)
+            if (bitmap != null) synchronized(cache) { cache.put(url, bitmap) }
+            loading.remove(url)
+            mainHandler.post { onLoaded(bitmap) }
+        }
+    }
+
+    private fun download(url: String): Bitmap? {
+        var connection: HttpURLConnection? = null
+        return try {
+            connection = URL(url).openConnection() as HttpURLConnection
+            connection.instanceFollowRedirects = true
+            connection.connectTimeout = 10000
+            connection.readTimeout = 10000
+            connection.setRequestProperty("User-Agent", "My-India-TV")
+            connection.connect()
+            if (connection.responseCode !in 200..299) return null
+            connection.inputStream.use { BitmapFactory.decodeStream(it) }
+        } catch (_: Exception) {
+            null
+        } finally {
+            connection?.disconnect()
+        }
+    }
+}
 
 class MainActivity : Activity() {
     private lateinit var homeView: HomeView
@@ -211,10 +256,6 @@ private class ChannelView(
         isFocusable = true
         isFocusableInTouchMode = true
         requestFocus()
-        for (i in channels.indices) {
-            val resId = channels[i].iconResId
-            if (resId != 0) bitmaps[i] = BitmapFactory.decodeResource(resources, resId)
-        }
     }
 
     override fun onDraw(c: Canvas) {
@@ -254,6 +295,12 @@ private class ChannelView(
                     c.drawRoundRect(r, dp(24f), dp(24f), iconPaint)
 
                     val bitmap = bitmaps[i]
+                    if (bitmap == null && channels[i].iconUrl.isNotBlank()) {
+                        RemoteLogoCache.request(channels[i].iconUrl) {
+                            bitmaps[i] = it
+                            postInvalidateOnAnimation()
+                        }
+                    }
                     if (bitmap != null && !bitmap.isRecycled) {
                         val safe = RectF(r.left + dp(5f), r.top + dp(5f), r.right - dp(5f), r.bottom - dp(5f))
                         val scale = minOf(
