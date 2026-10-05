@@ -26,6 +26,11 @@ android {
         debug {
             isMinifyEnabled = false
         }
+        release {
+            optimization {
+                enable = true
+            }
+        }
     }
 }
 
