@@ -28,25 +28,9 @@ fun loadChannels(context: android.content.Context, fileName: String): List<Chann
 
     return lines.chunked(3).mapNotNull { block ->
         if (block.size != 3) return@mapNotNull null
-
-        val name = block[0].removeSurrounding("\"")
-        val streamUrl = block[1].removeSurrounding("\"")
-        val iconFile = block[2].removeSurrounding("\"")
-        val iconName = iconFile
-            .substringAfterLast("/")
-            .substringBeforeLast(".")
-            .lowercase()
-
-        // Resolve the PNG dynamically from the drawable resource name.
-        // No channel/icon entry needs to be added to Kotlin when a new PNG is added.
-        val iconResId = context.resources.getIdentifier(
-            iconName,
-            "drawable",
-            context.packageName
-        )
-
-        if (iconResId == 0) return@mapNotNull null
-
-        Channel(name, streamUrl, iconResId)
+        val name = block[0].removeSurrounding(""")
+        val streamUrl = block[1].removeSurrounding(""")
+        val iconUrl = block[2].removeSurrounding(""")
+        Channel(name, streamUrl, iconUrl)
     }
 }
