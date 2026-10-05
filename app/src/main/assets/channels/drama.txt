@@ -2,6 +2,10 @@
 "http://51.75.127.199:3141/zeetv/index.m3u8"
 "zee_tv.png"
 
+"ZEE TV HD"
+"https://d1rc86nwwc9fag.cloudfront.net/260723/zeetvapachd_800/chunks.m3u8"
+"zee_tv_hd.png"
+
 "Star Plus HD"
 ""
 "star_plus_hd.png"
