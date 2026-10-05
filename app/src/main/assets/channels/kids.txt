@@ -1,0 +1,31 @@
+"Nick Hindi"
+"http://103.185.24.134:3001/NICK/index.m3u8"
+"nick_hindi.png"
+
+"Sonic Hindi"
+"http://103.185.24.134:3001/SONIC/index.m3u8"
+"sonic_hindi.png"
+
+"Cartoon Network Hindi"
+"http://27.116.22.53:5001/live/816.m3u8"
+"cartoon_network_hindi.png"
+
+"Cartoon Network HD Plus Hindi"
+"http://27.116.22.53:5001/live/3436.m3u8"
+"cartoon_network_hd_plus_hindi.png"
+
+"Discovery Kids Hindi"
+"http://27.116.22.53:5001/live/554.m3u8"
+"discovery_kids_hindi.png"
+
+"Hungama"
+"http://51.75.127.199:3141/hungama/index.m3u8"
+"hungama.png"
+
+"Super Hungama"
+"http://51.75.127.199:3141/superhungama/index.m3u8"
+"superhungama.png"
+
+"Disney Channel"
+"http://51.75.127.199:3141/disneychannel/index.m3u8"
+"disney_channel.png"

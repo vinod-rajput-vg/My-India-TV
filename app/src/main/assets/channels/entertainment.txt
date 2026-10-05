@@ -1,0 +1,63 @@
+"Star Gold"
+"http://51.75.127.199:3141/stargold/index.m3u8"
+"star_gold.png"
+
+"Star Gold Select HD"
+"http://51.75.127.199:3141/stargoldselecthd/index.m3u8"
+"star_gold_select_hd.png"
+
+"ZEE Cinema"
+"https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8"
+"zee_cinema_hd.png"
+
+"ZEE Classic"
+"http://107.167.16.138/zeeclassic/index.m3u8?token=test"
+"zeeclassic.png"
+
+"ZEE Cine Classic"
+"https://amg00862-amg00862c8-amgplt0173.playout.now3.amagi.tv/playlist/amg00862-amg00862c8-amgplt0173/playlist.m3u8"
+"zeecineclassic.png"
+
+"&Xplore HD"
+"http://51.75.127.199:3141/andxplorehd/index.m3u8"
+"xplor_hd.png"
+
+"Star Utsav Movies"
+"http://51.75.127.199:3141/starutsavmovies/index.m3u8"
+"star_utsav_movies.png"
+
+"Colors Cineplex"
+"https://d1rc86nwwc9fag.cloudfront.net/260723/smil:rishteycineplexukdev.smil/chunklist_b1928000.m3u8"
+"colors_cineplex.png"
+
+"Colors Cineplex HD"
+"http://51.75.127.199:3141/colorscineplexhd/index.m3u8"
+"colors_cineplex_hd.png"
+
+"Colors Cineplex Superhits"
+"http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8"
+"colors_cineplex_superhits.png"
+
+"Shemaroo Bollywood"
+"https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8"
+"shemaroo_bollywood.png"
+
+"B4U Kadak"
+"https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8"
+"b4u_kadak.png"
+
+"B4U Movies"
+"https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8"
+"b4u_movies.png"
+
+"Goldmines"
+"https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8"
+"goldmines.png"
+
+"Goldmines 2"
+"https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8"
+"goldmines_2.png"
+
+"Goldmines Bollywood"
+"https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8"
+"goldmines_bollywood.png"

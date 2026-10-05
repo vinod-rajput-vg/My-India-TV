@@ -1,0 +1,35 @@
+"Discovery Channel"
+"http://27.116.22.53:5001/live/575.m3u8"
+"discovery_channel_hindi.png"
+
+"TLC"
+"http://27.116.22.53:5001/live/571.m3u8"
+"tlc_hd.png"
+
+"Animal Planet"
+"http://27.116.22.53:5001/live/566.m3u8"
+"animal_planet_hd.png"
+
+"Nat Geo Wild"
+"http://51.75.127.199:3141/natgeowild/index.m3u8"
+"nat_geo_wild_hd.png"
+
+"National Geographic"
+"http://51.75.127.199:3141/natgeo/index.m3u8"
+"national_geographic.png"
+
+"National Geographic HD"
+"http://51.75.127.199:3141/natgeohd/index.m3u8"
+"national_geographic_hd.png"
+
+"Discovery Science Hindi"
+"http://27.116.22.53:5001/live/3453.m3u8"
+"discovery_science_hindi.png"
+
+"History TV18"
+"http://51.75.127.199:3141/historytv18/index.m3u8"
+"history_tv18_hd.png"
+
+"History TV18 HD"
+"https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8"
+"history_tv18_hd.png"
