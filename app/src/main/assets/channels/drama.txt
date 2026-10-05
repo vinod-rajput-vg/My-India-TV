@@ -4,7 +4,7 @@
 
 "ZEE TV HD"
 "https://d1rc86nwwc9fag.cloudfront.net/260723/zeetvapachd_800/chunks.m3u8"
-"zee_tv_hd.png"
+"zee_tv.png"
 
 "Star Plus HD"
 ""
@@ -15,7 +15,7 @@
 "sony_sab_hd.png"
 
 "Colors"
-"http:\\51.75.127.199:3141\colorssd\index.m3u8"
+"http://51.75.127.199:3141/colorssd/index.m3u8"
 "colors.png"
 
 "Colors Gujarati"
@@ -35,5 +35,5 @@
 "and_tv_hd.png"
 
 "Sony Television HD"
-"http:\\38.96.178.205\SONYHD\index.m3u8"
+"http://38.96.178.205/SONYHD/index.m3u8"
 "sony_entertainment_television_hd.png"
