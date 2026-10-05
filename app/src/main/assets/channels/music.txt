@@ -4,4 +4,4 @@
 
 "Shemaroo Filmy Gaane"
 "https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8"
-""
+"shemaroo_filmy_gaane.png"
