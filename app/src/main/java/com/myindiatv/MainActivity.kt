@@ -21,9 +21,30 @@ private object ChannelIconLoader {
     private val executor = Executors.newFixedThreadPool(4)
     private val cache = ConcurrentHashMap<String, Bitmap>()
 
-    fun load(url: String, view: View, onLoaded: (Bitmap) -> Unit) {
-        val key = url.trim()
+    fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
+        val key = source.trim()
         if (key.isEmpty()) return
+
+        if (!key.startsWith("http://") && !key.startsWith("https://")) {
+            val resourceName = key
+                .substringAfterLast("/")
+                .substringBeforeLast(".")
+                .lowercase()
+
+            val resourceId = view.resources.getIdentifier(
+                resourceName,
+                "drawable",
+                view.context.packageName
+            )
+
+            if (resourceId != 0) {
+                val bitmap = BitmapFactory.decodeResource(view.resources, resourceId)
+                if (bitmap != null) {
+                    view.post { onLoaded(bitmap) }
+                }
+            }
+            return
+        }
 
         cache[key]?.let { bitmap ->
             view.post { onLoaded(bitmap) }
