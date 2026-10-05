@@ -1,0 +1,7 @@
+"B4U Music"
+"https://streams.tangotv.in/B4UMUSIC/ORIGIN/index.m3u8"
+"b4u_music.png"
+
+"Shemaroo Filmy Gaane"
+"https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8"
+"shemaroo_filmy_gaane.png"
