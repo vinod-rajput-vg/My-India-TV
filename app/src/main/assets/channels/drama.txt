@@ -31,5 +31,5 @@
 "and_tv_hd.png"
 
 "Sony Television HD"
-""
+"http:\\38.96.178.205\SONYHD\index.m3u8"
 "sony_entertainment_television_hd.png"
