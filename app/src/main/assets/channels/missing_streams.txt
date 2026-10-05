@@ -1,0 +1,47 @@
+"Star Plus HD"
+""
+"star_plus_hd.png"
+
+"SONY SAB HD"
+""
+"sony_sab_hd.png"
+
+"&TV HD"
+""
+"and_tv_hd.png"
+
+"Star Gold 2 HD"
+""
+"star_gold_2_hd.png"
+
+"Sony Max HD"
+""
+"sony_max_hd.png"
+
+"Sony Max 2"
+""
+"sony_max_2.png"
+
+"SONY PIX HD"
+""
+"sony_pix_hd.png"
+
+"&PICTURE HD"
+""
+"and_pictures_hd.png"
+
+"ZEE Bollywood"
+""
+"zee_bollywood.png"
+
+"Sony Wah"
+""
+"sony_wah.png"
+
+"Colors Cineplex Bollywood"
+""
+"colorscineplexbollywood.png"
+
+"Pogo Hindi"
+""
+"pogo_hindi.png"
