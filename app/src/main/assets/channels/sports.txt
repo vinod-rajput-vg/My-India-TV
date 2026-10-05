@@ -1,7 +1,3 @@
-"Star Sports 1 HD"
-""
-"star_sports_1_hd.png"
-
-"Sony Ten 3 HD"
-""
-"sony_ten_3_hd.png"
+"Star Sports 1"
+"http://51.75.127.199:3141/starsports1/index.m3u8"
+"star_sports_1"
