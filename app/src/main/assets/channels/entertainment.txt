@@ -2,9 +2,29 @@
 "http://51.75.127.199:3141/stargold/index.m3u8"
 "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-in.png"
 
+"Star Gold HD"
+"http://103.151.60.162:2122/play/a01n/index.m3u8?hls"
+"https://github.com/tv-logo/tv-logos/blob/main/countries/india/star-gold-hd-in.png"
+
+"Star Gold 2 HD"
+"http://103.151.60.162:2122/play/a01v/index.m3u8?hls"
+"https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png"
+
 "Star Gold Select HD"
 "http://51.75.127.199:3141/stargoldselecthd/index.m3u8"
 "https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-select-hd-in.png"
+
+"Sony MAX"
+"https://drk6xq0vhn.gpcdn.net/live/max_hd_abr/index.m3u8"
+"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-in.png"
+
+"Sony MAX HD"
+"http://103.151.60.162:2122/play/a014/index.m3u8?hls"
+"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-hd-in.png"
+
+"Sony MAX 2"
+"https://drk6xq0vhn.gpcdn.net/live/max_2_abr/index.m3u8"
+"https://github.com/tv-logo/tv-logos/blob/main/countries/india/sony-max-2-in.png"
 
 "ZEE Cinema"
 "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8"
