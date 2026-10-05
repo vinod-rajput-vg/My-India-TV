@@ -2,37 +2,13 @@
 "http://51.75.127.199:3141/stargold/index.m3u8"
 "star_gold.png"
 
-"Star Gold 2 HD"
-""
-"star_gold_2_hd.png"
-
 "Star Gold Select HD"
 "http://51.75.127.199:3141/stargoldselecthd/index.m3u8"
 "star_gold_select_hd.png"
 
-"Sony Max HD"
-""
-"sony_max_hd.png"
-
-"Sony Max 2"
-""
-"sony_max_2.png"
-
-"SONY PIX HD"
-""
-"sony_pix_hd.png"
-
-"&PICTURE HD"
-""
-"and_pictures_hd.png"
-
 "ZEE Cinema"
 "https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8"
 "zee_cinema_hd.png"
-
-"ZEE Bollywood"
-""
-"zee_bollywood.png"
 
 "ZEE Classic"
 "http://107.167.16.138/zeeclassic/index.m3u8?token=test"
@@ -50,10 +26,6 @@
 "http://51.75.127.199:3141/starutsavmovies/index.m3u8"
 "star_utsav_movies.png"
 
-"Sony Wah"
-""
-"sony_wah.png"
-
 "Colors Cineplex"
 "https://d1rc86nwwc9fag.cloudfront.net/260723/smil:rishteycineplexukdev.smil/chunklist_b1928000.m3u8"
 "colors_cineplex.png"
@@ -61,10 +33,6 @@
 "Colors Cineplex HD"
 "http://51.75.127.199:3141/colorscineplexhd/index.m3u8"
 "colors_cineplex_hd.png"
-
-"Colors Cineplex Bollywood"
-""
-"colorscineplexbollywood.png"
 
 "Colors Cineplex Superhits"
 "http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8"
