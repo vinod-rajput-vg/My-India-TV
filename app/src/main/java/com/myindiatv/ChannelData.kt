@@ -68,10 +68,12 @@ private fun iconResource(name: String): Int = when (name) {
     "goldmines_2" -> R.drawable.goldmines_2
     "goldmines_bollywood" -> R.drawable.goldmines_bollywood
     "discoveryhdhindi" -> R.drawable.discoveryhdhindi
+    "discovery_channel_hindi" -> R.drawable.discovery_channel_hindi
     "sony_bbc_earth_hd" -> R.drawable.sony_bbc_earth_hd
     "tlc_hd" -> R.drawable.tlc_hd
     "animal_planet_hd" -> R.drawable.animal_planet_hd
     "nat_geo_wild_hd" -> R.drawable.nat_geo_wild_hd
+    "national_geographic" -> R.drawable.national_geographic
     "national_geographic_hd" -> R.drawable.national_geographic_hd
     "discovery_science_hindi" -> R.drawable.discovery_science_hindi
     "history_tv18_hd" -> R.drawable.history_tv18_hd
