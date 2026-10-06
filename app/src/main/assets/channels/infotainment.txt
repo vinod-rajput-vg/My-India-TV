@@ -1,11 +1,3 @@
-"Discovery"
-"http://27.116.22.53:5001/live/575.m3u8"
-"https://jiotvimages.cdn.jio.com/dare_images/images/channel/460237304b713a95012b25c69fb7a7ed.png"
-
-"Sony BBC Earth HD"
-"http://103.185.24.134:3001/SONY-BBC/index.m3u8"
-"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-bbc-earth-hd-in.png"
-
 "Animal Planet"
 "http://27.116.22.53:5001/live/566.m3u8"
 "animal_planet_hd.png"
