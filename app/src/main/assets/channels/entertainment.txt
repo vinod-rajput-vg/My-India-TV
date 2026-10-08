@@ -1,18 +1,14 @@
-#EXTM3U
-#EXTINF:-1 tvg-id="star-gold" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-in.png",Star Gold
-http://51.75.127.199:3141/stargold/index.m3u8
-
-#EXTINF:-1 tvg-id="star-gold-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-hd-in.png",Star Gold HD
-http://103.151.60.162:2122/play/a01n/index.m3u8?hls
-
 #EXTINF:-1 tvg-id="star-gold-2-hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png",Star Gold 2 HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372926
 
+#EXTINF:-1 tvg-id="star gold romance" tvg-logo="https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-romance.png",STAR GOLD ROMANCE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433164
+
+#EXTINF:-1 tvg-id="star gold thrills" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png",STAR GOLD THRILLIS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373005
+
 #EXTINF:-1 tvg-id="star-gold-select-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-select-hd-in.png",Star Gold Select HD
 http://51.75.127.199:3141/stargoldselecthd/index.m3u8
-
-#EXTINF:-1 tvg-id="sony-max" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-in.png",Sony MAX
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
 
 #EXTINF:-1 tvg-id="sony-max-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png",Sony MAX HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
@@ -20,11 +16,8 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
 #EXTINF:-1 tvg-id="sony-max-2" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png",Sony MAX 2
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373073
 
-#EXTINF:-1 tvg-id="zee-cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-in.png",ZEE Cinema
-https://d1g8wgjurz8via.cloudfront.net/bpk-tv/NGCHD/default/NGCHD.m3u8
-
-#EXTINF:-1 tvg-id="zee-classic" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-classic-in.png",ZEE Classic
-http://107.167.16.138/zeeclassic/index.m3u8?token=test
+#EXTINF:-1 tvg-id="zee-cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png",ZEE Cinema HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372695
 
 #EXTINF:-1 tvg-id="zee-cine-classic" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/zeecineclassic.png",ZEE Cine Classic
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433247
@@ -32,32 +25,14 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433247
 #EXTINF:-1 tvg-id="xplore-hd" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/xplor_hd.png",&Xplore HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
 
-#EXTINF:-1 tvg-id="star-utsav-movies" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-movies-in.png",Star Utsav Movies
-http://51.75.127.199:3141/starutsavmovies/index.m3u8
-
-#EXTINF:-1 tvg-id="colors-cineplex" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-cineplex-in.png",Colors Cineplex
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944627
+#EXTINF:-1 tvg-id="zee anmol cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-anmol-cinema-in.png",ZEE ANMOL CINEMA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373000
 
 #EXTINF:-1 tvg-id="colors-cineplex-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-cineplex-hd-in.png",Colors Cineplex HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944627
-
-#EXTINF:-1 tvg-id="colors-cineplex-superhits" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-cineplex-superhits-in.png",Colors Cineplex Superhits
-http://51.75.127.199:3141/colorscineplexsuperhit/index.m3u8
-
-#EXTINF:-1 tvg-id="shemaroo-bollywood" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/shemaroo_bollywood.png",Shemaroo Bollywood
-https://prod-runn.cdn.runn.tv/shemaroo/stream/smrbol/playlist.m3u8
 
 #EXTINF:-1 tvg-id="b4u-kadak" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-kadak-in.png",B4U Kadak
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433208
 
 #EXTINF:-1 tvg-id="b4u-movies" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png",B4U Movies
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944610
-
-#EXTINF:-1 tvg-id="goldmines" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/goldmines.png",Goldmines
-https://streams.tangotv.in/GOLDMINES/ORIGIN/index.m3u8
-
-#EXTINF:-1 tvg-id="goldmines-2" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/goldmines_2.png",Goldmines 2
-https://mumt03.tangotv.in/Dsly5z3HGOLDMINES2/index.m3u8
-
-#EXTINF:-1 tvg-id="goldmines-bollywood" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/goldmines_bollywood.png",Goldmines Bollywood
-https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8
