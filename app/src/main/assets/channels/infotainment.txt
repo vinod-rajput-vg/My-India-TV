@@ -4,24 +4,14 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373036
 #EXTINF:-1 tvg-id="sony bbc earth hd" tvg-logo="https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png",SONY BBC EARTH HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373071
 
-#EXTM3U
-#EXTINF:-1 tvg-id="animal-planet" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/animal_planet_hd.png",Animal Planet
+#EXTINF:-1 tvg-id="animal-planet" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png",Animal Planet HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944624
 
-#EXTINF:-1 tvg-id="nat-geo-wild" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/nat_geo_wild_hd.png",Nat Geo Wild
+#EXTINF:-1 tvg-id="nat-geo-wild" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png",Nat Geo Wild HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373018
 
-#EXTINF:-1 tvg-id="national-geographic" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/national_geographic.png",National Geographic
+#EXTINF:-1 tvg-id="national-geographic-hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png",National Geographic HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373017
-
-#EXTINF:-1 tvg-id="national-geographic-hd" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/national_geographic_hd.png",National Geographic HD
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373017
-
-#EXTINF:-1 tvg-id="tlc" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/tlc_hd.png",TLC
-http://27.116.22.53:5001/live/571.m3u8
-
-#EXTINF:-1 tvg-id="discovery-science-hindi" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/discovery_science_hindi.png",Discovery Science Hindi
-http://27.116.22.53:5001/live/3453.m3u8
 
 #EXTINF:-1 tvg-id="history-tv18" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-in.png",History TV18
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373031
