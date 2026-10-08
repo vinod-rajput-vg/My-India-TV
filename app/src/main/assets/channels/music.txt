@@ -2,5 +2,5 @@
 #EXTINF:-1 tvg-id="b4u-music" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-music-in.png",B4U Music
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372970
 
-#EXTINF:-1 tvg-id="shemaroo-filmy-gaane" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/shemaroo_filmy_gaane.png",Shemaroo Filmy Gaane
+#EXTINF:-1 tvg-id="shemaroo-filmy-gaane" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/0d5b07555b2d4415aa9f145273095ed7.png",Shemaroo Filmy Gaane
 https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8
