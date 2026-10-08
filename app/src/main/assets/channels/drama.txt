@@ -4,6 +4,9 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
 #EXTINF:-1 tvg-id="star plus hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png",STAR PLUS HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
 
+#EXTINF:-1 tvg-id="sony sab hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/70954ffc9bae055e09e48393b47570ea.png",SONY SAB HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944604
+
 #EXTINF:-1 tvg-id="colors" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png",Colors HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944612
 
