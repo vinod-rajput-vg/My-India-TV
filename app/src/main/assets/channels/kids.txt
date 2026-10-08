@@ -19,6 +19,3 @@ http://51.75.127.199:3141/hungama/index.m3u8
 
 #EXTINF:-1 tvg-id="super-hungama" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/super-hungama-in.png",Super Hungama
 http://51.75.127.199:3141/superhungama/index.m3u8
-
-#EXTINF:-1 tvg-id="disney-channel" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/disney_channel.png",Disney Channel
-http://51.75.127.199:3141/disneychannel/index.m3u8
