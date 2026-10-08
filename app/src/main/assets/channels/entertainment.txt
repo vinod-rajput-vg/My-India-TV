@@ -19,10 +19,7 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373073
 #EXTINF:-1 tvg-id="zee-cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png",ZEE Cinema HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372695
 
-#EXTINF:-1 tvg-id="zee-cine-classic" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/zeecineclassic.png",ZEE Cine Classic
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433247
-
-#EXTINF:-1 tvg-id="xplore-hd" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/xplor_hd.png",&Xplore HD
+#EXTINF:-1 tvg-id="xplore-hd" tvg-logo="https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/and-xplor-hd.png",&Xplore HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
 
 #EXTINF:-1 tvg-id="zee anmol cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-anmol-cinema-in.png",ZEE ANMOL CINEMA
