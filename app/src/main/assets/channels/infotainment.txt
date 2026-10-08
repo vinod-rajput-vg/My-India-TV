@@ -1,4 +1,4 @@
-#EXTINF:-1 tvg-id="animal planet" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png",DISCOVERY WORLD HD
+#EXTINF:-1 tvg-id="discovery hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png",DISCOVERY HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373036
 
 #EXTINF:-1 tvg-id="sony bbc earth hd" tvg-logo="https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png",SONY BBC EARTH HD
