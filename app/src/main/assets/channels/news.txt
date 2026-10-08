@@ -12,22 +12,22 @@ https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9marlygv8h/liveabr/playlist.m3u8
 https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b11b77e2f571934fd80ca1413453772ac7/497f7199-758d-495d-9d2f-a5489231c428/14b7c8ec-16da-47f2-8d7e-5bbaec67b3e2/3.m3u8
 
 #EXTINF:-1 tvg-id="republic-bharat" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/republic-bharat-tv-in.png",Republic Bharat
-https://cdn.pishow.tv/ott/live/1053/master.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372971
 
 #EXTINF:-1 tvg-id="news-nation" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/news_nation.png",News Nation
-https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373013
 
 #EXTINF:-1 tvg-id="aaj-tak-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/aaj-tak-hd-in.png",Aaj Tak HD
-https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373063
 
 #EXTINF:-1 tvg-id="abp-news" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/abp-news-in.png",ABP News
-https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944619
 
 #EXTINF:-1 tvg-id="times-now-navbharat" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/times-now-navbharat-in.png",Times Now Navbharat
-https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/a5ee7c4e7a2a4b15a22a3bcf523b9776/index.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433192
 
 #EXTINF:-1 tvg-id="india-tv" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/india-tv-in.png",India TV
-https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372968
 
 #EXTINF:-1 tvg-id="zee-24-taas" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-24-taas-in.png",Zee 24 Taas
 https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8
