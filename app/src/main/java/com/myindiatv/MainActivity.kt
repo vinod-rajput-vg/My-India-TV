@@ -22,7 +22,7 @@ private object ChannelIconLoader {
     private val cache = ConcurrentHashMap<String, Bitmap>()
 
     fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
-        val key = source.trim()
+        val key = normalizeUrl(source)
         if (key.isEmpty()) return
 
         if (!key.startsWith("http://") && !key.startsWith("https://")) {
@@ -61,6 +61,15 @@ private object ChannelIconLoader {
         }
     }
 
+    private fun normalizeUrl(source: String): String {
+        val value = source.trim()
+        if (value.isEmpty()) return ""
+        if (!value.startsWith("http://", ignoreCase = true) && !value.startsWith("https://", ignoreCase = true)) {
+            return value
+        }
+        return value.replace(" ", "%20")
+    }
+
     private fun download(url: String): Bitmap? {
         var connection: HttpURLConnection? = null
         return try {
@@ -68,7 +77,9 @@ private object ChannelIconLoader {
             connection.connectTimeout = 10_000
             connection.readTimeout = 15_000
             connection.instanceFollowRedirects = true
+            connection.useCaches = true
             connection.setRequestProperty("User-Agent", "My-India-TV/1.0")
+            connection.setRequestProperty("Accept", "image/avif,image/webp,image/apng,image/png,image/jpeg,image/*,*/*;q=0.8")
             connection.connect()
             if (connection.responseCode !in 200..299) return null
             BufferedInputStream(connection.inputStream).use { input ->
