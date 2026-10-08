@@ -19,21 +19,48 @@ val categories = listOf(
 )
 
 fun loadChannels(context: android.content.Context, fileName: String): List<Channel> {
-    val lines = context.assets.open("channels/$fileName")
+    return context.assets.open("channels/$fileName")
         .bufferedReader()
-        .useLines { sequence ->
-            sequence.map { it.trim() }
-                .filter { it.isNotEmpty() }
-                .toList()
+        .useLines { lines ->
+            val result = mutableListOf<Channel>()
+            var name: String? = null
+            var streamUrl: String? = null
+            var iconUrl: String? = null
+
+            for (rawLine in lines) {
+                val line = rawLine.trim()
+                if (line.isEmpty() || line.equals("#EXTM3U", ignoreCase = true)) continue
+
+                if (line.startsWith("#EXTINF:", ignoreCase = true)) {
+                    val comma = line.indexOf(',')
+                    if (comma < 0) continue
+
+                    val attributes = line.substring(0, comma)
+                    val displayName = line.substring(comma + 1).trim()
+                    val logo = Regex("""tvg-logo="([^"]*)"""", RegexOption.IGNORE_CASE)
+                        .find(attributes)
+                        ?.groupValues
+                        ?.getOrNull(1)
+                        .orEmpty()
+
+                    name = displayName
+                    streamUrl = null
+                    iconUrl = logo
+                } else if (!line.startsWith("#")) {
+                    streamUrl = line
+                    if (!name.isNullOrBlank() && !streamUrl.isNullOrBlank()) {
+                        result += Channel(
+                            name = name,
+                            streamUrl = streamUrl,
+                            iconUrl = iconUrl.orEmpty()
+                        )
+                    }
+                    name = null
+                    streamUrl = null
+                    iconUrl = null
+                }
+            }
+
+            result
         }
-
-    return lines.chunked(3).mapNotNull { block ->
-        if (block.size != 3) return@mapNotNull null
-
-        val name = block[0].removeSurrounding("\"")
-        val streamUrl = block[1].removeSurrounding("\"")
-        val iconUrl = block[2].removeSurrounding("\"")
-
-        Channel(name, streamUrl, iconUrl)
-    }
 }
