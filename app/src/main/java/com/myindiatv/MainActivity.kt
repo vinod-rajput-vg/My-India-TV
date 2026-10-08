@@ -20,28 +20,18 @@ import java.util.concurrent.Executors
 private object ChannelIconLoader {
     private val executor = Executors.newFixedThreadPool(4)
     private val cache = ConcurrentHashMap<String, Bitmap>()
+    private const val CACHE_DIR = "channel_icons"
 
     fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
         val key = normalizeUrl(source)
         if (key.isEmpty()) return
 
         if (!key.startsWith("http://") && !key.startsWith("https://")) {
-            val resourceName = key
-                .substringAfterLast("/")
-                .substringBeforeLast(".")
-                .lowercase()
-
-            val resourceId = view.resources.getIdentifier(
-                resourceName,
-                "drawable",
-                view.context.packageName
-            )
-
+            val resourceName = key.substringAfterLast("/").substringBeforeLast(".").lowercase()
+            val resourceId = view.resources.getIdentifier(resourceName, "drawable", view.context.packageName)
             if (resourceId != 0) {
                 val bitmap = BitmapFactory.decodeResource(view.resources, resourceId)
-                if (bitmap != null) {
-                    view.post { onLoaded(bitmap) }
-                }
+                if (bitmap != null) view.post { onLoaded(bitmap) }
             }
             return
         }
@@ -52,9 +42,17 @@ private object ChannelIconLoader {
         }
 
         executor.execute {
+            val cachedBitmap = loadFromDisk(view.context, key)
+            if (cachedBitmap != null) {
+                cache[key] = cachedBitmap
+                view.post { onLoaded(cachedBitmap) }
+                return@execute
+            }
+
             val bitmap = download(key)
             if (bitmap != null) {
                 cache.putIfAbsent(key, bitmap)
+                saveToDisk(view.context, key, bitmap)
                 val cached = cache[key] ?: bitmap
                 view.post { onLoaded(cached) }
             }
@@ -64,10 +62,45 @@ private object ChannelIconLoader {
     private fun normalizeUrl(source: String): String {
         val value = source.trim()
         if (value.isEmpty()) return ""
-        if (!value.startsWith("http://", ignoreCase = true) && !value.startsWith("https://", ignoreCase = true)) {
-            return value
-        }
+        if (!value.startsWith("http://", ignoreCase = true) && !value.startsWith("https://", ignoreCase = true)) return value
         return value.replace(" ", "%20")
+    }
+
+    private fun cacheFile(context: Context, url: String): java.io.File {
+        val directory = java.io.File(context.filesDir, CACHE_DIR)
+        if (!directory.exists()) directory.mkdirs()
+        return java.io.File(directory, hashUrl(url) + ".png")
+    }
+
+    private fun hashUrl(url: String): String {
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+        return digest.digest(url.toByteArray(Charsets.UTF_8)).joinToString("") { "%02x".format(it) }
+    }
+
+    private fun loadFromDisk(context: Context, url: String): Bitmap? {
+        val file = cacheFile(context, url)
+        if (!file.exists() || file.length() == 0L) return null
+        return try {
+            java.io.FileInputStream(file).use { input -> BitmapFactory.decodeStream(input) }
+        } catch (_: Exception) {
+            try { file.delete() } catch (_: Exception) {}
+            null
+        }
+    }
+
+    private fun saveToDisk(context: Context, url: String, bitmap: Bitmap) {
+        val file = cacheFile(context, url)
+        if (file.exists() && file.length() > 0L) return
+        val tempFile = java.io.File(file.parentFile, file.name + ".tmp")
+        try {
+            java.io.FileOutputStream(tempFile).use { output ->
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, output)
+                output.flush()
+            }
+            if (!tempFile.renameTo(file)) tempFile.delete()
+        } catch (_: Exception) {
+            tempFile.delete()
+        }
     }
 
     private fun download(url: String): Bitmap? {
@@ -82,9 +115,7 @@ private object ChannelIconLoader {
             connection.setRequestProperty("Accept", "image/avif,image/webp,image/apng,image/png,image/jpeg,image/*,*/*;q=0.8")
             connection.connect()
             if (connection.responseCode !in 200..299) return null
-            BufferedInputStream(connection.inputStream).use { input ->
-                BitmapFactory.decodeStream(input)
-            }
+            BufferedInputStream(connection.inputStream).use { input -> BitmapFactory.decodeStream(input) }
         } catch (_: Exception) {
             null
         } finally {
@@ -92,7 +123,6 @@ private object ChannelIconLoader {
         }
     }
 }
-
 class MainActivity : Activity() {
     private lateinit var homeView: HomeView
     private var channelView: ChannelView? = null
