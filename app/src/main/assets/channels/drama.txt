@@ -1,11 +1,11 @@
 #EXTINF:-1 tvg-id="zee-tv-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png",ZEE TV HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
 
-#EXTINF:-1 tvg-id="671571" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png",STAR PLUS HD
+#EXTINF:-1 tvg-id="star plus hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png",STAR PLUS HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
 
 #EXTINF:-1 tvg-id="colors" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png",Colors HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944612
 
-#EXTINF:-1 tvg-id="943925" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png",STAR USTAV
+#EXTINF:-1 tvg-id="star utsav" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png",STAR USTAV
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943925
