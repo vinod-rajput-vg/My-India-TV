@@ -1,17 +1,24 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="animal-planet" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/animal_planet_hd.png",Animal Planet
 http://27.116.22.53:5001/live/566.m3u8
+
 #EXTINF:-1 tvg-id="nat-geo-wild" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/nat_geo_wild_hd.png",Nat Geo Wild
 http://51.75.127.199:3141/natgeowild/index.m3u8
+
 #EXTINF:-1 tvg-id="national-geographic" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/national_geographic.png",National Geographic
 http://51.75.127.199:3141/natgeo/index.m3u8
+
 #EXTINF:-1 tvg-id="national-geographic-hd" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/national_geographic_hd.png",National Geographic HD
 http://51.75.127.199:3141/natgeohd/index.m3u8
+
 #EXTINF:-1 tvg-id="tlc" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/tlc_hd.png",TLC
 http://27.116.22.53:5001/live/571.m3u8
+
 #EXTINF:-1 tvg-id="discovery-science-hindi" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/discovery_science_hindi.png",Discovery Science Hindi
 http://27.116.22.53:5001/live/3453.m3u8
+
 #EXTINF:-1 tvg-id="history-tv18" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-in.png",History TV18
 http://51.75.127.199:3141/historytv18/index.m3u8
+
 #EXTINF:-1 tvg-id="history-tv18-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png",History TV18 HD
 https://n18syndication.akamaized.net/bpk-tv/History_TV18_Hindi_NW18_MOB/output01/master.m3u8
