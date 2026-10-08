@@ -1,7 +1,5 @@
-"B4U Music"
-"https://streams.tangotv.in/B4UMUSIC/ORIGIN/index.m3u8"
-"https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-music-in.png"
-
-"Shemaroo Filmy Gaane"
-"https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8"
-"shemaroo_filmy_gaane.png"
+#EXTM3U
+#EXTINF:-1 tvg-id="b4u-music" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-music-in.png",B4U Music
+https://streams.tangotv.in/B4UMUSIC/ORIGIN/index.m3u8
+#EXTINF:-1 tvg-id="shemaroo-filmy-gaane" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/shemaroo_filmy_gaane.png",Shemaroo Filmy Gaane
+https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8
