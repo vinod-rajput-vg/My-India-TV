@@ -1,5 +1,3 @@
-import org.gradle.api.tasks.Copy
-
 plugins {
     id("com.android.application")
 }
@@ -16,12 +14,6 @@ android {
         versionName = "1.0.0"
     }
 
-    sourceSets {
-        getByName("main") {
-            res.srcDir(layout.buildDirectory.dir("generated/res/channelIcons").get().asFile)
-        }
-    }
-
     buildTypes {
         debug {
             isMinifyEnabled = false
@@ -32,15 +24,6 @@ android {
             }
         }
     }
-}
-
-tasks.register<Copy>("copyChannelIcons") {
-    from(layout.projectDirectory.dir("src/main/res/ch-drawable-nodpi"))
-    into(layout.buildDirectory.dir("generated/res/channelIcons/drawable-nodpi"))
-}
-
-tasks.named("preBuild") {
-    dependsOn("copyChannelIcons")
 }
 
 kotlin {
