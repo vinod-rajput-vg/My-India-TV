@@ -6,13 +6,13 @@ http://103.185.24.134:3001/NICK/index.m3u8
 http://103.185.24.134:3001/SONIC/index.m3u8
 
 #EXTINF:-1 tvg-id="cartoon-network-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-in.png",Cartoon Network Hindi
-http://27.116.22.53:5001/live/816.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372972
 
 #EXTINF:-1 tvg-id="cartoon-network-hd-plus-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-hd-plus-in.png",Cartoon Network HD Plus Hindi
 http://27.116.22.53:5001/live/3436.m3u8
 
 #EXTINF:-1 tvg-id="discovery-kids-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/discovery-kids-in.png",Discovery Kids Hindi
-http://27.116.22.53:5001/live/554.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372928
 
 #EXTINF:-1 tvg-id="hungama" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/hungama-in.png",Hungama
 http://51.75.127.199:3141/hungama/index.m3u8
