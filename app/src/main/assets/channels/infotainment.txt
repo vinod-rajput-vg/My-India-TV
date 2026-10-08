@@ -13,8 +13,5 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373018
 #EXTINF:-1 tvg-id="national-geographic-hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png",National Geographic HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373017
 
-#EXTINF:-1 tvg-id="history-tv18" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-in.png",History TV18
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373031
-
 #EXTINF:-1 tvg-id="history-tv18-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png",History TV18 HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373031
