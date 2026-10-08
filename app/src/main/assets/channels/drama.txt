@@ -10,5 +10,8 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944604
 #EXTINF:-1 tvg-id="colors" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png",Colors HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944612
 
+#EXTINF:-1 tvg-id="zee anmol" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol.png",ZEE ANMOL
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373001
+
 #EXTINF:-1 tvg-id="star utsav" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png",STAR USTAV
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943925
