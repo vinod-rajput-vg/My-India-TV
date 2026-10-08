@@ -16,8 +16,20 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
 #EXTINF:-1 tvg-id="sony-max-2" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png",Sony MAX 2
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373073
 
+#EXTINF:-1 tvg-id="zee cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-in.png",ZEE CINEMA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1100011
+
 #EXTINF:-1 tvg-id="zee-cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png",ZEE Cinema HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372695
+
+#EXTINF:-1 tvg-id="zee action hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-action-in.png",ZEE ACTION
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735400
+
+#EXTINF:-1 tvg-id="zee bollywood" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-bollywood-in.png",ZEE BOLLYWOOD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372924
+
+#EXTINF:-1 tvg-id="zee classic hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-classic-in.png",ZEE CLASSIC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735401
 
 #EXTINF:-1 tvg-id="xplore-hd" tvg-logo="https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/and-xplor-hd.png",&Xplore HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
