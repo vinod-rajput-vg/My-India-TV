@@ -2,10 +2,10 @@
 #EXTINF:-1 tvg-id="tv9-bharatvarsh" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/tv9-bharatvarsh-in.png",TV9 Bharatvarsh
 https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8
 
-#EXTINF:-1 tvg-id="tv9-gujarati" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/tv_9_gujarat.png",TV9 Gujarati
+#EXTINF:-1 tvg-id="tv9-gujarati" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/f344ea2f99c67074b52150e40cc30c24.png",TV9 Gujarati
 https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9guj3ki8lu/liveabr/playlist.m3u8
 
-#EXTINF:-1 tvg-id="tv9-marathi" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/tv9_maharashtra.png",TV9 Marathi
+#EXTINF:-1 tvg-id="tv9-marathi" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/cbfc396076a82705258fb3b019b1153b.png",TV9 Marathi
 https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9marlygv8h/liveabr/playlist.m3u8
 
 #EXTINF:-1 tvg-id="zee-24-kalak" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-24-kalak-in.png",Zee 24 Kalak
@@ -14,7 +14,7 @@ https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b
 #EXTINF:-1 tvg-id="republic-bharat" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/republic-bharat-tv-in.png",Republic Bharat
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372971
 
-#EXTINF:-1 tvg-id="news-nation" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/res/ch-drawable-nodpi/news_nation.png",News Nation
+#EXTINF:-1 tvg-id="news-nation" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/cd40fe9e8db4c7662414c19f09e38857.png",News Nation
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373013
 
 #EXTINF:-1 tvg-id="aaj-tak-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/aaj-tak-hd-in.png",Aaj Tak HD
