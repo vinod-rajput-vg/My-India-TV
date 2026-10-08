@@ -1,0 +1,3 @@
+"TataPlay"
+"https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV-Playlists/blob/main/TataPlay-India-Hindi.m3u"
+"https://www.tataplay.com/assets/images/tata-sky-logo1.png"
