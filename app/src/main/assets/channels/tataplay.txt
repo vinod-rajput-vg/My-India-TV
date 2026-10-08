@@ -1,3 +1,2284 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="tataplay" tvg-logo="https://www.tataplay.com/assets/images/tata-sky-logo1.png",TataPlay
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV-Playlists/main/TataPlay-India-Hindi.m3u
+#PLAYLIST:TataPlay-India-Hindi
+#EXTINF:-1 tvg-id="733953" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PLAYERS CHAMPIONSHIP.png",? 2024 PLAYERS CHAMPIONSHIP 11 UK TUE 11 JUN 12:00PM ET TUE 11 JUN 7:00AM
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733953
+
+#EXTINF:-1 tvg-id="1653110" tvg-logo="http://picon.tivi-ott.net:25461/picon/ALBANIA/┃AL┃ OD CINEMA/DARK HINDI.png",DARK HINDI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1653110
+
+#EXTINF:-1 tvg-id="734211" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ACTION DIGIPLEX CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734211
+
+#EXTINF:-1 tvg-id="734212" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",AD-WISE MEDIA ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734212
+
+#EXTINF:-1 tvg-id="734216" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEBOX PICTURES CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734216
+
+#EXTINF:-1 tvg-id="734210" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",PEN ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734210
+
+#EXTINF:-1 tvg-id="734217" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/Dubbed Box Office Collection HD.png",South Hindi Box Office Collection HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734217
+
+#EXTINF:-1 tvg-id="734214" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",VENUS DUBBED CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734214
+
+#EXTINF:-1 tvg-id="734215" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",WAM CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734215
+
+#EXTINF:-1 tvg-id="734227" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DUBBED 1 HD.png",DUBBED 2023 MOVIES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734227
+
+#EXTINF:-1 tvg-id="734228" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/Dubbed Box Office Collection HD.png",Dubbed Box Office Collection HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734228
+
+#EXTINF:-1 tvg-id="944620" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/andpictures.png",&PICTURES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944620
+
+#EXTINF:-1 tvg-id="944622" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/& TV HD.png",&TV HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944622
+
+#EXTINF:-1 tvg-id="373064" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/9xjalwa.png",9X JALWA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373064
+
+#EXTINF:-1 tvg-id="372933" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/9X MUSIC.png",9X MUSIC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372933
+
+#EXTINF:-1 tvg-id="1433234" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/9X TASHAN.png",9X TASHAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433234
+
+#EXTINF:-1 tvg-id="373063" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Aaj_Tak_Logo.png",AAJ TAK HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373063
+
+#EXTINF:-1 tvg-id="373062" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/AAJ TAK TEZ.png",AAJ TAK TEZ
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373062
+
+#EXTINF:-1 tvg-id="373059" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/AASTHA BHAJAN.png",AASTHA BHAJAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373059
+
+#EXTINF:-1 tvg-id="373060" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Aastha_Logo.svg.png",AASTHA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373060
+
+#EXTINF:-1 tvg-id="372990" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Zee_Ganga.png",ABP GANGA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372990
+
+#EXTINF:-1 tvg-id="944619" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ABP_News.png",ABP NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944619
+
+#EXTINF:-1 tvg-id="1433207" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ABZY MOVIES.png",ABZY MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433207
+
+#EXTINF:-1 tvg-id="1433174" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/AIRTEL HOLLYWOOD MASALA.png",AIRTEL COMEDY MASALA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433174
+
+#EXTINF:-1 tvg-id="1433173" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/AIRTEL HOLLYWOOD MASALA.png",AIRTEL HOLLYWOOD MASALA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433173
+
+#EXTINF:-1 tvg-id="372912" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Alankar.png",ALANKAR TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372912
+
+#EXTINF:-1 tvg-id="1433206" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ANAADI TV.png",ANAADI TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433206
+
+#EXTINF:-1 tvg-id="372989" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/andflix.png",AND FLIX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372989
+
+#EXTINF:-1 tvg-id="372925" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/andexplorer04.png",AND XPLOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
+
+#EXTINF:-1 tvg-id="944624" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/2018_Animal_Planet_logo.svg.png",ANIMAL PLANET HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944624
+
+#EXTINF:-1 tvg-id="1433229" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/APN NEWS.png",APN NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433229
+
+#EXTINF:-1 tvg-id="944625" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Arihant_TV.png",ARIHANT
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944625
+
+#EXTINF:-1 tvg-id="1433208" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/B4U KADAK.png",B4U KADAK
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433208
+
+#EXTINF:-1 tvg-id="944610" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/B4U MOVIES.png",B4U MOVIES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944610
+
+#EXTINF:-1 tvg-id="372970" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/b4umusic.png",B4U MUSIC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372970
+
+#EXTINF:-1 tvg-id="373053" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/BabyTV.png",BABY TV HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373053
+
+#EXTINF:-1 tvg-id="1433210" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/BFLIX.png",BFLIX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433210
+
+#EXTINF:-1 tvg-id="1433230" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/BHAKTI SAGAR.png",BHAKTI SAGAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433230
+
+#EXTINF:-1 tvg-id="944626" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/BIG_Magic_Logo.png",BIG MAGIC HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944626
+
+#EXTINF:-1 tvg-id="1433158" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/BIGG BOSS 1.png",BIGG BOSS 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433158
+
+#EXTINF:-1 tvg-id="1433159" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/BIGG BOSS 2.png",BIGG BOSS 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433159
+
+#EXTINF:-1 tvg-id="372976" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Bindass.png",BINDAS MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372976
+
+#EXTINF:-1 tvg-id="372923" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/BOL HADIPPA PUNJ.png",BOL HADIPPA PUNJABI HITS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372923
+
+#EXTINF:-1 tvg-id="372972" tvg-logo="http://picon.tivi-ott.net:25461/picon/NEDERLAND/CNHD.png",CARTOON NETWORK
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372972
+
+#EXTINF:-1 tvg-id="372927" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/channelwin.png",CHANNEL WIN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372927
+
+#EXTINF:-1 tvg-id="372992" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/cinematv.png",CINEMA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372992
+
+#EXTINF:-1 tvg-id="372977" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/CN PLUS HD.png",CN PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372977
+
+#EXTINF:-1 tvg-id="1433236" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/CNBC AAWAZ.png",CNBC AAWAZ
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433236
+
+#EXTINF:-1 tvg-id="1433190" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/CNBC TV 18.png",CNBC TV 18
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433190
+
+#EXTINF:-1 tvg-id="372985" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/cnbc-tv18-logo-vector.png",CNBC TV18 NEWS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372985
+
+#EXTINF:-1 tvg-id="944627" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/CINEPLEX HD.png",COLORS CINEPLEX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944627
+
+#EXTINF:-1 tvg-id="944612" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/COLORS HD.png",COLORS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944612
+
+#EXTINF:-1 tvg-id="373050" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/comedyactive.png",COMEDY ACTIVE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373050
+
+#EXTINF:-1 tvg-id="1433215" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DABANGG.png",DABANGG
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433215
+
+#EXTINF:-1 tvg-id="372967" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Dangal_TV.png",DANGAL
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372967
+
+#EXTINF:-1 tvg-id="1433166" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DANGAL 2.png",DANGAL 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433166
+
+#EXTINF:-1 tvg-id="373038" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ddbharati.png",DD BHARTI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373038
+
+#EXTINF:-1 tvg-id="373046" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/DDBihar.png",DD BIHAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373046
+
+#EXTINF:-1 tvg-id="1433189" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD CHATTISGARH.png",DD CHATTISGARH
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433189
+
+#EXTINF:-1 tvg-id="1433188" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD GOA.png",DD GOA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433188
+
+#EXTINF:-1 tvg-id="1433186" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD HARYANA.png",DD HARYANA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433186
+
+#EXTINF:-1 tvg-id="1433187" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD HIMACHAL PARDESH.png",DD HIMACHAL PARDESH
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433187
+
+#EXTINF:-1 tvg-id="373045" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/DDIndia.png",DD INDIA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373045
+
+#EXTINF:-1 tvg-id="1433185" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD JHARKHAND.png",DD JHARKHAND
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433185
+
+#EXTINF:-1 tvg-id="1433184" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD KISAN.png",DD KISAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433184
+
+#EXTINF:-1 tvg-id="1433183" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD KISHAR.png",DD KISHAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433183
+
+#EXTINF:-1 tvg-id="1433182" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD MANIPUR.png",DD MANIPUR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433182
+
+#EXTINF:-1 tvg-id="1433181" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD MEGHALAYA.png",DD MEGHALAYA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433181
+
+#EXTINF:-1 tvg-id="1433180" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD MEZORAM.png",DD MEZORAM
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433180
+
+#EXTINF:-1 tvg-id="373039" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ddmp.png",DD MP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373039
+
+#EXTINF:-1 tvg-id="1433179" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD NAGALAND.png",DD NAGALAND
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433179
+
+#EXTINF:-1 tvg-id="373049" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/DD_National.png",DD NATIONAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373049
+
+#EXTINF:-1 tvg-id="373044" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Dd-news_logo.png",DD NEWS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373044
+
+#EXTINF:-1 tvg-id="373042" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/DD_Oriya.png",DD ODIA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373042
+
+#EXTINF:-1 tvg-id="373048" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Dd-rajasthan-in.png",DD RAJASTHAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373048
+
+#EXTINF:-1 tvg-id="1433238" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD RETRO.png",DD RETRO
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433238
+
+#EXTINF:-1 tvg-id="1433177" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD SAPTIGIRI.png",DD SAPTIGIRI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433177
+
+#EXTINF:-1 tvg-id="373043" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ddsport.png",DD SPORTS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373043
+
+#EXTINF:-1 tvg-id="1433178" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD TRIPURA.png",DD TRIPURA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433178
+
+#EXTINF:-1 tvg-id="373041" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ddup.png",DD UP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373041
+
+#EXTINF:-1 tvg-id="373040" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/DD_Urdu.png",DD URDU
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373040
+
+#EXTINF:-1 tvg-id="1433176" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD UTTARAKHAND.png",DD UTTARAKHAND
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433176
+
+#EXTINF:-1 tvg-id="1433175" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DD YADAGIRI.png",DD YADAGIRI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433175
+
+#EXTINF:-1 tvg-id="1433193" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DHINCHAK 2 MOVIES.png",DHINCHAK 2 MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433193
+
+#EXTINF:-1 tvg-id="372940" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/DILLI AAJ TAKK.png",DILLI AAJ TAKK
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372940
+
+#EXTINF:-1 tvg-id="1433213" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DISCOVERY ID.png",DISCOVERY ID HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433213
+
+#EXTINF:-1 tvg-id="372928" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/2016_Discovery_Kids_logo.svg.png",DISCOVERY KIDS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372928
+
+#EXTINF:-1 tvg-id="373036" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Discovery_HD_World.png",DISCOVERY WORLD HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373036
+
+#EXTINF:-1 tvg-id="372988" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/DISH CINE ACTIVE.png",DISH CINE ACTIVE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372988
+
+#EXTINF:-1 tvg-id="372979" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/disneyinternational.png",DISNEY INTERNATIONAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372979
+
+#EXTINF:-1 tvg-id="1433165" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/DISNEY JUNIOR.png",DISNEY JUNIOR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433165
+
+#EXTINF:-1 tvg-id="372986" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/DISNEY SD.png",DISNEY SD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372986
+
+#EXTINF:-1 tvg-id="372974" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/DisneyXD.png",DISNEY XD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372974
+
+#EXTINF:-1 tvg-id="372914" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Divya.png",DIVYA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372914
+
+#EXTINF:-1 tvg-id="372932" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/E!_News_2020_logo.png",E NEWS 24
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372932
+
+#EXTINF:-1 tvg-id="373035" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/E24-TV-Channel.png",E24
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373035
+
+#EXTINF:-1 tvg-id="1433198" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ENTER 10.png",ENTER 10
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433198
+
+#EXTINF:-1 tvg-id="373034" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/enter10.png",ENTER 10 MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373034
+
+#EXTINF:-1 tvg-id="373033" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/epic.png",EPIC HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373033
+
+#EXTINF:-1 tvg-id="1433246" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ET NOW.png",ET NOW
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433246
+
+#EXTINF:-1 tvg-id="372987" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/evergreenclassic.png",EVERGREEN CLASSIC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372987
+
+#EXTINF:-1 tvg-id="1433205" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/FIRANGI.png",FIRANGI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433205
+
+#EXTINF:-1 tvg-id="1433197" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/FIRST INDIA NEWS.png",FIRST INDIA NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433197
+
+#EXTINF:-1 tvg-id="372942" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/foodfood.png",FOOD FOOD HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372942
+
+#EXTINF:-1 tvg-id="1433194" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/GOLDMINE MOVIES.png",GOLDMINE MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433194
+
+#EXTINF:-1 tvg-id="372941" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/krishna.png",HARE KRSNA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372941
+
+#EXTINF:-1 tvg-id="1433224" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/HINDI KHABAR.png",HINDI KHABAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433224
+
+#EXTINF:-1 tvg-id="1433160" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/HINDI TIMES.png",HINDI TIMES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433160
+
+#EXTINF:-1 tvg-id="373031" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/History_TV18_29.png",HISTORY TV 18 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373031
+
+#EXTINF:-1 tvg-id="373030" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/housefullaction.png",HOUSEFULL ACTION
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373030
+
+#EXTINF:-1 tvg-id="373029" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/hungamaBhakti_Sagar_TV.png",HUNGAMA BHAKTI SAGAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373029
+
+#EXTINF:-1 tvg-id="373028" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/hungamadilse.png",HUNGAMA DIL SE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373028
+
+#EXTINF:-1 tvg-id="373027" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/hungamakadakhits.png",HUNGAMA KADAK HITS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373027
+
+#EXTINF:-1 tvg-id="1433211" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/HUNGAMA KIDS.png",HUNGAMA KIDS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433211
+
+#EXTINF:-1 tvg-id="373026" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/HUNGAMA NAZRANA HD.png",HUNGAMA NAZRANA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373026
+
+#EXTINF:-1 tvg-id="373025" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/HUNGAMA POP PATAKA HD.png",HUNGAMA POP PATAKA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373025
+
+#EXTINF:-1 tvg-id="372947" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ibc24.png",IBC 24
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372947
+
+#EXTINF:-1 tvg-id="1433169" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/IDN LOKMAT.png",IDN LOKMAT
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433169
+
+#EXTINF:-1 tvg-id="372969" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/INDIA NEWS.png",INDIA NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372969
+
+#EXTINF:-1 tvg-id="1433167" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/INDIA NEWS HARYANA.png",INDIA NEWS HARYANA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433167
+
+#EXTINF:-1 tvg-id="372964" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/INDIA NEWS MP.png",INDIA NEWS MP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372964
+
+#EXTINF:-1 tvg-id="372960" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Inews_Rajasthan.png",INDIA NEWS RAJASTHAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372960
+
+#EXTINF:-1 tvg-id="372963" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/ZEE NEWS.png",INDIA NEWS UP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372963
+
+#EXTINF:-1 tvg-id="372934" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/india-today.png",INDIA TODAY
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372934
+
+#EXTINF:-1 tvg-id="372968" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/INDIA TV.png",INDIA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372968
+
+#EXTINF:-1 tvg-id="1433228" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/INDIA VOICE.png",INDIA VOICE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433228
+
+#EXTINF:-1 tvg-id="1433209" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/INDIA WIZ.png",INDIA WIZ
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433209
+
+#EXTINF:-1 tvg-id="1433191" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ISHAARA TV.png",ISHAARA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433191
+
+#EXTINF:-1 tvg-id="372973" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Ishwar.png",ISHWAR TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372973
+
+#EXTINF:-1 tvg-id="1433239" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/JAN TV.png",JAN TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433239
+
+#EXTINF:-1 tvg-id="1433226" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/JANTA TV.png",JANTA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433226
+
+#EXTINF:-1 tvg-id="1433168" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/KRISHNA VANI.png",KRISHNA VANI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433168
+
+#EXTINF:-1 tvg-id="372917" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ibnlokmat.png",LOKSHAHI NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372917
+
+#EXTINF:-1 tvg-id="373008" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Maha_Movie.png",MAHA MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373008
+
+#EXTINF:-1 tvg-id="372958" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/mahaanews.png",MAHA NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372958
+
+#EXTINF:-1 tvg-id="1433196" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/MANORANJAN GRAND.png",MANORANJAN GRAND
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433196
+
+#EXTINF:-1 tvg-id="372966" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/mastiii-logo-mew.png",MASTII
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372966
+
+#EXTINF:-1 tvg-id="1433237" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/MH1 NEWS.png",MH1 NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433237
+
+#EXTINF:-1 tvg-id="1433199" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/MH1 SHRADDHA 4.png",MH1 SHRADDHA 4
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433199
+
+#EXTINF:-1 tvg-id="373023" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/miniplex.png",MINIPLEX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373023
+
+#EXTINF:-1 tvg-id="372922" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/mirrornow.png",MIRROR NOW
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372922
+
+#EXTINF:-1 tvg-id="372980" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/mnplus.png",MN PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372980
+
+#EXTINF:-1 tvg-id="372982" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/MNX_new_logo.png",MNX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372982
+
+#EXTINF:-1 tvg-id="372991" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/moviehouse.png",MOVIE PLUS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372991
+
+#EXTINF:-1 tvg-id="373022" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/MOVIES ACTIVE.png",MOVIES ACTIVE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373022
+
+#EXTINF:-1 tvg-id="372981" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Movies_Now_HD.png",MOVIES NOW HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372981
+
+#EXTINF:-1 tvg-id="1433225" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/MTUNES PLUS.png",MTUNES PLUS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433225
+
+#EXTINF:-1 tvg-id="373021" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/MTVBeats.png",MTV BEATS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373021
+
+#EXTINF:-1 tvg-id="373020" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Logo_mtv_plus.png",MTV PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373020
+
+#EXTINF:-1 tvg-id="1433162" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/MTV PLUS.png",MTV PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433162
+
+#EXTINF:-1 tvg-id="1433242" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/MTV PLUS.png",MTV PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433242
+
+#EXTINF:-1 tvg-id="373019" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Music_India.png",MUSIC INDIA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373019
+
+#EXTINF:-1 tvg-id="373018" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/National_Geographic_Wild_logo.svg.png",NAT GEO WILD HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373018
+
+#EXTINF:-1 tvg-id="373017" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/National_Geographic_Channel_HD.png",NATIONAL GEOGRAPHIC HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373017
+
+#EXTINF:-1 tvg-id="1433235" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NAZARA TV.png",NAZARA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433235
+
+#EXTINF:-1 tvg-id="372935" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/NDTV_247.png",NDTV 24x7
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372935
+
+#EXTINF:-1 tvg-id="372949" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Ndtv-good-times-new-logo.png",NDTV GOOD TIMES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372949
+
+#EXTINF:-1 tvg-id="372965" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/NDTV_India_Logo.svg.png",NDTV INDIA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372965
+
+#EXTINF:-1 tvg-id="372936" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/NDTV_Profit.png",NDTV PROFIT
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372936
+
+#EXTINF:-1 tvg-id="1433231" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NEWS 18 BIHAR.png",NEWS 18 BIHAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433231
+
+#EXTINF:-1 tvg-id="373015" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/news18.png",NEWS 18 INDIA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373015
+
+#EXTINF:-1 tvg-id="372937" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/news18.png",NEWS 18 LIVE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372937
+
+#EXTINF:-1 tvg-id="1433232" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NEWS 18 MP & CHATTISGARH.png",NEWS 18 MP & CHATTISGARH
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433232
+
+#EXTINF:-1 tvg-id="373014" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/NEWS 18 RAJASTHAN.png",NEWS 18 RAJASTHAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373014
+
+#EXTINF:-1 tvg-id="1433233" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NEWS 18 UP & UK.png",NEWS 18 UP & UK
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433233
+
+#EXTINF:-1 tvg-id="372946" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/News24.png",NEWS 24
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372946
+
+#EXTINF:-1 tvg-id="1433204" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NEWS INDIA 24x7.png",NEWS INDIA 24x7
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433204
+
+#EXTINF:-1 tvg-id="373013" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/news-nation-logo.png.png",NEWS NATION
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373013
+
+#EXTINF:-1 tvg-id="373012" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/newsstate.png",NEWS STATE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373012
+
+#EXTINF:-1 tvg-id="1433202" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NEWS STATE MP CHG.png",NEWS STATE MP CHG
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433202
+
+#EXTINF:-1 tvg-id="1433201" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NEWS STATE UP UK.png",NEWS STATE UP UK
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433201
+
+#EXTINF:-1 tvg-id="372961" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/NewsX_Logo.png",NEWS X
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372961
+
+#EXTINF:-1 tvg-id="372983" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/nichplus.png",NICK PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372983
+
+#EXTINF:-1 tvg-id="1433214" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/NICK PLUS.png",NICK PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433214
+
+#EXTINF:-1 tvg-id="372948" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/omshanti.png",OM SHANTI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372948
+
+#EXTINF:-1 tvg-id="373010" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/paras.png",PARAS TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373010
+
+#EXTINF:-1 tvg-id="373009" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/peaceofmind.png",PEACE OF MIND HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373009
+
+#EXTINF:-1 tvg-id="372993" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Pogo_2004.png",POGO KIDS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372993
+
+#EXTINF:-1 tvg-id="372939" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Prag_news.png",PRAG NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372939
+
+#EXTINF:-1 tvg-id="372920" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/prarthanabhawan.png",PRARTHANA BHAWAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372920
+
+#EXTINF:-1 tvg-id="1433245" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/RAJASTHAN PATRIKA.png",RAJASTHAN PATRIKA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433245
+
+#EXTINF:-1 tvg-id="372944" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Logo_of_Ramdhenu.png",RAMDHENU
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372944
+
+#EXTINF:-1 tvg-id="372938" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Rang_logo.png",RANG
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372938
+
+#EXTINF:-1 tvg-id="372943" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Rengonihi.png",RENGONI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372943
+
+#EXTINF:-1 tvg-id="372971" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Republic_Bharat.png",REPUBLIC BHARAT
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372971
+
+#EXTINF:-1 tvg-id="372918" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/REPUBLIC NEWS.png",REPUBLIC NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372918
+
+#EXTINF:-1 tvg-id="373011" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/republictv.png",REPUBLIC TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373011
+
+#EXTINF:-1 tvg-id="1433195" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SADHNA PRIME NEWS.png",SADHNA PRIME NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433195
+
+#EXTINF:-1 tvg-id="373016" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/SAHARA BIHAR.png",SAHARA BIHAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373016
+
+#EXTINF:-1 tvg-id="1433223" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA FILMY.png",SAHARA FILMY
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433223
+
+#EXTINF:-1 tvg-id="1433218" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA.png",SAHARA MP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433218
+
+#EXTINF:-1 tvg-id="1433219" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA.png",SAHARA MUMBAI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433219
+
+#EXTINF:-1 tvg-id="1433220" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA.png",SAHARA NCR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433220
+
+#EXTINF:-1 tvg-id="1433216" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA NEWS NATIONAL.png",SAHARA NEWS NATIONAL
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433216
+
+#EXTINF:-1 tvg-id="1433217" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA ONE.png",SAHARA ONE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433217
+
+#EXTINF:-1 tvg-id="1433222" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA SAMAY ALAMI.png",SAHARA SAMAY ALAMI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433222
+
+#EXTINF:-1 tvg-id="1433221" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SAHARA UP.png",SAHARA UP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433221
+
+#EXTINF:-1 tvg-id="372930" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sanskarv.png",SANSKAR TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372930
+
+#EXTINF:-1 tvg-id="372929" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Satsang.png",SATSANG TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372929
+
+#EXTINF:-1 tvg-id="1433227" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SHOWBOX.png",SHOWBOX
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433227
+
+#EXTINF:-1 tvg-id="1433200" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SHUBH CINEMA TV.png",SHUBH CINEMA TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433200
+
+#EXTINF:-1 tvg-id="372945" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Shubh.png",SHUBH TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372945
+
+#EXTINF:-1 tvg-id="373007" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/sohamtv.png",SOHAM TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373007
+
+#EXTINF:-1 tvg-id="373071" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/sony bbc earth HD.png",SONY BBC EARTH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373071
+
+#EXTINF:-1 tvg-id="943926" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/SET_India_logo.svg.png",SONY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943926
+
+#EXTINF:-1 tvg-id="373073" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373073
+
+#EXTINF:-1 tvg-id="373074" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
+
+#EXTINF:-1 tvg-id="373069" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/SONY PAL.png",SONY PAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373069
+
+#EXTINF:-1 tvg-id="943971" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/SONY PIX HD.png",SONY PIX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943971
+
+#EXTINF:-1 tvg-id="944604" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony-SAB-Logo-2017.png",SONY SAB HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944604
+
+#EXTINF:-1 tvg-id="944607" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/SONY WAH.png",SONY WAH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944607
+
+#EXTINF:-1 tvg-id="373067" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/SONY YAY.png",SONY YAY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373067
+
+#EXTINF:-1 tvg-id="943734" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/STAR BHARAT HD.png",STAR BHARAT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943734
+
+#EXTINF:-1 tvg-id="372926" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Star_Gold_2.png",STAR GOLD 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372926
+
+#EXTINF:-1 tvg-id="1433164" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/STAR GOLD ROMANCE.png",STAR GOLD ROMANCE
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433164
+
+#EXTINF:-1 tvg-id="373005" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/UTV_Action_Telugu.png",STAR GOLD THRILLIS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373005
+
+#EXTINF:-1 tvg-id="373032" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Fox_Life_logo.png",STAR LIFE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373032
+
+#EXTINF:-1 tvg-id="671571" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/STAR PLUS FHD.png",STAR PLUS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
+
+#EXTINF:-1 tvg-id="1752828",STAR PRAVAH
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1752828
+
+#EXTINF:-1 tvg-id="943925" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/STAR USTAV HD.png",STAR USTAV HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943925
+
+#EXTINF:-1 tvg-id="372959" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/SudarshanNewsLogo.png",SUDARSHAN NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372959
+
+#EXTINF:-1 tvg-id="1433212" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/SVBC.png",SVBC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433212
+
+#EXTINF:-1 tvg-id="372911" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/tarangmusic.png",TARANG MUSIC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372911
+
+#EXTINF:-1 tvg-id="372913" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/TARANG_TV.png",TARANG TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372913
+
+#EXTINF:-1 tvg-id="1433240" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/TATA PLAY CLASSIC CINEMA.png",TATA PLAY CLASSIC CINEMA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433240
+
+#EXTINF:-1 tvg-id="1433171" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/TATA PLAY CLASSIC TV.png",TATA PLAY CLASSIC TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433171
+
+#EXTINF:-1 tvg-id="1433172" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/TATA PLAY SOUTH TALKIES.png",TATA PLAY SOUTH TALKIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433172
+
+#EXTINF:-1 tvg-id="1433241" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/TATA PLAY THEATRE.png",TATA PLAY THEATRE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433241
+
+#EXTINF:-1 tvg-id="372978" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/tatasky.png",TATA SKY BOLLYWOOD HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372978
+
+#EXTINF:-1 tvg-id="373006" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/tatasky.png",TATA SKY BOLLYWOOD PREMIER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373006
+
+#EXTINF:-1 tvg-id="1433243" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/THE Q YOU.png",THE Q YOU HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433243
+
+#EXTINF:-1 tvg-id="372984" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/timesnow.png",TIMES NOW HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372984
+
+#EXTINF:-1 tvg-id="1433192" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/TIMES NOW NAVBHARAT.png",TIMES NOW NAVBHARAT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433192
+
+#EXTINF:-1 tvg-id="1433203" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/TOTAL TV HARYANA.png",TOTAL TV HARYANA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433203
+
+#EXTINF:-1 tvg-id="373004" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/UTV_HD_India.png",UTV HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373004
+
+#EXTINF:-1 tvg-id="372975" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utv-movies.png",UTV MOVIES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372975
+
+#EXTINF:-1 tvg-id="373003" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/vedictv.png",VEDIC TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373003
+
+#EXTINF:-1 tvg-id="1433244" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/VTV CANADA.png",VTV CANADA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433244
+
+#EXTINF:-1 tvg-id="373002" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/wowcinema.png",WOW CINEMA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373002
+
+#EXTINF:-1 tvg-id="373001" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeeanmol.png",ZEE ANMOL
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373001
+
+#EXTINF:-1 tvg-id="373000" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Zee-anmol-cinema.png",ZEE ANMOL CINEMA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373000
+
+#EXTINF:-1 tvg-id="372999" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/1024px-Zee_Hindustan_Logo.png",ZEE BHARAT
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372999
+
+#EXTINF:-1 tvg-id="372924" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ZeeETCBollywoodLogo.png",ZEE BOLLYWOOD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372924
+
+#EXTINF:-1 tvg-id="372931" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zee-business.png",ZEE BUSINESS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372931
+
+#EXTINF:-1 tvg-id="1433247" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ZEE CINEMA INTERNATIONAL.png",ZEE CINEMA INTERNATIONAL
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433247
+
+#EXTINF:-1 tvg-id="372962" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/ZEE DELHI HARYANA.png",ZEE DELHI HARYANA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372962
+
+#EXTINF:-1 tvg-id="1433163" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ZEE GANGA.png",ZEE GANGA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433163
+
+#EXTINF:-1 tvg-id="1433170" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ZEE KALINGA.png",ZEE KALINGA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433170
+
+#EXTINF:-1 tvg-id="372998" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/ZEE NEWS.png",ZEE NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372998
+
+#EXTINF:-1 tvg-id="372997" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/ZEE NEWS BIHAR.png",ZEE NEWS BIHAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372997
+
+#EXTINF:-1 tvg-id="372915" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/ZEE NEWS.png",ZEE NEWS MP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372915
+
+#EXTINF:-1 tvg-id="372996" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeenews.png",ZEE NEWS MP/CHATTISGARH
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372996
+
+#EXTINF:-1 tvg-id="372995" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA/ZEE NEWS UP.png",ZEE NEWS UP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372995
+
+#EXTINF:-1 tvg-id="372994" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Zee-rajasthan-plus.png",ZEE RAJASTHAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372994
+
+#EXTINF:-1 tvg-id="372919" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Patrika-rajasthan-in.png",ZEE RAJASTHAN NEWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372919
+
+#EXTINF:-1 tvg-id="372921" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeeyuva.png",ZEE YUVA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372921
+
+#EXTINF:-1 tvg-id="1433161" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA/ZEE ZEST.png",ZEE ZEST HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433161
+
+#EXTINF:-1 tvg-id="373061" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zoom.png",ZOOM TV HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373061
+
+#EXTINF:-1 tvg-id="733996" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ABHAY DEOL HD.png",ABHAY DEOL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733996
+
+#EXTINF:-1 tvg-id="733995" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ABHISHEK BACHCHAN HD.png",ABHISHEK BACHCHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733995
+
+#EXTINF:-1 tvg-id="733994" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AFTAB SHIVDASANI HD.png",AFTAB SHIVDASANI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733994
+
+#EXTINF:-1 tvg-id="733993" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AJAY DEVGAN HD.png",AJAY DEVGAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733993
+
+#EXTINF:-1 tvg-id="733992" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AKSHAY KUMAR HD.png",AKSHAY KUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733992
+
+#EXTINF:-1 tvg-id="733990" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ALKA YAGNIK 4K (2).png",AMIR KHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733990
+
+#EXTINF:-1 tvg-id="733989" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AMITABH BACHCHAN HD.png",AMITABH BACHCHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733989
+
+#EXTINF:-1 tvg-id="733927" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AMRISH PURI.png",AMRISH PURI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733927
+
+#EXTINF:-1 tvg-id="733987" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ANIL KAPOOR HD.png",ANIL KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733987
+
+#EXTINF:-1 tvg-id="733973" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ANUPAM KHER HD.png",ANUPAM KHER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733973
+
+#EXTINF:-1 tvg-id="733986" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ASHUTOSH RANA HD.png",ASHUTOSH RANA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733986
+
+#EXTINF:-1 tvg-id="733985" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AYUSHMANN KHURRANA HD.png",AYUSHMANN KHURRANA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733985
+
+#EXTINF:-1 tvg-id="733929" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BHARAT BHUSHAN HD.png",BHARAT BHUSHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733929
+
+#EXTINF:-1 tvg-id="733984" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BOBBY DEOL HD.png",BOBBY DEOL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733984
+
+#EXTINF:-1 tvg-id="733983" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BOMAN IRANI HD.png",BOMAN IRANI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733983
+
+#EXTINF:-1 tvg-id="733928" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DEV ANAND HD.png",DEV ANAND HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733928
+
+#EXTINF:-1 tvg-id="733982" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DHARMENDRA HD.png",DHARMENDRA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733982
+
+#EXTINF:-1 tvg-id="733981" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DILIP KUMAR HD.png",DILIP KUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733981
+
+#EXTINF:-1 tvg-id="733979" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/EMRAAN HASHMI HD.png",EMRAAN HASHMI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733979
+
+#EXTINF:-1 tvg-id="733978" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FARHAN AKHTAR HD.png",FARHAN AKHTAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733978
+
+#EXTINF:-1 tvg-id="733974" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FEROZ KHAN HD.png",FEROZ KHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733974
+
+#EXTINF:-1 tvg-id="733977" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/GOVINDA HD.png",GOVINDA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733977
+
+#EXTINF:-1 tvg-id="733976" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/GULSHAN GROVER HD.png",GULSHAN GROVER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733976
+
+#EXTINF:-1 tvg-id="733975" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/HRITHIK ROSHAN HD.png",HRITHIK ROSHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733975
+
+#EXTINF:-1 tvg-id="733972" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JACKIE SHROFF HD.png",JACKIE SHROFF HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733972
+
+#EXTINF:-1 tvg-id="733971" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JHONNY LEVER HD.png",JHONNY LEVER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733971
+
+#EXTINF:-1 tvg-id="733970" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JOHN ABRAHAM HD.png",JOHN ABRAHAM HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733970
+
+#EXTINF:-1 tvg-id="733988" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JOHNY WALKER HD.png",JOHNY WALKER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733988
+
+#EXTINF:-1 tvg-id="733968" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KADER KHAN HD.png",KADER KHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733968
+
+#EXTINF:-1 tvg-id="733967" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KAY KAY MENON HD.png",KAY KAY MENON HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733967
+
+#EXTINF:-1 tvg-id="733930" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KISHORE KUMAR.png",KISHORE KUMAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733930
+
+#EXTINF:-1 tvg-id="733966" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MITHUN CHAKRABORTY HD.png",MITHUN CHAKRABORTY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733966
+
+#EXTINF:-1 tvg-id="733931" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MIX HD.png",MIX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733931
+
+#EXTINF:-1 tvg-id="733965" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NANA PATEKAR HD.png",NANA PATEKAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733965
+
+#EXTINF:-1 tvg-id="733932" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NASEERDDIN SHAH HD.png",NASEERDDIN SHAH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733932
+
+#EXTINF:-1 tvg-id="733964" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NAWAZUDDIN SIDDIQIU HD.png",NAWAZUDDIN SIDDIQIU HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733964
+
+#EXTINF:-1 tvg-id="733980" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/OM PURI HD.png",OM PURI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733980
+
+#EXTINF:-1 tvg-id="733963" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PANKAJ TRIPATHI HD.png",PANKAJ TRIPATHI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733963
+
+#EXTINF:-1 tvg-id="733962" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PARESH RAWAL HD.png",PARESH RAWAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733962
+
+#EXTINF:-1 tvg-id="733961" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PREM CHOPRA HD.png",PREM CHOPRA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733961
+
+#EXTINF:-1 tvg-id="733943" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAAJ KUMAR HD.png",RAAJ KUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733943
+
+#EXTINF:-1 tvg-id="733969" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAJ BABBAR HD.png",RAJ BABBAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733969
+
+#EXTINF:-1 tvg-id="733934" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAJENDRA KUMAR HD.png",RAJENDRA KUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733934
+
+#EXTINF:-1 tvg-id="733960" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAJESH KHANNA HD.png",RAJESH KHANNA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733960
+
+#EXTINF:-1 tvg-id="733959" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAJKUMMAR RAO HD.png",RAJKUMMAR RAO HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733959
+
+#EXTINF:-1 tvg-id="733958" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RANBIR KAPOOR HD.png",RANBIR KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733958
+
+#EXTINF:-1 tvg-id="733957" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RANDEEP HOODA HD.png",RANDEEP HOODA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733957
+
+#EXTINF:-1 tvg-id="733956" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RANVEER SINGH HD.png",RANVEER SINGH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733956
+
+#EXTINF:-1 tvg-id="733955" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RISHI KAPOOR HD.png",RISHI KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733955
+
+#EXTINF:-1 tvg-id="733954" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RITEISH DESHMUKH HD.png",RITEISH DESHMUKH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733954
+
+#EXTINF:-1 tvg-id="733933" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SADASHIV AMRAPURKAR HD.png",SADASHIV AMRAPURKAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733933
+
+#EXTINF:-1 tvg-id="733952" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SAIF ALI KHAN HD.png",SAIF ALI KHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733952
+
+#EXTINF:-1 tvg-id="733951" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SALMAN KHAN HD.png",SALMAN KHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733951
+
+#EXTINF:-1 tvg-id="733950" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SANJAY DUTT HD.png",SANJAY DUTT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733950
+
+#EXTINF:-1 tvg-id="733949" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SANJAY MISHRA HD.png",SANJAY MISHRA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733949
+
+#EXTINF:-1 tvg-id="733948" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAHID KAPOOR HD.png",SHAHID KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733948
+
+#EXTINF:-1 tvg-id="733947" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAHRUKH KHAN HD.png",SHAHRUKH KHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733947
+
+#EXTINF:-1 tvg-id="733946" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAKTI KAPOOR HD.png",SHAKTI KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733946
+
+#EXTINF:-1 tvg-id="733991" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMMI KAPOOR HD.png",SHAMMI KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733991
+
+#EXTINF:-1 tvg-id="733945" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHARMAN JOSHI HD.png",SHARMAN JOSHI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733945
+
+#EXTINF:-1 tvg-id="733998" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHASHI KAPOOR HD.png",SHASHI KAPOOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733998
+
+#EXTINF:-1 tvg-id="733944" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHATRUGHAN SINHA HD.png",SHATRUGHAN SINHA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733944
+
+#EXTINF:-1 tvg-id="733997" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SONU SOOD HD.png",SONU SOOD HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733997
+
+#EXTINF:-1 tvg-id="733942" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SUNIEL SHETTY HD.png",SUNIEL SHETTY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733942
+
+#EXTINF:-1 tvg-id="733941" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SUNNY DEOL HD.png",SUNNY DEOL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733941
+
+#EXTINF:-1 tvg-id="733940" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SUSHANT SINGH RAJPUT HD.png",SUSHANT SINGH RAJPUT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733940
+
+#EXTINF:-1 tvg-id="733939" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/TIGER SHROFF HD.png",TIGER SHROFF HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733939
+
+#EXTINF:-1 tvg-id="733938" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/VARUN DHAWAN HD.png",VARUN DHAWAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733938
+
+#EXTINF:-1 tvg-id="733937" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/VIDUT JAMMWAL HD.png",VIDUT  JAMMWAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733937
+
+#EXTINF:-1 tvg-id="733936" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/VINOD KHANNA HD.png",VINOD KHANNA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733936
+
+#EXTINF:-1 tvg-id="733935" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/VIVEK OBEROI HD.png",VIVEK OBEROI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733935
+
+#EXTINF:-1 tvg-id="734104" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PANKAJ UDAS 4K.png",PANKAJ UDAS 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734104
+
+#EXTINF:-1 tvg-id="734097" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/A. R. RAHMAN HD.png",A. R. RAHMAN | HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734097
+
+#EXTINF:-1 tvg-id="734094" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ABHIJEET BHATTACHARYA HD.png",ABHIJEET BHATTACHARYA | HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734094
+
+#EXTINF:-1 tvg-id="734087" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ANKIT TIWARI 4K.png",ANKIT TIWARI 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734087
+
+#EXTINF:-1 tvg-id="734083" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ANURADHA PAUDWAL HD.png",ANURADHA PAUDWAL | HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734083
+
+#EXTINF:-1 tvg-id="734088" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ARMAN MALIK 4K.png",ARMAN MALIK 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734088
+
+#EXTINF:-1 tvg-id="734082" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ASHA BHOSLE 2 HD.png",ASHA BHOSLE 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734082
+
+#EXTINF:-1 tvg-id="734089" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ASHA BHOSLE 4K.png",ASHA BHOSLE 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734089
+
+#EXTINF:-1 tvg-id="734115" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FEMALE SINGER HD 1.png",FEMALE SINGER HD | 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734115
+
+#EXTINF:-1 tvg-id="734112" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FEMALE SINGER HD 1.png",FEMALE SINGER HD | 2
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734112
+
+#EXTINF:-1 tvg-id="734110" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FEMALE SINGER HD 1.png",FEMALE SONG
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734110
+
+#EXTINF:-1 tvg-id="734107" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FEMALE SINGER HD 1.png",FEMALE SONG | 2
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734107
+
+#EXTINF:-1 tvg-id="734105" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FEMALE SINGER HD 1.png",FEMALE SONG | 3
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734105
+
+#EXTINF:-1 tvg-id="734090" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JASPINDER NARULA 4K.png",JASPINDER NARULA 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734090
+
+#EXTINF:-1 tvg-id="734091" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JUBIN NAUTIYAL 4K.png",JUBIN NAUTIYAL 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734091
+
+#EXTINF:-1 tvg-id="734092" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/K S CHITHRA 4K.png",K S CHITHRA 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734092
+
+#EXTINF:-1 tvg-id="734093" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KAVITA KRISHNAMURTI 4K.png",KAVITA KRISHNAMURTI 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734093
+
+#EXTINF:-1 tvg-id="734095" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KK 4K.png",KK 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734095
+
+#EXTINF:-1 tvg-id="734096" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KUNAL GANJAWALA 4K.png",KUNAL GANJAWALA 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734096
+
+#EXTINF:-1 tvg-id="734084" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MALE SINGER HD.png",MALE SINGER | HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734084
+
+#EXTINF:-1 tvg-id="734100" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MALE SINGER HD.png",MALE SONGS | 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734100
+
+#EXTINF:-1 tvg-id="734098" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MAMTA SHARMA 4K.png",MAMTA SHARMA 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734098
+
+#EXTINF:-1 tvg-id="734099" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MANHAR UDHAS 4K.png",MANHAR UDHAS 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734099
+
+#EXTINF:-1 tvg-id="734101" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MONALI THAKUR 4K.png",MONALI THAKUR 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734101
+
+#EXTINF:-1 tvg-id="734109" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NABEEL SHAUKAT HD.png",NABEEL SHAUKAT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734109
+
+#EXTINF:-1 tvg-id="734102" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NEETI MOHAN 4K.png",NEETI MOHAN 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734102
+
+#EXTINF:-1 tvg-id="734103" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PALAK MUCHHAL 4K.png",PALAK MUCHHAL 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734103
+
+#EXTINF:-1 tvg-id="734106" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SADHANA SARGAM 4K.png",SADHANA SARGAM 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734106
+
+#EXTINF:-1 tvg-id="734108" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHANKAR MAHADEVAN 4K.png",SHANKAR MAHADEVAN 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734108
+
+#EXTINF:-1 tvg-id="734111" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHREYA GHOSHAL 4K.png",SHREYA GHOSHAL 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734111
+
+#EXTINF:-1 tvg-id="734085" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SUNIDHI CHAUHAN 4K.png",SUNIDHI CHAUHAN 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734085
+
+#EXTINF:-1 tvg-id="734113" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/TONY KAKKAR 4K.png",TONY KAKKAR 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734113
+
+#EXTINF:-1 tvg-id="734114" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/TULSI KUMAR 4K.png",TULSI KUMAR 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734114
+
+#EXTINF:-1 tvg-id="734116" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/UDIT NARAYAN 4K.png",UDIT NARAYAN 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734116
+
+#EXTINF:-1 tvg-id="734117" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/VISHAL DADLANI 4K.png",VISHAL DADLANI 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734117
+
+#EXTINF:-1 tvg-id="734118" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ZUBEEN GARG 4K.png",ZUBEEN GARG 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734118
+
+#EXTINF:-1 tvg-id="372910" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Zee_Sarthak.png",ZEE SARTHAK
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372910
+
+#EXTINF:-1 tvg-id="733905" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733905
+
+#EXTINF:-1 tvg-id="733907" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO COMEDY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733907
+
+#EXTINF:-1 tvg-id="733906" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO CRIME  CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733906
+
+#EXTINF:-1 tvg-id="733909" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733909
+
+#EXTINF:-1 tvg-id="733910" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO FANTASY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733910
+
+#EXTINF:-1 tvg-id="733911" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO HISTORY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733911
+
+#EXTINF:-1 tvg-id="733912" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO HORROR CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733912
+
+#EXTINF:-1 tvg-id="733913" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO MUSICAL CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733913
+
+#EXTINF:-1 tvg-id="733914" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO MYSTERY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733914
+
+#EXTINF:-1 tvg-id="733908" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733908
+
+#EXTINF:-1 tvg-id="733915" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMROO THRILLER CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733915
+
+#EXTINF:-1 tvg-id="733892" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733892
+
+#EXTINF:-1 tvg-id="733897" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC ACTION COMEDY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733897
+
+#EXTINF:-1 tvg-id="733898" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC ACTION CRIME CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733898
+
+#EXTINF:-1 tvg-id="733899" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC COMEDY COMEDY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733899
+
+#EXTINF:-1 tvg-id="733900" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733900
+
+#EXTINF:-1 tvg-id="733901" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC DRAMA ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733901
+
+#EXTINF:-1 tvg-id="733902" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733902
+
+#EXTINF:-1 tvg-id="733903" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC MUSICAL CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733903
+
+#EXTINF:-1 tvg-id="733904" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733904
+
+#EXTINF:-1 tvg-id="733894" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733894
+
+#EXTINF:-1 tvg-id="733895" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733895
+
+#EXTINF:-1 tvg-id="733893" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA MIX CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733893
+
+#EXTINF:-1 tvg-id="733896" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA THRILLER CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733896
+
+#EXTINF:-1 tvg-id="734337" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734337
+
+#EXTINF:-1 tvg-id="734351" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA 2020-2022 CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734351
+
+#EXTINF:-1 tvg-id="734352" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA ACTION CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734352
+
+#EXTINF:-1 tvg-id="734354" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734354
+
+#EXTINF:-1 tvg-id="734349" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA CLASSIC ACTION DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734349
+
+#EXTINF:-1 tvg-id="734350" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734350
+
+#EXTINF:-1 tvg-id="734353" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA CLASSIC FAMILY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734353
+
+#EXTINF:-1 tvg-id="734348" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA COMEDY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734348
+
+#EXTINF:-1 tvg-id="734347" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA CRIME CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734347
+
+#EXTINF:-1 tvg-id="734342" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734342
+
+#EXTINF:-1 tvg-id="734343" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734343
+
+#EXTINF:-1 tvg-id="734340" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA ROMANCE CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734340
+
+#EXTINF:-1 tvg-id="734341" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BANGLA THRILLER CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734341
+
+#EXTINF:-1 tvg-id="734345" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BENGALI CLASSIC ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734345
+
+#EXTINF:-1 tvg-id="734346" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BENGALI EROSNOW CLASSIC CINEMA 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734346
+
+#EXTINF:-1 tvg-id="734339" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734339
+
+#EXTINF:-1 tvg-id="734338" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",COMEDY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734338
+
+#EXTINF:-1 tvg-id="734336" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CRIME CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734336
+
+#EXTINF:-1 tvg-id="734335" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734335
+
+#EXTINF:-1 tvg-id="734334" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734334
+
+#EXTINF:-1 tvg-id="734333" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MYSTERY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734333
+
+#EXTINF:-1 tvg-id="734344" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",SINGER SONGS HD 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734344
+
+#EXTINF:-1 tvg-id="734356" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734356
+
+#EXTINF:-1 tvg-id="734355" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734355
+
+#EXTINF:-1 tvg-id="734382" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",2019-2020 CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734382
+
+#EXTINF:-1 tvg-id="734376" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734376
+
+#EXTINF:-1 tvg-id="734377" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION DRAMA HD.png",ACTION DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734377
+
+#EXTINF:-1 tvg-id="734383" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734383
+
+#EXTINF:-1 tvg-id="734381" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734381
+
+#EXTINF:-1 tvg-id="734378" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734378
+
+#EXTINF:-1 tvg-id="734379" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 4 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734379
+
+#EXTINF:-1 tvg-id="734380" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 5 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734380
+
+#EXTINF:-1 tvg-id="734375" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734375
+
+#EXTINF:-1 tvg-id="734370" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/COMEDY.png",COMEDY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734370
+
+#EXTINF:-1 tvg-id="734372" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734372
+
+#EXTINF:-1 tvg-id="734384" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",EROSNOW CLASSIC CINEMA 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734384
+
+#EXTINF:-1 tvg-id="734374" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION DRAMA HD.png",KANNADA DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734374
+
+#EXTINF:-1 tvg-id="734371" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MIX CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734371
+
+#EXTINF:-1 tvg-id="734373" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734373
+
+#EXTINF:-1 tvg-id="734304" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ANGRY BIRDS TOONS.png",ANGRY BIRDS TOONS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734304
+
+#EXTINF:-1 tvg-id="734318" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ANIMAL RHYMES.png",ANIMAL RHYMES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734318
+
+#EXTINF:-1 tvg-id="734327" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED 2020-2022 CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734327
+
+#EXTINF:-1 tvg-id="734332" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734332
+
+#EXTINF:-1 tvg-id="734330" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734330
+
+#EXTINF:-1 tvg-id="734329" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED CINEMA 4 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734329
+
+#EXTINF:-1 tvg-id="734331" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED CINMEA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734331
+
+#EXTINF:-1 tvg-id="734328" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED CLASSIC CINEMA  HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734328
+
+#EXTINF:-1 tvg-id="734305" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/AVATAR THE LAST AIRBENDER.png",AVATAR THE LAST AIRBENDER
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734305
+
+#EXTINF:-1 tvg-id="734317" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BABY ART FUN MIX.png",BABY ART FUN MIX
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734317
+
+#EXTINF:-1 tvg-id="734306" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BABY LOONEY TUNES.png",BABY LOONEY TUNES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734306
+
+#EXTINF:-1 tvg-id="734307" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BEN 10 HINDI.png",BEN 10 HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734307
+
+#EXTINF:-1 tvg-id="734313" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CHUCHU TV.png",CHUCHU TV
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734313
+
+#EXTINF:-1 tvg-id="734308" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DORAEMON HINDI.png",DORAEMON HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734308
+
+#EXTINF:-1 tvg-id="734309" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DUCK TALES.png",DUCK TALES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734309
+
+#EXTINF:-1 tvg-id="734310" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DUCK TALES.png",DUCK TALES-2017
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734310
+
+#EXTINF:-1 tvg-id="734324" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/FRUIT VEGETABLE RHYMES.png",FRUIT VEGETABLE RHYMES
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734324
+
+#EXTINF:-1 tvg-id="734311" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/GENERATOR REX HINDI.png",GENERATOR REX HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734311
+
+#EXTINF:-1 tvg-id="734325" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",KIDS CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734325
+
+#EXTINF:-1 tvg-id="734326" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",KIDS CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734326
+
+#EXTINF:-1 tvg-id="734312" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KUNG FU PANDA.png",KUNG FU PANDA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734312
+
+#EXTINF:-1 tvg-id="734322" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MASHA AND BEAR.png",MASHA AND BEAR
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734322
+
+#EXTINF:-1 tvg-id="734320" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NINJA HATTORI HINDI.png",NINJA HATTORI HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734320
+
+#EXTINF:-1 tvg-id="734321" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NINJA HATTORI HINDI.png",NINJA HATTORI RETURNS HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734321
+
+#EXTINF:-1 tvg-id="734319" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NURSERY RHYMES 1.png",NURSERY RHYMES 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734319
+
+#EXTINF:-1 tvg-id="734323" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PERMAN HINDI.png",PERMAN HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734323
+
+#EXTINF:-1 tvg-id="734314" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHINCHAN HINDI.png",SHINCHAN HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734314
+
+#EXTINF:-1 tvg-id="734315" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SLUGTERRA.png",SLUGTERRA
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734315
+
+#EXTINF:-1 tvg-id="734316" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SPIDER MAN.png",SPIDER MAN
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734316
+
+#EXTINF:-1 tvg-id="734359" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734359
+
+#EXTINF:-1 tvg-id="734357" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734357
+
+#EXTINF:-1 tvg-id="734358" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",LATEST CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734358
+
+#EXTINF:-1 tvg-id="734042" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",AASHRAM HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734042
+
+#EXTINF:-1 tvg-id="734028" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",AKOORI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734028
+
+#EXTINF:-1 tvg-id="734055" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ALT BALAJI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734055
+
+#EXTINF:-1 tvg-id="734047" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",AMAZON HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734047
+
+#EXTINF:-1 tvg-id="734002" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",APHRAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734002
+
+#EXTINF:-1 tvg-id="734032" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",AUTO SHANKAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734032
+
+#EXTINF:-1 tvg-id="734057" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BAARISH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734057
+
+#EXTINF:-1 tvg-id="734027" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BABBAR KA TABBAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734027
+
+#EXTINF:-1 tvg-id="734007" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BANDISH BANDITS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734007
+
+#EXTINF:-1 tvg-id="734041" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BHAUKAAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734041
+
+#EXTINF:-1 tvg-id="734026" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BOMBERS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734026
+
+#EXTINF:-1 tvg-id="734003" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BOSE DEAD OR ALIVE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734003
+
+#EXTINF:-1 tvg-id="734035" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BREATHE INTO THE SHADOWS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734035
+
+#EXTINF:-1 tvg-id="734004" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",BROKEN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734004
+
+#EXTINF:-1 tvg-id="734040" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",CHHATRASAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734040
+
+#EXTINF:-1 tvg-id="734058" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",DEV DD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734058
+
+#EXTINF:-1 tvg-id="734059" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",DILL HI TOU HAI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734059
+
+#EXTINF:-1 tvg-id="734018" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",EK THI BEGUM HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734018
+
+#EXTINF:-1 tvg-id="734045" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ENAAYA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734045
+
+#EXTINF:-1 tvg-id="734031" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ENGINEERING GIRLS
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734031
+
+#EXTINF:-1 tvg-id="734056" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",EROSNOW HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734056
+
+#EXTINF:-1 tvg-id="734046" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",FARZI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734046
+
+#EXTINF:-1 tvg-id="734025" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",FINGERTIP HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734025
+
+#EXTINF:-1 tvg-id="734063" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",FOUR MORE SHORT PLEASE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734063
+
+#EXTINF:-1 tvg-id="734024" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",GLITTER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734024
+
+#EXTINF:-1 tvg-id="734029" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",GODS OF DHARAMAPURI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734029
+
+#EXTINF:-1 tvg-id="734022" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",GULLAK HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734022
+
+#EXTINF:-1 tvg-id="734005" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",HAQ SE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734005
+
+#EXTINF:-1 tvg-id="734006" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",HAQ THE TEST CASE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734006
+
+#EXTINF:-1 tvg-id="734030" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",HIGH PRIESTESS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734030
+
+#EXTINF:-1 tvg-id="734008" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",HOSTEL DAZE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734008
+
+#EXTINF:-1 tvg-id="734049" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",HOTSTAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734049
+
+#EXTINF:-1 tvg-id="734021" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ISHQ AJJ KAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734021
+
+#EXTINF:-1 tvg-id="734023" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",JAMAI 2.0 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734023
+
+#EXTINF:-1 tvg-id="734009" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",KAISER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734009
+
+#EXTINF:-1 tvg-id="734064" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",KARRLE TU BHI MOHABAT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734064
+
+#EXTINF:-1 tvg-id="734060" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",KEHNY KO HUMSAFER HAI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734060
+
+#EXTINF:-1 tvg-id="734019" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",KOTA FACTORY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734019
+
+#EXTINF:-1 tvg-id="734010" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",LAAKHON MEIN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734010
+
+#EXTINF:-1 tvg-id="734020" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",LITTEL THINGS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734020
+
+#EXTINF:-1 tvg-id="734011" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",MADE IN HEAVEN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734011
+
+#EXTINF:-1 tvg-id="734017" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",METRO PARK HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734017
+
+#EXTINF:-1 tvg-id="734012" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",MODERN LOVE MUMBAI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734012
+
+#EXTINF:-1 tvg-id="734013" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",MUMBAI DIARIES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734013
+
+#EXTINF:-1 tvg-id="734050" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",MXPLAYER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734050
+
+#EXTINF:-1 tvg-id="734051" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",NETFLIX HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734051
+
+#EXTINF:-1 tvg-id="734039" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ONLY FOR SINGLES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734039
+
+#EXTINF:-1 tvg-id="734014" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",PAATAL LOK HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734014
+
+#EXTINF:-1 tvg-id="734015" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",PANCHAYAT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734015
+
+#EXTINF:-1 tvg-id="734038" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",PATI PATNI AUR WOH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734038
+
+#EXTINF:-1 tvg-id="734037" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",PAWAN AND POOJA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734037
+
+#EXTINF:-1 tvg-id="734061" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",PUNCH BEAT HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734061
+
+#EXTINF:-1 tvg-id="734053" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",SABKA NUMBER AYEGA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734053
+
+#EXTINF:-1 tvg-id="734054" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",SELECTION DAY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734054
+
+#EXTINF:-1 tvg-id="734034" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",SHRIKANT BASHIR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734034
+
+#EXTINF:-1 tvg-id="734048" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",SONYLIV HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734048
+
+#EXTINF:-1 tvg-id="734016" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",THE FAMILY MAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734016
+
+#EXTINF:-1 tvg-id="734043" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",TWISTED HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734043
+
+#EXTINF:-1 tvg-id="734062" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",VIRGIN BHASKAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734062
+
+#EXTINF:-1 tvg-id="734033" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",YOUR HONOR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734033
+
+#EXTINF:-1 tvg-id="734052" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ZEE5 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734052
+
+#EXTINF:-1 tvg-id="734036" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ZERO KMS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734036
+
+#EXTINF:-1 tvg-id="734044" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SERIES.png",ZINDABAAD HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734044
+
+#EXTINF:-1 tvg-id="734081" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ADNAN SAMI 4K.png",ADNAN SAMI 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734081
+
+#EXTINF:-1 tvg-id="734075" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ALKA YAGNIK 4K.png",ALKA YAGNIK 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734075
+
+#EXTINF:-1 tvg-id="734076" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ARIJIT SINGH 4K.png",ARIJIT SINGH 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734076
+
+#EXTINF:-1 tvg-id="734070" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/HIMESH RESHAMMIYA 4K.png",HIMESH RESHAMMIYA 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734070
+
+#EXTINF:-1 tvg-id="734079" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KISHORE KUMAR 4K.png",KISHORE KUMAR 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734079
+
+#EXTINF:-1 tvg-id="734080" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KUMAR SANU 4K.png",KUMAR SANU 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734080
+
+#EXTINF:-1 tvg-id="734074" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/LATA MANGESKHAR 4K.png",LATA MANGESKHAR 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734074
+
+#EXTINF:-1 tvg-id="734067" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MALE SINGER HD.png",MALE SINGER 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734067
+
+#EXTINF:-1 tvg-id="734072" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MOHIT CHAUHAN 4K.png",MOHIT CHAUHAN 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734072
+
+#EXTINF:-1 tvg-id="734078" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MUHAMMAD RAFI 4K.png",MUHAMMAD RAFI 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734078
+
+#EXTINF:-1 tvg-id="734071" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MUKESH 4K.png",MUKESH 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734071
+
+#EXTINF:-1 tvg-id="734068" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/NEHA KAKKAR 4K.png",NEHA KAKKAR 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734068
+
+#EXTINF:-1 tvg-id="734073" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAAN 4K.png",SHAAN 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734073
+
+#EXTINF:-1 tvg-id="734077" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SONU NIGAM 4K.png",SONU NIGAM 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734077
+
+#EXTINF:-1 tvg-id="734069" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SUKHWINDER SINGH 4K.png",SUKHWINDER SINGH 4K
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734069
+
+#EXTINF:-1 tvg-id="734065" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/TAMIL SONGS 2 HD.png",TAMIL SONGS 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734065
+
+#EXTINF:-1 tvg-id="734066" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SONGS HD.png",TELUGU SONGS 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734066
+
+#EXTINF:-1 tvg-id="734386" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ACTION CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734386
+
+#EXTINF:-1 tvg-id="734403" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734403
+
+#EXTINF:-1 tvg-id="734400" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 2 SD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734400
+
+#EXTINF:-1 tvg-id="734401" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 3 SD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734401
+
+#EXTINF:-1 tvg-id="734402" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 4 SD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734402
+
+#EXTINF:-1 tvg-id="734398" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734398
+
+#EXTINF:-1 tvg-id="734406" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 1 SD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734406
+
+#EXTINF:-1 tvg-id="734397" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734397
+
+#EXTINF:-1 tvg-id="734404" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/COMEDY.png",COMEDY CLIP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734404
+
+#EXTINF:-1 tvg-id="734392" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",COMEDY DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734392
+
+#EXTINF:-1 tvg-id="734405" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",COMEDY ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734405
+
+#EXTINF:-1 tvg-id="734394" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CRIME CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734394
+
+#EXTINF:-1 tvg-id="734389" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CRIME DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734389
+
+#EXTINF:-1 tvg-id="734388" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",DRAMA CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734388
+
+#EXTINF:-1 tvg-id="734391" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",DRAMA ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734391
+
+#EXTINF:-1 tvg-id="734393" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",DRAMA THRILLER CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734393
+
+#EXTINF:-1 tvg-id="734409" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DUBBED 1 HD.png",DUBBED 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734409
+
+#EXTINF:-1 tvg-id="734407" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",EROSNOW CLASSIC CINEMA 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734407
+
+#EXTINF:-1 tvg-id="734387" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734387
+
+#EXTINF:-1 tvg-id="734399" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",LATEST CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734399
+
+#EXTINF:-1 tvg-id="734408" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",LATEST CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734408
+
+#EXTINF:-1 tvg-id="734390" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MYSTERY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734390
+
+#EXTINF:-1 tvg-id="734396" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734396
+
+#EXTINF:-1 tvg-id="734385" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SONGS HD.png",SONGS HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734385
+
+#EXTINF:-1 tvg-id="734395" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",THRILLER CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734395
+
+#EXTINF:-1 tvg-id="734410" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MOVIES.png",TOP MOVIES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734410
+
+#EXTINF:-1 tvg-id="372676" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Aaj_Tak_Logo.png",AAJ TAK (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372676
+
+#EXTINF:-1 tvg-id="372674" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Aastha_Logo.svg.png",AASTHA (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372674
+
+#EXTINF:-1 tvg-id="372677" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/ABP_News.png",ABP NEWS (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372677
+
+#EXTINF:-1 tvg-id="372671" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/akaalchannel.png",AKAAL CHANNEL (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372671
+
+#EXTINF:-1 tvg-id="372683" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA EU/B4U MOVIES.png",B4U MOVIES (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372683
+
+#EXTINF:-1 tvg-id="372682" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/b4umusic.png",B4U MUSIC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372682
+
+#EXTINF:-1 tvg-id="372681" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/B4U_Plus.png",B4U PLUS (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372681
+
+#EXTINF:-1 tvg-id="372679" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/britasia.png",BRIT ASIA TV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372679
+
+#EXTINF:-1 tvg-id="372684" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Colors-cineplex%20(1).png",COLORS CINEPLEX HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372684
+
+#EXTINF:-1 tvg-id="824000" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/colors.png",COLORS FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=824000
+
+#EXTINF:-1 tvg-id="372688" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/colors.png",COLORS HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372688
+
+#EXTINF:-1 tvg-id="1646809" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/colors.png",COLORS HEVC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646809
+
+#EXTINF:-1 tvg-id="372685" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Colors_Rishtey_logo.png",COLORS RISHTEY TV HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372685
+
+#EXTINF:-1 tvg-id="372667" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/KTV_India_logo.png",KTV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372667
+
+#EXTINF:-1 tvg-id="372669" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/matv.png",MATV NATIONAL (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372669
+
+#EXTINF:-1 tvg-id="372675" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA EU/ndtv.png",NDTV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372675
+
+#EXTINF:-1 tvg-id="372673" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/PTC_Punjabi.png",PTC PUNJABI (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372673
+
+#EXTINF:-1 tvg-id="372668" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/republictv.png",REPUBLIC TV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372668
+
+#EXTINF:-1 tvg-id="372670" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sangat_TV_logo.png",SANGAT (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372670
+
+#EXTINF:-1 tvg-id="372672" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/sikhchannel.png",SIKH CHANNEL (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372672
+
+#EXTINF:-1 tvg-id="372678" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/siraj.png",SIRAJ TV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372678
+
+#EXTINF:-1 tvg-id="372689" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX 2 HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372689
+
+#EXTINF:-1 tvg-id="824001" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=824001
+
+#EXTINF:-1 tvg-id="372691" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372691
+
+#EXTINF:-1 tvg-id="1646810" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX HEVC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646810
+
+#EXTINF:-1 tvg-id="372686" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony-SAB-Logo-2017.png",SONY SAB HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372686
+
+#EXTINF:-1 tvg-id="824002" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA EU/sony entertainment.png",SONY TV FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=824002
+
+#EXTINF:-1 tvg-id="372693" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA EU/sony entertainment.png",SONY TV HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372693
+
+#EXTINF:-1 tvg-id="1646811" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/INDIA EU/sony entertainment.png",SONY TV HEVC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646811
+
+#EXTINF:-1 tvg-id="372697" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavbharat.png",UTSAV BHARAT HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372697
+
+#EXTINF:-1 tvg-id="823999" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavgold.png",UTSAV GOLD FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=823999
+
+#EXTINF:-1 tvg-id="372699" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavgold.png",UTSAV GOLD HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372699
+
+#EXTINF:-1 tvg-id="1646813" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavgold.png",UTSAV GOLD HEVC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646813
+
+#EXTINF:-1 tvg-id="824004" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Utsav_Plus_HD_logo.png",UTSAV PLUS FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=824004
+
+#EXTINF:-1 tvg-id="372701" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Utsav_Plus_HD_logo.png",UTSAV PLUS HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372701
+
+#EXTINF:-1 tvg-id="1646814" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Utsav_Plus_HD_logo.png",UTSAV PLUS HEVC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646814
+
+#EXTINF:-1 tvg-id="372695" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeecinema.png",ZEE CINEMA HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372695
+
+#EXTINF:-1 tvg-id="824003" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeetv.png",ZEE TV FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=824003
+
+#EXTINF:-1 tvg-id="728527" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeetv.png",ZEE TV HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=728527
+
+#EXTINF:-1 tvg-id="1646812" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeetv.png",ZEE TV HEVC
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
+
+#EXTINF:-1 tvg-id="372680" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Zing.png",ZING HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372680
+
+#EXTINF:-1 tvg-id="733716" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733716
+
+#EXTINF:-1 tvg-id="733704" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",2020-2022 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733704
+
+#EXTINF:-1 tvg-id="733732" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",2020-2022 CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733732
+
+#EXTINF:-1 tvg-id="733705" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",2020-2022 CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733705
+
+#EXTINF:-1 tvg-id="733663" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ACTION ADVENTURE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733663
+
+#EXTINF:-1 tvg-id="733667" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION.png",ACTION COMEDY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733667
+
+#EXTINF:-1 tvg-id="733668" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION.png",ACTION CRIME HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733668
+
+#EXTINF:-1 tvg-id="733671" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION.png",ACTION DRAMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733671
+
+#EXTINF:-1 tvg-id="733669" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION.png",ACTION DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733669
+
+#EXTINF:-1 tvg-id="733682" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ACTION MOVIES 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733682
+
+#EXTINF:-1 tvg-id="733670" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION.png",ACTION THRILLER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733670
+
+#EXTINF:-1 tvg-id="733683" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ADVENTURE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733683
+
+#EXTINF:-1 tvg-id="733677" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ANIMATED CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733677
+
+#EXTINF:-1 tvg-id="733654" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",AVERAGE CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733654
+
+#EXTINF:-1 tvg-id="733653" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",AVERAGE CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733653
+
+#EXTINF:-1 tvg-id="733652" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",AVERAGE CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733652
+
+#EXTINF:-1 tvg-id="733651" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",AVERAGE CINEMA 4 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733651
+
+#EXTINF:-1 tvg-id="733675" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",BIOGRAPHY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733675
+
+#EXTINF:-1 tvg-id="733926" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BOLLYWOOD CINEMA.png",BOLLYWOOD CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733926
+
+#EXTINF:-1 tvg-id="733925" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BOLLYWOOD CINEMA.png",BOLLYWOOD CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733925
+
+#EXTINF:-1 tvg-id="733924" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BOLLYWOOD CINEMA.png",BOLLYWOOD CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733924
+
+#EXTINF:-1 tvg-id="733923" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BOLLYWOOD CINEMA.png",BOLLYWOOD CINEMA 4HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733923
+
+#EXTINF:-1 tvg-id="733693" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CALSSIC ACTION DRAMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733693
+
+#EXTINF:-1 tvg-id="733707" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 10 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733707
+
+#EXTINF:-1 tvg-id="733706" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 11 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733706
+
+#EXTINF:-1 tvg-id="733715" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733715
+
+#EXTINF:-1 tvg-id="733714" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733714
+
+#EXTINF:-1 tvg-id="733713" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 4 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733713
+
+#EXTINF:-1 tvg-id="733712" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 5 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733712
+
+#EXTINF:-1 tvg-id="733711" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 6 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733711
+
+#EXTINF:-1 tvg-id="733710" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 7 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733710
+
+#EXTINF:-1 tvg-id="733709" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 8 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733709
+
+#EXTINF:-1 tvg-id="733708" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA 9 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733708
+
+#EXTINF:-1 tvg-id="733659" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CINEMA BLOCKBUSTER 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733659
+
+#EXTINF:-1 tvg-id="733691" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC ACTION COMEDY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733691
+
+#EXTINF:-1 tvg-id="733692" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC ACTION CRIME HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733692
+
+#EXTINF:-1 tvg-id="733718" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC ACTION DRAMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733718
+
+#EXTINF:-1 tvg-id="733694" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC ACTION DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733694
+
+#EXTINF:-1 tvg-id="733690" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC ACTION HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733690
+
+#EXTINF:-1 tvg-id="733695" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC ACTION THRILLER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733695
+
+#EXTINF:-1 tvg-id="733696" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC ADVENTURE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733696
+
+#EXTINF:-1 tvg-id="733731" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733731
+
+#EXTINF:-1 tvg-id="733722" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 10 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733722
+
+#EXTINF:-1 tvg-id="733721" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 11 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733721
+
+#EXTINF:-1 tvg-id="733720" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 12 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733720
+
+#EXTINF:-1 tvg-id="733719" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 13 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733719
+
+#EXTINF:-1 tvg-id="733730" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733730
+
+#EXTINF:-1 tvg-id="733729" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733729
+
+#EXTINF:-1 tvg-id="733728" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 4 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733728
+
+#EXTINF:-1 tvg-id="733727" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 5 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733727
+
+#EXTINF:-1 tvg-id="733726" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 6 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733726
+
+#EXTINF:-1 tvg-id="733725" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 7 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733725
+
+#EXTINF:-1 tvg-id="733724" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 8 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733724
+
+#EXTINF:-1 tvg-id="733723" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CLASSIC CINEMA 9 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733723
+
+#EXTINF:-1 tvg-id="733698" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC COMEDY DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733698
+
+#EXTINF:-1 tvg-id="733697" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC COMEDY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733697
+
+#EXTINF:-1 tvg-id="733699" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733699
+
+#EXTINF:-1 tvg-id="733700" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC DRAMA ROMANCE 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733700
+
+#EXTINF:-1 tvg-id="733701" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC DRAMA ROMANCE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733701
+
+#EXTINF:-1 tvg-id="733702" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC DRAMA THRILLER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733702
+
+#EXTINF:-1 tvg-id="733703" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CLASSIC.png",CLASSIC MUSIC HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733703
+
+#EXTINF:-1 tvg-id="733717" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",COMEDY CLIP
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733717
+
+#EXTINF:-1 tvg-id="733662" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/COMEDY.png",COMEDY DRAMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733662
+
+#EXTINF:-1 tvg-id="733681" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/COMEDY.png",COMEDY MOVIES 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733681
+
+#EXTINF:-1 tvg-id="733687" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",COMEDY ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733687
+
+#EXTINF:-1 tvg-id="733680" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",CRIME CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733680
+
+#EXTINF:-1 tvg-id="733679" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MOVIES.png",DRAMA MOVIES 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733679
+
+#EXTINF:-1 tvg-id="733688" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION DRAMA HD.png",DRAMA ROMANCE 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733688
+
+#EXTINF:-1 tvg-id="733689" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION DRAMA HD.png",DRAMA ROMANCE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733689
+
+#EXTINF:-1 tvg-id="733664" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ACTION DRAMA HD.png",DRAMA THRILLER HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733664
+
+#EXTINF:-1 tvg-id="733733" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",EROSNOW CINEMA HD 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733733
+
+#EXTINF:-1 tvg-id="733735" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",EROSNOW CLASSIC CINEMA HD 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733735
+
+#EXTINF:-1 tvg-id="733734" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",EROSNOW CLASSIC CINEMA HD 2
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733734
+
+#EXTINF:-1 tvg-id="733678" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",FAMILY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733678
+
+#EXTINF:-1 tvg-id="733686" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",FANTASY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733686
+
+#EXTINF:-1 tvg-id="733661" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",HISTORY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733661
+
+#EXTINF:-1 tvg-id="733657" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",HIT CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733657
+
+#EXTINF:-1 tvg-id="733656" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",HIT CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733656
+
+#EXTINF:-1 tvg-id="733655" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",HIT CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733655
+
+#EXTINF:-1 tvg-id="733676" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",HORROR CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733676
+
+#EXTINF:-1 tvg-id="733660" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MOVIE CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733660
+
+#EXTINF:-1 tvg-id="733674" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MOVIES.png",MUSICAL MOVIES HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733674
+
+#EXTINF:-1 tvg-id="733685" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MYSTERY CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733685
+
+#EXTINF:-1 tvg-id="733919" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",PEN CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733919
+
+#EXTINF:-1 tvg-id="733918" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",RAJSHRI CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733918
+
+#EXTINF:-1 tvg-id="733665" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ROMANCE CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733665
+
+#EXTINF:-1 tvg-id="733684" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",SCIFI CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733684
+
+#EXTINF:-1 tvg-id="733922" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMAROO CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733922
+
+#EXTINF:-1 tvg-id="733921" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMAROO CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733921
+
+#EXTINF:-1 tvg-id="733920" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHAMAROO.png",SHAMAROO CLASSIC CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733920
+
+#EXTINF:-1 tvg-id="733673" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",SPORTS CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733673
+
+#EXTINF:-1 tvg-id="733658" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",SUPER HIT CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733658
+
+#EXTINF:-1 tvg-id="733666" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",THRILLER CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733666
+
+#EXTINF:-1 tvg-id="733917" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC CINEMA MOVIES 1
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733917
+
+#EXTINF:-1 tvg-id="733916" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",ULTRA CLASSIC CINEMA MOVIES 2
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733916
+
+#EXTINF:-1 tvg-id="733672" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",WAR CINEMA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=733672
+
+#EXTINF:-1 tvg-id="734360" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JAGGESH HD.png",JAGGESH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734360
+
+#EXTINF:-1 tvg-id="734366" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/LOKESH HD.png",LOKESH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734366
+
+#EXTINF:-1 tvg-id="734361" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PRAJWAL DEVARAJ HD.png",PRAJWAL DEVARAJ HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734361
+
+#EXTINF:-1 tvg-id="734362" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PUNEETH RAJKUMAR HD.png",PUNEETH RAJKUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734362
+
+#EXTINF:-1 tvg-id="734367" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAJKUMAR HD.png",RAJKUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734367
+
+#EXTINF:-1 tvg-id="734363" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/RAMESH ARAVIND HD.png",RAMESH ARAVIND HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734363
+
+#EXTINF:-1 tvg-id="734368" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHANKAR NAG HD.png",SHANKAR NAG HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734368
+
+#EXTINF:-1 tvg-id="734364" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SHIVA RAJKUMAR HD.png",SHIVA RAJKUMAR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734364
+
+#EXTINF:-1 tvg-id="734365" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SUDEEPA HD.png",SUDEEPA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734365
+
+#EXTINF:-1 tvg-id="734369" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/VISHNU VARDHAN HD.png",VISHNU VARDHAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734369
+
+#EXTINF:-1 tvg-id="734203" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CINEMA 8 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734203
+
+#EXTINF:-1 tvg-id="734202" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CINEMA 9 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734202
+
+#EXTINF:-1 tvg-id="734208" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CLASSIC CINEMA 2 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734208
+
+#EXTINF:-1 tvg-id="734207" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CLASSIC CINEMA 3 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734207
+
+#EXTINF:-1 tvg-id="734206" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CLASSIC CINEMA 4 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734206
+
+#EXTINF:-1 tvg-id="734205" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CLASSIC CINEMA 5 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734205
+
+#EXTINF:-1 tvg-id="734204" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALAM CLASSIC CINEMA 6 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734204
+
+#EXTINF:-1 tvg-id="734209" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/CINEMA.png",MALAYALM CLASSIC CINEMA 1 HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734209
+
+#EXTINF:-1 tvg-id="734188" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/ADOOR BHASI HD.png",ADOOR BHASI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734188
+
+#EXTINF:-1 tvg-id="734201" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/BIRJU MENON HD.png",BIRJU MENON HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734201
+
+#EXTINF:-1 tvg-id="734200" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/DILEEP HD.png",DILEEP HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734200
+
+#EXTINF:-1 tvg-id="734187" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JAYAN HD.png",JAYAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734187
+
+#EXTINF:-1 tvg-id="734199" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/JAYASURYA HD.png",JAYASURYA HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734199
+
+#EXTINF:-1 tvg-id="734192" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/KALABHAVAN MANI HD.png",KALABHAVAN MANI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734192
+
+#EXTINF:-1 tvg-id="734197" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MADHU HD.png",MADHU HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734197
+
+#EXTINF:-1 tvg-id="734196" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MAMMOOTHY HD.png",MAMMOOTHY HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734196
+
+#EXTINF:-1 tvg-id="734198" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MOHANLAL HD.png",MOHANLAL HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734198
+
+#EXTINF:-1 tvg-id="734195" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MUKESH HD.png",MUKESH HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734195
+
+#EXTINF:-1 tvg-id="734191" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/MURALI HD.png",MURALI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734191
+
+#EXTINF:-1 tvg-id="734190" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/PREM NAZIR HD.png",PREM NAZIR HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734190
+
+#EXTINF:-1 tvg-id="734194" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SIDDIQUE HD.png",SIDDIQUE HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734194
+
+#EXTINF:-1 tvg-id="734193" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/SURESH GOPI HD.png",SURESH GOPI HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734193
+
+#EXTINF:-1 tvg-id="734189" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/HINDI INDIA PREMIUM/THILAKAN HD.png",THILAKAN HD
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=734189
+
+#EXTINF:-1 tvg-id="859003" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/colors.png",COLORS (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859003
+
+#EXTINF:-1 tvg-id="859005" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Colors-cineplex%20(1).png",COLORS CINEPLEX (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859005
+
+#EXTINF:-1 tvg-id="859001" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/colors.png",COLORS FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859001
+
+#EXTINF:-1 tvg-id="859002" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/colors.png",COLORS HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859002
+
+#EXTINF:-1 tvg-id="859004" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Colors_Rishtey_logo.png",COLORS RISHTEY TV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859004
+
+#EXTINF:-1 tvg-id="859000" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859000
+
+#EXTINF:-1 tvg-id="858998" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858998
+
+#EXTINF:-1 tvg-id="858999" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Sony_Max_HD_2015.png",SONY MAX HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858999
+
+#EXTINF:-1 tvg-id="858997" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/SET_India_logo.svg.png",SONY TV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858997
+
+#EXTINF:-1 tvg-id="858995" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/SET_India_logo.svg.png",SONY TV FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858995
+
+#EXTINF:-1 tvg-id="858996" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/SET_India_logo.svg.png",SONY TV HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858996
+
+#EXTINF:-1 tvg-id="858991" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavgold.png",UTSAV GOLD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858991
+
+#EXTINF:-1 tvg-id="858989" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavgold.png",UTSAV GOLD FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858989
+
+#EXTINF:-1 tvg-id="858990" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/utsavgold.png",UTSAV GOLD HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858990
+
+#EXTINF:-1 tvg-id="858988" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Utsav_Plus_HD_logo.png",UTSAV PLUS (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858988
+
+#EXTINF:-1 tvg-id="858986" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Utsav_Plus_HD_logo.png",UTSAV PLUS FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858986
+
+#EXTINF:-1 tvg-id="858987" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/Utsav_Plus_HD_logo.png",UTSAV PLUS HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858987
+
+#EXTINF:-1 tvg-id="859007" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeecinema.png",ZEE CINEMA (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859007
+
+#EXTINF:-1 tvg-id="859006" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeecinema.png",ZEE CINEMA HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=859006
+
+#EXTINF:-1 tvg-id="858994" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeetv.png",ZEE TV (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858994
+
+#EXTINF:-1 tvg-id="858992" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeetv.png",ZEE TV FHD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858992
+
+#EXTINF:-1 tvg-id="858993" tvg-logo="http://picon.tivi-ott.net:25461/picon/INDIA/zeetv.png",ZEE TV HD (UK)
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=858993
+
+#EXTINF:-1 tvg-id="373205" tvg-logo="http://picon.tivi-ott.net:25461/picon/ASIA/SPORTS/starsports1.png",STAR SPORTS 1 HD HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373205
+
+#EXTINF:-1 tvg-id="488876" tvg-logo="http://picon.tivi-ott.net:25461/picon/HORSERACING/suriname.png",MASHUP HINDI
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=488876
