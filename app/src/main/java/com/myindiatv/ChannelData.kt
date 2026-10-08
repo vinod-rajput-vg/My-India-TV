@@ -14,6 +14,7 @@ val categories = listOf(
     Category("Kids", R.drawable.kids, "kids.txt"),
     Category("Drama", R.drawable.drama, "drama.txt"),
     Category("Sports", R.drawable.sports, "sports.txt"),
+    Category("TataPlay", R.drawable.tataplay, "tataplay.txt"),
     Category("Movies", R.drawable.movies, "movies.txt")
 )
 
