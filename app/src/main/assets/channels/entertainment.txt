@@ -1,44 +1,59 @@
-#EXTINF:-1 tvg-id="star-gold-2-hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png",Star Gold 2 HD
+Star Gold 2 HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372926
 
-#EXTINF:-1 tvg-id="star gold romance" tvg-logo="https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-romance.png",STAR GOLD ROMANCE
+STAR GOLD ROMANCE
+https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-romance.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433164
 
-#EXTINF:-1 tvg-id="star gold thrills" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png",STAR GOLD THRILLIS
+STAR GOLD THRILLIS
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373005
 
-#EXTINF:-1 tvg-id="sony-max-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png",Sony MAX HD
+Sony MAX HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
 
-#EXTINF:-1 tvg-id="sony-max-2" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png",Sony MAX 2
+Sony MAX 2
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373073
 
-#EXTINF:-1 tvg-id="zee cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-in.png",ZEE CINEMA
+ZEE CINEMA
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1100011
 
-#EXTINF:-1 tvg-id="zee-cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png",ZEE Cinema HD
+ZEE Cinema HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372695
 
-#EXTINF:-1 tvg-id="zee action hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-action-in.png",ZEE ACTION
+ZEE ACTION
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-action-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735400
 
-#EXTINF:-1 tvg-id="zee bollywood" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-bollywood-in.png",ZEE BOLLYWOOD
+ZEE BOLLYWOOD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-bollywood-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372924
 
-#EXTINF:-1 tvg-id="zee classic hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-classic-in.png",ZEE CLASSIC
+ZEE CLASSIC
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-classic-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735401
 
-#EXTINF:-1 tvg-id="xplore-hd" tvg-logo="https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/and-xplor-hd.png",&Xplore HD
+&Xplore HD
+https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/and-xplor-hd.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
 
-#EXTINF:-1 tvg-id="zee anmol cinema" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-anmol-cinema-in.png",ZEE ANMOL CINEMA
+ZEE ANMOL CINEMA
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-anmol-cinema-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373000
 
-#EXTINF:-1 tvg-id="colors-cineplex-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-cineplex-hd-in.png",Colors Cineplex HD
+Colors Cineplex HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-cineplex-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944627
 
-#EXTINF:-1 tvg-id="b4u-kadak" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-kadak-in.png",B4U Kadak
+B4U Kadak
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-kadak-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433208
 
-#EXTINF:-1 tvg-id="b4u-movies" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png",B4U Movies
+B4U Movies
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944610
