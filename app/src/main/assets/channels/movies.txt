@@ -1,3 +1,3 @@
-#EXTM3U
-#EXTINF:-1 tvg-id="underworld-rise-of-the-lycans-hindi" tvg-logo="https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Movie%20Posters/Underworld_Rise_of_the_Lycans.png",Underworld: Rise of the Lycans Hindi
+Underworld: Rise of the Lycans Hindi
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Movie%20Posters/Underworld_Rise_of_the_Lycans.png
 https://st9.febspot.com/videos/945000/945084/945084_720p.mp4
