@@ -1,21 +1,27 @@
-#EXTM3U
-#EXTINF:-1 tvg-id="nick-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nick-in.png",Nick Hindi
+Nick Hindi
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nick-in.png
 http://103.185.24.134:3001/NICK/index.m3u8
 
-#EXTINF:-1 tvg-id="sonic-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nickelodeon-sonic-in.png",Sonic Hindi
+Sonic Hindi
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nickelodeon-sonic-in.png
 http://103.185.24.134:3001/SONIC/index.m3u8
 
-#EXTINF:-1 tvg-id="cartoon-network-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-in.png",Cartoon Network Hindi
+Cartoon Network Hindi
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372972
 
-#EXTINF:-1 tvg-id="cartoon-network-hd-plus-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-hd-plus-in.png",Cartoon Network HD Plus Hindi
+Cartoon Network HD Plus Hindi
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-hd-plus-in.png
 http://27.116.22.53:5001/live/3436.m3u8
 
-#EXTINF:-1 tvg-id="discovery-kids-hindi" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/discovery-kids-in.png",Discovery Kids Hindi
+Discovery Kids Hindi
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/discovery-kids-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372928
 
-#EXTINF:-1 tvg-id="hungama" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/hungama-in.png",Hungama
+Hungama
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/hungama-in.png
 http://51.75.127.199:3141/hungama/index.m3u8
 
-#EXTINF:-1 tvg-id="super-hungama" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/super-hungama-in.png",Super Hungama
+Super Hungama
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/super-hungama-in.png
 http://51.75.127.199:3141/superhungama/index.m3u8
