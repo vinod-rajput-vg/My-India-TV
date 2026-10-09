@@ -1,17 +1,23 @@
-#EXTINF:-1 tvg-id="discovery hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png",DISCOVERY HD
+DISCOVERY HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373036
 
-#EXTINF:-1 tvg-id="sony bbc earth hd" tvg-logo="https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png",SONY BBC EARTH HD
+SONY BBC EARTH HD
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373071
 
-#EXTINF:-1 tvg-id="animal-planet" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png",Animal Planet HD
+Animal Planet HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944624
 
-#EXTINF:-1 tvg-id="nat-geo-wild" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png",Nat Geo Wild HD
+Nat Geo Wild HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373018
 
-#EXTINF:-1 tvg-id="national-geographic-hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png",National Geographic HD
+National Geographic HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373017
 
-#EXTINF:-1 tvg-id="history-tv18-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png",History TV18 HD
+History TV18 HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373031
