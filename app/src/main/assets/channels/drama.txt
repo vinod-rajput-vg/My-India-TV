@@ -1,17 +1,23 @@
-#EXTINF:-1 tvg-id="zee-tv-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png",ZEE TV HD
+ZEE TV HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
 
-#EXTINF:-1 tvg-id="star plus hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png",STAR PLUS HD
+STAR PLUS HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
 
-#EXTINF:-1 tvg-id="sony sab hd" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/70954ffc9bae055e09e48393b47570ea.png",SONY SAB HD
+SONY SAB HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/70954ffc9bae055e09e48393b47570ea.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944604
 
-#EXTINF:-1 tvg-id="colors" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png",Colors HD
+Colors HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944612
 
-#EXTINF:-1 tvg-id="zee anmol" tvg-logo="https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol.png",ZEE ANMOL
+ZEE ANMOL
+https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373001
 
-#EXTINF:-1 tvg-id="star utsav" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png",STAR USTAV
+STAR USTAV
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943925
