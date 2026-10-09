@@ -18,48 +18,47 @@ val categories = listOf(
 )
 
 fun loadChannels(context: android.content.Context, fileName: String): List<Channel> {
-    return context.assets.open("channels/$fileName")
+    val lines = context.assets.open("channels/$fileName")
         .bufferedReader()
-        .useLines { lines ->
-            val result = mutableListOf<Channel>()
-            var name: String? = null
-            var streamUrl: String? = null
-            var iconUrl: String? = null
+        .use { it.readLines() }
 
-            for (rawLine in lines) {
-                val line = rawLine.trim()
-                if (line.isEmpty() || line.equals("#EXTM3U", ignoreCase = true)) continue
+    // Keep legacy M3U support while the channel files use Name / Icon URL / Stream URL.
+    if (lines.any { it.trim().startsWith("#EXTINF:", ignoreCase = true) }) {
+        val result = mutableListOf<Channel>()
+        var name: String? = null
+        var iconUrl = ""
 
-                if (line.startsWith("#EXTINF:", ignoreCase = true)) {
-                    val comma = line.indexOf(',')
-                    if (comma < 0) continue
+        for (rawLine in lines) {
+            val line = rawLine.trim()
+            if (line.isEmpty() || line.equals("#EXTM3U", ignoreCase = true)) continue
 
-                    val attributes = line.substring(0, comma)
-                    val displayName = line.substring(comma + 1).trim()
-                    val logo = Regex("""tvg-logo="([^"]*)"""", RegexOption.IGNORE_CASE)
-                        .find(attributes)
-                        ?.groupValues
-                        ?.getOrNull(1)
-                        .orEmpty()
-
-                    name = displayName
-                    streamUrl = null
-                    iconUrl = logo
-                } else if (!line.startsWith("#")) {
-                    streamUrl = line
-                    if (!name.isNullOrBlank() && !streamUrl.isNullOrBlank()) {
-                        result += Channel(
-                            name = name,
-                            streamUrl = streamUrl,
-                            iconUrl = iconUrl.orEmpty()
-                        )
-                    }
-                    name = null
-                    streamUrl = null
-                    iconUrl = null
-                }
+            if (line.startsWith("#EXTINF:", ignoreCase = true)) {
+                val comma = line.indexOf(',')
+                if (comma < 0) continue
+                val attributes = line.substring(0, comma)
+                name = line.substring(comma + 1).trim()
+                iconUrl = Regex("""tvg-logo="([^"]*)"""", RegexOption.IGNORE_CASE)
+                    .find(attributes)?.groupValues?.getOrNull(1).orEmpty()
+            } else if (!line.startsWith("#") && !name.isNullOrBlank()) {
+                result += Channel(name = name, streamUrl = line, iconUrl = iconUrl)
+                name = null
+                iconUrl = ""
             }
+        }
+        return result
+    }
 
-            result
+    // New plain-text format: each channel is exactly three non-empty lines.
+    val entries = lines.map { it.trim() }
+        .filter { it.isNotEmpty() && !it.startsWith("#") }
+
+    return entries.chunked(3)
+        .filter { it.size == 3 && it[0].isNotBlank() && it[2].isNotBlank() }
+        .map { entry ->
+            Channel(
+                name = entry[0],
+                iconUrl = entry[1],
+                streamUrl = entry[2]
+            )
         }
 }
