@@ -7,9 +7,6 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433164
 #EXTINF:-1 tvg-id="star gold thrills" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png",STAR GOLD THRILLIS
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373005
 
-#EXTINF:-1 tvg-id="star-gold-select-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-select-hd-in.png",Star Gold Select HD
-http://51.75.127.199:3141/stargoldselecthd/index.m3u8
-
 #EXTINF:-1 tvg-id="sony-max-hd" tvg-logo="https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png",Sony MAX HD
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
 
