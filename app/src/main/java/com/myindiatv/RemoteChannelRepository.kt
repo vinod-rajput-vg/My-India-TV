@@ -22,6 +22,7 @@ internal object RemoteChannelRepository {
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
     private const val SUNDAY_REFRESH_KEY = "last_sunday_refresh"
+    private const val CATEGORIES_SUNDAY_REFRESH_KEY = "last_categories_sunday_refresh"
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(3)
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -30,10 +31,25 @@ internal object RemoteChannelRepository {
         executor.execute {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             val cachedText = prefs.getString(CATEGORIES_KEY, null)
+            val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+            val isSunday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY
+            val alreadyRefreshedSunday = prefs.getString(CATEGORIES_SUNDAY_REFRESH_KEY, null) == today
+
+            // Keep the same category configuration all week. Fetch only on first launch
+            // without a cache, or once on Sunday.
+            if (!cachedText.isNullOrBlank() && (!isSunday || alreadyRefreshedSunday)) {
+                val cachedCategories = parseCategories(cachedText)
+                mainHandler.post { callback(cachedCategories) }
+                return@execute
+            }
+
             val freshText = fetchText(CATEGORY_URL)
             val freshCategories = freshText?.let(::parseCategories).orEmpty()
             val useFresh = freshCategories.isNotEmpty()
-            if (useFresh) prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
+            if (useFresh) {
+                prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
+                if (isSunday) prefs.edit().putString(CATEGORIES_SUNDAY_REFRESH_KEY, today).apply()
+            }
             val text = if (useFresh) freshText else cachedText
             val result = text?.let(::parseCategories).orEmpty()
             mainHandler.post { callback(result) }
@@ -75,12 +91,22 @@ internal object RemoteChannelRepository {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
             val cachedText = prefs.getString(cacheKey, null)
+
+            // A populated cache is authoritative between Sundays: do not contact the
+            // network when the user opens or reopens a category.
+            if (!cachedText.isNullOrBlank()) {
+                val cachedChannels = parseChannelText(cachedText)
+                mainHandler.post { callback(cachedChannels) }
+                return@execute
+            }
+
+            // First-ever load for this category (no cache yet).
             val freshText = fetchText(category.channelsUrl)
             val freshChannels = freshText?.let(::parseChannelText).orEmpty()
-            val useFresh = freshChannels.isNotEmpty()
-            if (useFresh) prefs.edit().putString(cacheKey, freshText).apply()
-            val text = if (useFresh) freshText else cachedText
-            val channels = text?.let(::parseChannelText)
+            if (!freshText.isNullOrBlank() && freshChannels.isNotEmpty()) {
+                prefs.edit().putString(cacheKey, freshText).apply()
+            }
+            val channels = if (freshChannels.isNotEmpty()) freshChannels else null
             mainHandler.post { callback(channels) }
         }
     }
