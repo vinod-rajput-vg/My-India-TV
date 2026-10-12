@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Sync Firestore channel sortOrder into the bundled three-line channel TXT files."""
+"""Make the eight bundled channel TXT files match Firestore channels and sortOrder."""
 import json
 import os
 import subprocess
@@ -26,119 +26,90 @@ def norm(value):
     return " ".join(str(value or "").strip().lower().split())
 
 
-def read_blocks(path):
-    text = path.read_text(encoding="utf-8-sig")
-    lines = text.splitlines()
-    blocks, current = [], []
-    for line in lines:
-        if line.strip():
-            current.append(line.rstrip())
-        elif current:
-            if len(current) >= 3:
-                blocks.append(current[:3])
-            current = []
-    if current and len(current) >= 3:
-        blocks.append(current[:3])
-    return blocks
-
-
 def main():
     raw = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "")
     if not raw:
         raise SystemExit("Missing FIREBASE_SERVICE_ACCOUNT_JSON GitHub Actions secret.")
+
     info = json.loads(raw)
     app = firebase_admin.initialize_app(credentials.Certificate(info))
     db = firestore.client(app=app)
     docs = list(db.collection("channels").stream())
-    by_category_name = {}
+
+    # Firestore is the source of truth. Match by normalized category + channel
+    # name because the current TXT format has no Firestore document ID.
+    channels_by_category = {category: [] for category in FILES}
+    seen = set()
     for doc in docs:
         data = doc.to_dict() or {}
-        category = str(data.get("category", "")).strip()
-        name = norm(data.get("name", ""))
-        if category and name:
-            by_category_name[(category, name)] = data
+        category_raw = str(data.get("category") or "").strip()
+        category = next((c for c in FILES if norm(c) == norm(category_raw)), None)
+        name = str(data.get("name") or "").strip()
+        stream = str(data.get("streamUrl") or "").strip()
+        logo = str(data.get("logoUrl") or "").strip()
+        if not category or not name or not stream:
+            print(f"Skipping incomplete/unknown Firestore channel: {doc.id}")
+            continue
+
+        key = (category, norm(name))
+        if key in seen:
+            raise SystemExit(f"Duplicate channel name in category {category}: {name}")
+        seen.add(key)
+
+        raw_order = data.get("sortOrder")
+        try:
+            order = float(raw_order) if raw_order is not None else None
+        except (TypeError, ValueError):
+            order = None
+        channels_by_category[category].append({
+            "name": name,
+            "logo": logo,
+            "stream": stream,
+            "order": order,
+            "doc_id": doc.id,
+        })
 
     changed = []
     for category, filename in FILES.items():
         path = CHANNEL_DIR / filename
         if not path.exists():
-            print(f"Skipping missing file: {path}")
-            continue
+            raise SystemExit(f"Expected category TXT file is missing: {path}")
 
-        blocks = read_blocks(path)
-        # Keep current block order as the fallback, while updating URL/logo data
-        # from Firestore and appending channels that exist only in Firestore.
-        existing_by_name = {}
-        for index, block in enumerate(blocks):
-            key = norm(block[0])
-            if key:
-                existing_by_name[key] = (index, block)
+        channels = channels_by_category[category]
+        # When every channel has an explicit sortOrder, use it. Otherwise retain
+        # stable Firestore query order for unranked channels and sort ranked ones
+        # first; admin reorder writes a rank for every channel in that category.
+        channels.sort(key=lambda c: (0, c["order"], c["name"].casefold())
+                      if c["order"] is not None
+                      else (1, 0, c["name"].casefold()))
 
-        channel_docs = []
-        for (doc_category, doc_name), data in by_category_name.items():
-            if doc_category != category or not doc_name:
-                continue
-            channel_docs.append((doc_name, data))
+        blocks = [[c["name"], c["logo"], c["stream"]] for c in channels]
+        output = "\n\n".join("\n".join(block) for block in blocks)
+        if blocks:
+            output += "\n"
 
-        used_names = set()
-        updated_blocks = []
-        for index, block in enumerate(blocks):
-            key = norm(block[0])
-            data = by_category_name.get((category, key))
-            if data:
-                name = str(data.get("name") or block[0]).strip()
-                logo = str(data.get("logoUrl") or block[1]).strip() if len(block) > 1 else str(data.get("logoUrl") or "").strip()
-                stream = str(data.get("streamUrl") or block[2]).strip() if len(block) > 2 else str(data.get("streamUrl") or "").strip()
-                updated_blocks.append((index, [name, logo, stream]))
-                used_names.add(key)
-            else:
-                updated_blocks.append((index, block))
-
-        next_index = len(blocks)
-        for doc_name, data in channel_docs:
-            if doc_name in used_names or doc_name in existing_by_name:
-                continue
-            name = str(data.get("name") or doc_name).strip()
-            logo = str(data.get("logoUrl") or "").strip()
-            stream = str(data.get("streamUrl") or "").strip()
-            if not stream:
-                print(f"Skipping Firestore-only channel without streamUrl: {name} ({category})")
-                continue
-            updated_blocks.append((next_index, [name, logo, stream]))
-            used_names.add(doc_name)
-            next_index += 1
-            print(f"Added Firestore channel to TXT: {name} ({category})")
-
-        def order_key(item):
-            index, block = item
-            data = by_category_name.get((category, norm(block[0])))
-            sort_order = data.get("sortOrder") if data else None
-            try:
-                return (0, float(sort_order), index) if sort_order is not None else (1, index, index)
-            except (TypeError, ValueError):
-                return (1, index, index)
-
-        ordered = [block for _, block in sorted(updated_blocks, key=order_key)]
-        output = "\\n\\n".join("\\n".join(block) for block in ordered) + ("\\n" if ordered else "")
         old = path.read_text(encoding="utf-8-sig")
         if output != old:
-            path.write_text(output, encoding="utf-8", newline="\\n")
+            path.write_text(output, encoding="utf-8", newline="\n")
             changed.append(str(path.relative_to(ROOT)))
-            print(f"Updated TXT data/order: {category} ({len(ordered)} channels)")
-
-    if changed:
-        subprocess.run(["git", "config", "user.name", "github-actions[bot]"], cwd=ROOT, check=True)
-        subprocess.run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], cwd=ROOT, check=True)
-        subprocess.run(["git", "add", *changed], cwd=ROOT, check=True)
-        result = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT)
-        if result.returncode != 0:
-            subprocess.run(["git", "commit", "-m", "Sync channel order from Firestore"], cwd=ROOT, check=True)
-            subprocess.run(["git", "push"], cwd=ROOT, check=True)
-            print("TXT order synced and pushed.")
+            print(f"Updated {category}: {len(blocks)} channels")
         else:
-            print("No TXT changes to commit.")
-    else:
-        print("TXT files already match Firestore sort order.")
+            print(f"Already up to date: {category} ({len(blocks)} channels)")
+
+    if not changed:
+        print("All category TXT files already match Firestore.")
+        return
+
+    subprocess.run(["git", "config", "user.name", "github-actions[bot]"], cwd=ROOT, check=True)
+    subprocess.run(["git", "config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com"], cwd=ROOT, check=True)
+    subprocess.run(["git", "add", *changed], cwd=ROOT, check=True)
+    result = subprocess.run(["git", "diff", "--cached", "--quiet"], cwd=ROOT)
+    if result.returncode == 0:
+        print("No TXT changes to commit.")
+        return
+    subprocess.run(["git", "commit", "-m", "Sync channel data and order from Firestore"], cwd=ROOT, check=True)
+    subprocess.run(["git", "push"], cwd=ROOT, check=True)
+    print("Channel TXT files synced and pushed.")
 
 
 if __name__ == "__main__":
