@@ -1,0 +1,7 @@
+Test HD
+http://test.com/test-hd.png
+http://test.com/test-hd.m3u8
+
+Test 2 HD
+http://test.com/test_2-hd.png
+http://test.com/test_2-hd.m3u8
