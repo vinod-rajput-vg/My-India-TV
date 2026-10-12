@@ -49,11 +49,11 @@ def main():
     app = firebase_admin.initialize_app(credentials.Certificate(info))
     db = firestore.client(app=app)
     docs = list(db.collection("channels").stream())
+    print(f"Read {len(docs)} documents from Firestore collection 'channels'.")
 
-    # Firestore is the source of truth. The TXT format has no Firestore IDs,
-    # so existing order fallback matches by normalized category + channel name.
     channels_by_category = {category: [] for category in FILES}
     seen = set()
+    errors = []
     for doc in docs:
         data = doc.to_dict() or {}
         category_raw = str(data.get("category") or "").strip()
@@ -61,13 +61,21 @@ def main():
         name = str(data.get("name") or "").strip()
         stream = str(data.get("streamUrl") or "").strip()
         logo = str(data.get("logoUrl") or "").strip()
-        if not category or not name or not stream:
-            print(f"Skipping incomplete/unknown Firestore channel: {doc.id}")
+        missing = []
+        if not category:
+            missing.append(f"unsupported category {category_raw!r}")
+        if not name:
+            missing.append("missing name")
+        if not stream:
+            missing.append("missing streamUrl")
+        if missing:
+            errors.append(f"Firestore document {doc.id}: " + ", ".join(missing))
             continue
 
         key = (category, norm(name))
         if key in seen:
-            raise SystemExit(f"Duplicate channel name in category {category}: {name}")
+            errors.append(f"Duplicate channel name in category {category}: {name!r}")
+            continue
         seen.add(key)
 
         raw_order = data.get("sortOrder")
@@ -79,6 +87,12 @@ def main():
             "name": name, "logo": logo, "stream": stream,
             "order": order, "doc_id": doc.id,
         })
+
+    if errors:
+        print("ERROR: Some Firestore channel records cannot be exported:")
+        for error in errors:
+            print(" - " + error)
+        raise SystemExit("Sync stopped instead of reporting a false success. Fix the listed Firestore records and rerun.")
 
     changed = []
     for category, filename in FILES.items():
