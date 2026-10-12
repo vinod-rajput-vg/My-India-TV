@@ -2,9 +2,9 @@ entertainment
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/entertainment.png
 https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/entertainment.txt
 
-imfotainment
+infotainment
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/imfotainment.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/imfotainment.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/infotainment.txt
 
 news
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/news.png
