@@ -164,24 +164,9 @@ class MainActivity : Activity() {
             channelListener = RemoteChannelRepository.listenCategory(this, category.name) { remoteChannels ->
                 if (channelView !== view || activeCategory != category || remoteChannels == null) return@listenCategory
 
-                val merged = linkedMapOf<String, Channel>()
-                textChannels.forEach { channel ->
-                    merged[channel.name.trim().lowercase().replace(Regex("\\s+"), " ")] = channel
-                }
-                remoteChannels.forEach { channel ->
-                    val key = channel.name.trim().lowercase().replace(Regex("\\s+"), " ")
-                    val txtChannel = merged[key]
-                    merged[key] = if (txtChannel != null) {
-                        txtChannel.copy(
-                            streamUrl = channel.streamUrl.ifBlank { txtChannel.streamUrl },
-                            iconUrl = channel.iconUrl.ifBlank { txtChannel.iconUrl },
-                            sortOrder = channel.sortOrder
-                        )
-                    } else {
-                        channel
-                    }
-                }
-                val ordered = merged.values.sortedWith(
+                // Firestore is authoritative once its realtime snapshot arrives, so
+                // newly added, edited, disabled, or deleted channels show immediately.
+                val ordered = remoteChannels.sortedWith(
                     compareBy<Channel> { it.sortOrder ?: (txtRank[it.name.trim().lowercase().replace(Regex("\\s+"), " ")] ?: Int.MAX_VALUE) }
                         .thenBy { it.name.lowercase() }
                 )
