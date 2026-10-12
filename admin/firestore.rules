@@ -9,7 +9,7 @@ service cloud.firestore {
       // administrator account. Never use email supplied by the client as
       // the sole authorization check.
       allow create, update, delete: if request.auth != null
-        && request.auth.uid == "REPLACE_WITH_ADMIN_AUTH_UID";
+        && request.auth.uid == "zsTttRoLLSSExtA0vL66LrBQiLz1";
     }
 
     // Deny access to every collection not explicitly allowed above.
