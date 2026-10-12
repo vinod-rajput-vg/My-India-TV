@@ -1,11 +1,26 @@
-name: Sync channel order to TXT
-
+name: Auto TXT Update
 on:
-  workflow_dispatch:
-  repository_dispatch:
-    types: [sync-channel-txt]
-  schedule:
-    - cron: "*/5 * * * *"
+  workflow_run:
+    workflows: ["main-workflow"]
+    types: [completed]
+
+jobs:
+  retry:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt < 3
+    permissions:
+      actions: write
+    steps:
+      - name: Wait 5 minutes
+        run: sleep 300
+
+      - name: Re-run all jobs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh run rerun "${{ github.event.workflow_run.id }}" \
+            --repo "${{ github.event.repository.full_name }}"   
+
 
 permissions:
   contents: write
@@ -36,26 +51,3 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
         run: python scripts/sync_txt_order.py
-
-name: Retry All Jobs
-on:
-  workflow_run:
-    workflows: ["main-workflow"]
-    types: [completed]
-
-jobs:
-  retry:
-    runs-on: ubuntu-latest
-    if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt < 3
-    permissions:
-      actions: write
-    steps:
-      - name: Wait 5 minutes
-        run: sleep 300
-
-      - name: Re-run all jobs
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh run rerun "${{ github.event.workflow_run.id }}" \
-            --repo "${{ github.event.repository.full_name }}"   
