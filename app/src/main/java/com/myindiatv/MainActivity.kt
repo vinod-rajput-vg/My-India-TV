@@ -142,10 +142,23 @@ class MainActivity : Activity() {
         setContentView(view)
         view.requestFocus()
 
-        // Show bundled channels immediately; replace them only if remote data loads successfully.
-        RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
-            if (remoteChannels != null && channelView === view) {
-                view.replaceChannels(remoteChannels)
+        // Show bundled assets immediately, then refresh the TXT source from GitHub.
+        // Firestore dashboard records are merged afterward and take precedence for matching names.
+        RemoteChannelRepository.loadTextFile(category.fileName) { textChannels ->
+            if (textChannels != null && channelView === view) {
+                view.replaceChannels(textChannels)
+            }
+            RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
+                if (remoteChannels != null && channelView === view) {
+                    val merged = linkedMapOf<String, Channel>()
+                    (textChannels ?: loadChannels(this, category.fileName)).forEach { channel ->
+                        merged[channel.name.trim().lowercase()] = channel
+                    }
+                    remoteChannels.forEach { channel ->
+                        merged[channel.name.trim().lowercase()] = channel
+                    }
+                    view.replaceChannels(merged.values.toList())
+                }
             }
         }
     }
