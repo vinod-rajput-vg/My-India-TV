@@ -1,4 +1,4 @@
-name: Deploy My India TV Admin Dashboard
+name: Deploy Admin Dash
 
 on:
   push:
