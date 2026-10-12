@@ -173,21 +173,29 @@ class MainActivity : Activity() {
 
                 val merged = linkedMapOf<String, Channel>()
                 textChannels.forEach { channel ->
-                    merged[channel.name.trim().lowercase()] = channel
+                    merged[channel.name.trim().lowercase().replace(Regex("\\s+"), " ")] = channel
                 }
                 remoteChannels?.forEach { channel ->
-                    val key = channel.name.trim().lowercase()
+                    val key = channel.name.trim().lowercase().replace(Regex("\\s+"), " ")
                     val txtChannel = merged[key]
                     merged[key] = if (txtChannel != null) {
                         txtChannel.copy(
                             streamUrl = channel.streamUrl.ifBlank { txtChannel.streamUrl },
-                            iconUrl = channel.iconUrl.ifBlank { txtChannel.iconUrl }
+                            iconUrl = channel.iconUrl.ifBlank { txtChannel.iconUrl },
+                            sortOrder = channel.sortOrder
                         )
                     } else {
                         channel
                     }
                 }
-                view.replaceChannels(merged.values.toList())
+                val txtRank = textChannels.mapIndexed { index, channel ->
+                    channel.name.trim().lowercase().replace(Regex("\\s+"), " ") to index
+                }.toMap()
+                val ordered = merged.values.sortedWith(
+                    compareBy<Channel> { it.sortOrder ?: (txtRank[it.name.trim().lowercase().replace(Regex("\\s+"), " ")] ?: Int.MAX_VALUE) }
+                        .thenBy { it.name.lowercase() }
+                )
+                view.replaceChannels(ordered)
             }
         }
     }
