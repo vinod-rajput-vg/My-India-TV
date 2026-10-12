@@ -1,32 +1,31 @@
 entertainment
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/entertainment.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/entertainment.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/entertainment.txt
 
 infotainment
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/imfotainment.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/infotainment.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/infotainment.txt
 
 news
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/news.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/news.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/news.txt
 
 music
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/music.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/music.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/music.txt
 
 kids
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/kids.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/kids.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/kids.txt
 
 drama
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/drama.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/drama.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/drama.txt
 
 sports
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/sports.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/sports.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/sports.txt
 
 movies
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/movies.png
-https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/movies.txt
-
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/movies.txt
