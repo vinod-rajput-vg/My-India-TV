@@ -9,7 +9,7 @@
     :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif;color:#edf2f7;background:#090d14;font-synthesis:none}
     *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 10% 0%,#152238 0,transparent 45%),#090d14;min-height:100vh}
     button,input,select,textarea{font:inherit}button{cursor:pointer;border:1px solid #334155;border-radius:10px;padding:10px 14px;background:#172235;color:#eaf1fb}
-    button.primary{background:#3b82f6;border-color:#3b82f6;color:white}button.danger{background:#351a22;border-color:#6b2735;color:#ffc8d0}button:disabled{opacity:.45;cursor:not-allowed}
+    button.primary{background:#3b82f6;border-color:#3b82f6;color:white}button.danger{background:#351a22;border-color:#6b2735;color:#ffc8d0}button:disabled{opacity:.45;cursor:not-allowed}.sort-actions{display:flex;align-items:center;gap:5px;white-space:nowrap}.sort-actions button{padding:7px 10px}.drag-handle{cursor:grab;touch-action:none;color:#9fb0c6;font-size:18px;padding:5px 8px!important}.drag-handle:active{cursor:grabbing}.sort-row{transition:background-color .12s ease}.sort-row.dragging{opacity:.4}.sort-row.drop-target{outline:2px dashed #60a5fa;outline-offset:-3px;background:#172a42}.sort-hint{font-size:12px;color:#91a0b5;margin:0 0 12px}
     input,select,textarea{width:100%;padding:11px 12px;border-radius:10px;border:1px solid #29364a;background:#0b1220;color:#eaf1fb;outline:none}input:focus,select:focus,textarea:focus{border-color:#60a5fa}
     label{display:block;font-size:12px;color:#9fb0c6;margin:0 0 6px}small,.muted{color:#91a0b5}.shell{max-width:1440px;margin:auto;padding:24px}
     header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.brand{display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#2563eb,#14b8a6);display:grid;place-items:center;font-weight:900;color:white}
@@ -63,7 +63,7 @@
       <section class="panel channels-panel">
           <div class="topline section-heading" style="margin-bottom:14px"><div><h2 style="margin:0">Channels</h2><p class="muted subheading">Manage your live TV channel list</p></div><div class="actions"><button id="addChannelBtn" class="primary add-button" type="button"><span aria-hidden="true">＋</span> Add channel</button></div></div>
           <div class="toolbar"><input id="search" type="search" placeholder="Search channel name…"><select id="filterCategory"><option value="">All categories</option></select></div>
-          <div class="tablewrap"><table><thead><tr><th>Channel</th><th>Category</th><th>Actions</th></tr></thead><tbody id="channelRows"></tbody></table></div>
+          <p class="sort-hint">Drag a channel or use ↑ / ↓ to reorder within its category. Order is saved to Firebase.</p><div class="tablewrap"><table><thead><tr><th>Channel</th><th>Category</th><th>Actions</th><th>Sort</th></tr></thead><tbody id="channelRows"></tbody></table></div>
           <div id="emptyState" class="empty hidden">No channels found. Add a channel or import JSON.</div>
         </section>
       </section>
@@ -97,7 +97,7 @@
     const configured = !Object.values(firebaseConfig).some(v => v.includes("REPLACE_WITH"));
     const categories = ["Entertainment","Infotainment","News","Music","Kids","Drama","Sports","Movies"];
     const $ = id => document.getElementById(id);
-    let auth, db, currentUser, channelCache = [];
+    let auth, db, currentUser, channelCache = [], dragChannelId = null;
     const categoryRank = new Map(categories.map((name,index)=>[name,index]));
     let txtOrder = new Map();
     const showMessage = (text, kind="") => { const el=$("message"); el.className="notice "+kind; el.textContent=text; el.classList.remove("hidden"); };
@@ -135,12 +135,12 @@
     function render() {
       const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value;
       const list=channelCache.filter(c=>(!q||c.name.toLowerCase().includes(q))&&(!cat||c.category===cat));
-      const rank = item => txtOrder.get(item.category+"::"+item.name.trim().toLowerCase()) ?? 999999;
+      const rank = item => Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : (txtOrder.get(item.category+"::"+item.name.trim().toLowerCase()) ?? 999999);
       list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || rank(a)-rank(b) || a.name.localeCompare(b.name));
-      $("channelRows").innerHTML=list.map(c=>`<tr>
+      $("channelRows").innerHTML=list.map(c=>`<tr class="sort-row" draggable="true" data-row-id="${escapeAttr(c.id)}">
         <td class="name"><div class="channel">${c.logoUrl?'<img src="'+escapeAttr(c.logoUrl)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'">':'<span class="pill">No logo</span>'}<span>${escapeHtml(c.name)}</span></div></td>
         <td>${escapeHtml(c.category)}</td>
-        <td><div class="actions"><button data-edit="${escapeAttr(c.id)}">Edit</button><button class="danger" data-delete="${escapeAttr(c.id)}">Delete</button></div></td></tr>`).join("");
+        <td><div class="actions"><button data-edit="${escapeAttr(c.id)}">Edit</button><button class="danger" data-delete="${escapeAttr(c.id)}">Delete</button></div></td><td><div class="sort-actions"><button class="drag-handle" type="button" draggable="false" title="Drag channel to reorder" aria-label="Drag to reorder">⠿</button><button type="button" data-move="-1" data-id="${escapeAttr(c.id)}" title="Move up" aria-label="Move up">↑</button><button type="button" data-move="1" data-id="${escapeAttr(c.id)}" title="Move down" aria-label="Move down">↓</button></div></td></tr>`).join("");
       $("emptyState").classList.toggle("hidden",list.length>0);
       $("totalCount").textContent=channelCache.length;
     }
@@ -186,6 +186,47 @@
       const edit=e.target.closest("[data-edit]");const del=e.target.closest("[data-delete]");
       if(edit){editChannel(edit.dataset.edit);return;}
       if(del){const c=channelCache.find(x=>x.id===del.dataset.delete);if(!c||!confirm('Delete "'+c.name+'"? This cannot be undone.'))return;try{await window.__firebase.deleteDoc(window.__firebase.doc(db,"channels",c.id));await loadChannels();showMessage("Channel deleted.","success");}catch(err){showMessage("Delete failed: "+friendlyError(err),"error");}}
+    });
+    async function reorderChannel(id,directionOrTarget){
+      const channel=channelCache.find(item=>item.id===id);if(!channel)return;
+      const peers=channelCache.filter(item=>item.category===channel.category).sort((a,b)=>{
+        const ra=Number.isFinite(Number(a.sortOrder))?Number(a.sortOrder):(txtOrder.get(a.category+"::"+a.name.trim().toLowerCase())??999999);
+        const rb=Number.isFinite(Number(b.sortOrder))?Number(b.sortOrder):(txtOrder.get(b.category+"::"+b.name.trim().toLowerCase())??999999);
+        return ra-rb||a.name.localeCompare(b.name);
+      });
+      const from=peers.findIndex(item=>item.id===id);
+      let to=typeof directionOrTarget==="string"?peers.findIndex(item=>item.id===directionOrTarget):from+directionOrTarget;
+      if(to<0||to>=peers.length||from===to)return;
+      const [moved]=peers.splice(from,1);peers.splice(to,0,moved);
+      try{
+        const f=window.__firebase,batch=f.writeBatch(db);
+        peers.forEach((item,index)=>batch.set(f.doc(db,"channels",item.id),{sortOrder:index,updatedAt:f.serverTimestamp(),updatedBy:currentUser.uid},{merge:true}));
+        await batch.commit();
+        channelCache=channelCache.map(item=>item.category===channel.category?({...item,sortOrder:peers.findIndex(peer=>peer.id===item.id)}):item);
+        render();showMessage("Channel order saved to Firebase.","success");
+      }catch(err){showMessage("Could not save channel order: "+friendlyError(err),"error");}
+    }
+    $("channelRows").addEventListener("click",async e=>{
+      const move=e.target.closest("[data-move]");if(move){await reorderChannel(move.dataset.id,Number(move.dataset.move));return;}
+    });
+    $("channelRows").addEventListener("dragstart",e=>{
+      const row=e.target.closest("tr[data-row-id]");if(!row)return;
+      dragChannelId=row.dataset.rowId;e.dataTransfer.effectAllowed="move";e.dataTransfer.setData("text/plain",dragChannelId);row.classList.add("dragging");
+    });
+    $("channelRows").addEventListener("dragover",e=>{
+      const row=e.target.closest("tr[data-row-id]");if(!row||!dragChannelId)return;
+      const source=channelCache.find(item=>item.id===dragChannelId),target=channelCache.find(item=>item.id===row.dataset.rowId);
+      if(!source||!target||source.category!==target.category)return;
+      e.preventDefault();e.dataTransfer.dropEffect="move";$("channelRows").querySelectorAll(".drop-target").forEach(el=>el.classList.remove("drop-target"));row.classList.add("drop-target");
+    });
+    $("channelRows").addEventListener("drop",async e=>{
+      const row=e.target.closest("tr[data-row-id]");if(!row||!dragChannelId)return;
+      e.preventDefault();const id=dragChannelId,targetId=row.dataset.rowId;dragChannelId=null;
+      $("channelRows").querySelectorAll(".dragging,.drop-target").forEach(el=>el.classList.remove("dragging","drop-target"));
+      await reorderChannel(id,targetId);
+    });
+    $("channelRows").addEventListener("dragend",()=>{
+      dragChannelId=null;$("channelRows").querySelectorAll(".dragging,.drop-target").forEach(el=>el.classList.remove("dragging","drop-target"));
     });
     $("addChannelBtn").addEventListener("click",()=>{resetForm();openModal(false);});
     $("closeModal").addEventListener("click",closeModal);
