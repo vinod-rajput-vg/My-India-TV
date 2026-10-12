@@ -138,7 +138,7 @@ class MainActivity : Activity() {
 
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
-        val view = ChannelView(this, loadChannels(this, category.fileName))
+        val view = ChannelView(this, emptyList())
         channelView = view
         activeCategory = category
         setContentView(view)
@@ -148,24 +148,17 @@ class MainActivity : Activity() {
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        // Refresh channel data once when this category is opened; no realtime listener.
+        // Channel lists are fetched only from the repository's raw TXT files, never from APK assets or Firestore.
         RemoteChannelRepository.loadTextFile(category.fileName) { fetchedText ->
             if (channelView !== view || activeCategory != category) return@loadTextFile
-            val textChannels = fetchedText ?: loadChannels(this, category.fileName)
-            val txtRank = textChannels.mapIndexed { index, channel ->
-                channel.name.trim().lowercase().replace(Regex("\\s+"), " ") to index
-            }.toMap()
 
-            RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
-                if (channelView !== view || activeCategory != category || remoteChannels == null) return@loadCategory
-
-                // Use the latest Firestore snapshot fetched once on category open.
-                val ordered = remoteChannels.sortedWith(
-                    compareBy<Channel> { it.sortOrder ?: (txtRank[it.name.trim().lowercase().replace(Regex("\\s+"), " ")] ?: Int.MAX_VALUE) }
-                        .thenBy { it.name.lowercase() }
-                )
-                view.replaceChannels(ordered)
+            if (fetchedText == null) {
+                Toast.makeText(this, "Unable to load channels. Check your internet connection.", Toast.LENGTH_LONG).show()
+                return@loadTextFile
             }
+
+            // Preserve the exact order from the remote TXT file.
+            view.replaceChannels(fetchedText)
         }
     }
 
