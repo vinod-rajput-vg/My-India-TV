@@ -99,6 +99,7 @@
     const $ = id => document.getElementById(id);
     let auth, db, currentUser, channelCache = [];
     const categoryRank = new Map(categories.map((name,index)=>[name,index]));
+    let txtOrder = new Map();
     const showMessage = (text, kind="") => { const el=$("message"); el.className="notice "+kind; el.textContent=text; el.classList.remove("hidden"); };
     const showLoginMessage = (text, kind="error") => { const el=$("loginMessage"); el.className="notice "+kind; el.textContent=text; };
     const safeText = value => String(value ?? "");
@@ -115,14 +116,31 @@
       $("category").innerHTML=categories.map(c=>`<option>${c}</option>`).join("");
       $("filterCategory").innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option>${c}</option>`).join("");
     }
+    async function loadTxtOrder(){
+      const files={"Entertainment":"entertainment.txt","Infotainment":"infotainment.txt","News":"news.txt","Music":"music.txt","Kids":"kids.txt","Drama":"drama.txt","Sports":"sports.txt","Movies":"movies.txt"};
+      const next=new Map();
+      await Promise.all(Object.entries(files).map(async([category,file])=>{
+        try{
+          const res=await fetch("https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/assets/channels/"+file,{cache:"no-store"});
+          if(!res.ok)return;
+          const lines=(await res.text()).split(/\r?\n/).map(x=>x.trim()).filter(Boolean);
+          let names=[];
+          if(lines.some(x=>x.toUpperCase().startsWith("#EXTINF:"))){for(const line of lines){if(line.toUpperCase().startsWith("#EXTINF:")){const comma=line.indexOf(",");if(comma>=0)names.push(line.slice(comma+1).trim());}}}
+          else {for(let i=0;i<lines.length;i+=3){if(lines[i]&&!lines[i].startsWith("#"))names.push(lines[i]);}}
+          names.forEach((name,index)=>next.set(category+"::"+name.toLowerCase(),index));
+        }catch(err){console.warn("TXT order unavailable for "+category,err);}
+      }));
+      txtOrder=next;
+    }
     function render() {
       const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value;
       const list=channelCache.filter(c=>(!q||c.name.toLowerCase().includes(q))&&(!cat||c.category===cat));
-      list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || a.name.localeCompare(b.name));
+      const rank = item => txtOrder.get(item.category+"::"+item.name.trim().toLowerCase()) ?? 999999;
+      list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || rank(a)-rank(b) || a.name.localeCompare(b.name));
       $("channelRows").innerHTML=list.map(c=>`<tr>
         <td class="name"><div class="channel">${c.logoUrl?'<img src="'+escapeAttr(c.logoUrl)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'">':'<span class="pill">No logo</span>'}<span>${escapeHtml(c.name)}</span></div></td>
         <td>${escapeHtml(c.category)}</td>
-        <td><div class="actions"><button data-up="${escapeAttr(c.id)}" title="Move up">↑</button><button data-down="${escapeAttr(c.id)}" title="Move down">↓</button><button data-edit="${escapeAttr(c.id)}">Edit</button><button class="danger" data-delete="${escapeAttr(c.id)}">Delete</button></div></td></tr>`).join("");
+        <td><div class="actions"><button data-edit="${escapeAttr(c.id)}">Edit</button><button class="danger" data-delete="${escapeAttr(c.id)}">Delete</button></div></td></tr>`).join("");
       $("emptyState").classList.toggle("hidden",list.length>0);
       $("totalCount").textContent=channelCache.length;
     }
@@ -145,7 +163,7 @@
         $("dashboard").classList.toggle("hidden",!user);
         $("signOut").classList.toggle("hidden",!user);
         $("setupNotice").classList.add("hidden");
-        if(user){$("adminLabel").textContent=user.email||user.uid;$("loginMessage").textContent="";await loadChannels();}
+        if(user){$("adminLabel").textContent=user.email||user.uid;$("loginMessage").textContent="";await loadTxtOrder();await loadChannels();}
       });
       $("loginForm").addEventListener("submit",async e=>{e.preventDefault();try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);}catch(err){showLoginMessage(friendlyError(err));}});
       $("signOut").addEventListener("click",()=>signOut(auth));
