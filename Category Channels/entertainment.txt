@@ -1,3 +1,7 @@
+Star Gold HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-gold-hd-in.png
+http:\\103.185.24.134:3001\Star-Gold\index.m3u8
+
 Star Gold 2 HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372926
@@ -43,7 +47,7 @@ https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-clas
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735401
 
 &Xplore HD
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV-Playlists/main/Channel%20Icons/and_explore_hd.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Channel%20Icons/and_explore_hd.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
 
 ZEE ANMOL CINEMA
@@ -65,6 +69,10 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433208
 B4U Movies
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944610
+
+Goldmines Bollywood
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Channel%20Icons/goldmines_bolywood.png
+https:\\mumt03.tangotv.in\Dsly5z3HGOLDMINESBOLLYWOOD\index.m3u8
 
 Goldmine Movies
 https://goldmines.co.in/assets/img/logo.png
