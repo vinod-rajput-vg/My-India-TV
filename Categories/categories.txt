@@ -31,5 +31,5 @@ https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Ic
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/movies.txt
 
 test
-http://test.com/test.png
-http://test.com/test.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/test.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/test.txt
