@@ -49,13 +49,11 @@ You can add channels in the dashboard or import a JSON array. Example:
 Use stream URLs and logos that you are authorized to use. A syntactically valid URL does not guarantee that a stream works.
 
 ## 5. Android TV integration (required for live sync)
-The current Android app loads bundled files from `app/src/main/assets/channels/`. Therefore the dashboard alone does **not** update an installed app. The Android app needs a Firebase configuration and a Firestore reader that:
-- reads `channels` documents;
-- groups records by the category names above;
-- falls back to bundled assets if the network/database is unavailable;
-- uses only public read access and never embeds admin credentials.
+The Android app now has `RemoteChannelRepository.kt`, which reads the public Firestore `channels` collection over HTTPS. When a category opens, the app shows bundled assets immediately, then replaces the list with remote channels if the request succeeds. If Firebase is not configured or the network/database is unavailable, bundled channels remain available.
 
-The app integration is a separate code change and must be built/tested before expecting live updates. Do not assume it is complete just because the dashboard deploys.
+Before building the APK, edit `app/src/main/java/com/myindiatv/RemoteChannelRepository.kt` and replace `REPLACE_WITH_PROJECT_ID` and `REPLACE_WITH_FIREBASE_WEB_API_KEY` with the same Firebase project ID and web API key used by the dashboard. These are client configuration values, not admin secrets. Never embed an admin password, service-account JSON, or private key in the app.
+
+After configuring, run the repository's existing Gradle build workflow and test on an Android TV device. The app only reads public channel data; all writes remain restricted by Firestore rules.
 
 ## Free-plan notes
 Firestore's no-cost quota is limited (currently 1 GiB storage, 50,000 document reads/day, 20,000 writes/day, 20,000 deletes/day, and 10 GiB outbound transfer/month; confirm the current official pricing page). On the Spark plan, a product can stop serving requests after its free quota is exceeded until the quota period resets. Free service is not a lifetime guarantee.
