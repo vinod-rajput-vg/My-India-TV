@@ -141,6 +141,13 @@ class MainActivity : Activity() {
         channelView = view
         setContentView(view)
         view.requestFocus()
+
+        // Show bundled channels immediately; replace them only if remote data loads successfully.
+        RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
+            if (remoteChannels != null && channelView === view) {
+                view.replaceChannels(remoteChannels)
+            }
+        }
     }
 
     fun showHome() {
@@ -305,14 +312,16 @@ private class HomeView(context: Context) : View(context) {
 
 private class ChannelView(
     context: Context,
-    private val channels: List<Channel>
+    initialChannels: List<Channel>
 ) : View(context) {
+    private var channels: List<Channel> = initialChannels
+    private var bitmaps: Array<Bitmap?> = arrayOfNulls(initialChannels.size)
 
 
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
-    private val bitmaps: Array<Bitmap?> = arrayOfNulls(channels.size)
+
     private val columns = 5
     private var selected = 0
     private var scrollOffset = 0f
@@ -323,11 +332,26 @@ private class ChannelView(
         isFocusable = true
         isFocusableInTouchMode = true
         requestFocus()
+        loadIcons()
+    }
+
+    fun replaceChannels(updated: List<Channel>) {
+        channels = updated
+        bitmaps = arrayOfNulls(updated.size)
+        selected = 0
+        scrollOffset = 0f
+        loadIcons()
+        postInvalidateOnAnimation()
+    }
+
+    private fun loadIcons() {
         for (i in channels.indices) {
             val index = i
             ChannelIconLoader.load(channels[index].iconUrl, this) { bitmap ->
-                bitmaps[index] = bitmap
-                postInvalidateOnAnimation()
+                if (index < bitmaps.size) {
+                    bitmaps[index] = bitmap
+                    postInvalidateOnAnimation()
+                }
             }
         }
     }
