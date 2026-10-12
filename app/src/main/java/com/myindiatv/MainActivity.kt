@@ -7,8 +7,7 @@ import android.content.Intent
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
+import com.google.firebase.firestore.ListenerRegistration
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -129,18 +128,7 @@ class MainActivity : Activity() {
     private lateinit var homeView: HomeView
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
-    private val channelRefreshHandler = Handler(Looper.getMainLooper())
-    private val channelRefreshIntervalMs = 10_000L
-    private val channelRefreshRunnable = object : Runnable {
-        override fun run() {
-            val category = activeCategory
-            val view = channelView
-            if (category != null && view != null) {
-                refreshCategory(category, view)
-                channelRefreshHandler.postDelayed(this, channelRefreshIntervalMs)
-            }
-        }
-    }
+    private var channelListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -152,7 +140,8 @@ class MainActivity : Activity() {
 
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
-        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+        channelListener?.remove()
+        channelListener = null
         val view = ChannelView(this, loadChannels(this, category.fileName))
         channelView = view
         activeCategory = category
@@ -160,24 +149,26 @@ class MainActivity : Activity() {
         view.requestFocus()
 
         refreshCategory(category, view)
-        channelRefreshHandler.postDelayed(channelRefreshRunnable, channelRefreshIntervalMs)
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        // Poll both sources while the category stays open. Firestore is authoritative
-        // for current enabled channels and sortOrder; TXT order is the offline fallback.
+        // Load TXT once for offline fallback/order, then listen to Firestore in realtime.
         RemoteChannelRepository.loadTextFile(category.fileName) { fetchedText ->
             if (channelView !== view || activeCategory != category) return@loadTextFile
             val textChannels = fetchedText ?: loadChannels(this, category.fileName)
+            val txtRank = textChannels.mapIndexed { index, channel ->
+                channel.name.trim().lowercase().replace(Regex("\\s+"), " ") to index
+            }.toMap()
 
-            RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
-                if (channelView !== view || activeCategory != category) return@loadCategory
+            channelListener?.remove()
+            channelListener = RemoteChannelRepository.listenCategory(this, category.name) { remoteChannels ->
+                if (channelView !== view || activeCategory != category || remoteChannels == null) return@listenCategory
 
                 val merged = linkedMapOf<String, Channel>()
                 textChannels.forEach { channel ->
                     merged[channel.name.trim().lowercase().replace(Regex("\\s+"), " ")] = channel
                 }
-                remoteChannels?.forEach { channel ->
+                remoteChannels.forEach { channel ->
                     val key = channel.name.trim().lowercase().replace(Regex("\\s+"), " ")
                     val txtChannel = merged[key]
                     merged[key] = if (txtChannel != null) {
@@ -190,9 +181,6 @@ class MainActivity : Activity() {
                         channel
                     }
                 }
-                val txtRank = textChannels.mapIndexed { index, channel ->
-                    channel.name.trim().lowercase().replace(Regex("\\s+"), " ") to index
-                }.toMap()
                 val ordered = merged.values.sortedWith(
                     compareBy<Channel> { it.sortOrder ?: (txtRank[it.name.trim().lowercase().replace(Regex("\\s+"), " ")] ?: Int.MAX_VALUE) }
                         .thenBy { it.name.lowercase() }
@@ -202,26 +190,15 @@ class MainActivity : Activity() {
         }
     }
 
-    override fun onPause() {
-        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
-        super.onPause()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if (channelView != null && activeCategory != null) {
-            channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
-            channelRefreshHandler.postDelayed(channelRefreshRunnable, channelRefreshIntervalMs)
-        }
-    }
-
     override fun onDestroy() {
-        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+        channelListener?.remove()
+        channelListener = null
         super.onDestroy()
     }
 
     fun showHome() {
-        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+        channelListener?.remove()
+        channelListener = null
         activeCategory = null
         channelView = null
         setContentView(homeView)
