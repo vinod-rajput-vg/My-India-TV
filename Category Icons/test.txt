@@ -1,3 +1,0 @@
-Test HD
-http://test.com/test-hd.png
-http://test.com/test-hd.m3u8
