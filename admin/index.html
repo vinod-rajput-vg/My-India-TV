@@ -21,7 +21,7 @@
     .channels-panel{min-width:0;animation:rise-in .35s ease both}.section-heading{justify-content:space-between}.subheading{font-size:12px;margin:5px 0 0}.add-button{font-weight:700;box-shadow:0 5px 18px #2563eb33}.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px}.modal-backdrop{position:absolute;inset:0;background:#020617bb;backdrop-filter:blur(5px);animation:fade-in .16s ease both}.modal-card{position:relative;width:min(100%,520px);max-height:min(90vh,760px);overflow:auto;background:#101827;border-color:#3a4b65;box-shadow:0 24px 90px #0009;animation:modal-in .2s ease both}.modal-heading{justify-content:space-between;margin-bottom:18px}.modal-heading h2{margin:0}.icon-button{width:38px;height:38px;padding:0}.modal-actions{padding-top:4px}.bulk-tools summary{cursor:pointer;color:#cbd5e1;font-weight:650;margin-bottom:12px}.bulk-tools[open] summary{margin-bottom:16px}.tablewrap{border-radius:10px}.notice{animation:fade-in .18s ease both}
     @keyframes rise-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}@keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes modal-in{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.toolbar input{flex:1;min-width:180px}.toolbar select{width:auto;min-width:170px}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.toolbar input{flex:1;min-width:180px}
     .tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #253145;font-size:13px}th{color:#9fb0c6;font-weight:600}td.name{font-weight:650}
     .channel{display:flex;align-items:center;gap:10px}.channel img{width:44px;height:32px;object-fit:contain;background:#0a101b;border-radius:7px}.pill{font-size:11px;border:1px solid #334155;border-radius:999px;padding:4px 8px;color:#cbd5e1}
     .notice{padding:11px 13px;border-radius:10px;background:#102337;border:1px solid #234d70;color:#b8dcff;margin:12px 0}.error{background:#341b23;border-color:#733043;color:#ffd0d7}.success{background:#123126;border-color:#28664c;color:#c6f6d5}
@@ -62,10 +62,9 @@
       <div id="message" aria-live="polite"></div>
       <section class="panel channels-panel">
           <div class="topline section-heading" style="margin-bottom:14px"><div><h2 style="margin:0">Channels</h2><p class="muted subheading">Manage your live TV channel list</p></div><div class="actions"><button id="addChannelBtn" class="primary add-button" type="button"><span aria-hidden="true">＋</span> Add channel</button></div></div>
-          <div class="toolbar"><input id="search" type="search" placeholder="Search channel name…"><select id="filterCategory"><option value="">All categories</option></select><select id="sortMode" aria-label="Channel sorting"><option value="txt">Live TXT order</option><option value="manual">Manual order</option></select><button id="refreshTxtOrder" type="button" title="Reload channel order from repository TXT files">Refresh TXT order</button></div><p class="muted" style="font-size:12px;margin-top:-4px">Use ↑ / ↓ to reorder channels within their category. Manual order is saved to Firebase.</p>
+          <div class="toolbar"><input id="search" type="search" placeholder="Search channel name…"><select id="filterCategory"><option value="">All categories</option></select></div>
           <div class="tablewrap"><table><thead><tr><th>Channel</th><th>Category</th><th>Actions</th></tr></thead><tbody id="channelRows"></tbody></table></div>
           <div id="emptyState" class="empty hidden">No channels found. Add a channel or import JSON.</div>
-          <details class="importbox bulk-tools"><summary>Bulk import / export</summary><div class="field"><label for="importFile">Import JSON (adds or updates by document ID)</label><input id="importFile" type="file" accept=".json,application/json"></div><div class="actions"><button id="importButton" type="button">Import JSON</button><button id="exportButton" type="button">Export JSON</button></div><p class="muted" style="font-size:12px">Import format: an array of objects with name, category, logoUrl, streamUrl and optional enabled/id fields.</p></details>
         </section>
       </section>
     </section>
@@ -100,7 +99,6 @@
     const $ = id => document.getElementById(id);
     let auth, db, currentUser, channelCache = [];
     const categoryRank = new Map(categories.map((name,index)=>[name,index]));
-    let txtOrder = new Map();
     const showMessage = (text, kind="") => { const el=$("message"); el.className="notice "+kind; el.textContent=text; el.classList.remove("hidden"); };
     const showLoginMessage = (text, kind="error") => { const el=$("loginMessage"); el.className="notice "+kind; el.textContent=text; };
     const safeText = value => String(value ?? "");
@@ -118,10 +116,9 @@
       $("filterCategory").innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option>${c}</option>`).join("");
     }
     function render() {
-      const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value, mode=$("sortMode").value;
+      const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value;
       const list=channelCache.filter(c=>(!q||c.name.toLowerCase().includes(q))&&(!cat||c.category===cat));
-      const rank=c=>Number(c.sortOrder ?? txtOrder.get(c.category+"::"+c.name.toLowerCase()) ?? 999999);
-      list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || (mode==="name" ? a.name.localeCompare(b.name) : mode==="manual" ? rank(a)-rank(b) || a.name.localeCompare(b.name) : Number(txtOrder.get(a.category+"::"+a.name.toLowerCase())??999999)-Number(txtOrder.get(b.category+"::"+b.name.toLowerCase())??999999) || a.name.localeCompare(b.name)));
+      list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || a.name.localeCompare(b.name));
       $("channelRows").innerHTML=list.map(c=>`<tr>
         <td class="name"><div class="channel">${c.logoUrl?'<img src="'+escapeAttr(c.logoUrl)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'">':'<span class="pill">No logo</span>'}<span>${escapeHtml(c.name)}</span></div></td>
         <td>${escapeHtml(c.category)}</td>
@@ -148,20 +145,12 @@
         $("dashboard").classList.toggle("hidden",!user);
         $("signOut").classList.toggle("hidden",!user);
         $("setupNotice").classList.add("hidden");
-        if(user){$("adminLabel").textContent=user.email||user.uid;$("loginMessage").textContent="";await loadTxtOrder();await loadChannels();}
+        if(user){$("adminLabel").textContent=user.email||user.uid;$("loginMessage").textContent="";await loadChannels();}
       });
       $("loginForm").addEventListener("submit",async e=>{e.preventDefault();try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);}catch(err){showLoginMessage(friendlyError(err));}});
       $("signOut").addEventListener("click",()=>signOut(auth));
     }
     function friendlyError(err){const code=err?.code||"";if(code.includes("permission-denied"))return "Permission denied. Check admin UID in Firestore rules and publish the rules.";if(code.includes("auth/invalid-credential"))return "Email or password is incorrect.";if(code.includes("auth/too-many-requests"))return "Too many attempts. Wait a little and try again.";return err?.message||"Something went wrong.";}
-    async function loadTxtOrder(){
-      const files={"Entertainment":"entertainment.txt","Infotainment":"infotainment.txt","News":"news.txt","Music":"music.txt","Kids":"kids.txt","Drama":"drama.txt","Sports":"sports.txt","Movies":"movies.txt"};
-      const next=new Map();
-      await Promise.all(Object.entries(files).map(async([category,file])=>{try{const res=await fetch("https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/assets/channels/"+file,{cache:"no-store"});if(!res.ok)return;const lines=(await res.text()).split(/\r?\n/).map(x=>x.trim());let names=[];if(lines.some(x=>x.toUpperCase().startsWith("#EXTINF:"))){for(const line of lines){if(line.toUpperCase().startsWith("#EXTINF:")){const comma=line.indexOf(",");if(comma>=0)names.push(line.slice(comma+1).trim());}}}else{names=lines.filter(x=>x&&!x.startsWith("#")).filter((_,i)=>i%3===0);}names.forEach((name,index)=>next.set(category+"::"+name.toLowerCase(),index));}catch(err){console.warn("Could not load TXT order for "+category,err);}}));txtOrder=next;
-    }
-    async function refreshTxtSorting(){
-      const button=$("refreshTxtOrder");button.disabled=true;button.textContent="Refreshing…";try{await loadTxtOrder();render();showMessage("TXT category order refreshed from GitHub.","success");}catch(err){showMessage("Could not refresh TXT order: "+friendlyError(err),"error");}finally{button.disabled=false;button.textContent="Refresh TXT order";}
-    }
     async function loadChannels(){
       try{const f=window.__firebase;const snap=await f.getDocs(f.collection(db,"channels"));channelCache=snap.docs.map(d=>({id:d.id,...d.data()}));render();}
       catch(err){showMessage("Could not load channels: "+friendlyError(err),"error");}
@@ -175,12 +164,8 @@
         closeModal();resetForm();await loadChannels();showMessage("Channel saved successfully.","success");
       }catch(err){showMessage("Save failed: "+friendlyError(err),"error");}
     });
-    async function moveChannel(id,direction){
-      const c=channelCache.find(x=>x.id===id);if(!c)return;const rank=x=>Number(x.sortOrder ?? txtOrder.get(x.category+"::"+x.name.toLowerCase()) ?? 999999);const peers=channelCache.filter(x=>x.category===c.category).sort((a,b)=>rank(a)-rank(b)||a.name.localeCompare(b.name));const i=peers.findIndex(x=>x.id===id),j=i+direction;if(j<0||j>=peers.length)return;[peers[i],peers[j]]=[peers[j],peers[i]];try{const f=window.__firebase;const batch=f.writeBatch(db);peers.forEach((item,index)=>batch.set(f.doc(db,"channels",item.id),{sortOrder:index,updatedAt:f.serverTimestamp(),updatedBy:currentUser.uid},{merge:true}));await batch.commit();$("sortMode").value="manual";await loadChannels();showMessage("Channel order saved.","success");}catch(err){showMessage("Could not save order: "+friendlyError(err),"error");}
-    }
     $("channelRows").addEventListener("click",async e=>{
-      const up=e.target.closest("[data-up]");const down=e.target.closest("[data-down]");const edit=e.target.closest("[data-edit]");const del=e.target.closest("[data-delete]");
-      if(up){await moveChannel(up.dataset.up,-1);return;}if(down){await moveChannel(down.dataset.down,1);return;}
+      const edit=e.target.closest("[data-edit]");const del=e.target.closest("[data-delete]");
       if(edit){editChannel(edit.dataset.edit);return;}
       if(del){const c=channelCache.find(x=>x.id===del.dataset.delete);if(!c||!confirm('Delete "'+c.name+'"? This cannot be undone.'))return;try{await window.__firebase.deleteDoc(window.__firebase.doc(db,"channels",c.id));await loadChannels();showMessage("Channel deleted.","success");}catch(err){showMessage("Delete failed: "+friendlyError(err),"error");}}
     });
@@ -189,16 +174,7 @@
     $("channelModal").addEventListener("click",e=>{if(e.target.matches("[data-close-modal]"))closeModal();});
     document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("channelModal").classList.contains("hidden"))closeModal();});
     $("resetForm").addEventListener("click",resetForm);$("logoUrl").addEventListener("input",previewLogo);
-    $("refreshTxtOrder").addEventListener("click",refreshTxtSorting);
-    ["search","filterCategory","sortMode"].forEach(id=>$(id).addEventListener("input",render));
-    $("exportButton").addEventListener("click",()=>{const data=channelCache.map(({id,name,category,logoUrl="",streamUrl,enabled=true})=>({id,name,category,logoUrl,streamUrl,enabled}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="my-india-tv-channels.json";a.click();URL.revokeObjectURL(a.href);});
-    $("importButton").addEventListener("click",async()=>{
-      const file=$("importFile").files?.[0];if(!file){showMessage("Choose a JSON file first.","error");return;}
-      try{const data=JSON.parse(await file.text());if(!Array.isArray(data))throw new Error("JSON root must be an array.");const f=window.__firebase;let batch=f.writeBatch(db),ops=0;
-        for(const raw of data){const c=cleanChannel(raw);const id=safeText(raw.id).trim()||crypto.randomUUID();batch.set(f.doc(db,"channels",id),{...c,updatedAt:f.serverTimestamp(),updatedBy:currentUser.uid},{merge:true});ops++;if(ops===450){await batch.commit();batch=f.writeBatch(db);ops=0;}}
-        if(ops)await batch.commit();$("importFile").value="";await loadChannels();showMessage("Import completed. Existing documents with matching IDs were updated; other channels were added.","success");
-      }catch(err){showMessage("Import failed: "+friendlyError(err),"error");}
-    });
+    ["search","filterCategory"].forEach(id=>$(id).addEventListener("input",render));
     fillCategories();
     if(configured){$("setupNotice").classList.add("hidden");$("loginPanel").classList.remove("hidden");loadFirebase().catch(err=>{ $("loginPanel").classList.remove("hidden");showLoginMessage("Firebase initialization failed: "+friendlyError(err));});}
     else $("loginPanel").classList.add("hidden");
