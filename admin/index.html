@@ -16,14 +16,18 @@
     h1{font-size:22px;margin:0}h2{font-size:17px;margin:0 0 14px}p{line-height:1.5}.hidden{display:none!important}
     .panel{background:rgba(15,23,42,.88);border:1px solid #263347;border-radius:16px;padding:20px;box-shadow:0 18px 50px #0002}
     .login{max-width:430px;margin:8vh auto}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat{padding:17px;border:1px solid #263347;background:#101827;border-radius:14px}.stat strong{display:block;font-size:28px;margin-top:8px}
-    .layout{display:grid;grid-template-columns:minmax(280px,380px) minmax(0,1fr);gap:18px;align-items:start}.field{margin-bottom:13px}.row{display:flex;gap:10px;align-items:center}.row>*{min-width:0}.row .grow{flex:1}.actions{display:flex;gap:8px;flex-wrap:wrap}
+    .field{margin-bottom:13px}.row{display:flex;gap:10px;align-items:center}.row>*{min-width:0}.row .grow{flex:1}.actions{display:flex;gap:8px;flex-wrap:wrap}
+    button{transition:transform .16s ease,border-color .16s ease,background-color .16s ease,box-shadow .16s ease}button:hover:not(:disabled){border-color:#6384b5;box-shadow:0 5px 18px #0003;transform:translateY(-1px)}button:active:not(:disabled){transform:translateY(0) scale(.98)}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid #60a5fa;outline-offset:2px}
+    .channels-panel{min-width:0;animation:rise-in .35s ease both}.section-heading{justify-content:space-between}.subheading{font-size:12px;margin:5px 0 0}.add-button{font-weight:700;box-shadow:0 5px 18px #2563eb33}.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:18px}.modal-backdrop{position:absolute;inset:0;background:#020617bb;backdrop-filter:blur(5px);animation:fade-in .16s ease both}.modal-card{position:relative;width:min(100%,520px);max-height:min(90vh,760px);overflow:auto;background:#101827;border-color:#3a4b65;box-shadow:0 24px 90px #0009;animation:modal-in .2s ease both}.modal-heading{justify-content:space-between;margin-bottom:18px}.modal-heading h2{margin:0}.icon-button{width:38px;height:38px;padding:0}.modal-actions{padding-top:4px}.bulk-tools summary{cursor:pointer;color:#cbd5e1;font-weight:650;margin-bottom:12px}.bulk-tools[open] summary{margin-bottom:16px}.tablewrap{border-radius:10px}.notice{animation:fade-in .18s ease both}
+    @keyframes rise-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}@keyframes fade-in{from{opacity:0}to{opacity:1}}@keyframes modal-in{from{opacity:0;transform:translateY(8px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
     .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.toolbar input{flex:1;min-width:180px}.toolbar select{width:auto;min-width:170px}
     .tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #253145;font-size:13px}th{color:#9fb0c6;font-weight:600}td.name{font-weight:650}
     .channel{display:flex;align-items:center;gap:10px}.channel img{width:44px;height:32px;object-fit:contain;background:#0a101b;border-radius:7px}.pill{font-size:11px;border:1px solid #334155;border-radius:999px;padding:4px 8px;color:#cbd5e1}
     .notice{padding:11px 13px;border-radius:10px;background:#102337;border:1px solid #234d70;color:#b8dcff;margin:12px 0}.error{background:#341b23;border-color:#733043;color:#ffd0d7}.success{background:#123126;border-color:#28664c;color:#c6f6d5}
     .status{font-size:12px;margin-left:auto}.topline{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.empty{text-align:center;padding:36px;color:#91a0b5}.importbox{margin-top:18px;padding-top:18px;border-top:1px solid #263347}
-    @media(max-width:950px){.layout{grid-template-columns:1fr}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding:14px}}
-    @media(max-width:520px){header{align-items:flex-start;flex-direction:column}.grid{gap:8px}.stat{padding:13px}.panel{padding:15px}.status{margin-left:0}}
+    @media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding:14px}.toolbar select{flex:1;min-width:140px}.section-heading{align-items:flex-start}}
+    @media(max-width:520px){header{align-items:flex-start;flex-direction:column}.grid{gap:8px}.stat{padding:13px}.panel{padding:15px}.status{margin-left:0}.section-heading{flex-direction:column}.section-heading>.actions{width:100%;justify-content:space-between}.toolbar>*{width:100%!important;min-width:0!important}.modal{padding:10px}.modal-card{max-height:94vh}}
   </style>
 </head>
 <body>
@@ -57,33 +61,30 @@
         <div class="stat"><span class="muted">Signed in as</span><strong id="adminLabel" style="font-size:14px;overflow-wrap:anywhere">Admin</strong></div>
       </div>
       <div id="message" aria-live="polite"></div>
-      <div class="layout">
-        <section class="panel">
-          <h2 id="formTitle">Add channel</h2>
-          <form id="channelForm">
-            <input id="channelId" type="hidden">
-            <div class="field"><label for="name">Channel name *</label><input id="name" maxlength="120" required placeholder="e.g. Example TV HD"></div>
-            <div class="field"><label for="category">Category *</label><select id="category" required></select></div>
-            <div class="field"><label for="logoUrl">Logo URL</label><input id="logoUrl" type="url" placeholder="https://example.com/logo.png"><div style="margin-top:8px"><img id="logoPreview" alt="Logo preview" class="hidden" style="max-width:100px;max-height:65px;object-fit:contain;background:#080d15;border-radius:8px;padding:5px"></div></div>
-            <div class="field"><label for="streamUrl">Stream URL *</label><input id="streamUrl" type="url" required placeholder="https://example.com/stream.m3u8"></div>
-            <div class="field"><label class="row" style="margin:0"><input id="enabled" type="checkbox" checked style="width:auto"> Enabled / visible in app</label></div>
-            <div class="actions"><button class="primary" type="submit">Save channel</button><button id="resetForm" type="button">Clear</button></div>
-          </form>
-          <div class="importbox">
-            <h2>Bulk import / export</h2>
-            <div class="field"><label for="importFile">Import JSON (adds or updates by document ID)</label><input id="importFile" type="file" accept=".json,application/json"></div>
-            <div class="actions"><button id="importButton" type="button">Import JSON</button><button id="exportButton" type="button">Export JSON</button></div>
-            <p class="muted" style="font-size:12px">Import format: an array of objects with name, category, logoUrl, streamUrl and optional enabled/id fields.</p>
-          </div>
-        </section>
-        <section class="panel">
-          <div class="topline" style="margin-bottom:14px"><h2 style="margin:0">Channels</h2><span id="lastUpdated" class="status muted"></span></div>
+      <section class="panel channels-panel">
+          <div class="topline section-heading" style="margin-bottom:14px"><div><h2 style="margin:0">Channels</h2><p class="muted subheading">Manage your live TV channel list</p></div><div class="actions"><button id="addChannelBtn" class="primary add-button" type="button"><span aria-hidden="true">＋</span> Add channel</button><span id="lastUpdated" class="status muted"></span></div></div>
           <div class="toolbar"><input id="search" type="search" placeholder="Search channel name…"><select id="filterCategory"><option value="">All categories</option></select><select id="filterEnabled"><option value="">All status</option><option value="true">Enabled</option><option value="false">Disabled</option></select><select id="sortMode" aria-label="Channel sorting"><option value="txt">Live TXT order</option><option value="manual">Manual order</option></select><button id="refreshTxtOrder" type="button" title="Reload channel order from repository TXT files">Refresh TXT order</button></div><p class="muted" style="font-size:12px;margin-top:-4px">Use ↑ / ↓ to reorder channels within their category. Manual order is saved to Firebase.</p>
           <div class="tablewrap"><table><thead><tr><th>Channel</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead><tbody id="channelRows"></tbody></table></div>
           <div id="emptyState" class="empty hidden">No channels found. Add a channel or import JSON.</div>
+          <details class="importbox bulk-tools"><summary>Bulk import / export</summary><div class="field"><label for="importFile">Import JSON (adds or updates by document ID)</label><input id="importFile" type="file" accept=".json,application/json"></div><div class="actions"><button id="importButton" type="button">Import JSON</button><button id="exportButton" type="button">Export JSON</button></div><p class="muted" style="font-size:12px">Import format: an array of objects with name, category, logoUrl, streamUrl and optional enabled/id fields.</p></details>
         </section>
-      </div>
+      </section>
     </section>
+    <div id="channelModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="formTitle">
+      <div class="modal-backdrop" data-close-modal></div>
+      <section class="panel modal-card">
+        <div class="topline modal-heading"><h2 id="formTitle">Add channel</h2><button id="closeModal" class="icon-button" type="button" aria-label="Close add channel dialog">✕</button></div>
+        <form id="channelForm">
+          <input id="channelId" type="hidden">
+          <div class="field"><label for="name">Channel name *</label><input id="name" maxlength="120" required placeholder="e.g. Example TV HD"></div>
+          <div class="field"><label for="category">Category *</label><select id="category" required></select></div>
+          <div class="field"><label for="logoUrl">Logo URL</label><input id="logoUrl" type="url" placeholder="https://example.com/logo.png"><div style="margin-top:8px"><img id="logoPreview" alt="Logo preview" class="hidden" style="max-width:100px;max-height:65px;object-fit:contain;background:#080d15;border-radius:8px;padding:5px"></div></div>
+          <div class="field"><label for="streamUrl">Stream URL *</label><input id="streamUrl" type="url" required placeholder="https://example.com/stream.m3u8"></div>
+          <div class="field"><label class="row" style="margin:0"><input id="enabled" type="checkbox" checked style="width:auto"> Enabled / visible in app</label></div>
+          <div class="actions modal-actions"><button class="primary" type="submit">Save channel</button><button id="resetForm" type="button">Clear</button></div>
+        </form>
+      </section>
+    </div>
   </main>
 
   <script type="module">
@@ -132,8 +133,10 @@
     }
     function escapeHtml(s){return safeText(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
     function escapeAttr(s){return escapeHtml(s);}
+    function openModal(editing=false){$("channelModal").classList.remove("hidden");document.body.style.overflow="hidden";$("formTitle").textContent=editing?"Edit channel":"Add channel";requestAnimationFrame(()=>$(editing?"name":"name").focus());}
+    function closeModal(){ $("channelModal").classList.add("hidden");document.body.style.overflow=""; }
     function resetForm(){ $("channelForm").reset();$("channelId").value="";$("enabled").checked=true;$("formTitle").textContent="Add channel";$("logoPreview").classList.add("hidden"); }
-    function editChannel(id){const c=channelCache.find(x=>x.id===id);if(!c)return;$("channelId").value=c.id;$("name").value=c.name;$("category").value=c.category;$("logoUrl").value=c.logoUrl||"";$("streamUrl").value=c.streamUrl;$("enabled").checked=c.enabled!==false;$("formTitle").textContent="Edit channel";previewLogo();window.scrollTo({top:0,behavior:"smooth"});}
+    function editChannel(id){const c=channelCache.find(x=>x.id===id);if(!c)return;$("channelId").value=c.id;$("name").value=c.name;$("category").value=c.category;$("logoUrl").value=c.logoUrl||"";$("streamUrl").value=c.streamUrl;$("enabled").checked=c.enabled!==false;openModal(true);previewLogo();}
     function previewLogo(){const u=$("logoUrl").value.trim();if(validHttpUrl(u)){$("logoPreview").src=u;$("logoPreview").classList.remove("hidden");}else $("logoPreview").classList.add("hidden");}
     async function loadFirebase(){
       const {initializeApp}=await import("https://www.gstatic.com/firebasejs/11.10.0/firebase-app.js");
@@ -172,7 +175,7 @@
         const c=cleanChannel({name:$("name").value,category:$("category").value,logoUrl:$("logoUrl").value,streamUrl:$("streamUrl").value,enabled:$("enabled").checked});
         const f=window.__firebase;const id=$("channelId").value||crypto.randomUUID();
         await f.setDoc(f.doc(db,"channels",id),{...c,updatedAt:f.serverTimestamp(),updatedBy:currentUser.uid},{merge:true});
-        resetForm();await loadChannels();showMessage("Channel saved successfully.","success");
+        closeModal();resetForm();await loadChannels();showMessage("Channel saved successfully.","success");
       }catch(err){showMessage("Save failed: "+friendlyError(err),"error");}
     });
     async function moveChannel(id,direction){
@@ -184,6 +187,10 @@
       if(edit){editChannel(edit.dataset.edit);return;}
       if(del){const c=channelCache.find(x=>x.id===del.dataset.delete);if(!c||!confirm('Delete "'+c.name+'"? This cannot be undone.'))return;try{await window.__firebase.deleteDoc(window.__firebase.doc(db,"channels",c.id));await loadChannels();showMessage("Channel deleted.","success");}catch(err){showMessage("Delete failed: "+friendlyError(err),"error");}}
     });
+    $("addChannelBtn").addEventListener("click",()=>{resetForm();openModal(false);});
+    $("closeModal").addEventListener("click",closeModal);
+    $("channelModal").addEventListener("click",e=>{if(e.target.matches("[data-close-modal]"))closeModal();});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("channelModal").classList.contains("hidden"))closeModal();});
     $("resetForm").addEventListener("click",resetForm);$("logoUrl").addEventListener("input",previewLogo);
     $("refreshTxtOrder").addEventListener("click",refreshTxtSorting);
     ["search","filterCategory","filterEnabled","sortMode"].forEach(id=>$(id).addEventListener("input",render));
