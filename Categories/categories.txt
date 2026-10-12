@@ -30,6 +30,3 @@ movies
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/movies.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/movies.txt
 
-test
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/test.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/test.txt
