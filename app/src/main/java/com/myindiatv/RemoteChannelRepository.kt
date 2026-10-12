@@ -118,10 +118,13 @@ internal object RemoteChannelRepository {
                                 val category = fields.optJSONObject("category")?.optString("stringValue").orEmpty().trim()
                                 val streamUrl = fields.optJSONObject("streamUrl")?.optString("stringValue").orEmpty().trim()
                                 val iconUrl = fields.optJSONObject("logoUrl")?.optString("stringValue").orEmpty().trim()
+                                val sortOrderField = fields.optJSONObject("sortOrder")
+                                val sortOrder = sortOrderField?.optString("integerValue")?.toIntOrNull()
+                                    ?: sortOrderField?.optString("doubleValue")?.toDoubleOrNull()?.toInt()
                                 val enabledField = fields.optJSONObject("enabled")
                                 val enabled = enabledField?.optBoolean("booleanValue", true) ?: true
                                 if (enabled && name.isNotEmpty() && streamUrl.isNotEmpty() && category == categoryName) {
-                                    channels += Channel(name = name, streamUrl = streamUrl, iconUrl = iconUrl)
+                                    channels += Channel(name = name, streamUrl = streamUrl, iconUrl = iconUrl, sortOrder = sortOrder)
                                 }
                             }
                         }
