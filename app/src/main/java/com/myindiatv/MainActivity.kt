@@ -130,7 +130,7 @@ class MainActivity : Activity() {
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
     private val channelRefreshHandler = Handler(Looper.getMainLooper())
-    private val channelRefreshIntervalMs = 60_000L
+    private val channelRefreshIntervalMs = 10_000L
     private val channelRefreshRunnable = object : Runnable {
         override fun run() {
             val category = activeCategory
@@ -164,9 +164,11 @@ class MainActivity : Activity() {
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        // Use GitHub TXT as the source of ordering; Firestore provides latest metadata.
-        RemoteChannelRepository.loadTextFile(category.fileName) { textChannels ->
-            if (textChannels == null || channelView !== view || activeCategory != category) return@loadTextFile
+        // Poll both sources while the category stays open. Firestore is authoritative
+        // for current enabled channels and sortOrder; TXT order is the offline fallback.
+        RemoteChannelRepository.loadTextFile(category.fileName) { fetchedText ->
+            if (channelView !== view || activeCategory != category) return@loadTextFile
+            val textChannels = fetchedText ?: loadChannels(this, category.fileName)
 
             RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
                 if (channelView !== view || activeCategory != category) return@loadCategory
