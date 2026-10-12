@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
-import com.google.firebase.firestore.ListenerRegistration
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -128,7 +127,6 @@ class MainActivity : Activity() {
     private lateinit var homeView: HomeView
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
-    private var channelListener: ListenerRegistration? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -140,8 +138,6 @@ class MainActivity : Activity() {
 
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
-        channelListener?.remove()
-        channelListener = null
         val view = ChannelView(this, loadChannels(this, category.fileName))
         channelView = view
         activeCategory = category
@@ -152,7 +148,7 @@ class MainActivity : Activity() {
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        // Load TXT once for offline fallback/order, then listen to Firestore in realtime.
+        // Refresh channel data once when this category is opened; no realtime listener.
         RemoteChannelRepository.loadTextFile(category.fileName) { fetchedText ->
             if (channelView !== view || activeCategory != category) return@loadTextFile
             val textChannels = fetchedText ?: loadChannels(this, category.fileName)
@@ -160,12 +156,10 @@ class MainActivity : Activity() {
                 channel.name.trim().lowercase().replace(Regex("\\s+"), " ") to index
             }.toMap()
 
-            channelListener?.remove()
-            channelListener = RemoteChannelRepository.listenCategory(this, category.name) { remoteChannels ->
-                if (channelView !== view || activeCategory != category || remoteChannels == null) return@listenCategory
+            RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
+                if (channelView !== view || activeCategory != category || remoteChannels == null) return@loadCategory
 
-                // Firestore is authoritative once its realtime snapshot arrives, so
-                // newly added, edited, disabled, or deleted channels show immediately.
+                // Use the latest Firestore snapshot fetched once on category open.
                 val ordered = remoteChannels.sortedWith(
                     compareBy<Channel> { it.sortOrder ?: (txtRank[it.name.trim().lowercase().replace(Regex("\\s+"), " ")] ?: Int.MAX_VALUE) }
                         .thenBy { it.name.lowercase() }
@@ -176,8 +170,6 @@ class MainActivity : Activity() {
     }
 
     override fun onDestroy() {
-        channelListener?.remove()
-        channelListener = null
         super.onDestroy()
     }
 
