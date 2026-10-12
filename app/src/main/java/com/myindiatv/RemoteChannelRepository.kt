@@ -15,8 +15,8 @@ import java.util.concurrent.Executors
  * configuration, not service-account credentials. Never put admin passwords or private keys here.
  */
 internal object RemoteChannelRepository {
-    private const val FIREBASE_PROJECT_ID = "REPLACE_WITH_PROJECT_ID"
-    private const val FIREBASE_WEB_API_KEY = "REPLACE_WITH_FIREBASE_WEB_API_KEY"
+    private const val FIREBASE_PROJECT_ID = "my-india-tv-b06da"
+    private const val FIREBASE_WEB_API_KEY = "AIzaSyBPEmslzjCYu5yXN04CgJXYrtu8ZchpfDI"
     private const val TIMEOUT_MS = 6000
 
     private val executor = Executors.newSingleThreadExecutor()
