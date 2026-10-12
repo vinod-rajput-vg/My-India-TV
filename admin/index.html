@@ -135,7 +135,7 @@
     function render() {
       const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value;
       const list=channelCache.filter(c=>(!q||c.name.toLowerCase().includes(q))&&(!cat||c.category===cat));
-      const rank = item => Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : (txtOrder.get(item.category+"::"+item.name.trim().toLowerCase()) ?? 999999);
+      const rank = item => item.sortOrder !== null && item.sortOrder !== undefined && String(item.sortOrder).trim() !== "" && Number.isFinite(Number(item.sortOrder)) ? Number(item.sortOrder) : (txtOrder.get(item.category+"::"+item.name.trim().toLowerCase().replace(/\\s+/g," ")) ?? 999999);
       list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || rank(a)-rank(b) || a.name.localeCompare(b.name));
       $("channelRows").innerHTML=list.map(c=>`<tr class="sort-row" draggable="true" data-row-id="${escapeAttr(c.id)}">
         <td class="name"><div class="channel">${c.logoUrl?'<img src="'+escapeAttr(c.logoUrl)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'">':'<span class="pill">No logo</span>'}<span>${escapeHtml(c.name)}</span></div></td>
