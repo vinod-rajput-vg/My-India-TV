@@ -4,12 +4,20 @@ on:
     workflows: ["main-workflow"]
     types: [completed]
 
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-channel-txt-order
+  cancel-in-progress: false
+
 jobs:
   retry:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'failure' && github.event.workflow_run.run_attempt < 3
     permissions:
       actions: write
+      contents: write
     steps:
       - name: Wait 5 minutes
         run: sleep 300
@@ -19,9 +27,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh run rerun "${{ github.event.workflow_run.id }}" \
-            --repo "${{ github.event.repository.full_name }}"   
+            --repo "${{ github.event.repository.full_name }}"
 
-                  - name: Check out repository
+      # --- TXT sync (runs immediately, independent of re-run) ---
+
+      - name: Check out repository
         uses: actions/checkout@v4
         with:
           ref: main
@@ -38,13 +48,4 @@ jobs:
       - name: Sync Firestore channel data into category TXT files
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
-        run: python scripts/sync_txt_order.py
-
-
-
-permissions:
-  contents: write
-
-concurrency:
-  group: sync-channel-txt-order
-  cancel-in-progress: false
+        run: python scripts/sync_txt_order.py   
