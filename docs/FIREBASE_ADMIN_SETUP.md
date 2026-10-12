@@ -18,8 +18,14 @@ This checklist supplements [admin/README.md](../admin/README.md).
 - [ ] Sign in and add a test channel.
 - [ ] Verify that signing out prevents writes.
 
-## Android app
-The current app still reads bundled text files. It must be updated to read the public `channels` collection before the admin dashboard can update installed TVs. The recommended implementation should retain the bundled files as an offline fallback and only read public channel documents; admin authentication is never needed in the TV app.
+## Android app remote sync
+The branch adds `app/src/main/java/com/myindiatv/RemoteChannelRepository.kt` and updates `MainActivity.kt` to load Firestore channels after first displaying the bundled files as an offline fallback.
+
+Before building the APK, replace these placeholders in `RemoteChannelRepository.kt`:
+- `REPLACE_WITH_PROJECT_ID`
+- `REPLACE_WITH_FIREBASE_WEB_API_KEY`
+
+Use values from the same Firebase project as the dashboard. The app does not need admin login. Firestore rules should allow public read access only to `channels` and admin-UID-only writes. Then build with the existing Gradle workflow and test remote updates on a TV/device. If Firebase is unconfigured or unavailable, the app keeps using bundled assets.
 
 ## Firestore document schema
 Each document in `channels` uses:
