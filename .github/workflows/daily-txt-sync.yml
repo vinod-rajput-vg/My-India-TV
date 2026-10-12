@@ -1,0 +1,101 @@
+name: Daily TXT Sync
+
+on:
+  schedule:
+    # 00:00 India Standard Time (IST, UTC+05:30) = 18:30 UTC on the previous day
+    - cron: "30 18 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-txt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install Firebase Admin SDK
+        run: npm install firebase-admin
+
+      - name: Export Firestore channels to TXT files
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const admin = require('firebase-admin');
+
+          if (!process.env.FIREBASE_SERVICE_ACCOUNT_JSON) {
+            throw new Error('Missing GitHub Actions secret: FIREBASE_SERVICE_ACCOUNT_JSON');
+          }
+
+          const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
+          admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+
+          const categoryFiles = {
+            Entertainment: 'entertainment.txt',
+            Infotainment: 'infotainment.txt',
+            News: 'news.txt',
+            Music: 'music.txt',
+            Kids: 'kids.txt',
+            Drama: 'drama.txt',
+            Sports: 'sports.txt',
+            Movies: 'movies.txt'
+          };
+
+          (async () => {
+            const snapshot = await admin.firestore().collection('channels').get();
+            const byCategory = new Map(Object.keys(categoryFiles).map(name => [name, []]));
+
+            for (const doc of snapshot.docs) {
+              const channel = doc.data();
+              if (channel.enabled === false) continue;
+              const category = String(channel.category || '').trim();
+              if (!byCategory.has(category)) continue;
+
+              const name = String(channel.name || '').trim();
+              const logoUrl = String(channel.logoUrl || '').trim();
+              const streamUrl = String(channel.streamUrl || '').trim();
+              if (!name || !streamUrl) continue;
+
+              byCategory.get(category).push({
+                name,
+                logoUrl,
+                streamUrl,
+                sortOrder: Number.isFinite(Number(channel.sortOrder)) && channel.sortOrder !== null && channel.sortOrder !== ''
+                  ? Number(channel.sortOrder)
+                  : Number.MAX_SAFE_INTEGER
+              });
+            }
+
+            for (const [category, channels] of byCategory) {
+              channels.sort((a, b) => a.sortOrder - b.sortOrder || a.name.localeCompare(b.name));
+              const body = channels.map(c => [c.name, c.logoUrl, c.streamUrl].join('\n')).join('\n');
+              const filePath = 'app/src/main/assets/channels/' + categoryFiles[category];
+              fs.writeFileSync(filePath, body ? body + '\n' : '');
+              console.log(`Wrote ${channels.length} channels to ${filePath}`);
+            }
+          })().catch(error => {
+            console.error(error);
+            process.exitCode = 1;
+          });
+          NODE
+
+      - name: Commit TXT changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/src/main/assets/channels/*.txt
+          if git diff --cached --quiet; then
+            echo "TXT files are already up to date."
+            exit 0
+          fi
+          git commit -m "Daily sync channel TXT files from Firestore"
+          git push
