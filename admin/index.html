@@ -159,7 +159,10 @@
       const next=new Map();
       await Promise.all(Object.entries(files).map(async([category,file])=>{try{const res=await fetch("https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/assets/channels/"+file,{cache:"no-store"});if(!res.ok)return;const lines=(await res.text()).split(/\r?\n/).map(x=>x.trim());let names=[];if(lines.some(x=>x.toUpperCase().startsWith("#EXTINF:"))){for(const line of lines){if(line.toUpperCase().startsWith("#EXTINF:")){const comma=line.indexOf(",");if(comma>=0)names.push(line.slice(comma+1).trim());}}}else{names=lines.filter(x=>x&&!x.startsWith("#")).filter((_,i)=>i%3===0);}names.forEach((name,index)=>next.set(category+"::"+name.toLowerCase(),index));}catch(err){console.warn("Could not load TXT order for "+category,err);}}));txtOrder=next;
     }
-    async function refreshTxtSorting(){\n      const button=$("refreshTxtOrder");button.disabled=true;button.textContent="Refreshing…";try{await loadTxtOrder();render();showMessage("TXT category order refreshed from GitHub.","success");}catch(err){showMessage("Could not refresh TXT order: "+friendlyError(err),"error");}finally{button.disabled=false;button.textContent="Refresh TXT order";}\n    }\n    async function loadChannels(){
+    async function refreshTxtSorting(){
+      const button=$("refreshTxtOrder");button.disabled=true;button.textContent="Refreshing…";try{await loadTxtOrder();render();showMessage("TXT category order refreshed from GitHub.","success");}catch(err){showMessage("Could not refresh TXT order: "+friendlyError(err),"error");}finally{button.disabled=false;button.textContent="Refresh TXT order";}
+    }
+    async function loadChannels(){
       try{const f=window.__firebase;const snap=await f.getDocs(f.collection(db,"channels"));channelCache=snap.docs.map(d=>({id:d.id,...d.data()}));render();$("lastUpdated").textContent="Loaded "+new Date().toLocaleTimeString();$("connection").textContent="Database connected";}
       catch(err){showMessage("Could not load channels: "+friendlyError(err),"error");}
     }
@@ -181,7 +184,8 @@
       if(edit){editChannel(edit.dataset.edit);return;}
       if(del){const c=channelCache.find(x=>x.id===del.dataset.delete);if(!c||!confirm('Delete "'+c.name+'"? This cannot be undone.'))return;try{await window.__firebase.deleteDoc(window.__firebase.doc(db,"channels",c.id));await loadChannels();showMessage("Channel deleted.","success");}catch(err){showMessage("Delete failed: "+friendlyError(err),"error");}}
     });
-    $("resetForm").addEventListener("click",resetForm);$("logoUrl").addEventListener("input",previewLogo);\n    $("refreshTxtOrder").addEventListener("click",refreshTxtSorting);
+    $("resetForm").addEventListener("click",resetForm);$("logoUrl").addEventListener("input",previewLogo);
+    $("refreshTxtOrder").addEventListener("click",refreshTxtSorting);
     ["search","filterCategory","filterEnabled","sortMode"].forEach(id=>$(id).addEventListener("input",render));
     $("exportButton").addEventListener("click",()=>{const data=channelCache.map(({id,name,category,logoUrl="",streamUrl,enabled=true})=>({id,name,category,logoUrl,streamUrl,enabled}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="my-india-tv-channels.json";a.click();URL.revokeObjectURL(a.href);});
     $("importButton").addEventListener("click",async()=>{
