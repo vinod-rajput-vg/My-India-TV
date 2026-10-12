@@ -2,6 +2,10 @@ plugins {
     id("com.android.application")
 }
 
+dependencies {
+    implementation("com.google.firebase:firebase-firestore:25.0.0")
+}
+
 android {
     namespace = "com.myindiatv"
     compileSdk = 36
