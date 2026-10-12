@@ -3,13 +3,12 @@
 import json
 import os
 import subprocess
-import tempfile
 from pathlib import Path
 
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[1]
 CHANNEL_DIR = ROOT / "app" / "src" / "main" / "assets" / "channels"
 FILES = {
     "Entertainment": "entertainment.txt",
