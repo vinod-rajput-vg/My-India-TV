@@ -159,10 +159,10 @@ class MainActivity : Activity() {
     private fun refreshCategory(category: Category, view: ChannelView) {
         // Fetch this category's configured remote TXT; use last successful cached data offline.
         RemoteChannelRepository.loadChannels(this, category) { channels ->
-            if (channelView !== view || activeCategory != category) return@loadTextFile
+            if (channelView !== view || activeCategory != category) return@loadChannels
             if (channels == null) {
                 Toast.makeText(this, "Unable to load channels. Check your internet connection.", Toast.LENGTH_LONG).show()
-                return@loadTextFile
+                return@loadChannels
             }
             view.replaceChannels(channels)
         }
