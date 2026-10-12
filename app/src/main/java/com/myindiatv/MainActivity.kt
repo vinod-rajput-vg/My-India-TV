@@ -7,6 +7,8 @@ import android.content.Intent
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -126,6 +128,19 @@ private object ChannelIconLoader {
 class MainActivity : Activity() {
     private lateinit var homeView: HomeView
     private var channelView: ChannelView? = null
+    private var activeCategory: Category? = null
+    private val channelRefreshHandler = Handler(Looper.getMainLooper())
+    private val channelRefreshIntervalMs = 60_000L
+    private val channelRefreshRunnable = object : Runnable {
+        override fun run() {
+            val category = activeCategory
+            val view = channelView
+            if (category != null && view != null) {
+                refreshCategory(category, view)
+                channelRefreshHandler.postDelayed(this, channelRefreshIntervalMs)
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -137,33 +152,67 @@ class MainActivity : Activity() {
 
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
+        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
         val view = ChannelView(this, loadChannels(this, category.fileName))
         channelView = view
+        activeCategory = category
         setContentView(view)
         view.requestFocus()
 
-        // Show bundled assets immediately, then refresh the TXT source from GitHub.
-        // Firestore dashboard records are merged afterward and take precedence for matching names.
+        refreshCategory(category, view)
+        channelRefreshHandler.postDelayed(channelRefreshRunnable, channelRefreshIntervalMs)
+    }
+
+    private fun refreshCategory(category: Category, view: ChannelView) {
+        // Use GitHub TXT as the source of ordering; Firestore provides latest metadata.
         RemoteChannelRepository.loadTextFile(category.fileName) { textChannels ->
-            if (textChannels != null && channelView === view) {
-                view.replaceChannels(textChannels)
-            }
+            if (textChannels == null || channelView !== view || activeCategory != category) return@loadTextFile
+
             RemoteChannelRepository.loadCategory(category.name) { remoteChannels ->
-                if (remoteChannels != null && channelView === view) {
-                    val merged = linkedMapOf<String, Channel>()
-                    (textChannels ?: loadChannels(this, category.fileName)).forEach { channel ->
-                        merged[channel.name.trim().lowercase()] = channel
-                    }
-                    remoteChannels.forEach { channel ->
-                        merged[channel.name.trim().lowercase()] = channel
-                    }
-                    view.replaceChannels(merged.values.toList())
+                if (channelView !== view || activeCategory != category) return@loadCategory
+
+                val merged = linkedMapOf<String, Channel>()
+                textChannels.forEach { channel ->
+                    merged[channel.name.trim().lowercase()] = channel
                 }
+                remoteChannels?.forEach { channel ->
+                    val key = channel.name.trim().lowercase()
+                    val txtChannel = merged[key]
+                    merged[key] = if (txtChannel != null) {
+                        txtChannel.copy(
+                            streamUrl = channel.streamUrl.ifBlank { txtChannel.streamUrl },
+                            iconUrl = channel.iconUrl.ifBlank { txtChannel.iconUrl }
+                        )
+                    } else {
+                        channel
+                    }
+                }
+                view.replaceChannels(merged.values.toList())
             }
         }
     }
 
+    override fun onPause() {
+        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+        super.onPause()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (channelView != null && activeCategory != null) {
+            channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+            channelRefreshHandler.postDelayed(channelRefreshRunnable, channelRefreshIntervalMs)
+        }
+    }
+
+    override fun onDestroy() {
+        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+        super.onDestroy()
+    }
+
     fun showHome() {
+        channelRefreshHandler.removeCallbacks(channelRefreshRunnable)
+        activeCategory = null
         channelView = null
         setContentView(homeView)
         homeView.requestFocus()
@@ -349,10 +398,15 @@ private class ChannelView(
     }
 
     fun replaceChannels(updated: List<Channel>) {
+        val orderChanged = channels.map { it.name.trim() } != updated.map { it.name.trim() }
         channels = updated
         bitmaps = arrayOfNulls(updated.size)
-        selected = 0
-        scrollOffset = 0f
+        if (orderChanged) {
+            selected = 0
+            scrollOffset = 0f
+        } else {
+            selected = selected.coerceIn(0, maxOf(0, updated.lastIndex))
+        }
         loadIcons()
         postInvalidateOnAnimation()
     }
