@@ -26,6 +26,20 @@ def norm(value):
     return " ".join(str(value or "").strip().lower().split())
 
 
+def read_existing_order(path):
+    lines = path.read_text(encoding="utf-8-sig").splitlines()
+    order = {}
+    block = []
+    for line in lines + [""]:
+        if line.strip():
+            block.append(line.strip())
+        elif block:
+            if len(block) >= 3 and norm(block[0]) not in order:
+                order[norm(block[0])] = len(order)
+            block = []
+    return order
+
+
 def main():
     raw = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "")
     if not raw:
@@ -36,8 +50,8 @@ def main():
     db = firestore.client(app=app)
     docs = list(db.collection("channels").stream())
 
-    # Firestore is the source of truth. Match by normalized category + channel
-    # name because the current TXT format has no Firestore document ID.
+    # Firestore is the source of truth. The TXT format has no Firestore IDs,
+    # so existing order fallback matches by normalized category + channel name.
     channels_by_category = {category: [] for category in FILES}
     seen = set()
     for doc in docs:
@@ -62,11 +76,8 @@ def main():
         except (TypeError, ValueError):
             order = None
         channels_by_category[category].append({
-            "name": name,
-            "logo": logo,
-            "stream": stream,
-            "order": order,
-            "doc_id": doc.id,
+            "name": name, "logo": logo, "stream": stream,
+            "order": order, "doc_id": doc.id,
         })
 
     changed = []
@@ -75,20 +86,22 @@ def main():
         if not path.exists():
             raise SystemExit(f"Expected category TXT file is missing: {path}")
 
+        old = path.read_text(encoding="utf-8-sig")
+        old_order = read_existing_order(path)
         channels = channels_by_category[category]
-        # When every channel has an explicit sortOrder, use it. Otherwise retain
-        # stable Firestore query order for unranked channels and sort ranked ones
-        # first; admin reorder writes a rank for every channel in that category.
-        channels.sort(key=lambda c: (0, c["order"], c["name"].casefold())
-                      if c["order"] is not None
-                      else (1, 0, c["name"].casefold()))
 
+        def sort_key(channel):
+            if channel["order"] is not None:
+                return (0, channel["order"], channel["name"].casefold(), channel["doc_id"])
+            return (1, old_order.get(norm(channel["name"]), 1_000_000),
+                    channel["name"].casefold(), channel["doc_id"])
+
+        channels.sort(key=sort_key)
         blocks = [[c["name"], c["logo"], c["stream"]] for c in channels]
         output = "\n\n".join("\n".join(block) for block in blocks)
         if blocks:
             output += "\n"
 
-        old = path.read_text(encoding="utf-8-sig")
         if output != old:
             path.write_text(output, encoding="utf-8", newline="\n")
             changed.append(str(path.relative_to(ROOT)))
