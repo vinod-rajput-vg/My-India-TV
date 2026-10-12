@@ -127,13 +127,22 @@ class MainActivity : Activity() {
     private lateinit var homeView: HomeView
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
+    private var categories: List<Category> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-        homeView = HomeView(this)
+        homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
+        RemoteChannelRepository.loadCategories(this) { loaded ->
+            if (loaded.isEmpty()) {
+                Toast.makeText(this, "Unable to load categories. Connect to the internet once and retry.", Toast.LENGTH_LONG).show()
+                return@loadCategories
+            }
+            categories = loaded
+            homeView.setCategories(loaded)
+        }
     }
 
     fun openCategory(index: Int) {
@@ -148,8 +157,8 @@ class MainActivity : Activity() {
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        // Load this category exclusively from its public GitHub TXT file.
-        RemoteChannelRepository.loadTextFile(category.fileName) { channels ->
+        // Fetch this category's configured remote TXT; use last successful cached data offline.
+        RemoteChannelRepository.loadChannels(this, category) { channels ->
             if (channelView !== view || activeCategory != category) return@loadTextFile
             if (channels == null) {
                 Toast.makeText(this, "Unable to load channels. Check your internet connection.", Toast.LENGTH_LONG).show()
@@ -202,14 +211,14 @@ class MainActivity : Activity() {
     }
 }
 
-private class HomeView(context: Context) : View(context) {
-    private val names = categories.map { it.name }
-    private val iconIds = categories.map { it.iconResId }.toIntArray()
+private class HomeView(context: Context, initialCategories: List<Category>) : View(context) {
+    private var categories: List<Category> = initialCategories
+    private val names get() = categories.map { it.name }
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
     private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
-    private val bitmaps = arrayOfNulls<Bitmap>(names.size)
+    private var bitmaps = arrayOfNulls<Bitmap>(categories.size)
     private val columns = 5
     private var selected = 0
     private var settings = false
@@ -219,9 +228,25 @@ private class HomeView(context: Context) : View(context) {
         isFocusable = true
         isFocusableInTouchMode = true
         requestFocus()
-        for (i in iconIds.indices) {
-            val resId = iconIds[i]
-            if (resId != 0) bitmaps[i] = BitmapFactory.decodeResource(resources, resId)
+        loadCategoryIcons()
+    }
+
+    fun setCategories(updated: List<Category>) {
+        categories = updated
+        bitmaps = arrayOfNulls(updated.size)
+        selected = selected.coerceIn(0, maxOf(0, updated.lastIndex))
+        loadCategoryIcons()
+        postInvalidateOnAnimation()
+    }
+
+    private fun loadCategoryIcons() {
+        categories.forEachIndexed { index, category ->
+            ChannelIconLoader.load(category.iconUrl, this) { bitmap ->
+                if (index < bitmaps.size) {
+                    bitmaps[index] = bitmap
+                    postInvalidateOnAnimation()
+                }
+            }
         }
     }
 
