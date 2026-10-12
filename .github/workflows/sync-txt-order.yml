@@ -21,19 +21,7 @@ jobs:
           gh run rerun "${{ github.event.workflow_run.id }}" \
             --repo "${{ github.event.repository.full_name }}"   
 
-
-permissions:
-  contents: write
-
-concurrency:
-  group: sync-channel-txt-order
-  cancel-in-progress: false
-
-jobs:
-  sync:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository
+                  - name: Check out repository
         uses: actions/checkout@v4
         with:
           ref: main
@@ -51,3 +39,12 @@ jobs:
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
         run: python scripts/sync_txt_order.py
+
+
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-channel-txt-order
+  cancel-in-progress: false
