@@ -169,10 +169,6 @@ class MainActivity : Activity() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
     fun showHome() {
         activeCategory = null
         channelView = null
@@ -214,15 +210,13 @@ class MainActivity : Activity() {
 
 private class HomeView(context: Context, initialCategories: List<Category>) : View(context) {
     private var categories: List<Category> = initialCategories
-    private val names get() = categories.map { it.name }
+    private var names: List<String> = initialCategories.map { it.name }
     private val title = Paint(Paint.ANTI_ALIAS_FLAG).apply { color = Color.WHITE; typeface = Typeface.DEFAULT_BOLD }
-    private val body = Paint(Paint.ANTI_ALIAS_FLAG)
     private val iconPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { isFilterBitmap = true; isAntiAlias = true }
     private val selectionPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply { style = Paint.Style.STROKE; color = Color.WHITE; isAntiAlias = true }
     private var bitmaps = arrayOfNulls<Bitmap>(categories.size)
     private val columns = 5
     private var selected = 0
-    private var settings = false
     private var lastBackPressTime = 0L
 
     init {
@@ -234,6 +228,7 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
 
     fun setCategories(updated: List<Category>) {
         categories = updated
+        names = updated.map { it.name }
         bitmaps = arrayOfNulls(updated.size)
         selected = selected.coerceIn(0, maxOf(0, updated.lastIndex))
         loadCategoryIcons()
@@ -288,25 +283,6 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             title.textSize = dp(17f)
             c.drawText(names[i], r.centerX(), r.bottom + dp(30f), title)
         }
-        if (settings) drawSettings(c)
-    }
-
-    private fun drawSettings(c: Canvas) {
-        iconPaint.style = Paint.Style.FILL
-        iconPaint.color = Color.argb(238, 0, 0, 0)
-        c.drawRect(0f, 0f, width.toFloat(), height.toFloat(), iconPaint)
-        val b = RectF(width * .25f, height * .18f, width * .75f, height * .82f)
-        iconPaint.color = Color.rgb(20, 20, 20)
-        c.drawRoundRect(b, dp(28f), dp(28f), iconPaint)
-        title.textAlign = Paint.Align.LEFT
-        title.textSize = dp(30f)
-        c.drawText("Settings", b.left + dp(30f), b.top + dp(55f), title)
-        title.textSize = dp(21f)
-        c.drawText("Default Player", b.left + dp(30f), b.top + dp(110f), title)
-        body.color = Color.LTGRAY
-        body.textAlign = Paint.Align.LEFT
-        body.textSize = dp(18f)
-        c.drawText("Built-in / Web Player", b.left + dp(30f), b.top + dp(155f), body)
     }
 
     private fun adjacentRowTarget(index: Int, itemCount: Int, columns: Int, direction: Int): Int? {
@@ -322,21 +298,12 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
     }
 
     fun handleDpadKey(k: Int): Boolean {
-        if (settings) {
-            if (k == KeyEvent.KEYCODE_BACK || k == KeyEvent.KEYCODE_ESCAPE || k == KeyEvent.KEYCODE_DPAD_CENTER) {
-                settings = false
-                postInvalidateOnAnimation()
-                requestFocus()
-            }
-            return true
-        }
         when (k) {
             KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) selected--; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < names.lastIndex) selected++; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, names.size, columns, -1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
-            KeyEvent.KEYCODE_MENU -> { settings = true; postInvalidateOnAnimation(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
                 val now = System.currentTimeMillis()
                 if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else { lastBackPressTime = now; Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show() }
