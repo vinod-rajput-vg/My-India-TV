@@ -125,7 +125,7 @@ internal object RemoteChannelRepository {
                                 }
                             }
                         }
-                        channels.sortedBy { it.name.lowercase() }
+                        channels
                     }
                 } finally {
                     connection.disconnect()
