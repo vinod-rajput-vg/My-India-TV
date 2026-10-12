@@ -22,6 +22,68 @@ internal object RemoteChannelRepository {
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
 
+
+    /**
+     * Fetch the category's source text file from GitHub on each category open.
+     * The bundled asset remains the offline fallback; no app reinstall is needed for
+     * edits pushed to the main branch.
+     */
+    fun loadTextFile(fileName: String, callback: (List<Channel>?) -> Unit) {
+        executor.execute {
+            val result = try {
+                val safeName = fileName.replace("..", "")
+                val endpoint = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/app/src/main/assets/channels/$safeName"
+                val connection = (URL(endpoint).openConnection() as HttpURLConnection).apply {
+                    requestMethod = "GET"
+                    connectTimeout = TIMEOUT_MS
+                    readTimeout = TIMEOUT_MS
+                    setRequestProperty("Cache-Control", "no-cache")
+                    setRequestProperty("Accept", "text/plain")
+                }
+                try {
+                    if (connection.responseCode !in 200..299) null
+                    else parseChannelText(connection.inputStream.bufferedReader().use { it.readText() })
+                } finally {
+                    connection.disconnect()
+                }
+            } catch (_: Exception) {
+                null
+            }
+            mainHandler.post { callback(result) }
+        }
+    }
+
+    private fun parseChannelText(text: String): List<Channel> {
+        val lines = text.lines()
+        if (lines.any { it.trim().startsWith("#EXTINF:", ignoreCase = true) }) {
+            val result = mutableListOf<Channel>()
+            var name: String? = null
+            var iconUrl = ""
+            for (rawLine in lines) {
+                val line = rawLine.trim()
+                if (line.isEmpty() || line.equals("#EXTM3U", ignoreCase = true)) continue
+                if (line.startsWith("#EXTINF:", ignoreCase = true)) {
+                    val comma = line.indexOf(',')
+                    if (comma < 0) continue
+                    val attributes = line.substring(0, comma)
+                    name = line.substring(comma + 1).trim()
+                    iconUrl = Regex("""tvg-logo="([^"]*)"""", RegexOption.IGNORE_CASE)
+                        .find(attributes)?.groupValues?.getOrNull(1).orEmpty()
+                } else if (!line.startsWith("#") && !name.isNullOrBlank()) {
+                    result += Channel(name = name, streamUrl = line, iconUrl = iconUrl)
+                    name = null
+                    iconUrl = ""
+                }
+            }
+            return result
+        }
+
+        val entries = lines.map { it.trim() }.filter { it.isNotEmpty() && !it.startsWith("#") }
+        return entries.chunked(3)
+            .filter { it.size == 3 && it[0].isNotBlank() && it[2].isNotBlank() }
+            .map { Channel(name = it[0], iconUrl = it[1], streamUrl = it[2]) }
+    }
+
     fun loadCategory(categoryName: String, callback: (List<Channel>?) -> Unit) {
         if (FIREBASE_PROJECT_ID.startsWith("REPLACE_WITH") ||
             FIREBASE_WEB_API_KEY.startsWith("REPLACE_WITH")) {
