@@ -1,27 +1,21 @@
-ZEE TV HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
-
-STAR PLUS HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
-
-SONY SAB HD
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/70954ffc9bae055e09e48393b47570ea.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944604
-
 Colors HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944612
-
-ZEE ANMOL
-https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373001
-
-STAR USTAV
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943925
-
 SONY PAL
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/6_257.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373069
+SONY SAB HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/70954ffc9bae055e09e48393b47570ea.png
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944604
+STAR PLUS HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
+STAR USTAV
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-utsav-in.png
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=943925
+ZEE ANMOL
+https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol.png
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373001
+ZEE TV HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
