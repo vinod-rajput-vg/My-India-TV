@@ -174,8 +174,6 @@ class MainActivity : Activity() {
     }
 
     fun showHome() {
-        channelListener?.remove()
-        channelListener = null
         activeCategory = null
         channelView = null
         setContentView(homeView)
