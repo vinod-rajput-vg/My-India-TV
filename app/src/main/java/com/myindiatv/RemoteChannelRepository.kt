@@ -5,6 +5,10 @@ import android.os.Handler
 import android.os.Looper
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.Executors
 
 internal data class Category(
@@ -17,6 +21,7 @@ internal object RemoteChannelRepository {
     private const val CATEGORY_URL = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
+    private const val SUNDAY_REFRESH_KEY = "last_sunday_refresh"
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(3)
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -30,6 +35,31 @@ internal object RemoteChannelRepository {
             if (!freshText.isNullOrBlank()) prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
             val result = text?.let(::parseCategories).orEmpty()
             mainHandler.post { callback(result) }
+        }
+    }
+
+    /**
+     * Refresh all channel TXT caches once each Sunday when the app is opened.
+     * The source file order is retained exactly; no sorting is applied.
+     */
+    fun refreshAllChannelsOnSunday(context: Context, categories: List<Category>) {
+        val calendar = Calendar.getInstance()
+        if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) return
+
+        val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        if (prefs.getString(SUNDAY_REFRESH_KEY, null) == today) return
+
+        // Mark this Sunday once to avoid launching duplicate refresh batches.
+        prefs.edit().putString(SUNDAY_REFRESH_KEY, today).apply()
+        executor.execute {
+            categories.forEach { category ->
+                val freshText = fetchText(category.channelsUrl)
+                if (!freshText.isNullOrBlank()) {
+                    val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
+                    prefs.edit().putString(cacheKey, freshText).apply()
+                }
+            }
         }
     }
 
