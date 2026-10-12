@@ -2,6 +2,8 @@ name: Sync channel order to TXT
 
 on:
   workflow_dispatch:
+  repository_dispatch:
+    types: [sync-channel-txt]
   schedule:
     - cron: "*/5 * * * *"
 
@@ -30,7 +32,7 @@ jobs:
       - name: Install Firebase Admin SDK
         run: python -m pip install --disable-pip-version-check firebase-admin
 
-      - name: Sync Firestore order into channel TXT files
+      - name: Sync Firestore channel data into category TXT files
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
         run: python scripts/sync_txt_order.py
