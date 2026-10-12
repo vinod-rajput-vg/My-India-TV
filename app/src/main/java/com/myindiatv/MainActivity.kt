@@ -141,6 +141,7 @@ class MainActivity : Activity() {
                 return@loadCategories
             }
             categories = loaded
+            RemoteChannelRepository.refreshAllChannelsOnSunday(this, loaded)
             homeView.setCategories(loaded)
         }
     }
