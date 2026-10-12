@@ -190,7 +190,7 @@
     document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("channelModal").classList.contains("hidden"))closeModal();});
     $("resetForm").addEventListener("click",resetForm);$("logoUrl").addEventListener("input",previewLogo);
     $("refreshTxtOrder").addEventListener("click",refreshTxtSorting);
-    ["search","filterCategory","filterEnabled","sortMode"].forEach(id=>$(id).addEventListener("input",render));
+    ["search","filterCategory","sortMode"].forEach(id=>$(id).addEventListener("input",render));
     $("exportButton").addEventListener("click",()=>{const data=channelCache.map(({id,name,category,logoUrl="",streamUrl,enabled=true})=>({id,name,category,logoUrl,streamUrl,enabled}));const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));a.download="my-india-tv-channels.json";a.click();URL.revokeObjectURL(a.href);});
     $("importButton").addEventListener("click",async()=>{
       const file=$("importFile").files?.[0];if(!file){showMessage("Choose a JSON file first.","error");return;}
