@@ -2,6 +2,10 @@ package com.myindiatv
 
 import android.os.Handler
 import android.os.Looper
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ListenerRegistration
 import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
@@ -82,6 +86,60 @@ internal object RemoteChannelRepository {
         return entries.chunked(3)
             .filter { it.size == 3 && it[0].isNotBlank() && it[2].isNotBlank() }
             .map { Channel(name = it[0], iconUrl = it[1], streamUrl = it[2]) }
+    }
+
+    @Volatile private var firestore: FirebaseFirestore? = null
+
+    private fun getFirestore(context: android.content.Context): FirebaseFirestore {
+        firestore?.let { return it }
+        synchronized(this) {
+            firestore?.let { return it }
+            val app = FirebaseApp.getApps(context).firstOrNull()
+                ?: FirebaseApp.initializeApp(
+                    context,
+                    FirebaseOptions.Builder()
+                        .setApplicationId("1:403863370552:web:f61d2521fe8699273a5fcd")
+                        .setApiKey(FIREBASE_WEB_API_KEY)
+                        .setProjectId(FIREBASE_PROJECT_ID)
+                        .build()
+                )
+            return FirebaseFirestore.getInstance(app).also { firestore = it }
+        }
+    }
+
+    /**
+     * Realtime Firestore listener. Firestore sends document additions, edits,
+     * deletions, enabled changes and sortOrder changes as soon as they commit.
+     */
+    fun listenCategory(
+        context: android.content.Context,
+        categoryName: String,
+        callback: (List<Channel>?) -> Unit
+    ): ListenerRegistration? {
+        return try {
+            getFirestore(context).collection("channels")
+                .addSnapshotListener { snapshot, error ->
+                    if (error != null || snapshot == null) {
+                        callback(null)
+                        return@addSnapshotListener
+                    }
+                    val channels = snapshot.documents.mapNotNull { document ->
+                        val data = document.data ?: return@mapNotNull null
+                        val name = data["name"] as? String ?: ""
+                        val category = data["category"] as? String ?: ""
+                        val streamUrl = data["streamUrl"] as? String ?: ""
+                        val iconUrl = data["logoUrl"] as? String ?: ""
+                        val enabled = data["enabled"] as? Boolean ?: true
+                        val sortOrder = (data["sortOrder"] as? Number)?.toInt()
+                        if (enabled && name.isNotBlank() && streamUrl.isNotBlank() && category == categoryName) {
+                            Channel(name = name.trim(), streamUrl = streamUrl.trim(), iconUrl = iconUrl.trim(), sortOrder = sortOrder)
+                        } else null
+                    }
+                    callback(channels)
+                }
+        } catch (_: Exception) {
+            null
+        }
     }
 
     fun loadCategory(categoryName: String, callback: (List<Channel>?) -> Unit) {
