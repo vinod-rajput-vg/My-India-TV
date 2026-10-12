@@ -1,0 +1,16 @@
+entertainment - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/entertainment.txt
+
+imfotainment - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/imfotainment.txt
+
+news - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/news.txt
+
+music - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/music.txt
+
+kids - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/kids.txt
+
+drama - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/drama.txt
+
+sports - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/sports.txt
+
+movies - https://raw.githubusercontent.com/My-India-TV/8b52b4d76e56ff1589b89dcf9ff70643cac8d01b/Category%20Channels/movies.txt
+
