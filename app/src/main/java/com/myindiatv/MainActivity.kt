@@ -148,17 +148,14 @@ class MainActivity : Activity() {
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        // Channel lists are fetched only from the repository's raw TXT files, never from APK assets or Firestore.
-        RemoteChannelRepository.loadTextFile(category.fileName) { fetchedText ->
+        // Load this category exclusively from its public GitHub TXT file.
+        RemoteChannelRepository.loadTextFile(category.fileName) { channels ->
             if (channelView !== view || activeCategory != category) return@loadTextFile
-
-            if (fetchedText == null) {
+            if (channels == null) {
                 Toast.makeText(this, "Unable to load channels. Check your internet connection.", Toast.LENGTH_LONG).show()
                 return@loadTextFile
             }
-
-            // Preserve the exact order from the remote TXT file.
-            view.replaceChannels(fetchedText)
+            view.replaceChannels(channels)
         }
     }
 
