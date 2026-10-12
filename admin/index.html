@@ -25,16 +25,16 @@
     .tablewrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #253145;font-size:13px}th{color:#9fb0c6;font-weight:600}td.name{font-weight:650}
     .channel{display:flex;align-items:center;gap:10px}.channel img{width:44px;height:32px;object-fit:contain;background:#0a101b;border-radius:7px}.pill{font-size:11px;border:1px solid #334155;border-radius:999px;padding:4px 8px;color:#cbd5e1}
     .notice{padding:11px 13px;border-radius:10px;background:#102337;border:1px solid #234d70;color:#b8dcff;margin:12px 0}.error{background:#341b23;border-color:#733043;color:#ffd0d7}.success{background:#123126;border-color:#28664c;color:#c6f6d5}
-    .status{font-size:12px;margin-left:auto}.topline{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.empty{text-align:center;padding:36px;color:#91a0b5}.importbox{margin-top:18px;padding-top:18px;border-top:1px solid #263347}
+    .topline{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.empty{text-align:center;padding:36px;color:#91a0b5}.importbox{margin-top:18px;padding-top:18px;border-top:1px solid #263347}
     @media(max-width:950px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding:14px}.toolbar select{flex:1;min-width:140px}.section-heading{align-items:flex-start}}
-    @media(max-width:520px){header{align-items:flex-start;flex-direction:column}.grid{gap:8px}.stat{padding:13px}.panel{padding:15px}.status{margin-left:0}.section-heading{flex-direction:column}.section-heading>.actions{width:100%;justify-content:space-between}.toolbar>*{width:100%!important;min-width:0!important}.modal{padding:10px}.modal-card{max-height:94vh}}
+    @media(max-width:520px){header{align-items:flex-start;flex-direction:column}.grid{gap:8px}.stat{padding:13px}.panel{padding:15px} .section-heading{flex-direction:column}.section-heading>.actions{width:100%;justify-content:space-between}.toolbar>*{width:100%!important;min-width:0!important}.modal{padding:10px}.modal-card{max-height:94vh}}
   </style>
 </head>
 <body>
   <main class="shell">
     <header>
       <div class="brand"><div class="logo">MI</div><div><h1>My India TV</h1><div class="muted">Channel Admin Console</div></div></div>
-      <div class="topline"><span id="connection" class="status muted">Not connected</span><button id="signOut" class="hidden">Sign out</button></div>
+      <div class="topline"><button id="signOut" class="hidden">Sign out</button></div>
     </header>
 
     <section id="setupNotice" class="panel">
@@ -57,14 +57,13 @@
       <div class="grid">
         <div class="stat"><span class="muted">Total channels</span><strong id="totalCount">0</strong></div>
         <div class="stat"><span class="muted">Categories</span><strong id="categoryCount">8</strong></div>
-        <div class="stat"><span class="muted">Enabled</span><strong id="enabledCount">0</strong></div>
         <div class="stat"><span class="muted">Signed in as</span><strong id="adminLabel" style="font-size:14px;overflow-wrap:anywhere">Admin</strong></div>
       </div>
       <div id="message" aria-live="polite"></div>
       <section class="panel channels-panel">
-          <div class="topline section-heading" style="margin-bottom:14px"><div><h2 style="margin:0">Channels</h2><p class="muted subheading">Manage your live TV channel list</p></div><div class="actions"><button id="addChannelBtn" class="primary add-button" type="button"><span aria-hidden="true">＋</span> Add channel</button><span id="lastUpdated" class="status muted"></span></div></div>
-          <div class="toolbar"><input id="search" type="search" placeholder="Search channel name…"><select id="filterCategory"><option value="">All categories</option></select><select id="filterEnabled"><option value="">All status</option><option value="true">Enabled</option><option value="false">Disabled</option></select><select id="sortMode" aria-label="Channel sorting"><option value="txt">Live TXT order</option><option value="manual">Manual order</option></select><button id="refreshTxtOrder" type="button" title="Reload channel order from repository TXT files">Refresh TXT order</button></div><p class="muted" style="font-size:12px;margin-top:-4px">Use ↑ / ↓ to reorder channels within their category. Manual order is saved to Firebase.</p>
-          <div class="tablewrap"><table><thead><tr><th>Channel</th><th>Category</th><th>Status</th><th>Actions</th></tr></thead><tbody id="channelRows"></tbody></table></div>
+          <div class="topline section-heading" style="margin-bottom:14px"><div><h2 style="margin:0">Channels</h2><p class="muted subheading">Manage your live TV channel list</p></div><div class="actions"><button id="addChannelBtn" class="primary add-button" type="button"><span aria-hidden="true">＋</span> Add channel</button></div></div>
+          <div class="toolbar"><input id="search" type="search" placeholder="Search channel name…"><select id="filterCategory"><option value="">All categories</option></select><select id="sortMode" aria-label="Channel sorting"><option value="txt">Live TXT order</option><option value="manual">Manual order</option></select><button id="refreshTxtOrder" type="button" title="Reload channel order from repository TXT files">Refresh TXT order</button></div><p class="muted" style="font-size:12px;margin-top:-4px">Use ↑ / ↓ to reorder channels within their category. Manual order is saved to Firebase.</p>
+          <div class="tablewrap"><table><thead><tr><th>Channel</th><th>Category</th><th>Actions</th></tr></thead><tbody id="channelRows"></tbody></table></div>
           <div id="emptyState" class="empty hidden">No channels found. Add a channel or import JSON.</div>
           <details class="importbox bulk-tools"><summary>Bulk import / export</summary><div class="field"><label for="importFile">Import JSON (adds or updates by document ID)</label><input id="importFile" type="file" accept=".json,application/json"></div><div class="actions"><button id="importButton" type="button">Import JSON</button><button id="exportButton" type="button">Export JSON</button></div><p class="muted" style="font-size:12px">Import format: an array of objects with name, category, logoUrl, streamUrl and optional enabled/id fields.</p></details>
         </section>
@@ -119,17 +118,16 @@
       $("filterCategory").innerHTML='<option value="">All categories</option>'+categories.map(c=>`<option>${c}</option>`).join("");
     }
     function render() {
-      const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value, status=$("filterEnabled").value, mode=$("sortMode").value;
-      const list=channelCache.filter(c=>(!q||c.name.toLowerCase().includes(q))&&(!cat||c.category===cat)&&(status===""||String(c.enabled!==false)===status));
+      const q=$("search").value.trim().toLowerCase(), cat=$("filterCategory").value, mode=$("sortMode").value;
+      const list=channelCache.filter(c=>(!q||c.name.toLowerCase().includes(q))&&(!cat||c.category===cat));
       const rank=c=>Number(c.sortOrder ?? txtOrder.get(c.category+"::"+c.name.toLowerCase()) ?? 999999);
       list.sort((a,b)=>(categoryRank.get(a.category)??999)-(categoryRank.get(b.category)??999) || (mode==="name" ? a.name.localeCompare(b.name) : mode==="manual" ? rank(a)-rank(b) || a.name.localeCompare(b.name) : Number(txtOrder.get(a.category+"::"+a.name.toLowerCase())??999999)-Number(txtOrder.get(b.category+"::"+b.name.toLowerCase())??999999) || a.name.localeCompare(b.name)));
       $("channelRows").innerHTML=list.map(c=>`<tr>
         <td class="name"><div class="channel">${c.logoUrl?'<img src="'+escapeAttr(c.logoUrl)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.visibility=\'hidden\'">':'<span class="pill">No logo</span>'}<span>${escapeHtml(c.name)}</span></div></td>
-        <td>${escapeHtml(c.category)}</td><td><span class="pill">${c.enabled===false?'Disabled':'Enabled'}</span></td>
+        <td>${escapeHtml(c.category)}</td>
         <td><div class="actions"><button data-up="${escapeAttr(c.id)}" title="Move up">↑</button><button data-down="${escapeAttr(c.id)}" title="Move down">↓</button><button data-edit="${escapeAttr(c.id)}">Edit</button><button class="danger" data-delete="${escapeAttr(c.id)}">Delete</button></div></td></tr>`).join("");
       $("emptyState").classList.toggle("hidden",list.length>0);
       $("totalCount").textContent=channelCache.length;
-      $("enabledCount").textContent=channelCache.filter(c=>c.enabled!==false).length;
     }
     function escapeHtml(s){return safeText(s).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));}
     function escapeAttr(s){return escapeHtml(s);}
@@ -150,7 +148,6 @@
         $("dashboard").classList.toggle("hidden",!user);
         $("signOut").classList.toggle("hidden",!user);
         $("setupNotice").classList.add("hidden");
-        $("connection").textContent=user?"Signed in":"Signed out";
         if(user){$("adminLabel").textContent=user.email||user.uid;$("loginMessage").textContent="";await loadTxtOrder();await loadChannels();}
       });
       $("loginForm").addEventListener("submit",async e=>{e.preventDefault();try{await signInWithEmailAndPassword(auth,$("email").value.trim(),$("password").value);}catch(err){showLoginMessage(friendlyError(err));}});
@@ -166,7 +163,7 @@
       const button=$("refreshTxtOrder");button.disabled=true;button.textContent="Refreshing…";try{await loadTxtOrder();render();showMessage("TXT category order refreshed from GitHub.","success");}catch(err){showMessage("Could not refresh TXT order: "+friendlyError(err),"error");}finally{button.disabled=false;button.textContent="Refresh TXT order";}
     }
     async function loadChannels(){
-      try{const f=window.__firebase;const snap=await f.getDocs(f.collection(db,"channels"));channelCache=snap.docs.map(d=>({id:d.id,...d.data()}));render();$("lastUpdated").textContent="Loaded "+new Date().toLocaleTimeString();$("connection").textContent="Database connected";}
+      try{const f=window.__firebase;const snap=await f.getDocs(f.collection(db,"channels"));channelCache=snap.docs.map(d=>({id:d.id,...d.data()}));render();}
       catch(err){showMessage("Could not load channels: "+friendlyError(err),"error");}
     }
     $("channelForm").addEventListener("submit",async e=>{
@@ -204,7 +201,7 @@
     });
     fillCategories();
     if(configured){$("setupNotice").classList.add("hidden");$("loginPanel").classList.remove("hidden");loadFirebase().catch(err=>{ $("loginPanel").classList.remove("hidden");showLoginMessage("Firebase initialization failed: "+friendlyError(err));});}
-    else $("connection").textContent="Setup required";
+    else $("loginPanel").classList.add("hidden");
   </script>
 </body>
 </html>
