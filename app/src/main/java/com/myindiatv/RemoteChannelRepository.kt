@@ -77,7 +77,9 @@ internal object RemoteChannelRepository {
                             }
                         }
                     } finally {
-                        mainHandler.postDelayed(this, WATCH_INTERVAL_MS)
+                        if (watchRunnable === this) {
+                            mainHandler.postDelayed(this, WATCH_INTERVAL_MS)
+                        }
                     }
                 }
             }
