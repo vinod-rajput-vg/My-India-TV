@@ -154,12 +154,12 @@ class MainActivity : Activity() {
         setContentView(homeView)
         homeView.requestFocus()
         RemoteChannelRepository.loadCategories(this) { loaded ->
-            if (loaded.isEmpty()) {
-                Toast.makeText(this, "Unable to load categories. Connect to the internet once and retry.", Toast.LENGTH_LONG).show()
-                return@loadCategories
-            }
             categories = loaded
             homeView.setCategories(loaded)
+            if (loaded.isEmpty()) {
+                Toast.makeText(this, "No categories available.", Toast.LENGTH_SHORT).show()
+            }
+            // Keep watching even when the catalogue is empty so later additions are detected.
             RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
                 handleCatalogChanges(fullRefresh, changedPaths)
             }
@@ -226,7 +226,7 @@ class MainActivity : Activity() {
         if (categoriesChanged) {
             val previousCategories = categories
             RemoteChannelRepository.loadCategories(this, forceRefresh = true) { updated ->
-                if (updated.isEmpty()) return@loadCategories
+                // An empty catalogue is a valid deletion, not a fetch failure.
                 categories = updated
                 homeView.setCategories(updated)
 
