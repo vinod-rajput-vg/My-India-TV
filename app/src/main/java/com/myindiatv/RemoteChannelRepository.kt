@@ -22,7 +22,7 @@ internal object RemoteChannelRepository {
     private const val CATEGORIES_KEY = "categories_text"
     private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
     private const val REPO_API_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV"
-    private const val WATCH_INTERVAL_MS = 60_000L
+    private const val WATCH_INTERVAL_MS = 5_000L
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(3)
     private val mainHandler = Handler(Looper.getMainLooper())
