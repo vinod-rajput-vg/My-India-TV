@@ -59,6 +59,24 @@ private object ChannelIconLoader {
         }
     }
 
+    fun invalidateChanged(context: Context, changedPaths: Set<String>, candidateUrls: Collection<String>) {
+        val changedNames = changedPaths
+            .filter { it.startsWith("Category Icons/") || it.startsWith("Channel Icons/") }
+            .map { it.substringAfterLast('/').substringBefore('?').lowercase() }
+            .toSet()
+        if (changedNames.isEmpty()) return
+
+        candidateUrls.forEach { source ->
+            val url = normalizeUrl(source)
+            if (url.isBlank()) return@forEach
+            val fileName = Uri.parse(url).lastPathSegment.orEmpty().substringBefore('?').lowercase()
+            if (fileName in changedNames) {
+                cache.remove(url)
+                try { cacheFile(context, url).delete() } catch (_: Exception) {}
+            }
+        }
+    }
+
     private fun normalizeUrl(source: String): String {
         val value = source.trim()
         if (value.isEmpty()) return ""
@@ -172,6 +190,17 @@ class MainActivity : Activity() {
     }
 
     private fun handleCatalogChanges(fullRefresh: Boolean, changedPaths: Set<String>) {
+        val categoryIconsChanged = changedPaths.any { it.startsWith("Category Icons/") }
+        val channelIconsChanged = changedPaths.any { it.startsWith("Channel Icons/") }
+        if (categoryIconsChanged || channelIconsChanged) {
+            val knownIconUrls = buildList {
+                if (categoryIconsChanged) addAll(categories.map { it.iconUrl })
+                if (channelIconsChanged) addAll(channelView?.currentIconUrls().orEmpty())
+            }
+            ChannelIconLoader.invalidateChanged(this, changedPaths, knownIconUrls)
+            if (categoryIconsChanged) homeView.reloadCategoryIcons()
+            if (channelIconsChanged) channelView?.reloadChannelIcons()
+        }
         val categoriesChanged = fullRefresh || changedPaths.contains("Categories/categories.txt")
 
         fun refreshAffectedChannels(targetCategories: List<Category>, paths: Set<String>, refreshAll: Boolean) {
@@ -305,6 +334,12 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
         postInvalidateOnAnimation()
     }
 
+    fun reloadCategoryIcons() {
+        bitmaps = arrayOfNulls(categories.size)
+        loadCategoryIcons()
+        postInvalidateOnAnimation()
+    }
+
     private fun loadCategoryIcons() {
         categories.forEachIndexed { index, category ->
             ChannelIconLoader.load(category.iconUrl, this) { bitmap ->
@@ -422,6 +457,14 @@ private class ChannelView(
         } else {
             selected = selected.coerceIn(0, maxOf(0, updated.lastIndex))
         }
+        loadIcons()
+        postInvalidateOnAnimation()
+    }
+
+    fun currentIconUrls(): List<String> = channels.map { it.iconUrl }
+
+    fun reloadChannelIcons() {
+        bitmaps = arrayOfNulls(channels.size)
         loadIcons()
         postInvalidateOnAnimation()
     }
