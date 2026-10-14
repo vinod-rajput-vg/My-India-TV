@@ -174,7 +174,9 @@ class MainActivity : Activity() {
         setContentView(view)
         view.requestFocus()
 
-        refreshCategory(category, view)
+        // Always fetch the latest remote playlist when opening a category, so channel
+        // additions, deletions, and edits are reflected even if a realtime event was missed.
+        refreshCategory(category, view, forceRefresh = true)
     }
 
     private fun refreshCategory(category: Category, view: ChannelView, forceRefresh: Boolean = false) {
