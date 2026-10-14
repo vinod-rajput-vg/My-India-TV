@@ -129,7 +129,7 @@ internal object RemoteChannelRepository {
                 val databaseUrl = config.optString("databaseUrl").trim().trimEnd('/')
                 if (!databaseUrl.startsWith("https://")) throw java.io.IOException("Invalid realtime database URL")
 
-                connection = (URL("$databaseUrl/catalogVersion.json").openConnection() as HttpURLConnection).apply {
+                connection = (URL("$databaseUrl/catalogUpdates/latest.json").openConnection() as HttpURLConnection).apply {
                     requestMethod = "GET"
                     connectTimeout = TIMEOUT_MS
                     readTimeout = 0
@@ -190,7 +190,7 @@ internal object RemoteChannelRepository {
         if (eventJson.isBlank() || generation != watchGeneration) return
         val root = try { JSONObject(eventJson) } catch (_: Exception) { return }
         val data = root.optJSONObject("data") ?: return
-        val eventId = data.optString("eventId").takeIf { it.isNotBlank() } ?: return
+        val eventId = data.optString("revision").takeIf { it.isNotBlank() } ?: return
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val previousId = prefs.getString(LAST_LIVE_EVENT_ID_KEY, null)
         if (eventId == previousId) return
