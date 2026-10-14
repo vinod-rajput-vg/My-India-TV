@@ -141,8 +141,10 @@ class MainActivity : Activity() {
                 return@loadCategories
             }
             categories = loaded
-            RemoteChannelRepository.refreshAllChannelsOnSunday(this, loaded)
             homeView.setCategories(loaded)
+            RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
+                handleCatalogChanges(fullRefresh, changedPaths)
+            }
         }
     }
 
@@ -157,15 +159,78 @@ class MainActivity : Activity() {
         refreshCategory(category, view)
     }
 
-    private fun refreshCategory(category: Category, view: ChannelView) {
+    private fun refreshCategory(category: Category, view: ChannelView, forceRefresh: Boolean = false) {
         // Fetch this category's configured remote TXT; use last successful cached data offline.
-        RemoteChannelRepository.loadChannels(this, category) { channels ->
+        RemoteChannelRepository.loadChannels(this, category, forceRefresh) { channels ->
             if (channelView !== view || activeCategory != category) return@loadChannels
             if (channels == null) {
                 Toast.makeText(this, "Unable to load channels. Check your internet connection.", Toast.LENGTH_LONG).show()
                 return@loadChannels
             }
             view.replaceChannels(channels)
+        }
+    }
+
+    private fun handleCatalogChanges(fullRefresh: Boolean, changedPaths: Set<String>) {
+        val categoriesChanged = fullRefresh || changedPaths.contains("Categories/categories.txt")
+
+        fun refreshAffectedChannels(targetCategories: List<Category>, paths: Set<String>, refreshAll: Boolean) {
+            val onRefreshed: (Set<String>) -> Unit = { refreshedUrls ->
+                val current = activeCategory
+                val visibleView = channelView
+                if (current != null && visibleView != null && refreshedUrls.contains(current.channelsUrl)) {
+                    val updatedCategory = targetCategories.firstOrNull { it.channelsUrl == current.channelsUrl }
+                        ?: targetCategories.firstOrNull { it.name.equals(current.name, ignoreCase = true) }
+                    if (updatedCategory != null) {
+                        activeCategory = updatedCategory
+                        refreshCategory(updatedCategory, visibleView)
+                    }
+                }
+            }
+            if (refreshAll) {
+                RemoteChannelRepository.refreshAllChannels(this, targetCategories, onRefreshed)
+            } else {
+                RemoteChannelRepository.refreshChangedChannels(this, targetCategories, paths, onRefreshed)
+            }
+        }
+
+        if (categoriesChanged) {
+            val previousCategories = categories
+            RemoteChannelRepository.loadCategories(this, forceRefresh = true) { updated ->
+                if (updated.isEmpty()) return@loadCategories
+                categories = updated
+                homeView.setCategories(updated)
+
+                val pathsToRefresh = changedPaths.toMutableSet()
+                if (fullRefresh) {
+                    refreshAffectedChannels(updated, pathsToRefresh, refreshAll = true)
+                } else {
+                    // If the category configuration points to a new channel file, refresh
+                    // that file only; unchanged category channel files remain cached.
+                    updated.forEach { category ->
+                        val previous = previousCategories.firstOrNull {
+                            it.name.equals(category.name, ignoreCase = true)
+                        } ?: previousCategories.firstOrNull { it.channelsUrl == category.channelsUrl }
+                        if (previous == null || previous.channelsUrl != category.channelsUrl) {
+                            pathsToRefresh.add("Category Channels/" + category.channelsUrl.substringAfterLast('/').substringBefore('?'))
+                        }
+                    }
+                    refreshAffectedChannels(updated, pathsToRefresh, refreshAll = false)
+                }
+
+                val current = activeCategory
+                if (current != null) {
+                    val replacement = updated.firstOrNull { it.channelsUrl == current.channelsUrl }
+                        ?: updated.firstOrNull { it.name.equals(current.name, ignoreCase = true) }
+                    if (replacement == null) {
+                        showHome()
+                    } else {
+                        activeCategory = replacement
+                    }
+                }
+            }
+        } else {
+            refreshAffectedChannels(categories, changedPaths, refreshAll = false)
         }
     }
 
@@ -197,6 +262,11 @@ class MainActivity : Activity() {
         } catch (_: SecurityException) {
             Toast.makeText(this, "Unable to open stream", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onDestroy() {
+        RemoteChannelRepository.stopWatchingChanges()
+        super.onDestroy()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
