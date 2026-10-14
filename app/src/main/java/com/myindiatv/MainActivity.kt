@@ -210,7 +210,7 @@ class MainActivity : Activity() {
                     updated.forEach { category ->
                         val previous = previousCategories.firstOrNull {
                             it.name.equals(category.name, ignoreCase = true)
-                        }
+                        } ?: previousCategories.firstOrNull { it.channelsUrl == category.channelsUrl }
                         if (previous == null || previous.channelsUrl != category.channelsUrl) {
                             pathsToRefresh.add("Category Channels/" + category.channelsUrl.substringAfterLast('/').substringBefore('?'))
                         }
