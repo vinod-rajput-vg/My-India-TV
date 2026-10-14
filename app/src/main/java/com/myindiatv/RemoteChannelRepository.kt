@@ -40,10 +40,11 @@ internal object RemoteChannelRepository {
 
             val freshText = fetchText(CATEGORY_URL)
             val freshCategories = freshText?.let(::parseCategories).orEmpty()
-            if (!freshText.isNullOrBlank() && freshCategories.isNotEmpty()) {
+            // An empty but successfully fetched catalogue is a valid deletion of all categories.
+            if (!freshText.isNullOrBlank()) {
                 prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
             }
-            val resultText = if (!freshText.isNullOrBlank() && freshCategories.isNotEmpty()) freshText else cachedText
+            val resultText = if (!freshText.isNullOrBlank()) freshText else cachedText
             mainHandler.post { callback(resultText?.let(::parseCategories).orEmpty()) }
         }
     }
@@ -157,7 +158,7 @@ internal object RemoteChannelRepository {
 
     private fun refreshChannelCache(context: Context, category: Category): Boolean {
         val freshText = fetchText(category.channelsUrl) ?: return false
-        if (parseChannelText(freshText).isEmpty()) return false
+        // Empty playlists are valid: deleting the final channel must clear the saved cache too.
         val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             .edit().putString(cacheKey, freshText).apply()
