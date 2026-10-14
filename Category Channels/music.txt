@@ -5,7 +5,3 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372970
 Shemaroo Filmy Gaane
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/0d5b07555b2d4415aa9f145273095ed7.png
 https://prod-runn.cdn.runn.tv/shemaroo/stream/smrfgn/playlist.m3u8
-
-example
-https://github.com/vinod-rajput-vg/My-India-TV/actions/runs/38550125940.png
-https://github.com/vinod-rajput-vg/My-India-TV/actions/runs/38550125940.m3u8
