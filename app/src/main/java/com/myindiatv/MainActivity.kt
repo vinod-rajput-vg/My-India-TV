@@ -154,12 +154,12 @@ class MainActivity : Activity() {
         setContentView(homeView)
         homeView.requestFocus()
         RemoteChannelRepository.loadCategories(this) { loaded ->
-            if (loaded.isEmpty()) {
-                Toast.makeText(this, "Unable to load categories. Connect to the internet once and retry.", Toast.LENGTH_LONG).show()
-                return@loadCategories
-            }
             categories = loaded
             homeView.setCategories(loaded)
+            if (loaded.isEmpty()) {
+                Toast.makeText(this, "No categories configured yet. Waiting for catalog updates.", Toast.LENGTH_LONG).show()
+            }
+            // Keep listening even when the catalog is empty, so a later admin add is visible.
             RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
                 handleCatalogChanges(fullRefresh, changedPaths)
             }
@@ -226,7 +226,6 @@ class MainActivity : Activity() {
         if (categoriesChanged) {
             val previousCategories = categories
             RemoteChannelRepository.loadCategories(this, forceRefresh = true) { updated ->
-                if (updated.isEmpty()) return@loadCategories
                 categories = updated
                 homeView.setCategories(updated)
 
