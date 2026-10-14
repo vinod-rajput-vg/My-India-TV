@@ -275,35 +275,49 @@ internal object RemoteChannelRepository {
         }
     }
 
-    fun refreshAllChannels(context: Context, categories: List<Category>, callback: (Set<String>) -> Unit = {}) {
+    /**
+     * Fetch and cache the full TXT file for each requested category.
+     * Returning the parsed fresh list lets the active screen update from the same response,
+     * instead of making a second request or accidentally reading an older cache entry.
+     */
+    fun refreshAllChannels(
+        context: Context,
+        categories: List<Category>,
+        callback: (Map<String, List<Channel>>) -> Unit = {}
+    ) {
         executor.execute {
-            val refreshed = mutableSetOf<String>()
+            val refreshed = linkedMapOf<String, List<Channel>>()
             categories.forEach { category ->
-                if (refreshChannelCache(context, category)) refreshed.add(category.channelsUrl)
+                refreshChannelCache(context, category)?.let { refreshed[category.channelsUrl] = it }
             }
             mainHandler.post { callback(refreshed) }
         }
     }
 
-    fun refreshChangedChannels(context: Context, categories: List<Category>, changedPaths: Set<String>, callback: (Set<String>) -> Unit = {}) {
+    fun refreshChangedChannels(
+        context: Context,
+        categories: List<Category>,
+        changedPaths: Set<String>,
+        callback: (Map<String, List<Channel>>) -> Unit = {}
+    ) {
         executor.execute {
-            val refreshed = mutableSetOf<String>()
+            val refreshed = linkedMapOf<String, List<Channel>>()
             categories.forEach { category ->
                 val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
                 if (changedPaths.any { it == "Category Channels/$filename" || it.endsWith("/$filename") }) {
-                    if (refreshChannelCache(context, category)) refreshed.add(category.channelsUrl)
+                    refreshChannelCache(context, category)?.let { refreshed[category.channelsUrl] = it }
                 }
             }
             mainHandler.post { callback(refreshed) }
         }
     }
 
-    private fun refreshChannelCache(context: Context, category: Category): Boolean {
-        val freshText = fetchText(withCacheBuster(category.channelsUrl)) ?: return false
+    private fun refreshChannelCache(context: Context, category: Category): List<Channel>? {
+        val freshText = fetchText(withCacheBuster(category.channelsUrl)) ?: return null
         val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             .edit().putString(cacheKey, freshText).apply()
-        return true
+        return parseChannelText(freshText)
     }
 
     fun loadChannels(context: Context, category: Category, forceRefresh: Boolean = false, callback: (List<Channel>?) -> Unit) {
