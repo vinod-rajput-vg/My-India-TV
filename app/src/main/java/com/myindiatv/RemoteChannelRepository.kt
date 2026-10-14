@@ -5,9 +5,8 @@ import android.os.Handler
 import android.os.Looper
 import java.net.HttpURLConnection
 import java.net.URL
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Date
+import org.json.JSONArray
+import org.json.JSONObject
 import java.util.Locale
 import java.util.concurrent.Executors
 
@@ -21,80 +20,157 @@ internal object RemoteChannelRepository {
     private const val CATEGORY_URL = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
-    private const val SUNDAY_REFRESH_KEY = "last_sunday_refresh"
-    private const val CATEGORIES_SUNDAY_REFRESH_KEY = "last_categories_sunday_refresh"
+    private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
+    private const val REPO_API_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV"
+    private const val WATCH_INTERVAL_MS = 60_000L
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(3)
     private val mainHandler = Handler(Looper.getMainLooper())
+    @Volatile private var watchRunnable: Runnable? = null
 
-    fun loadCategories(context: Context, callback: (List<Category>) -> Unit) {
+    fun loadCategories(context: Context, forceRefresh: Boolean = false, callback: (List<Category>) -> Unit) {
         executor.execute {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             val cachedText = prefs.getString(CATEGORIES_KEY, null)
-            val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
-            val isSunday = Calendar.getInstance().get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY
-            val alreadyRefreshedSunday = prefs.getString(CATEGORIES_SUNDAY_REFRESH_KEY, null) == today
 
-            // Keep the same category configuration all week. Fetch only on first launch
-            // without a cache, or once on Sunday.
-            if (!cachedText.isNullOrBlank() && (!isSunday || alreadyRefreshedSunday)) {
-                val cachedCategories = parseCategories(cachedText)
-                mainHandler.post { callback(cachedCategories) }
+            if (!forceRefresh && !cachedText.isNullOrBlank()) {
+                mainHandler.post { callback(parseCategories(cachedText)) }
                 return@execute
             }
 
             val freshText = fetchText(CATEGORY_URL)
             val freshCategories = freshText?.let(::parseCategories).orEmpty()
-            val useFresh = freshCategories.isNotEmpty()
-            if (useFresh) {
+            if (!freshText.isNullOrBlank() && freshCategories.isNotEmpty()) {
                 prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
-                if (isSunday) prefs.edit().putString(CATEGORIES_SUNDAY_REFRESH_KEY, today).apply()
             }
-            val text = if (useFresh) freshText else cachedText
-            val result = text?.let(::parseCategories).orEmpty()
-            mainHandler.post { callback(result) }
+            val resultText = if (!freshText.isNullOrBlank() && freshCategories.isNotEmpty()) freshText else cachedText
+            mainHandler.post { callback(resultText?.let(::parseCategories).orEmpty()) }
         }
     }
 
     /**
-     * Refresh all channel TXT caches once each Sunday when the app is opened.
-     * The source file order is retained exactly; no sorting is applied.
+     * Watch GitHub commit history while the app is open. Catalogue files are downloaded
+     * only when a commit changes the corresponding category/channel file.
      */
-    fun refreshAllChannelsOnSunday(context: Context, categories: List<Category>) {
-        val calendar = Calendar.getInstance()
-        if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) return
-
-        val today = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
-        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        if (prefs.getString(SUNDAY_REFRESH_KEY, null) == today) return
-
-        executor.execute {
-            var allRefreshed = true
-            categories.forEach { category ->
-                val freshText = fetchText(category.channelsUrl)
-                val parsedChannels = freshText?.let(::parseChannelText).orEmpty()
-                if (!freshText.isNullOrBlank() && parsedChannels.isNotEmpty()) {
-                    val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
-                    prefs.edit().putString(cacheKey, freshText).apply()
-                } else {
-                    allRefreshed = false
+    fun startWatchingChanges(context: Context, onChanges: (Boolean, Set<String>) -> Unit) {
+        val appContext = context.applicationContext
+        stopWatchingChanges()
+        val watcher = object : Runnable {
+            override fun run() {
+                executor.execute {
+                    try {
+                        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+                        val latestSha = fetchLatestCommitSha()
+                        if (!latestSha.isNullOrBlank()) {
+                            val previousSha = prefs.getString(LAST_SEEN_COMMIT_KEY, null)
+                            if (previousSha.isNullOrBlank()) {
+                                prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
+                                mainHandler.post { onChanges(true, emptySet()) }
+                            } else if (latestSha != previousSha) {
+                                val changedPaths = fetchChangedPaths(previousSha, latestSha)
+                                if (changedPaths != null) {
+                                    prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
+                                    if (changedPaths.isNotEmpty()) {
+                                        mainHandler.post { onChanges(false, changedPaths) }
+                                    }
+                                }
+                            }
+                        }
+                    } finally {
+                        mainHandler.postDelayed(this, WATCH_INTERVAL_MS)
+                    }
                 }
             }
-            // Only mark the Sunday complete when every category refreshed successfully.
-            // Failed requests will be retried the next time the app opens that Sunday.
-            if (allRefreshed) prefs.edit().putString(SUNDAY_REFRESH_KEY, today).apply()
+        }
+        watchRunnable = watcher
+        mainHandler.post(watcher)
+    }
+
+    fun stopWatchingChanges() {
+        watchRunnable?.let { mainHandler.removeCallbacks(it) }
+        watchRunnable = null
+    }
+
+    private fun fetchLatestCommitSha(): String? {
+        val json = fetchApiJson("$REPO_API_URL/commits/main") ?: return null
+        return try { JSONObject(json).optString("sha").takeIf { it.isNotBlank() } } catch (_: Exception) { null }
+    }
+
+    private fun fetchChangedPaths(baseSha: String, headSha: String): Set<String>? {
+        val json = fetchApiJson("$REPO_API_URL/compare/$baseSha...$headSha") ?: return null
+        return try {
+            val files = JSONObject(json).optJSONArray("files") ?: JSONArray()
+            buildSet {
+                for (i in 0 until files.length()) {
+                    val path = files.optJSONObject(i)?.optString("filename").orEmpty()
+                    if (path.isNotBlank()) add(path)
+                }
+            }
+        } catch (_: Exception) { null }
+    }
+
+    private fun fetchApiJson(endpoint: String): String? {
+        var connection: HttpURLConnection? = null
+        return try {
+            connection = (URL(endpoint).openConnection() as HttpURLConnection).apply {
+                requestMethod = "GET"
+                connectTimeout = TIMEOUT_MS
+                readTimeout = TIMEOUT_MS
+                instanceFollowRedirects = true
+                setRequestProperty("Accept", "application/vnd.github+json")
+                setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
+                setRequestProperty("User-Agent", "My-India-TV/1.0")
+            }
+            if (connection.responseCode !in 200..299) null
+            else connection.inputStream.bufferedReader().use { it.readText() }
+        } catch (_: Exception) {
+            null
+        } finally {
+            connection?.disconnect()
         }
     }
 
-    fun loadChannels(context: Context, category: Category, callback: (List<Channel>?) -> Unit) {
+    fun refreshAllChannels(context: Context, categories: List<Category>, callback: (Set<String>) -> Unit = {}) {
+        executor.execute {
+            val refreshed = mutableSetOf<String>()
+            categories.forEach { category ->
+                if (refreshChannelCache(context, category)) refreshed.add(category.channelsUrl)
+            }
+            mainHandler.post { callback(refreshed) }
+        }
+    }
+
+    fun refreshChangedChannels(context: Context, categories: List<Category>, changedPaths: Set<String>, callback: (Set<String>) -> Unit = {}) {
+        executor.execute {
+            val refreshed = mutableSetOf<String>()
+            categories.forEach { category ->
+                val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
+                if (changedPaths.any { it == "Category Channels/$filename" || it.endsWith("/$filename") }) {
+                    if (refreshChannelCache(context, category)) refreshed.add(category.channelsUrl)
+                }
+            }
+            mainHandler.post { callback(refreshed) }
+        }
+    }
+
+    private fun refreshChannelCache(context: Context, category: Category): Boolean {
+        val freshText = fetchText(category.channelsUrl) ?: return false
+        if (parseChannelText(freshText).isEmpty()) return false
+        val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
+        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+            .edit().putString(cacheKey, freshText).apply()
+        return true
+    }
+
+    fun loadChannels(context: Context, category: Category, forceRefresh: Boolean = false, callback: (List<Channel>?) -> Unit) {
         executor.execute {
             val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
             val cachedText = prefs.getString(cacheKey, null)
 
-            // A populated cache is authoritative between Sundays: do not contact the
-            // network when the user opens or reopens a category.
-            if (!cachedText.isNullOrBlank()) {
+            // Use cached data normally. A GitHub change event forces only this category
+            // to fetch its new source file.
+            if (!forceRefresh && !cachedText.isNullOrBlank()) {
                 val cachedChannels = parseChannelText(cachedText)
                 mainHandler.post { callback(cachedChannels) }
                 return@execute
