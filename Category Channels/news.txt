@@ -41,7 +41,3 @@ https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372968
 Zee 24 Taas
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-24-taas-in.png
 https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8
-
-Example HD
-http://example.com/example-hd.png
-http://example.com/example-hd.m3u8
