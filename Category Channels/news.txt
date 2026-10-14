@@ -45,3 +45,7 @@ https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main
 example
 http://example.com/example.png
 http://example.com/example.m3u8
+
+Eample HD
+http://example.com/example-hd.png
+http://example.com/example-hd.m3u8
