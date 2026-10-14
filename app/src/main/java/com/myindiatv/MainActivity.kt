@@ -204,15 +204,17 @@ class MainActivity : Activity() {
         val categoriesChanged = fullRefresh || changedPaths.contains("Categories/categories.txt")
 
         fun refreshAffectedChannels(targetCategories: List<Category>, paths: Set<String>, refreshAll: Boolean) {
-            val onRefreshed: (Set<String>) -> Unit = { refreshedUrls ->
+            val onRefreshed: (Map<String, List<Channel>>) -> Unit = { refreshedChannels ->
                 val current = activeCategory
                 val visibleView = channelView
-                if (current != null && visibleView != null && refreshedUrls.contains(current.channelsUrl)) {
+                if (current != null && visibleView != null) {
                     val updatedCategory = targetCategories.firstOrNull { it.channelsUrl == current.channelsUrl }
                         ?: targetCategories.firstOrNull { it.name.equals(current.name, ignoreCase = true) }
-                    if (updatedCategory != null) {
+                    if (updatedCategory != null && refreshedChannels.containsKey(updatedCategory.channelsUrl)) {
+                        // Apply the complete freshly fetched category list directly to the open
+                        // screen. Do not issue a second network request after receiving the event.
                         activeCategory = updatedCategory
-                        refreshCategory(updatedCategory, visibleView)
+                        visibleView.replaceChannels(refreshedChannels[updatedCategory.channelsUrl].orEmpty())
                     }
                 }
             }
