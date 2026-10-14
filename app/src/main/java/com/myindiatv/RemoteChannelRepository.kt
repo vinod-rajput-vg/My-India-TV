@@ -18,7 +18,7 @@ internal data class Category(
 
 internal object RemoteChannelRepository {
     private const val CATEGORY_URL = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
-    private const val LIVE_CONFIG_URL = "https://my-india-tv-admin.vercel.app/api/live/config"
+    private const val LIVE_CONFIG_URL = "https://myindiatvadmin.vercel.app/api/live/config"
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
     private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
