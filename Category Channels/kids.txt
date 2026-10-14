@@ -1,10 +1,10 @@
 Nick
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nick-in.png
-http://103.185.24.134:3001/NICK/index.m3u8
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373136
 
 Sonic
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/nickelodeon-sonic-in.png
-http://103.185.24.134:3001/SONIC/index.m3u8
+
 
 POGO
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/pogo-in.png
