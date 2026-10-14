@@ -1,10 +1,10 @@
-STAR PLUS HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
-
 ZEE TV HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-tv-hd-in.png
 https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1646812
+
+STAR PLUS HD
+https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/star-plus-hd-in.png
+https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=671571
 
 Colors HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png
