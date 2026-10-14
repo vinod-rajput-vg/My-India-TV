@@ -41,10 +41,11 @@ internal object RemoteChannelRepository {
             val freshText = fetchText(CATEGORY_URL)
             val freshCategories = freshText?.let(::parseCategories).orEmpty()
             // An empty but successfully fetched catalogue is a valid deletion of all categories.
-            if (!freshText.isNullOrBlank()) {
+            if (freshText != null) {
+                // A successfully fetched empty catalogue means categories were deleted.
                 prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
             }
-            val resultText = if (!freshText.isNullOrBlank()) freshText else cachedText
+            val resultText = if (freshText != null) freshText else cachedText
             mainHandler.post { callback(resultText?.let(::parseCategories).orEmpty()) }
         }
     }
@@ -182,10 +183,11 @@ internal object RemoteChannelRepository {
             // First-ever load for this category (no cache yet).
             val freshText = fetchText(category.channelsUrl)
             val freshChannels = freshText?.let(::parseChannelText).orEmpty()
-            if (!freshText.isNullOrBlank() && freshChannels.isNotEmpty()) {
+            if (freshText != null) {
+                // Persist empty content too, so deleted channels cannot reappear from stale cache.
                 prefs.edit().putString(cacheKey, freshText).apply()
             }
-            val channels = if (freshChannels.isNotEmpty()) freshChannels else null
+            val channels = if (freshText != null) freshChannels else cachedText?.let(::parseChannelText)
             mainHandler.post { callback(channels) }
         }
     }
