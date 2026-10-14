@@ -194,6 +194,26 @@ internal object RemoteChannelRepository {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         val previousId = prefs.getString(LAST_LIVE_EVENT_ID_KEY, null)
         if (eventId == previousId) return
+
+        // Admin events carry an explicit scope/categorySlug. Keep paths for compatibility
+        // with older events and GitHub polling, while using the slug as a precise fallback.
+        val scope = data.optString("scope")
+        val categorySlug = data.optString("categorySlug").takeIf {
+            it.matches(Regex("^[a-z0-9][a-z0-9-]{0,49}$"))
+        }
+        val rawPaths = data.optJSONArray("paths")
+        val changedPaths = buildSet {
+            if (rawPaths != null) {
+                for (i in 0 until rawPaths.length()) {
+                    rawPaths.optString(i).takeIf { it.isNotBlank() }?.let(::add)
+                }
+            }
+            when (scope) {
+                "channels" -> categorySlug?.let { add("Category Channels/$it.txt") }
+                "categories" -> add("Categories/categories.txt")
+            }
+        }
+
         prefs.edit().putString(LAST_LIVE_EVENT_ID_KEY, eventId).apply()
 
         // The first snapshot after installing/updating the app may represent updates
@@ -205,14 +225,6 @@ internal object RemoteChannelRepository {
             return
         }
 
-        val rawPaths = data.optJSONArray("paths")
-        val changedPaths = buildSet {
-            if (rawPaths != null) {
-                for (i in 0 until rawPaths.length()) {
-                    rawPaths.optString(i).takeIf { it.isNotBlank() }?.let(::add)
-                }
-            }
-        }
         mainHandler.post {
             if (generation == watchGeneration) {
                 if (changedPaths.isEmpty()) onChanges(true, emptySet())
