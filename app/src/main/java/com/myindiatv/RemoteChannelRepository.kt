@@ -53,10 +53,6 @@ internal object RemoteChannelRepository {
     }
 
     /**
-     * Watch GitHub commit history while the app is open. Catalogue files are downloaded
-     * only when a commit changes the corresponding category/channel file.
-     */
-    /**
      * Listen to Firebase Realtime Database Server-Sent Events for immediate admin updates.
      * GitHub commit polling remains as a low-frequency fallback for changes made outside
      * the admin panel, or while Firebase realtime delivery is unavailable.
