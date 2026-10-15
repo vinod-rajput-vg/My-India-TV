@@ -5,12 +5,7 @@ import android.os.Handler
 import android.os.Looper
 import java.net.HttpURLConnection
 import java.net.URL
-import org.json.JSONArray
-import org.json.JSONObject
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
 import java.util.concurrent.CompletableFuture
-import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
 
@@ -34,7 +29,6 @@ internal object RemoteChannelRepository {
     private val executor = Executors.newFixedThreadPool(10)
     private val mainHandler = Handler(Looper.getMainLooper())
     @Volatile private var watchRunnable: Runnable? = null
-    @Volatile private var revisionListener: ListenerRegistration? = null
     @Volatile private var watchGeneration: Long = 0L
     private val watchCheckInFlight = AtomicBoolean(false)
 
@@ -134,73 +128,6 @@ internal object RemoteChannelRepository {
         watchGeneration += 1L
         watchRunnable?.let { mainHandler.removeCallbacks(it) }
         watchRunnable = null
-    }
-
-    /**
-     * Keep a realtime Firestore listener while the activity is foregrounded.
-     * This is the low-latency fallback if an FCM message is delayed or missed.
-     */
-    fun startWatchingFirestoreRevisions(context: Context, callback: (Set<String>) -> Unit) {
-        stopWatchingFirestoreRevisions()
-        val appContext = context.applicationContext
-        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        revisionListener = FirebaseFirestore.getInstance().collection("category_updates")
-            .addSnapshotListener { snapshot, error ->
-                if (error != null || snapshot == null) return@addSnapshotListener
-                val changedPaths = linkedSetOf<String>()
-                val updates = linkedMapOf<String, String>()
-                for (document in snapshot.documents) {
-                    val sourcePath = document.getString("sourcePath")?.trim().orEmpty()
-                    val revision = document.getString("revision")?.trim().orEmpty()
-                    if (sourcePath.isBlank() || revision.isBlank()) continue
-                    val key = "firestore_revision_" + document.id
-                    val previous = prefs.getString(key, null)
-                    if (previous != null && previous != revision) changedPaths.add(sourcePath)
-                    updates[key] = revision
-                }
-                prefs.edit().apply {
-                    updates.forEach { (key, value) -> putString(key, value) }
-                }.apply()
-                if (changedPaths.isNotEmpty()) callback(changedPaths)
-            }
-    }
-
-    fun stopWatchingFirestoreRevisions() {
-        revisionListener?.remove()
-        revisionListener = null
-    }
-
-    /**
-     * Reconcile Firestore revision documents when the app returns to the foreground.
-     * FCM provides low-latency delivery; this query recovers updates missed while offline.
-     */
-    fun checkFirestoreRevisions(context: Context, callback: (Set<String>) -> Unit) {
-        val appContext = context.applicationContext
-        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        FirebaseFirestore.getInstance().collection("category_updates").get()
-            .addOnSuccessListener { snapshot ->
-                val changedPaths = linkedSetOf<String>()
-                val updates = linkedMapOf<String, String>()
-                for (document in snapshot.documents) {
-                    val sourcePath = document.getString("sourcePath")?.trim().orEmpty()
-                    val revision = document.getString("revision")?.trim().orEmpty()
-                    if (sourcePath.isBlank() || revision.isBlank()) continue
-                    val key = "firestore_revision_" + document.id
-                    val previous = prefs.getString(key, null)
-                    if (previous != null && previous != revision) changedPaths.add(sourcePath)
-                    updates[key] = revision
-                }
-                // Store observed revisions after identifying pending paths. The GitHub polling
-                // watcher remains a fallback if a TXT download fails during this reconciliation.
-                prefs.edit().apply {
-                    updates.forEach { (key, value) -> putString(key, value) }
-                }.apply()
-                callback(changedPaths)
-            }
-            .addOnFailureListener {
-                // Keep the last applied revisions so the next resume can retry.
-                callback(emptySet())
-            }
     }
 
     /** Run the existing watcher immediately when the activity returns to the foreground. */

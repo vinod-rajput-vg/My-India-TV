@@ -8,7 +8,6 @@ android {
 
     defaultConfig {
         applicationId = "com.myindiatv"
-        // Firebase Firestore 27.x requires Android API 24 or newer.
         minSdk = 24
         targetSdk = 36
         versionCode = 1
