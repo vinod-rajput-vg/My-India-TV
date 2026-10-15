@@ -20,6 +20,11 @@ internal object RemoteChannelRepository {
     private const val CATEGORY_URL = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
+
+    private fun withCacheBuster(url: String): String {
+        val separator = if ("?" in url) "&" else "?"
+        return "$url${separator}_cb=${System.currentTimeMillis()}"
+    }
     private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
     private const val REPO_API_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV"
     private const val FALLBACK_WATCH_INTERVAL_MS = 60_000L
