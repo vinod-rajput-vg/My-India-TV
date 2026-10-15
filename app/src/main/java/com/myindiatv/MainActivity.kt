@@ -166,6 +166,11 @@ class MainActivity : Activity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        RemoteChannelRepository.checkForChangesNow()
+    }
+
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
         val view = ChannelView(this, emptyList())
