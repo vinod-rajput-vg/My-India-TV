@@ -129,12 +129,12 @@ internal object RemoteChannelRepository {
     }
 
     private fun fetchLatestCommitSha(): String? {
-        val json = fetchApiJson("$REPO_API_URL/commits/main") ?: return null
+        val json = fetchApiJson(withCacheBuster("$REPO_API_URL/commits/main")) ?: return null
         return try { JSONObject(json).optString("sha").takeIf { it.isNotBlank() } } catch (_: Exception) { null }
     }
 
     private fun fetchChangedPaths(baseSha: String, headSha: String): Set<String>? {
-        val json = fetchApiJson("$REPO_API_URL/compare/$baseSha...$headSha") ?: return null
+        val json = fetchApiJson(withCacheBuster("$REPO_API_URL/compare/$baseSha...$headSha")) ?: return null
         return try {
             val files = JSONObject(json).optJSONArray("files") ?: JSONArray()
             buildSet {
@@ -155,6 +155,8 @@ internal object RemoteChannelRepository {
                 readTimeout = TIMEOUT_MS
                 instanceFollowRedirects = true
                 setRequestProperty("Accept", "application/vnd.github+json")
+                setRequestProperty("Cache-Control", "no-cache, no-store")
+                setRequestProperty("Pragma", "no-cache")
                 setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
                 setRequestProperty("User-Agent", "My-India-TV/1.0")
             }
@@ -196,7 +198,10 @@ internal object RemoteChannelRepository {
             val refreshed = linkedMapOf<String, List<Channel>>()
             categories.forEach { category ->
                 val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
-                if (changedPaths.any { it == "Category Channels/$filename" || it.endsWith("/$filename") }) {
+                if (changedPaths.any {
+                    it.equals("Category Channels/$filename", ignoreCase = true) ||
+                        it.substringAfterLast('/').equals(filename, ignoreCase = true)
+                }) {
                     refreshChannelCache(context, category)?.let { refreshed[category.channelsUrl] = it }
                 }
             }
