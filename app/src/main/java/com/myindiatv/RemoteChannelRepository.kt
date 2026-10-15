@@ -87,6 +87,9 @@ internal object RemoteChannelRepository {
                         val categoryText = latestCategoryText ?: prefs.getString(CATEGORIES_KEY, null)
                         val remoteCategories = categoryText?.let(::parseCategories).orEmpty()
 
+                        // Warm category artwork immediately and channel artwork as each TXT file is fetched.
+                        ChannelIconLoader.preloadAll(appContext, remoteCategories.map { it.iconUrl })
+
                         // Fetch category files concurrently. Sequential 10-second HTTP timeouts
                         // previously allowed one polling cycle to take over a minute.
                         val fetches = remoteCategories.map { category ->
@@ -99,11 +102,13 @@ internal object RemoteChannelRepository {
                             val freshText = try { future.get() } catch (_: Exception) { null } ?: continue
                             val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
                             val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
+                            val freshChannels = parseChannelText(freshText)
+                            ChannelIconLoader.preloadAll(appContext, freshChannels.map { it.iconUrl })
                             val cachedText = prefs.getString(cacheKey, null)
                             if (cachedText == null) {
                                 prefs.edit().putString(cacheKey, freshText).apply()
                             } else if (freshText != cachedText) {
-                                ChannelIconLoader.reconcileChannels(appContext, parseChannelText(cachedText), parseChannelText(freshText))
+                                ChannelIconLoader.reconcileChannels(appContext, parseChannelText(cachedText), freshChannels)
                                 prefs.edit().putString(cacheKey, freshText).apply()
                                 changedPaths.add("Category Channels/$filename")
                             }
