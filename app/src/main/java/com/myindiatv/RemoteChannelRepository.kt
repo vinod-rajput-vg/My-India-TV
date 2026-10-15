@@ -9,6 +9,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.util.Locale
 import java.util.concurrent.Executors
+import java.util.concurrent.atomic.AtomicBoolean
 
 internal data class Category(
     val name: String,
@@ -33,6 +34,7 @@ internal object RemoteChannelRepository {
     private val mainHandler = Handler(Looper.getMainLooper())
     @Volatile private var watchRunnable: Runnable? = null
     @Volatile private var watchGeneration: Long = 0L
+    private val watchCheckInFlight = AtomicBoolean(false)
 
     fun loadCategories(context: Context, forceRefresh: Boolean = false, callback: (List<Category>) -> Unit) {
         executor.execute {
@@ -61,6 +63,11 @@ internal object RemoteChannelRepository {
         val watcher = object : Runnable {
             override fun run() {
                 if (generation != watchGeneration) return
+                // Resume and timer triggers can coincide; allow only one GitHub check at a time.
+                if (!watchCheckInFlight.compareAndSet(false, true)) {
+                    if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
+                    return
+                }
                 executor.execute {
                     try {
                         val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -68,13 +75,13 @@ internal object RemoteChannelRepository {
                         if (!latestSha.isNullOrBlank()) {
                             val previousSha = prefs.getString(LAST_SEEN_COMMIT_KEY, null)
                             if (previousSha.isNullOrBlank()) {
+                                // Establish a baseline only. Do not redownload every category
+                                // simply because this is the first check after installing/updating.
                                 prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
-                                mainHandler.post {
-                                    if (generation == watchGeneration) onChanges(true, emptySet())
-                                }
                             } else if (latestSha != previousSha) {
                                 val changedPaths = fetchChangedPaths(previousSha, latestSha)
                                 if (changedPaths != null) {
+                                    // Advance the checkpoint only after the comparison succeeded.
                                     prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
                                     if (changedPaths.isNotEmpty()) {
                                         mainHandler.post {
@@ -85,6 +92,7 @@ internal object RemoteChannelRepository {
                             }
                         }
                     } finally {
+                        watchCheckInFlight.set(false)
                         if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
                     }
                 }
@@ -98,6 +106,15 @@ internal object RemoteChannelRepository {
         watchGeneration += 1L
         watchRunnable?.let { mainHandler.removeCallbacks(it) }
         watchRunnable = null
+    }
+
+    /** Run the existing watcher immediately when the activity returns to the foreground. */
+    fun checkForChangesNow() {
+        mainHandler.post {
+            val watcher = watchRunnable ?: return@post
+            mainHandler.removeCallbacks(watcher)
+            mainHandler.post(watcher)
+        }
     }
 
     private fun fetchLatestCommitSha(): String? {
