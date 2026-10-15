@@ -7,6 +7,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 import org.json.JSONArray
 import org.json.JSONObject
+import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Locale
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicBoolean
@@ -117,6 +118,39 @@ internal object RemoteChannelRepository {
         watchGeneration += 1L
         watchRunnable?.let { mainHandler.removeCallbacks(it) }
         watchRunnable = null
+    }
+
+    /**
+     * Reconcile Firestore revision documents when the app returns to the foreground.
+     * FCM provides low-latency delivery; this query recovers updates missed while offline.
+     */
+    fun checkFirestoreRevisions(context: Context, callback: (Set<String>) -> Unit) {
+        val appContext = context.applicationContext
+        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        FirebaseFirestore.getInstance().collection("category_updates").get()
+            .addOnSuccessListener { snapshot ->
+                val changedPaths = linkedSetOf<String>()
+                val updates = linkedMapOf<String, String>()
+                for (document in snapshot.documents) {
+                    val sourcePath = document.getString("sourcePath")?.trim().orEmpty()
+                    val revision = document.getString("revision")?.trim().orEmpty()
+                    if (sourcePath.isBlank() || revision.isBlank()) continue
+                    val key = "firestore_revision_" + document.id
+                    val previous = prefs.getString(key, null)
+                    if (previous != null && previous != revision) changedPaths.add(sourcePath)
+                    updates[key] = revision
+                }
+                // Store observed revisions after identifying pending paths. The GitHub polling
+                // watcher remains a fallback if a TXT download fails during this reconciliation.
+                prefs.edit().apply {
+                    updates.forEach { (key, value) -> putString(key, value) }
+                }.apply()
+                callback(changedPaths)
+            }
+            .addOnFailureListener {
+                // Keep the last applied revisions so the next resume can retry.
+                callback(emptySet())
+            }
     }
 
     /** Run the existing watcher immediately when the activity returns to the foreground. */
