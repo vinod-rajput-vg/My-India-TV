@@ -159,7 +159,7 @@ class MainActivity : Activity() {
             if (loaded.isEmpty()) {
                 Toast.makeText(this, "No categories configured yet. Waiting for catalog updates.", Toast.LENGTH_LONG).show()
             }
-            // Keep listening even when the catalog is empty, so a later admin add is visible.
+            // Keep checking GitHub for catalog changes even when the catalog is empty.
             RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
                 handleCatalogChanges(fullRefresh, changedPaths)
             }
