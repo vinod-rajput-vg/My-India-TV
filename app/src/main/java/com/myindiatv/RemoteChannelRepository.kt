@@ -26,10 +26,7 @@ internal object RemoteChannelRepository {
         val separator = if ("?" in url) "&" else "?"
         return "$url${separator}_cb=${System.currentTimeMillis()}"
     }
-    private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
-    private const val INITIAL_CHANNEL_SYNC_KEY = "initial_channel_sync_done"
-    private const val REPO_API_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV"
-    private const val FALLBACK_WATCH_INTERVAL_MS = 60_000L
+    private const val FALLBACK_WATCH_INTERVAL_MS = 15_000L
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(3)
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -56,7 +53,7 @@ internal object RemoteChannelRepository {
         }
     }
 
-    /** Poll GitHub commits to detect remote catalog changes. */
+    /** Poll the actual TXT files; Git commit metadata is not used for change detection. */
     fun startWatchingChanges(context: Context, onChanges: (Boolean, Set<String>) -> Unit) {
         val appContext = context.applicationContext
         stopWatchingChanges()
@@ -64,7 +61,6 @@ internal object RemoteChannelRepository {
         val watcher = object : Runnable {
             override fun run() {
                 if (generation != watchGeneration) return
-                // Resume and timer triggers can coincide; allow only one GitHub check at a time.
                 if (!watchCheckInFlight.compareAndSet(false, true)) {
                     if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
                     return
@@ -72,34 +68,38 @@ internal object RemoteChannelRepository {
                 executor.execute {
                     try {
                         val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-                        val latestSha = fetchLatestCommitSha()
-                        if (!latestSha.isNullOrBlank()) {
-                            val previousSha = prefs.getString(LAST_SEEN_COMMIT_KEY, null)
-                            val needsInitialSync = !prefs.getBoolean(INITIAL_CHANNEL_SYNC_KEY, false)
-                            if (needsInitialSync) {
-                                // Existing installs can have a commit checkpoint that is already
-                                // current while their cached category TXT files are stale. Force
-                                // one full category sync independently of the checkpoint.
-                                prefs.edit()
-                                    .putString(LAST_SEEN_COMMIT_KEY, latestSha)
-                                    .putBoolean(INITIAL_CHANNEL_SYNC_KEY, true)
-                                    .apply()
-                                mainHandler.post {
-                                    if (generation == watchGeneration) onChanges(true, emptySet())
-                                }
-                            } else if (previousSha.isNullOrBlank()) {
-                                prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
-                            } else if (latestSha != previousSha) {
-                                val changedPaths = fetchChangedPaths(previousSha, latestSha)
-                                if (changedPaths != null) {
-                                    // Advance the checkpoint only after the comparison succeeded.
-                                    prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
-                                    if (changedPaths.isNotEmpty()) {
-                                        mainHandler.post {
-                                            if (generation == watchGeneration) onChanges(false, changedPaths)
-                                        }
-                                    }
-                                }
+                        val changedPaths = linkedSetOf<String>()
+
+                        val latestCategoryText = fetchText(withCacheBuster(CATEGORY_URL))
+                        if (latestCategoryText != null) {
+                            val previousCategoryText = prefs.getString(CATEGORIES_KEY, null)
+                            if (previousCategoryText == null) {
+                                prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
+                            } else if (latestCategoryText != previousCategoryText) {
+                                prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
+                                changedPaths.add("Categories/categories.txt")
+                            }
+                        }
+
+                        val categoryText = latestCategoryText ?: prefs.getString(CATEGORIES_KEY, null)
+                        val remoteCategories = categoryText?.let(::parseCategories).orEmpty()
+                        for (category in remoteCategories) {
+                            if (generation != watchGeneration) break
+                            val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
+                            val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
+                            val cachedText = prefs.getString(cacheKey, null)
+                            val freshText = fetchText(withCacheBuster(category.channelsUrl)) ?: continue
+                            if (cachedText == null) {
+                                prefs.edit().putString(cacheKey, freshText).apply()
+                            } else if (freshText != cachedText) {
+                                prefs.edit().putString(cacheKey, freshText).apply()
+                                changedPaths.add("Category Channels/$filename")
+                            }
+                        }
+
+                        if (changedPaths.isNotEmpty()) {
+                            mainHandler.post {
+                                if (generation == watchGeneration) onChanges(false, changedPaths)
                             }
                         }
                     } finally {
@@ -125,47 +125,6 @@ internal object RemoteChannelRepository {
             val watcher = watchRunnable ?: return@post
             mainHandler.removeCallbacks(watcher)
             mainHandler.post(watcher)
-        }
-    }
-
-    private fun fetchLatestCommitSha(): String? {
-        val json = fetchApiJson(withCacheBuster("$REPO_API_URL/commits/main")) ?: return null
-        return try { JSONObject(json).optString("sha").takeIf { it.isNotBlank() } } catch (_: Exception) { null }
-    }
-
-    private fun fetchChangedPaths(baseSha: String, headSha: String): Set<String>? {
-        val json = fetchApiJson(withCacheBuster("$REPO_API_URL/compare/$baseSha...$headSha")) ?: return null
-        return try {
-            val files = JSONObject(json).optJSONArray("files") ?: JSONArray()
-            buildSet {
-                for (i in 0 until files.length()) {
-                    val path = files.optJSONObject(i)?.optString("filename").orEmpty()
-                    if (path.isNotBlank()) add(path)
-                }
-            }
-        } catch (_: Exception) { null }
-    }
-
-    private fun fetchApiJson(endpoint: String): String? {
-        var connection: HttpURLConnection? = null
-        return try {
-            connection = (URL(endpoint).openConnection() as HttpURLConnection).apply {
-                requestMethod = "GET"
-                connectTimeout = TIMEOUT_MS
-                readTimeout = TIMEOUT_MS
-                instanceFollowRedirects = true
-                setRequestProperty("Accept", "application/vnd.github+json")
-                setRequestProperty("Cache-Control", "no-cache, no-store")
-                setRequestProperty("Pragma", "no-cache")
-                setRequestProperty("X-GitHub-Api-Version", "2022-11-28")
-                setRequestProperty("User-Agent", "My-India-TV/1.0")
-            }
-            if (connection.responseCode !in 200..299) null
-            else connection.inputStream.bufferedReader().use { it.readText() }
-        } catch (_: Exception) {
-            null
-        } finally {
-            connection?.disconnect()
         }
     }
 
