@@ -1,18 +1,11 @@
 package com.myindiatv
 
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import java.net.HttpURLConnection
 import java.net.URL
 import org.json.JSONArray
 import org.json.JSONObject
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.ListenerRegistration
-import java.util.concurrent.CompletableFuture
-import java.util.Locale
 import java.util.concurrent.Executors
-import java.util.concurrent.atomic.AtomicBoolean
 
 internal data class Category(
     val name: String,
@@ -29,14 +22,8 @@ internal object RemoteChannelRepository {
         val separator = if ("?" in url) "&" else "?"
         return "$url${separator}_cb=${System.currentTimeMillis()}"
     }
-    private const val FALLBACK_WATCH_INTERVAL_MS = 60_000L
     private const val TIMEOUT_MS = 10000
-    private val executor = Executors.newFixedThreadPool(10)
-    private val mainHandler = Handler(Looper.getMainLooper())
-    @Volatile private var watchRunnable: Runnable? = null
-    @Volatile private var revisionListener: ListenerRegistration? = null
-    @Volatile private var watchGeneration: Long = 0L
-    private val watchCheckInFlight = AtomicBoolean(false)
+    private val executor = Executors.newFixedThreadPool(3)
 
     fun loadCategories(context: Context, forceRefresh: Boolean = false, callback: (List<Category>) -> Unit) {
         executor.execute {
@@ -55,204 +42,6 @@ internal object RemoteChannelRepository {
             val resultText = if (freshText != null) freshText else cachedText
             mainHandler.post { callback(resultText?.let(::parseCategories).orEmpty()) }
         }
-    }
-
-    /** Poll the actual TXT files; Git commit metadata is not used for change detection. */
-    fun startWatchingChanges(context: Context, onChanges: (Boolean, Set<String>) -> Unit) {
-        val appContext = context.applicationContext
-        stopWatchingChanges()
-        val generation = watchGeneration
-        val watcher = object : Runnable {
-            override fun run() {
-                if (generation != watchGeneration) return
-                if (!watchCheckInFlight.compareAndSet(false, true)) {
-                    if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
-                    return
-                }
-                executor.execute {
-                    try {
-                        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-                        val changedPaths = linkedSetOf<String>()
-
-                        val latestCategoryText = fetchText(withCacheBuster(CATEGORY_URL))
-                        if (latestCategoryText != null) {
-                            val previousCategoryText = prefs.getString(CATEGORIES_KEY, null)
-                            if (previousCategoryText == null) {
-                                prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
-                            } else if (latestCategoryText != previousCategoryText) {
-                                prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
-                                changedPaths.add("Categories/categories.txt")
-                            }
-                        }
-
-                        val categoryText = latestCategoryText ?: prefs.getString(CATEGORIES_KEY, null)
-                        val remoteCategories = categoryText?.let(::parseCategories).orEmpty()
-
-                        // Fetch category files concurrently. Sequential 10-second HTTP timeouts
-                        // previously allowed one polling cycle to take over a minute.
-                        val fetches = remoteCategories.map { category ->
-                            category to CompletableFuture.supplyAsync({
-                                fetchText(withCacheBuster(category.channelsUrl))
-                            }, executor)
-                        }
-                        for ((category, future) in fetches) {
-                            if (generation != watchGeneration) break
-                            val freshText = try { future.get() } catch (_: Exception) { null } ?: continue
-                            val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
-                            val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
-                            val cachedText = prefs.getString(cacheKey, null)
-                            if (cachedText == null) {
-                                prefs.edit().putString(cacheKey, freshText).apply()
-                            } else if (freshText != cachedText) {
-                                prefs.edit().putString(cacheKey, freshText).apply()
-                                changedPaths.add("Category Channels/$filename")
-                            }
-                        }
-
-                        if (changedPaths.isNotEmpty()) {
-                            mainHandler.post {
-                                if (generation == watchGeneration) onChanges(false, changedPaths)
-                            }
-                        }
-                    } finally {
-                        watchCheckInFlight.set(false)
-                        if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
-                    }
-                }
-            }
-        }
-        watchRunnable = watcher
-        mainHandler.post(watcher)
-    }
-
-    fun stopWatchingChanges() {
-        watchGeneration += 1L
-        watchRunnable?.let { mainHandler.removeCallbacks(it) }
-        watchRunnable = null
-    }
-
-    /**
-     * Keep a realtime Firestore listener while the activity is foregrounded.
-     * This is the low-latency fallback if an FCM message is delayed or missed.
-     */
-    fun startWatchingFirestoreRevisions(context: Context, callback: (Set<String>) -> Unit) {
-        stopWatchingFirestoreRevisions()
-        val appContext = context.applicationContext
-        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        revisionListener = FirebaseFirestore.getInstance().collection("category_updates")
-            .addSnapshotListener { snapshot, error ->
-                if (error != null || snapshot == null) return@addSnapshotListener
-                val changedPaths = linkedSetOf<String>()
-                val updates = linkedMapOf<String, String>()
-                for (document in snapshot.documents) {
-                    val sourcePath = document.getString("sourcePath")?.trim().orEmpty()
-                    val revision = document.getString("revision")?.trim().orEmpty()
-                    if (sourcePath.isBlank() || revision.isBlank()) continue
-                    val key = "firestore_revision_" + document.id
-                    val previous = prefs.getString(key, null)
-                    if (previous != null && previous != revision) changedPaths.add(sourcePath)
-                    updates[key] = revision
-                }
-                prefs.edit().apply {
-                    updates.forEach { (key, value) -> putString(key, value) }
-                }.apply()
-                if (changedPaths.isNotEmpty()) callback(changedPaths)
-            }
-    }
-
-    fun stopWatchingFirestoreRevisions() {
-        revisionListener?.remove()
-        revisionListener = null
-    }
-
-    /**
-     * Reconcile Firestore revision documents when the app returns to the foreground.
-     * FCM provides low-latency delivery; this query recovers updates missed while offline.
-     */
-    fun checkFirestoreRevisions(context: Context, callback: (Set<String>) -> Unit) {
-        val appContext = context.applicationContext
-        val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        FirebaseFirestore.getInstance().collection("category_updates").get()
-            .addOnSuccessListener { snapshot ->
-                val changedPaths = linkedSetOf<String>()
-                val updates = linkedMapOf<String, String>()
-                for (document in snapshot.documents) {
-                    val sourcePath = document.getString("sourcePath")?.trim().orEmpty()
-                    val revision = document.getString("revision")?.trim().orEmpty()
-                    if (sourcePath.isBlank() || revision.isBlank()) continue
-                    val key = "firestore_revision_" + document.id
-                    val previous = prefs.getString(key, null)
-                    if (previous != null && previous != revision) changedPaths.add(sourcePath)
-                    updates[key] = revision
-                }
-                // Store observed revisions after identifying pending paths. The GitHub polling
-                // watcher remains a fallback if a TXT download fails during this reconciliation.
-                prefs.edit().apply {
-                    updates.forEach { (key, value) -> putString(key, value) }
-                }.apply()
-                callback(changedPaths)
-            }
-            .addOnFailureListener {
-                // Keep the last applied revisions so the next resume can retry.
-                callback(emptySet())
-            }
-    }
-
-    /** Run the existing watcher immediately when the activity returns to the foreground. */
-    fun checkForChangesNow() {
-        mainHandler.post {
-            val watcher = watchRunnable ?: return@post
-            mainHandler.removeCallbacks(watcher)
-            mainHandler.post(watcher)
-        }
-    }
-
-    /**
-     * Fetch and cache the full TXT file for each requested category.
-     * Returning the parsed fresh list lets the active screen update from the same response,
-     * instead of making a second request or accidentally reading an older cache entry.
-     */
-    fun refreshAllChannels(
-        context: Context,
-        categories: List<Category>,
-        callback: (Map<String, List<Channel>>) -> Unit = {}
-    ) {
-        executor.execute {
-            val refreshed = linkedMapOf<String, List<Channel>>()
-            categories.forEach { category ->
-                refreshChannelCache(context, category)?.let { refreshed[category.channelsUrl] = it }
-            }
-            mainHandler.post { callback(refreshed) }
-        }
-    }
-
-    fun refreshChangedChannels(
-        context: Context,
-        categories: List<Category>,
-        changedPaths: Set<String>,
-        callback: (Map<String, List<Channel>>) -> Unit = {}
-    ) {
-        executor.execute {
-            val refreshed = linkedMapOf<String, List<Channel>>()
-            categories.forEach { category ->
-                val filename = category.channelsUrl.substringAfterLast('/').substringBefore('?')
-                if (changedPaths.any {
-                    it.equals("Category Channels/$filename", ignoreCase = true) ||
-                        it.substringAfterLast('/').equals(filename, ignoreCase = true)
-                }) {
-                    refreshChannelCache(context, category)?.let { refreshed[category.channelsUrl] = it }
-                }
-            }
-            mainHandler.post { callback(refreshed) }
-        }
-    }
-
-    private fun refreshChannelCache(context: Context, category: Category): List<Channel>? {
-        val freshText = fetchText(withCacheBuster(category.channelsUrl)) ?: return null
-        val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
-        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .edit().putString(cacheKey, freshText).apply()
-        return parseChannelText(freshText)
     }
 
     fun loadChannels(context: Context, category: Category, forceRefresh: Boolean = false, callback: (List<Channel>?) -> Unit) {
