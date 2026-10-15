@@ -213,11 +213,6 @@ class MainActivity : Activity() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        RemoteChannelRepository.checkForChangesNow()
-    }
-
     override fun onPause() {
         super.onPause()
     }
