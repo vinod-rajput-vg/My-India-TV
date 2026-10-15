@@ -1,0 +1,40 @@
+name: Publish Catalog Updates
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Categories/**"
+      - "Category Channels/**"
+      - "Category Icons/**"
+      - "Channel Icons/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Firebase Admin SDK
+        run: npm install --no-save firebase-admin
+
+      - name: Publish changed catalog paths to Firestore and FCM
+        env:
+          FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: node scripts/publish-catalog-updates.cjs
