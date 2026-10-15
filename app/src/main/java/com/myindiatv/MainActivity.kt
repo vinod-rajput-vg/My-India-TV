@@ -194,10 +194,16 @@ class MainActivity : Activity() {
         RemoteChannelRepository.checkForChangesNow()
         RemoteChannelRepository.checkFirestoreRevisions(this) { changedPaths ->
             if (changedPaths.isNotEmpty()) handleCatalogChanges(false, changedPaths)
+            // Attach the realtime listener after the initial revision reconciliation so
+            // its first snapshot can compare against persisted revisions correctly.
+            RemoteChannelRepository.startWatchingFirestoreRevisions(this) { liveChangedPaths ->
+                if (liveChangedPaths.isNotEmpty()) handleCatalogChanges(false, liveChangedPaths)
+            }
         }
     }
 
     override fun onPause() {
+        RemoteChannelRepository.stopWatchingFirestoreRevisions()
         if (catalogReceiverRegistered) {
             try { unregisterReceiver(catalogPushReceiver) } catch (_: IllegalArgumentException) {}
             catalogReceiverRegistered = false
