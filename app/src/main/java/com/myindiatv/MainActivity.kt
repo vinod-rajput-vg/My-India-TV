@@ -20,7 +20,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 
 
-private object ChannelIconLoader {
+internal object ChannelIconLoader {
     private val executor = Executors.newFixedThreadPool(4)
     private val cache = ConcurrentHashMap<String, Bitmap>()
     private const val CACHE_DIR = "channel_icons"
@@ -77,6 +77,25 @@ private object ChannelIconLoader {
                 cache.remove(url)
                 try { cacheFile(context, url).delete() } catch (_: Exception) {}
             }
+        }
+    }
+
+    /**
+     * Remove disk and memory image caches for deleted or changed channel entries.
+     * The current category view will download and save the replacement icon on refresh.
+     */
+    fun reconcileChannels(context: Context, previous: List<Channel>, updated: List<Channel>) {
+        val updatedByName = updated.associateBy { it.name.trim().lowercase() }
+        val urlsToInvalidate = linkedSetOf<String>()
+        previous.forEach { old ->
+            val replacement = updatedByName[old.name.trim().lowercase()]
+            if (replacement == null || replacement.streamUrl != old.streamUrl || replacement.iconUrl != old.iconUrl) {
+                if (old.iconUrl.isNotBlank()) urlsToInvalidate.add(normalizeUrl(old.iconUrl))
+            }
+        }
+        urlsToInvalidate.forEach { url ->
+            cache.remove(url)
+            try { cacheFile(context, url).delete() } catch (_: Exception) {}
         }
     }
 
