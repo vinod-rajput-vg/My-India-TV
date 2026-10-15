@@ -3,7 +3,6 @@ package com.myindiatv
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.os.SystemClock
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.CompletableFuture
@@ -25,7 +24,6 @@ internal object RemoteChannelRepository {
         val separator = if ("?" in url) "&" else "?"
         return "$url${separator}_cb=${System.currentTimeMillis()}"
     }
-    private const val FALLBACK_WATCH_INTERVAL_MS = 10_000L
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(10)
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -55,7 +53,7 @@ internal object RemoteChannelRepository {
         }
     }
 
-    /** Poll the actual TXT files; Git commit metadata is not used for change detection. */
+    /** Refresh the actual TXT files on startup and when explicitly requested; no periodic polling. */
     fun startWatchingChanges(context: Context, onChanges: (Boolean, Set<String>) -> Unit) {
         val appContext = context.applicationContext
         stopWatchingChanges()
@@ -66,7 +64,6 @@ internal object RemoteChannelRepository {
                 // The active check schedules the next run when it finishes; do not queue
                 // another timer here, or foreground refreshes can create duplicate poll runs.
                 if (!watchCheckInFlight.compareAndSet(false, true)) return
-                val checkStartedAt = SystemClock.elapsedRealtime()
                 executor.execute {
                     try {
                         val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -121,13 +118,6 @@ internal object RemoteChannelRepository {
                         }
                     } finally {
                         watchCheckInFlight.set(false)
-                        if (generation == watchGeneration) {
-                            // Schedule from the start of the previous check, not its completion.
-                            // This keeps the poll cadence near 10 seconds without overlapping checks.
-                            val elapsed = SystemClock.elapsedRealtime() - checkStartedAt
-                            val delay = (FALLBACK_WATCH_INTERVAL_MS - elapsed).coerceAtLeast(0L)
-                            mainHandler.postDelayed(this, delay)
-                        }
                     }
                 }
             }
