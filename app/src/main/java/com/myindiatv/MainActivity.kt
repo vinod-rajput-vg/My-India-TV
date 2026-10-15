@@ -156,6 +156,7 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
+        com.google.firebase.messaging.FirebaseMessaging.getInstance().subscribeToTopic(CatalogMessagingService.CATALOG_TOPIC)
         RemoteChannelRepository.loadCategories(this) { loaded ->
             categories = loaded
             homeView.setCategories(loaded)
