@@ -29,7 +29,7 @@ internal object RemoteChannelRepository {
         val separator = if ("?" in url) "&" else "?"
         return "$url${separator}_cb=${System.currentTimeMillis()}"
     }
-    private const val FALLBACK_WATCH_INTERVAL_MS = 60_000L
+    private const val FALLBACK_WATCH_INTERVAL_MS = 10_000L
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(10)
     private val mainHandler = Handler(Looper.getMainLooper())
@@ -48,8 +48,11 @@ internal object RemoteChannelRepository {
                 return@execute
             }
 
-            val freshText = fetchText(if (forceRefresh) withCacheBuster(CATEGORY_URL) else CATEGORY_URL)
+            val freshText = fetchText(withCacheBuster(CATEGORY_URL))
             if (freshText != null) {
+                val previousCategories = cachedText?.let(::parseCategories).orEmpty()
+                val updatedCategories = parseCategories(freshText)
+                if (cachedText != freshText) pruneRemovedCategoryCaches(context, previousCategories, updatedCategories)
                 prefs.edit().putString(CATEGORIES_KEY, freshText).apply()
             }
             val resultText = if (freshText != null) freshText else cachedText
@@ -80,6 +83,7 @@ internal object RemoteChannelRepository {
                             if (previousCategoryText == null) {
                                 prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
                             } else if (latestCategoryText != previousCategoryText) {
+                                pruneRemovedCategoryCaches(appContext, parseCategories(previousCategoryText), parseCategories(latestCategoryText))
                                 prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
                                 changedPaths.add("Categories/categories.txt")
                             }
@@ -104,6 +108,7 @@ internal object RemoteChannelRepository {
                             if (cachedText == null) {
                                 prefs.edit().putString(cacheKey, freshText).apply()
                             } else if (freshText != cachedText) {
+                                ChannelIconLoader.reconcileChannels(appContext, parseChannelText(cachedText), parseChannelText(freshText))
                                 prefs.edit().putString(cacheKey, freshText).apply()
                                 changedPaths.add("Category Channels/$filename")
                             }
@@ -250,9 +255,29 @@ internal object RemoteChannelRepository {
     private fun refreshChannelCache(context: Context, category: Category): List<Channel>? {
         val freshText = fetchText(withCacheBuster(category.channelsUrl)) ?: return null
         val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
-        context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-            .edit().putString(cacheKey, freshText).apply()
-        return parseChannelText(freshText)
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        val previousText = prefs.getString(cacheKey, null)
+        val freshChannels = parseChannelText(freshText)
+        if (previousText != null && previousText != freshText) {
+            ChannelIconLoader.reconcileChannels(context, parseChannelText(previousText), freshChannels)
+        }
+        prefs.edit().putString(cacheKey, freshText).apply()
+        return freshChannels
+    }
+
+    private fun pruneRemovedCategoryCaches(context: Context, previous: List<Category>, updated: List<Category>) {
+        val updatedUrls = updated.map { it.channelsUrl }.toSet()
+        val removed = previous.filter { it.channelsUrl !in updatedUrls }
+        if (removed.isEmpty()) return
+        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
+        prefs.edit().apply {
+            removed.forEach { category ->
+                val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
+                val cachedChannels = prefs.getString(cacheKey, null)?.let(::parseChannelText).orEmpty()
+                ChannelIconLoader.reconcileChannels(context, cachedChannels, emptyList())
+                remove(cacheKey)
+            }
+        }.apply()
     }
 
     fun loadChannels(context: Context, category: Category, forceRefresh: Boolean = false, callback: (List<Channel>?) -> Unit) {
@@ -272,6 +297,9 @@ internal object RemoteChannelRepository {
             // A null response means network failure; an empty body is a valid empty file.
             val freshText = fetchText(withCacheBuster(category.channelsUrl))
             if (freshText != null) {
+                if (cachedText != null && cachedText != freshText) {
+                    ChannelIconLoader.reconcileChannels(context, parseChannelText(cachedText), parseChannelText(freshText))
+                }
                 prefs.edit().putString(cacheKey, freshText).apply()
             }
             val channels = freshText?.let(::parseChannelText)
