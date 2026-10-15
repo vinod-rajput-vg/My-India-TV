@@ -4,6 +4,9 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
+import android.os.Build
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
@@ -166,9 +169,39 @@ class MainActivity : Activity() {
         }
     }
 
+    private val catalogPushReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            val paths = intent?.getStringArrayListExtra(CatalogMessagingService.EXTRA_CHANGED_PATHS)
+                ?.toSet().orEmpty()
+            if (paths.isNotEmpty()) handleCatalogChanges(false, paths)
+        }
+    }
+    private var catalogReceiverRegistered = false
+
     override fun onResume() {
         super.onResume()
+        if (!catalogReceiverRegistered) {
+            val filter = IntentFilter(CatalogMessagingService.ACTION_CATALOG_CHANGED)
+            if (Build.VERSION.SDK_INT >= 33) {
+                registerReceiver(catalogPushReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
+            } else {
+                @Suppress("DEPRECATION")
+                registerReceiver(catalogPushReceiver, filter)
+            }
+            catalogReceiverRegistered = true
+        }
         RemoteChannelRepository.checkForChangesNow()
+        RemoteChannelRepository.checkFirestoreRevisions(this) { changedPaths ->
+            if (changedPaths.isNotEmpty()) handleCatalogChanges(false, changedPaths)
+        }
+    }
+
+    override fun onPause() {
+        if (catalogReceiverRegistered) {
+            try { unregisterReceiver(catalogPushReceiver) } catch (_: IllegalArgumentException) {}
+            catalogReceiverRegistered = false
+        }
+        super.onPause()
     }
 
     fun openCategory(index: Int) {
