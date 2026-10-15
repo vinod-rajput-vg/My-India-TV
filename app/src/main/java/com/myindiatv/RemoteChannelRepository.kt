@@ -75,20 +75,20 @@ internal object RemoteChannelRepository {
                         val latestSha = fetchLatestCommitSha()
                         if (!latestSha.isNullOrBlank()) {
                             val previousSha = prefs.getString(LAST_SEEN_COMMIT_KEY, null)
-                            if (previousSha.isNullOrBlank()) {
-                                // Older installs may have cached channel lists from before the
-                                // watcher was introduced. Perform one initial sync so deletions
-                                // made before the first check cannot remain stuck in local cache.
-                                val needsInitialSync = !prefs.getBoolean(INITIAL_CHANNEL_SYNC_KEY, false)
+                            val needsInitialSync = !prefs.getBoolean(INITIAL_CHANNEL_SYNC_KEY, false)
+                            if (needsInitialSync) {
+                                // Existing installs can have a commit checkpoint that is already
+                                // current while their cached category TXT files are stale. Force
+                                // one full category sync independently of the checkpoint.
                                 prefs.edit()
                                     .putString(LAST_SEEN_COMMIT_KEY, latestSha)
                                     .putBoolean(INITIAL_CHANNEL_SYNC_KEY, true)
                                     .apply()
-                                if (needsInitialSync) {
-                                    mainHandler.post {
-                                        if (generation == watchGeneration) onChanges(true, emptySet())
-                                    }
+                                mainHandler.post {
+                                    if (generation == watchGeneration) onChanges(true, emptySet())
                                 }
+                            } else if (previousSha.isNullOrBlank()) {
+                                prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
                             } else if (latestSha != previousSha) {
                                 val changedPaths = fetchChangedPaths(previousSha, latestSha)
                                 if (changedPaths != null) {
