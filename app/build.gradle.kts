@@ -9,7 +9,8 @@ android {
 
     defaultConfig {
         applicationId = "com.myindiatv"
-        minSdk = 23
+        // Firebase Firestore 27.x requires Android API 24 or newer.
+        minSdk = 24
         targetSdk = 36
         versionCode = 1
         versionName = "1.0.0"
@@ -29,12 +30,10 @@ android {
 
 kotlin {
     jvmToolchain(17)
-
+}
 
 dependencies {
     implementation(platform("com.google.firebase:firebase-bom:35.0.0"))
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-firestore")
-}
-
 }
