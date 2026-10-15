@@ -26,6 +26,6 @@ Sports
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/sports.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/sports.txt
 
-Movies 2
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/movies2.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/movies2.txt
+Movies
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/movies.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/movies.txt
