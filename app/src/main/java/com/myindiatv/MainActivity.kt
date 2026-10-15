@@ -59,6 +59,34 @@ internal object ChannelIconLoader {
         }
     }
 
+    private val preloading = ConcurrentHashMap.newKeySet<String>()
+
+    /**
+     * Warm the in-memory and disk image caches in the background so channel logos are ready
+     * before a user opens a category. URLs already cached or being preloaded are skipped.
+     */
+    fun preloadAll(context: Context, sources: Collection<String>) {
+        val appContext = context.applicationContext
+        sources.forEach { source ->
+            val key = normalizeUrl(source)
+            if (!key.startsWith("http://") && !key.startsWith("https://")) return@forEach
+            if (cache.containsKey(key) || !preloading.add(key)) return@forEach
+
+            executor.execute {
+                try {
+                    if (cache.containsKey(key)) return@execute
+                    val bitmap = loadFromDisk(appContext, key) ?: download(key)
+                    if (bitmap != null) {
+                        cache.putIfAbsent(key, bitmap)
+                        saveToDisk(appContext, key, cache[key] ?: bitmap)
+                    }
+                } finally {
+                    preloading.remove(key)
+                }
+            }
+        }
+    }
+
     fun invalidateChanged(context: Context, changedPaths: Set<String>, candidateUrls: Collection<String>) {
         val changedNames = changedPaths
             .filter { it.startsWith("Category Icons/") || it.startsWith("Channel Icons/") }
