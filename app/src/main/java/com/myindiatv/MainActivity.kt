@@ -340,6 +340,7 @@ class MainActivity : Activity() {
     }
 
     override fun onDestroy() {
+        RemoteChannelRepository.stopWatchingFirestoreRevisions()
         RemoteChannelRepository.stopWatchingChanges()
         super.onDestroy()
     }
