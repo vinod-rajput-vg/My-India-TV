@@ -271,7 +271,12 @@ internal object RemoteChannelRepository {
         if (removed.isEmpty()) return
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
         prefs.edit().apply {
-            removed.forEach { category -> remove("channels_" + category.channelsUrl.hashCode().toString()) }
+            removed.forEach { category ->
+                val cacheKey = "channels_" + category.channelsUrl.hashCode().toString()
+                val cachedChannels = prefs.getString(cacheKey, null)?.let(::parseChannelText).orEmpty()
+                ChannelIconLoader.reconcileChannels(context, cachedChannels, emptyList())
+                remove(cacheKey)
+            }
         }.apply()
     }
 
