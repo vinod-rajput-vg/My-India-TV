@@ -27,6 +27,7 @@ internal object RemoteChannelRepository {
         return "$url${separator}_cb=${System.currentTimeMillis()}"
     }
     private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
+    private const val INITIAL_CHANNEL_SYNC_KEY = "initial_channel_sync_done"
     private const val REPO_API_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV"
     private const val FALLBACK_WATCH_INTERVAL_MS = 60_000L
     private const val TIMEOUT_MS = 10000
@@ -75,9 +76,19 @@ internal object RemoteChannelRepository {
                         if (!latestSha.isNullOrBlank()) {
                             val previousSha = prefs.getString(LAST_SEEN_COMMIT_KEY, null)
                             if (previousSha.isNullOrBlank()) {
-                                // Establish a baseline only. Do not redownload every category
-                                // simply because this is the first check after installing/updating.
-                                prefs.edit().putString(LAST_SEEN_COMMIT_KEY, latestSha).apply()
+                                // Older installs may have cached channel lists from before the
+                                // watcher was introduced. Perform one initial sync so deletions
+                                // made before the first check cannot remain stuck in local cache.
+                                val needsInitialSync = !prefs.getBoolean(INITIAL_CHANNEL_SYNC_KEY, false)
+                                prefs.edit()
+                                    .putString(LAST_SEEN_COMMIT_KEY, latestSha)
+                                    .putBoolean(INITIAL_CHANNEL_SYNC_KEY, true)
+                                    .apply()
+                                if (needsInitialSync) {
+                                    mainHandler.post {
+                                        if (generation == watchGeneration) onChanges(true, emptySet())
+                                    }
+                                }
                             } else if (latestSha != previousSha) {
                                 val changedPaths = fetchChangedPaths(previousSha, latestSha)
                                 if (changedPaths != null) {
