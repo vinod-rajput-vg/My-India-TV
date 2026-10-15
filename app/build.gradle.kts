@@ -29,4 +29,12 @@ android {
 
 kotlin {
     jvmToolchain(17)
+
+
+dependencies {
+    implementation(platform("com.google.firebase:firebase-bom:35.0.0"))
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-firestore")
+}
+
 }
