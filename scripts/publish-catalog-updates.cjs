@@ -1,12 +1,14 @@
 const { execFileSync } = require("node:child_process");
-const admin = require("firebase-admin");
+const { initializeApp, cert } = require("firebase-admin/app");
+const { getFirestore, FieldValue } = require("firebase-admin/firestore");
+const { getMessaging } = require("firebase-admin/messaging");
 
 const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
 if (!serviceAccountJson) throw new Error("Missing FIREBASE_SERVICE_ACCOUNT_JSON GitHub Actions secret.");
 const serviceAccount = JSON.parse(serviceAccountJson);
-admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
-const db = admin.firestore();
-const messaging = admin.messaging();
+const app = initializeApp({ credential: cert(serviceAccount) });
+const db = getFirestore(app);
+const messaging = getMessaging(app);
 
 const base = process.env.BEFORE_SHA;
 const head = process.env.AFTER_SHA || process.env.GITHUB_SHA;
@@ -45,7 +47,7 @@ function docIdFor(path) {
     batch.set(ref, {
       sourcePath: path,
       revision: head,
-      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+      updatedAt: FieldValue.serverTimestamp()
     }, { merge: true });
   }
   await batch.commit();
