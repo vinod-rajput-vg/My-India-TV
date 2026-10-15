@@ -63,10 +63,9 @@ internal object RemoteChannelRepository {
         val watcher = object : Runnable {
             override fun run() {
                 if (generation != watchGeneration) return
-                if (!watchCheckInFlight.compareAndSet(false, true)) {
-                    if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
-                    return
-                }
+                // The active check schedules the next run when it finishes; do not queue
+                // another timer here, or foreground refreshes can create duplicate poll runs.
+                if (!watchCheckInFlight.compareAndSet(false, true)) return
                 val checkStartedAt = SystemClock.elapsedRealtime()
                 executor.execute {
                     try {
