@@ -18,19 +18,15 @@ internal data class Category(
 
 internal object RemoteChannelRepository {
     private const val CATEGORY_URL = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
-    private const val LIVE_CONFIG_URL = "https://myindiatvadmin.vercel.app/api/live/config"
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
     private const val LAST_SEEN_COMMIT_KEY = "last_seen_catalog_commit"
     private const val REPO_API_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV"
     private const val FALLBACK_WATCH_INTERVAL_MS = 60_000L
-    private const val LAST_LIVE_EVENT_ID_KEY = "last_live_catalog_event_id"
     private const val TIMEOUT_MS = 10000
     private val executor = Executors.newFixedThreadPool(3)
     private val mainHandler = Handler(Looper.getMainLooper())
     @Volatile private var watchRunnable: Runnable? = null
-    @Volatile private var liveConnection: HttpURLConnection? = null
-    @Volatile private var liveThread: Thread? = null
     @Volatile private var watchGeneration: Long = 0L
 
     fun loadCategories(context: Context, forceRefresh: Boolean = false, callback: (List<Category>) -> Unit) {
@@ -52,17 +48,12 @@ internal object RemoteChannelRepository {
         }
     }
 
-    /**
-     * Listen to Firebase Realtime Database Server-Sent Events for immediate admin updates.
-     * GitHub commit polling remains as a low-frequency fallback for changes made outside
-     * the admin panel, or while Firebase realtime delivery is unavailable.
-     */
+    /** Poll GitHub commits to detect remote catalog changes. */
     fun startWatchingChanges(context: Context, onChanges: (Boolean, Set<String>) -> Unit) {
         val appContext = context.applicationContext
         stopWatchingChanges()
         val generation = watchGeneration
-
-        val fallback = object : Runnable {
+        val watcher = object : Runnable {
             override fun run() {
                 if (generation != watchGeneration) return
                 executor.execute {
@@ -89,152 +80,20 @@ internal object RemoteChannelRepository {
                             }
                         }
                     } finally {
-                        if (generation == watchGeneration) {
-                            mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
-                        }
+                        if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
                     }
                 }
             }
         }
-        watchRunnable = fallback
-        mainHandler.post(fallback)
-
-        val thread = Thread({ watchRealtimeUpdates(appContext, generation, onChanges) }, "MyIndiaTV-live-catalog")
-        thread.isDaemon = true
-        liveThread = thread
-        thread.start()
+        watchRunnable = watcher
+        mainHandler.post(watcher)
     }
 
     fun stopWatchingChanges() {
         watchGeneration += 1L
         watchRunnable?.let { mainHandler.removeCallbacks(it) }
         watchRunnable = null
-        liveConnection?.disconnect()
-        liveConnection = null
-        liveThread?.interrupt()
-        liveThread = null
     }
-
-    private fun watchRealtimeUpdates(
-        context: Context,
-        generation: Long,
-        onChanges: (Boolean, Set<String>) -> Unit
-    ) {
-        while (generation == watchGeneration && !Thread.currentThread().isInterrupted) {
-            var connection: HttpURLConnection? = null
-            try {
-                val configText = fetchText(LIVE_CONFIG_URL) ?: throw java.io.IOException("Live config unavailable")
-                val config = JSONObject(configText)
-                if (!config.optBoolean("enabled", false)) throw java.io.IOException("Realtime database is not configured")
-                val databaseUrl = config.optString("databaseUrl").trim().trimEnd('/')
-                if (!databaseUrl.startsWith("https://")) throw java.io.IOException("Invalid realtime database URL")
-
-                connection = (URL("$databaseUrl/catalogUpdates/latest.json").openConnection() as HttpURLConnection).apply {
-                    requestMethod = "GET"
-                    connectTimeout = TIMEOUT_MS
-                    readTimeout = 0
-                    instanceFollowRedirects = true
-                    setRequestProperty("Accept", "text/event-stream")
-                    setRequestProperty("Cache-Control", "no-cache")
-                    setRequestProperty("User-Agent", "My-India-TV/1.0")
-                }
-                liveConnection = connection
-                if (connection.responseCode !in 200..299) {
-                    throw java.io.IOException("Realtime stream returned HTTP ${connection.responseCode}")
-                }
-
-                var eventName = ""
-                val eventData = StringBuilder()
-                connection.inputStream.bufferedReader().use { reader ->
-                    while (generation == watchGeneration && !Thread.currentThread().isInterrupted) {
-                        val line = reader.readLine() ?: break
-                        when {
-                            line.startsWith("event:") -> eventName = line.substringAfter(':').trim()
-                            line.startsWith("data:") -> {
-                                if (eventData.isNotEmpty()) eventData.append('\n')
-                                eventData.append(line.substringAfter(':').trimStart())
-                            }
-                            line.isEmpty() -> {
-                                if (eventName == "put" || eventName == "patch") {
-                                    consumeLiveEvent(context, generation, eventData.toString(), onChanges)
-                                }
-                                eventName = ""
-                                eventData.setLength(0)
-                            }
-                        }
-                    }
-                }
-            } catch (_: Exception) {
-                // Reconnect below; the normal GitHub fallback continues independently.
-            } finally {
-                if (liveConnection === connection) liveConnection = null
-                connection?.disconnect()
-            }
-
-            if (generation == watchGeneration && !Thread.currentThread().isInterrupted) {
-                try {
-                    Thread.sleep(5_000L)
-                } catch (_: InterruptedException) {
-                    Thread.currentThread().interrupt()
-                }
-            }
-        }
-    }
-
-    private fun consumeLiveEvent(
-        context: Context,
-        generation: Long,
-        eventJson: String,
-        onChanges: (Boolean, Set<String>) -> Unit
-    ) {
-        if (eventJson.isBlank() || generation != watchGeneration) return
-        val root = try { JSONObject(eventJson) } catch (_: Exception) { return }
-        val data = root.optJSONObject("data") ?: return
-        val eventId = data.optString("revision").takeIf { it.isNotBlank() } ?: return
-        val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
-        val previousId = prefs.getString(LAST_LIVE_EVENT_ID_KEY, null)
-        if (eventId == previousId) return
-
-        // Admin events carry an explicit scope/categorySlug. Keep paths for compatibility
-        // with older events and GitHub polling, while using the slug as a precise fallback.
-        val scope = data.optString("scope")
-        val categorySlug = data.optString("categorySlug").takeIf {
-            it.matches(Regex("^[a-z0-9][a-z0-9-]{0,49}$"))
-        }
-        val rawPaths = data.optJSONArray("paths")
-        val changedPaths = buildSet {
-            if (rawPaths != null) {
-                for (i in 0 until rawPaths.length()) {
-                    rawPaths.optString(i).takeIf { it.isNotBlank() }?.let(::add)
-                }
-            }
-            when (scope) {
-                "channels" -> categorySlug?.let { add("Category Channels/$it.txt") }
-                "categories" -> add("Categories/categories.txt")
-            }
-        }
-
-        prefs.edit().putString(LAST_LIVE_EVENT_ID_KEY, eventId).apply()
-
-        // The first snapshot after installing/updating the app may represent updates
-        // older than this process, so do a full sync once, then use targeted paths.
-        if (previousId.isNullOrBlank()) {
-            mainHandler.post {
-                if (generation == watchGeneration) onChanges(true, emptySet())
-            }
-            return
-        }
-
-        mainHandler.post {
-            if (generation == watchGeneration) {
-                if (changedPaths.isEmpty()) onChanges(true, emptySet())
-                else onChanges(false, changedPaths)
-            }
-        }
-    }
-
-    private fun withCacheBuster(url: String): String =
-        url + (if (url.contains("?")) "&" else "?") + "_live=" + System.currentTimeMillis()
 
     private fun fetchLatestCommitSha(): String? {
         val json = fetchApiJson("$REPO_API_URL/commits/main") ?: return null
