@@ -3,6 +3,7 @@ package com.myindiatv
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.os.SystemClock
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.CompletableFuture
@@ -66,6 +67,7 @@ internal object RemoteChannelRepository {
                     if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
                     return
                 }
+                val checkStartedAt = SystemClock.elapsedRealtime()
                 executor.execute {
                     try {
                         val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -115,7 +117,13 @@ internal object RemoteChannelRepository {
                         }
                     } finally {
                         watchCheckInFlight.set(false)
-                        if (generation == watchGeneration) mainHandler.postDelayed(this, FALLBACK_WATCH_INTERVAL_MS)
+                        if (generation == watchGeneration) {
+                            // Schedule from the start of the previous check, not its completion.
+                            // This keeps the poll cadence near 10 seconds without overlapping checks.
+                            val elapsed = SystemClock.elapsedRealtime() - checkStartedAt
+                            val delay = (FALLBACK_WATCH_INTERVAL_MS - elapsed).coerceAtLeast(0L)
+                            mainHandler.postDelayed(this, delay)
+                        }
                     }
                 }
             }
