@@ -4,9 +4,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
-import android.content.BroadcastReceiver
-import android.content.IntentFilter
-import android.os.Build
 import android.graphics.*
 import android.net.Uri
 import android.os.Bundle
@@ -175,7 +172,6 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
-        com.google.firebase.messaging.FirebaseMessaging.getInstance().subscribeToTopic(CatalogMessagingService.CATALOG_TOPIC)
         RemoteChannelRepository.loadCategories(this) { loaded ->
             categories = loaded
             homeView.setCategories(loaded)
@@ -189,44 +185,12 @@ class MainActivity : Activity() {
         }
     }
 
-    private val catalogPushReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
-            val paths = intent?.getStringArrayListExtra(CatalogMessagingService.EXTRA_CHANGED_PATHS)
-                ?.toSet().orEmpty()
-            if (paths.isNotEmpty()) handleCatalogChanges(false, paths)
-        }
-    }
-    private var catalogReceiverRegistered = false
-
     override fun onResume() {
         super.onResume()
-        if (!catalogReceiverRegistered) {
-            val filter = IntentFilter(CatalogMessagingService.ACTION_CATALOG_CHANGED)
-            if (Build.VERSION.SDK_INT >= 33) {
-                registerReceiver(catalogPushReceiver, filter, Context.RECEIVER_NOT_EXPORTED)
-            } else {
-                @Suppress("DEPRECATION")
-                registerReceiver(catalogPushReceiver, filter)
-            }
-            catalogReceiverRegistered = true
-        }
         RemoteChannelRepository.checkForChangesNow()
-        RemoteChannelRepository.checkFirestoreRevisions(this) { changedPaths ->
-            if (changedPaths.isNotEmpty()) handleCatalogChanges(false, changedPaths)
-            // Attach the realtime listener after the initial revision reconciliation so
-            // its first snapshot can compare against persisted revisions correctly.
-            RemoteChannelRepository.startWatchingFirestoreRevisions(this) { liveChangedPaths ->
-                if (liveChangedPaths.isNotEmpty()) handleCatalogChanges(false, liveChangedPaths)
-            }
-        }
     }
 
     override fun onPause() {
-        RemoteChannelRepository.stopWatchingFirestoreRevisions()
-        if (catalogReceiverRegistered) {
-            try { unregisterReceiver(catalogPushReceiver) } catch (_: IllegalArgumentException) {}
-            catalogReceiverRegistered = false
-        }
         super.onPause()
     }
 
@@ -359,7 +323,6 @@ class MainActivity : Activity() {
     }
 
     override fun onDestroy() {
-        RemoteChannelRepository.stopWatchingFirestoreRevisions()
         RemoteChannelRepository.stopWatchingChanges()
         super.onDestroy()
     }
