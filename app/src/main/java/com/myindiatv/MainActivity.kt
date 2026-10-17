@@ -173,11 +173,16 @@ internal object ChannelIconLoader {
     }
 
     private fun decodeSampled(source: java.io.InputStream): Bitmap? {
-        val input = if (source.markSupported()) source else BufferedInputStream(source)
-        input.mark(64 * 1024)
+        // Decode from a byte array so the bounds pass and bitmap pass read the same
+        // bytes. A fixed 64 KiB mark limit breaks on valid images larger than 64 KiB
+        // (including Movie Posters/Rambo_2.png).
+        val bytes = source.use { it.readBytes() }
+        if (bytes.isEmpty()) return null
+
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
-        BitmapFactory.decodeStream(input, null, bounds)
-        input.reset()
+        BitmapFactory.decodeByteArray(bytes, 0, bytes.size, bounds)
+        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return null
+
         val maxWidth = 512
         val maxHeight = 384
         var sampleSize = 1
@@ -188,7 +193,7 @@ internal object ChannelIconLoader {
             inSampleSize = sampleSize
             inPreferredConfig = Bitmap.Config.ARGB_8888
         }
-        return BitmapFactory.decodeStream(input, null, options)
+        return BitmapFactory.decodeByteArray(bytes, 0, bytes.size, options)
     }
     private fun download(url: String): Bitmap? {
         var connection: HttpURLConnection? = null
