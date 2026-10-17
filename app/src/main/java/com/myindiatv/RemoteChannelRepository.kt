@@ -19,6 +19,9 @@ internal object RemoteChannelRepository {
     private const val CATEGORY_URL = "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
     private const val PREFS = "remote_catalog"
     private const val CATEGORIES_KEY = "categories_text"
+    private const val TREE_CACHE_KEY = "asset_tree_entries"
+    private const val TREE_URL = "https://api.github.com/repos/vinod-rajput-vg/My-India-TV/git/trees/main?recursive=1"
+    private const val POLL_INTERVAL_MS = 60_000L
 
     private fun withCacheBuster(url: String): String {
         val separator = if ("?" in url) "&" else "?"
@@ -58,12 +61,14 @@ internal object RemoteChannelRepository {
         val appContext = context.applicationContext
         stopWatchingChanges()
         val generation = watchGeneration
-        val watcher = object : Runnable {
+        lateinit var watcher: Runnable
+        watcher = object : Runnable {
             override fun run() {
                 if (generation != watchGeneration) return
-                // The active check schedules the next run when it finishes; do not queue
-                // another timer here, or foreground refreshes can create duplicate poll runs.
-                if (!watchCheckInFlight.compareAndSet(false, true)) return
+                if (!watchCheckInFlight.compareAndSet(false, true)) {
+                    mainHandler.postDelayed(this, POLL_INTERVAL_MS)
+                    return
+                }
                 executor.execute {
                     try {
                         val prefs = appContext.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
@@ -74,10 +79,47 @@ internal object RemoteChannelRepository {
                             val previousCategoryText = prefs.getString(CATEGORIES_KEY, null)
                             if (previousCategoryText == null) {
                                 prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
+                                changedPaths.add("Categories/categories.txt")
                             } else if (latestCategoryText != previousCategoryText) {
                                 pruneRemovedCategoryCaches(appContext, parseCategories(previousCategoryText), parseCategories(latestCategoryText))
                                 prefs.edit().putString(CATEGORIES_KEY, latestCategoryText).apply()
                                 changedPaths.add("Categories/categories.txt")
+                            }
+                        }
+
+                        // Compare GitHub tree blob SHAs so replacing an icon at the same path
+                        // invalidates its cached bitmap even when the URL itself is unchanged.
+                        val latestTreeText = fetchText(TREE_URL)
+                        if (latestTreeText != null) {
+                            try {
+                                val treeEntries = org.json.JSONObject(latestTreeText).optJSONArray("tree")
+                                val current = linkedMapOf<String, String>()
+                                if (treeEntries != null) {
+                                    for (i in 0 until treeEntries.length()) {
+                                        val entry = treeEntries.optJSONObject(i) ?: continue
+                                        val path = entry.optString("path")
+                                        if (path.startsWith("Category Icons/") || path.startsWith("Channel Icons/")) {
+                                            current[path] = entry.optString("sha")
+                                        }
+                                    }
+                                }
+                                val serialized = current.entries.joinToString("\n") { "${it.key}\t${it.value}" }
+                                val previous = prefs.getString(TREE_CACHE_KEY, null)
+                                if (previous != null) {
+                                    val old = previous.lines().mapNotNull { line ->
+                                        val split = line.split("\t", limit = 2)
+                                        if (split.size == 2) split[0] to split[1] else null
+                                    }.toMap()
+                                    (old.keys + current.keys).forEach { path ->
+                                        if (old[path] != current[path]) changedPaths.add(path)
+                                    }
+                                } else {
+                                    // On first successful tree fetch, refresh visible artwork once.
+                                    current.keys.forEach { changedPaths.add(it) }
+                                }
+                                prefs.edit().putString(TREE_CACHE_KEY, serialized).apply()
+                            } catch (_: Exception) {
+                                // A malformed or truncated tree response must not poison the cache.
                             }
                         }
 
@@ -118,6 +160,9 @@ internal object RemoteChannelRepository {
                         }
                     } finally {
                         watchCheckInFlight.set(false)
+                        if (generation == watchGeneration) {
+                            mainHandler.postDelayed(watcher, POLL_INTERVAL_MS)
+                        }
                     }
                 }
             }

@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
+import android.util.LruCache
 import android.net.Uri
 import android.os.Bundle
 import android.view.KeyEvent
@@ -19,7 +20,7 @@ import java.util.concurrent.Executors
 
 internal object ChannelIconLoader {
     private val executor = Executors.newFixedThreadPool(4)
-    private val cache = ConcurrentHashMap<String, Bitmap>()
+    private val cache = LruCache<String, Bitmap>(12 * 1024 * 1024) { _, bitmap -> bitmap.byteCount }
     private const val CACHE_DIR = "channel_icons"
 
     fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
@@ -44,16 +45,15 @@ internal object ChannelIconLoader {
         executor.execute {
             val cachedBitmap = loadFromDisk(view.context, key)
             if (cachedBitmap != null) {
-                cache[key] = cachedBitmap
+                cache.put(key, cachedBitmap)
                 view.post { onLoaded(cachedBitmap) }
                 return@execute
             }
 
             val bitmap = download(key)
             if (bitmap != null) {
-                cache.putIfAbsent(key, bitmap)
-                saveToDisk(view.context, key, bitmap)
-                val cached = cache[key] ?: bitmap
+                val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
+                saveToDisk(view.context, key, cached)
                 view.post { onLoaded(cached) }
             }
         }
@@ -70,15 +70,15 @@ internal object ChannelIconLoader {
         sources.forEach { source ->
             val key = normalizeUrl(source)
             if (!key.startsWith("http://") && !key.startsWith("https://")) return@forEach
-            if (cache.containsKey(key) || !preloading.add(key)) return@forEach
+            if (cache.get(key) != null || !preloading.add(key)) return@forEach
 
             executor.execute {
                 try {
-                    if (cache.containsKey(key)) return@execute
+                    if (cache.get(key) != null) return@execute
                     val bitmap = loadFromDisk(appContext, key) ?: download(key)
                     if (bitmap != null) {
-                        cache.putIfAbsent(key, bitmap)
-                        saveToDisk(appContext, key, cache[key] ?: bitmap)
+                        val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
+                        saveToDisk(appContext, key, cached)
                     }
                 } finally {
                     preloading.remove(key)
@@ -94,8 +94,8 @@ internal object ChannelIconLoader {
             .toSet()
         if (changedNames.isEmpty()) return
 
-        candidateUrls.forEach { source ->
-            val url = normalizeUrl(source)
+        val allKnownUrls = (candidateUrls + cache.snapshot().keys).map(::normalizeUrl).toSet()
+        allKnownUrls.forEach { url ->
             if (url.isBlank()) return@forEach
             val fileName = Uri.parse(url).lastPathSegment.orEmpty().substringBefore('?').lowercase()
             if (fileName in changedNames) {
@@ -146,7 +146,7 @@ internal object ChannelIconLoader {
         val file = cacheFile(context, url)
         if (!file.exists() || file.length() == 0L) return null
         return try {
-            java.io.FileInputStream(file).use { input -> BitmapFactory.decodeStream(input) }
+            java.io.FileInputStream(file).use { input -> decodeSampled(input) }
         } catch (_: Exception) {
             try { file.delete() } catch (_: Exception) {}
             null
@@ -168,6 +168,24 @@ internal object ChannelIconLoader {
         }
     }
 
+    private fun decodeSampled(source: java.io.InputStream): Bitmap? {
+        val input = if (source.markSupported()) source else BufferedInputStream(source)
+        input.mark(64 * 1024)
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        BitmapFactory.decodeStream(input, null, bounds)
+        input.reset()
+        val maxWidth = 512
+        val maxHeight = 384
+        var sampleSize = 1
+        while (bounds.outWidth / sampleSize > maxWidth * 2 || bounds.outHeight / sampleSize > maxHeight * 2) {
+            sampleSize *= 2
+        }
+        val options = BitmapFactory.Options().apply {
+            inSampleSize = sampleSize
+            inPreferredConfig = Bitmap.Config.ARGB_8888
+        }
+        return BitmapFactory.decodeStream(input, null, options)
+    }
     private fun download(url: String): Bitmap? {
         var connection: HttpURLConnection? = null
         return try {
@@ -180,7 +198,7 @@ internal object ChannelIconLoader {
             connection.setRequestProperty("Accept", "image/avif,image/webp,image/apng,image/png,image/jpeg,image/*,*/*;q=0.8")
             connection.connect()
             if (connection.responseCode !in 200..299) return null
-            BufferedInputStream(connection.inputStream).use { input -> BitmapFactory.decodeStream(input) }
+            BufferedInputStream(connection.inputStream).use { input -> decodeSampled(input) }
         } catch (_: Exception) {
             null
         } finally {
@@ -331,7 +349,8 @@ class MainActivity : Activity() {
         }
 
         val uri = Uri.parse(streamUrl)
-        if (uri.scheme.isNullOrBlank() || uri.host.isNullOrBlank()) {
+        if (uri.scheme?.lowercase() !in setOf("https", "http") || uri.host.isNullOrBlank() ||
+            uri.userInfo != null) {
             Toast.makeText(this, "Invalid stream URL", Toast.LENGTH_SHORT).show()
             return
         }
