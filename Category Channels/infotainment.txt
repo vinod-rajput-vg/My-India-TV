@@ -1,23 +1,23 @@
-DISCOVERY HD
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373036
+Discovery
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/460237304b713a95012b25c69fb7a7ed.png
+https://drk6xq0vhn.gpcdn.net/live/discovery_sd_abr/index.m3u8
 
 SONY BBC EARTH HD
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373071
+http://103.185.24.134:3001/SONY-BBC/index.m3u8
 
 Animal Planet HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944624
+https://drk6xq0vhn.gpcdn.net/live/animal_planet_hd_abr/index.m3u8
 
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373018
+http://103.185.24.134:3001/NATGEO-WILD-HD/index.m3u8
 
 National Geographic HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373017
+http://103.185.24.134:3001/NATGEO-HD/index.m3u8
 
 History TV18 HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373031
+https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/ts-ap-s1-n1/playlist/amg01448-samsungindia-historychannelhindi-samsungin/playlist.m3u8
