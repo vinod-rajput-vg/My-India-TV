@@ -94,8 +94,8 @@ internal object ChannelIconLoader {
             .toSet()
         if (changedNames.isEmpty()) return
 
-        candidateUrls.forEach { source ->
-            val url = normalizeUrl(source)
+        val allKnownUrls = (candidateUrls + cache.snapshot().keys).map(::normalizeUrl).toSet()
+        allKnownUrls.forEach { url ->
             if (url.isBlank()) return@forEach
             val fileName = Uri.parse(url).lastPathSegment.orEmpty().substringBefore('?').lowercase()
             if (fileName in changedNames) {
