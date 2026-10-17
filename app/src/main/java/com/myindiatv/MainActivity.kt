@@ -170,7 +170,7 @@ internal object ChannelIconLoader {
 
     private fun decodeSampled(source: java.io.InputStream): Bitmap? {
         val input = if (source.markSupported()) source else BufferedInputStream(source)
-        input.mark(Int.MAX_VALUE)
+        input.mark(64 * 1024)
         val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         BitmapFactory.decodeStream(input, null, bounds)
         input.reset()
@@ -182,7 +182,7 @@ internal object ChannelIconLoader {
         }
         val options = BitmapFactory.Options().apply {
             inSampleSize = sampleSize
-            inPreferredConfig = Bitmap.Config.RGB_565
+            inPreferredConfig = Bitmap.Config.ARGB_8888
         }
         return BitmapFactory.decodeStream(input, null, options)
     }
