@@ -20,7 +20,11 @@ import java.util.concurrent.Executors
 
 internal object ChannelIconLoader {
     private val executor = Executors.newFixedThreadPool(4)
-    private val cache = LruCache<String, Bitmap>(12 * 1024 * 1024) { _, bitmap -> bitmap.byteCount }
+    private val cache = object : LruCache<String, Bitmap>(12 * 1024 * 1024) {
+        override fun sizeOf(key: String, value: Bitmap): Int {
+            return value.byteCount
+        }
+    }
     private const val CACHE_DIR = "channel_icons"
 
     fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
