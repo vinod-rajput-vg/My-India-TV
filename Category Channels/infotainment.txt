@@ -2,6 +2,10 @@ Discovery
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/460237304b713a95012b25c69fb7a7ed.png
 https://drk6xq0vhn.gpcdn.net/live/discovery_sd_abr/index.m3u8
 
+Sony BBC Earth HD
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
+https:\\streamflexsmm.in\Sflex-Jio\304242\manifest.mpd
+
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
 http://103.185.24.134:3001/NATGEO-WILD-HD/index.m3u8
