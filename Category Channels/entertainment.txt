@@ -1,79 +1,31 @@
 Star Gold HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/db73db401054f2d63b642af12169d31a.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=737323
-
-Star Gold 2 HD
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372926
-
-STAR GOLD ROMANCE
-https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-romance.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433164
-
-STAR GOLD THRILLIS
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373005
-
-&PICTURES HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/and-pictures-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944620
+http://103.185.24.134:3001/Star-Gold/index.m3u8
 
 Sony MAX HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373074
+http://103.151.60.162:2122/play/a014/index.m3u8?hls
 
 Sony MAX 2
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373073
-
-ZEE CINEMA
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1100011
+http://107.167.16.138/sonymax2/index.m3u8?token=test
 
 ZEE Cinema HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735399
+http://103.151.60.162:2122/play/a012/index.m3u8?hls
 
-ZEE ACTION
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-action-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735400
-
-ZEE BOLLYWOOD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-bollywood-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372924
-
-ZEE CLASSIC
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-classic-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=735401
-
-&Xplore HD
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Channel%20Icons/and_explore_hd.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372925
-
-ZEE ANMOL CINEMA
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-anmol-cinema-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373000
-
-Colors Cineplex HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-cineplex-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944627
-
-SONY WAH
-https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/10_258.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944607
+Colors Cineplex
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa1e0b003da3eaef8602cbfb2833231f.png
+https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8
 
 B4U Kadak
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-kadak-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433208
+https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8
 
 B4U Movies
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944610
+https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8
 
 Goldmines Bollywood
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Channel%20Icons/goldmines_bolywood.png
 https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8
-
-Goldmine Movies
-https://goldmines.co.in/assets/img/logo.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433194
