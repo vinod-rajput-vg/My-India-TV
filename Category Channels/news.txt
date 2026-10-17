@@ -4,7 +4,7 @@ https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9hinjzgtpe/liveabr/playlist.m3u8
 
 Times Now Navbharat
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/bc00f1e02773b93ec36890b5a4ef7ece.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=1433192
+https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/TimesNowNavbharat.m3u8
 
 TV9 Gujarati
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/f344ea2f99c67074b52150e40cc30c24.png
@@ -20,24 +20,28 @@ https://vg-zeefta.akamaized.net/ptnr-yupptv/title-zee24kalak/v1/manifest/611d79b
 
 Republic Bharat
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/republic-bharat-tv-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372971
+https://streams.tangotv.in/REPUBLICBHARAT/ORIGIN/index.m3u8
 
 News Nation
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/cd40fe9e8db4c7662414c19f09e38857.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373013
+https://d3qs3d2rkhfqrt.cloudfront.net/out/v1/6cd2f649739a45ca9de1daf81cc7d0f2/index.m3u8
 
 Aaj Tak HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/aaj-tak-hd-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=373063
+https://feeds.intoday.in/aajtak/api/aajtakhd/master.m3u8
 
 ABP News
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/abp-news-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=944619
+https://d1rc86nwwc9fag.cloudfront.net/vglive-sk-472500/abpnews/master.m3u8
 
 India TV
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/india-tv-in.png
-https://ranapkz.site/RANAPKX73/MAXCDN/play.php?id=372968
+https://pl-indiatvnews.akamaized.net/out/v1/db79179b608641ceaa5a4d0dd0dca8da/index.m3u8
+
+Aap Ki Adalat
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/ab077fd5d3ebc3a5cad89590d7b54965.png
+https://amg01550-amg01550c6-samsung-in-4679.playouts.now.amagi.tv/playlist/amg01550-indiatvfast-indiatvakasamsung-samsungin/playlist.m3u8
 
 Zee 24 Taas
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-24-taas-in.png
-https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/ZMCL/Zee24Taas.m3u8
+https://dgrvlduwztkd4.cloudfront.net/index_5.m3u8
