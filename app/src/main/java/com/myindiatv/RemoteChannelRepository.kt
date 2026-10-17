@@ -103,11 +103,11 @@ internal object RemoteChannelRepository {
                                         }
                                     }
                                 }
-                                val serialized = current.entries.joinToString("\\n") { "${it.key}\\t${it.value}" }
+                                val serialized = current.entries.joinToString("\n") { "${it.key}\t${it.value}" }
                                 val previous = prefs.getString(TREE_CACHE_KEY, null)
                                 if (previous != null) {
                                     val old = previous.lines().mapNotNull { line ->
-                                        val split = line.split("\\t", limit = 2)
+                                        val split = line.split("\t", limit = 2)
                                         if (split.size == 2) split[0] to split[1] else null
                                     }.toMap()
                                     (old.keys + current.keys).forEach { path ->
