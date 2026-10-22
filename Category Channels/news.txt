@@ -7,11 +7,11 @@ https://jiotvimages.cdn.jio.com/dare_images/images/channel/bc00f1e02773b93ec3689
 https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/TimesNowNavbharat.m3u8
 
 NDTV India
-
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/b69d5a23fcfa02d4c2f47e958c704b46.png
 https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/NDTVIndia.m3u8
 
 DD News
-
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/16dfa4cb5cb300bfad994dc6acb44c76.png
 https://mumbai-edge.smartplaytv.in/DDNews/index.m3u8
 
 TV9 Gujarati
