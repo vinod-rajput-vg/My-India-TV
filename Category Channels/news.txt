@@ -6,6 +6,14 @@ Times Now Navbharat
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/bc00f1e02773b93ec36890b5a4ef7ece.png
 https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/TimesNowNavbharat.m3u8
 
+NDTV India
+
+https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/in/YuppTV/NDTVIndia.m3u8
+
+DD News
+
+https://mumbai-edge.smartplaytv.in/DDNews/index.m3u8
+
 TV9 Gujarati
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/f344ea2f99c67074b52150e40cc30c24.png
 https://dyjmyiv3bp2ez.cloudfront.net/pub-iotv9guj3ki8lu/liveabr/playlist.m3u8
