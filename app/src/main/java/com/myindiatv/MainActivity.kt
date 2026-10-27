@@ -235,7 +235,7 @@ class MainActivity : Activity() {
             }
             // Subscribe to admin catalog updates and apply any push queued while the app was closed.
             CatalogPushBridge.register(this) { fullRefresh, changedPaths ->
-                handleCatalogChanges(fullRefresh, changedPaths)
+                runOnUiThread { handleCatalogChanges(fullRefresh, changedPaths) }
             }
             com.google.firebase.messaging.FirebaseMessaging.getInstance()
                 .subscribeToTopic("catalog-updates")
