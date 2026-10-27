@@ -233,7 +233,17 @@ class MainActivity : Activity() {
             if (loaded.isEmpty()) {
                 Toast.makeText(this, "No categories configured yet. Waiting for catalog updates.", Toast.LENGTH_LONG).show()
             }
-            // Keep checking GitHub for catalog changes even when the catalog is empty.
+            // Subscribe to admin catalog updates and apply any push queued while the app was closed.
+            CatalogPushBridge.register(this) { fullRefresh, changedPaths ->
+                handleCatalogChanges(fullRefresh, changedPaths)
+            }
+            com.google.firebase.messaging.FirebaseMessaging.getInstance()
+                .subscribeToTopic("catalog-updates")
+                .addOnFailureListener { error ->
+                    android.util.Log.w("MyIndiaTV", "FCM topic subscription failed", error)
+                }
+
+            // Keep GitHub polling as a fallback for missed or delayed push messages.
             RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
                 handleCatalogChanges(fullRefresh, changedPaths)
             }
@@ -374,6 +384,7 @@ class MainActivity : Activity() {
     }
 
     override fun onDestroy() {
+        CatalogPushBridge.unregister()
         RemoteChannelRepository.stopWatchingChanges()
         super.onDestroy()
     }
