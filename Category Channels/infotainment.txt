@@ -13,3 +13,7 @@ http://103.185.24.134:3001/NATGEO-HD/index.m3u8
 History TV18 HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png
 https://amg01448-amg01448c16-samsung-in-3495.playouts.now.amagi.tv/ts-ap-s1-n1/playlist/amg01448-samsungindia-historychannelhindi-samsungin/playlist.m3u8
+
+Discovery HD 2
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
+https:\\mactom3u.vodep39240327.workers.dev\1726.m3u8?host=sky.dittotv.co&path=%2Fstalker_portal%2F&mac=00%3A1A%3A79%3A00%3A56%3AB6&serial=679C2D2011EC3&device_id=534F9470DB94A93B2CAB399F02C81E2D0C618868AF2367DBAF5B4DF62EE74758&device_id_2=534F9470DB94A93B2CAB399F02C81E2D0C618868AF2367DBAF5B4DF62EE74758&stb_type=MAG250
