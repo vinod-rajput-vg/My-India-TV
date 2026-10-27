@@ -227,21 +227,32 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
+        // Join the topic before initial catalog network loading completes.
+        com.google.firebase.messaging.FirebaseMessaging.getInstance()
+            .subscribeToTopic("catalog-updates")
+            .addOnSuccessListener {
+                android.util.Log.i("CatalogFCM", "Subscribed to catalog-updates")
+            }
+            .addOnFailureListener { error ->
+                android.util.Log.e("CatalogFCM", "Topic subscription failed", error)
+            }
+
         RemoteChannelRepository.loadCategories(this) { loaded ->
             categories = loaded
             homeView.setCategories(loaded)
             if (loaded.isEmpty()) {
                 Toast.makeText(this, "No categories configured yet. Waiting for catalog updates.", Toast.LENGTH_LONG).show()
             }
-            // Subscribe to admin catalog updates and apply any push queued while the app was closed.
+            // Replay any push queued while the initial catalog was loading.
             CatalogPushBridge.register(this) { fullRefresh, changedPaths ->
-                runOnUiThread { handleCatalogChanges(fullRefresh, changedPaths) }
-            }
-            com.google.firebase.messaging.FirebaseMessaging.getInstance()
-                .subscribeToTopic("catalog-updates")
-                .addOnFailureListener { error ->
-                    android.util.Log.w("MyIndiaTV", "FCM topic subscription failed", error)
+                runOnUiThread {
+                    android.util.Log.i(
+                        "CatalogFCM",
+                        "Applying push fullRefresh=$fullRefresh paths=$changedPaths"
+                    )
+                    handleCatalogChanges(fullRefresh, changedPaths)
                 }
+            }
 
             // Keep GitHub polling as a fallback for missed or delayed push messages.
             RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
