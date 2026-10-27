@@ -1,3 +1,7 @@
+Discovery HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
+https://mactom3u.vodep39240327.workers.dev/11636.m3u8?host=smart4k.me&path=%2Fstalker_portal%2F&mac=00%3A1A%3A79%3A00%3A04%3ACE&serial=9C1AC59640C83&device_id=594DF56F4DCBB74920476F1B4F66D12325163C22248B628F57B89BA5CDFAFEA5&device_id_2=594DF56F4DCBB74920476F1B4F66D12325163C22248B628F57B89BA5CDFAFEA5&stb_type=MAG250
+
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
 http://103.185.24.134:3001/NATGEO-WILD-HD/index.m3u8
