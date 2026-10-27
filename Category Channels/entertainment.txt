@@ -2,6 +2,10 @@ Star Gold HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/db73db401054f2d63b642af12169d31a.png
 http://103.185.24.134:3001/Star-Gold/index.m3u8
 
+Star Gold 2 HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png
+http://103.151.60.162:2122/play/a01v/index.m3u8?hls
+
 Sony MAX HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png
 http://103.151.60.162:2122/play/a014/index.m3u8?hls
