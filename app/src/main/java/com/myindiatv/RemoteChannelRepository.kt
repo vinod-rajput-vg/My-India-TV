@@ -14,9 +14,8 @@ internal data class Category(
 )
 
 /**
- * Loads categories from Categories/categories.txt and each category's channels
- * from the channel-file URL specified in that entry. Catalog data is not bundled
- * inside the APK.
+ * Loads Categories/categories.txt and each category's channel file URL.
+ * Catalog text files stay in the repository instead of being bundled in the APK.
  */
 internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
@@ -85,11 +84,7 @@ internal object RemoteChannelRepository {
         }
     }
 
-    /**
-     * Repository channel files use three lines per record:
-     * channel name, icon URL, and stream URL, separated by blank lines.
-     * Also supports M3U files if one is used as a category source later.
-     */
+    /** Each repository record has channel name, icon URL, and stream URL on separate lines. */
     private fun parseChannelText(text: String): List<Channel> {
         val lines = text.lines()
         if (lines.any { it.trim().startsWith("#EXTINF:", ignoreCase = true) }) {
@@ -104,7 +99,6 @@ internal object RemoteChannelRepository {
                 if (line.startsWith("#EXTINF:", ignoreCase = true)) {
                     val comma = line.indexOf(',')
                     if (comma < 0) continue
-
                     val attributes = line.substring(0, comma)
                     name = line.substring(comma + 1).trim()
                     iconUrl = Regex("""tvg-logo="([^"]*)"""", RegexOption.IGNORE_CASE)
@@ -118,11 +112,8 @@ internal object RemoteChannelRepository {
             return result
         }
 
-        val records = mutableListOf<String>()
-        for (rawLine in lines) {
-            val line = rawLine.trim()
-            if (line.isNotEmpty() && !line.startsWith("#")) records += line
-        }
+        val records = lines.map { it.trim() }
+            .filter { it.isNotEmpty() && !it.startsWith("#") }
 
         return records
             .chunked(3)
