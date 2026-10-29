@@ -1,3 +1,7 @@
+Sony BBC Earth HD
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
+https://sliv.tgaadi.workers.dev/sonybbcearthhd.m3u8
+
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
 http://103.185.24.134:3001/NATGEO-WILD-HD/index.m3u8
