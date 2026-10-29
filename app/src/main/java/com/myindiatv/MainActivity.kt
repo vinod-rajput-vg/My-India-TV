@@ -227,12 +227,28 @@ class MainActivity : Activity() {
      * interval; the next check happens when the app is restarted.
      */
     private fun checkCatalogOnStartup() {
-        RemoteChannelRepository.scanForChanges { update ->
+        RemoteChannelRepository.scanForChanges(this) { update ->
             if (isFinishing || isDestroyed || update == null) return@scanForChanges
 
             if (update.categoriesChanged) {
                 categories = update.categories
                 homeView.setCategories(categories)
+            }
+
+            update.changedCategoryNames.forEach { changedName ->
+                val active = activeCategory
+                val view = channelView
+                if (active != null && view != null &&
+                    active.name.equals(changedName, ignoreCase = true)
+                ) {
+                    val refreshedCategory = categories.firstOrNull {
+                        it.name.equals(changedName, ignoreCase = true)
+                    }
+                    if (refreshedCategory != null) {
+                        activeCategory = refreshedCategory
+                        refreshCategory(refreshedCategory, view)
+                    }
+                }
             }
         }
     }
@@ -810,14 +826,10 @@ internal object RemoteChannelRepository {
 
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
-    private var categoriesSnapshot: String? = null
-    private val channelSnapshots = mutableMapOf<String, String>()
-
     fun loadCategories(context: Context, callback: (List<Category>) -> Unit) {
         executor.execute {
             val categories = runCatching {
                 val catalogText = fetchText(CATEGORIES_URL)
-                categoriesSnapshot = sha256(catalogText)
                 parseCategories(catalogText)
             }.getOrDefault(emptyList())
 
@@ -829,7 +841,6 @@ internal object RemoteChannelRepository {
         executor.execute {
             val channels = runCatching {
                 val content = fetchText(category.channelsUrl)
-                channelSnapshots[category.name.lowercase()] = sha256(content)
                 parseChannelText(content)
             }.getOrDefault(emptyList())
 
@@ -838,34 +849,47 @@ internal object RemoteChannelRepository {
     }
 
     /**
-     * Poll the category index and channel catalogs. A failed category fetch is isolated:
-     * its last successful snapshot is preserved so the next poll can retry it.
+     * Compare the remote catalog with the last successful scan persisted across app launches.
+     * Failed channel fetches keep their previous fingerprints so the next startup can retry.
      * Changes are delivered as a batch, and only changed categories are refreshed.
      */
-    fun scanForChanges(callback: (CatalogUpdate?) -> Unit) {
+    fun scanForChanges(context: Context, callback: (CatalogUpdate?) -> Unit) {
         executor.execute {
             val result = runCatching {
                 val catalogText = fetchText(CATEGORIES_URL)
                 val currentCategories = parseCategories(catalogText)
                 val currentCatalogHash = sha256(catalogText)
-                val categoriesChanged = categoriesSnapshot != null &&
-                    categoriesSnapshot != currentCatalogHash
+                val preferences = context.applicationContext.getSharedPreferences(
+                    "remote_catalog_snapshots",
+                    Context.MODE_PRIVATE
+                )
+                val previousCatalogHash = preferences.getString("categories_sha256", null)
+                val categoriesChanged = previousCatalogHash != null &&
+                    previousCatalogHash != currentCatalogHash
 
                 val changed = linkedSetOf<String>()
+                val successfulChannelHashes = linkedMapOf<String, String>()
                 currentCategories.forEach { category ->
                     val key = category.name.lowercase()
                     val content = runCatching { fetchText(category.channelsUrl) }.getOrNull()
                         ?: return@forEach
                     val hash = sha256(content)
-                    val previous = channelSnapshots[key]
+                    val previous = preferences.getString("channel_$key", null)
                     if (previous != null && previous != hash) changed.add(category.name)
-                    // Update the snapshot only after this category was fetched successfully.
-                    channelSnapshots[key] = hash
+                    successfulChannelHashes[key] = hash
                 }
 
-                val currentKeys = currentCategories.map { it.name.lowercase() }.toSet()
-                channelSnapshots.keys.retainAll(currentKeys)
-                categoriesSnapshot = currentCatalogHash
+                val editor = preferences.edit()
+                    .putString("categories_sha256", currentCatalogHash)
+                successfulChannelHashes.forEach { (key, hash) ->
+                    editor.putString("channel_$key", hash)
+                }
+                val currentKeys = currentCategories.map { "channel_${it.name.lowercase()}" }.toSet()
+                preferences.all.keys
+                    .filter { it.startsWith("channel_") && it !in currentKeys }
+                    .forEach(editor::remove)
+                editor.apply()
+
                 CatalogUpdate(currentCategories, categoriesChanged, changed)
             }.getOrNull()
 
