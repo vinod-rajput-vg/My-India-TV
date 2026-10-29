@@ -343,7 +343,7 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
         val rowGap = dp(50f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
         c.save()
-        c.clipRect(0f, top, width.toFloat(), height.toFloat())
+        c.clipRect(0f, 0f, width.toFloat(), height.toFloat())
         c.translate(0f, -scrollOffset)
         repeat(names.size) { i ->
             val row = i / columns
@@ -639,28 +639,32 @@ private class ChannelView(
     }
 
     private fun ensureSelectedVisible() {
+        if (channels.isEmpty() || width <= 0 || height <= 0) {
+            scrollOffset = 0f
+            return
+        }
+
         val side = dp(38f)
         val gap = dp(16f)
-        val top = dp(70f)
+        val contentTop = dp(70f)
         val rowGap = dp(50f)
-        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-        val cardHeight = cw * 288f / 376f
+        val cellWidth = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val cardHeight = cellWidth * 288f / 376f
         val rowHeight = cardHeight + rowGap
         val row = selected / columns
-        val itemTop = top + row * rowHeight
-        val itemBottom = itemTop + cardHeight + dp(26f)
-        val visibleTop = scrollOffset
-        val visibleBottom = scrollOffset + height
+        val selectedTop = contentTop + row * rowHeight
+        // Include the focus outline and channel label in the visible item bounds.
+        val selectedBottom = selectedTop + cardHeight + dp(29f)
 
-        if (itemTop < visibleTop) {
-            scrollOffset = itemTop
-        } else if (itemBottom > visibleBottom) {
-            scrollOffset += itemBottom - visibleBottom
+        if (selectedTop - scrollOffset < contentTop) {
+            scrollOffset = selectedTop - contentTop
+        } else if (selectedBottom - scrollOffset > height.toFloat()) {
+            scrollOffset = selectedBottom - height.toFloat()
         }
 
         val rowCount = (channels.size + columns - 1) / columns
-        val contentBottom = top + rowCount * rowHeight - rowGap + dp(26f)
-        val maxScroll = maxOf(0f, contentBottom - height + dp(12f))
+        val contentBottom = contentTop + (rowCount - 1) * rowHeight + cardHeight + dp(29f)
+        val maxScroll = maxOf(0f, contentBottom - height.toFloat())
         scrollOffset = scrollOffset.coerceIn(0f, maxScroll)
     }
 
