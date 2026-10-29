@@ -301,6 +301,14 @@ class MainActivity : Activity() {
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN &&
+            (event.keyCode == KeyEvent.KEYCODE_BACK || event.keyCode == KeyEvent.KEYCODE_ESCAPE)
+        ) {
+            // Remove this app's task instead of leaving its Activity in the background.
+            finishAndRemoveTask()
+            return true
+        }
+
         if (event.action == KeyEvent.ACTION_DOWN) {
             if (channelView?.handleDpadKey(event.keyCode) == true) return true
             if (::homeView.isInitialized && channelView == null && homeView.handleDpadKey(event.keyCode)) return true
@@ -474,8 +482,7 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
-                val now = System.currentTimeMillis()
-                if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else { lastBackPressTime = now; Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show() }
+                (context as? Activity)?.finishAndRemoveTask()
                 return true
             }
         }
@@ -739,7 +746,7 @@ private class ChannelView(
                 return true
             }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
-                (context as? MainActivity)?.showHome()
+                (context as? Activity)?.finishAndRemoveTask()
                 return true
             }
         }
