@@ -1,22 +1,50 @@
 Star Gold HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/db73db401054f2d63b642af12169d31a.png
-http://103.185.24.134:3001/Star-Gold/index.m3u8
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3172&token=rkdyiptv&key=rkdy5a8cba
 
 Star Gold 2 HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png
-http://103.151.60.162:2122/play/a01v/index.m3u8?hls
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3174&token=rkdyiptv&key=rkdy5a8cba
+
+Star Gold Thrills
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=481591&token=rkdyiptv&key=rkdy5a8cba
+
+Star Gold Romance
+https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-romance.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=481590&token=rkdyiptv&key=rkdy5a8cba
+
+Star Gold Select HD
+https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-select-hd.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3176&token=rkdyiptv&key=rkdy5a8cba
 
 Sony MAX HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png
-http://103.151.60.162:2122/play/a014/index.m3u8?hls
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3180&token=rkdyiptv&key=rkdy5a8cba
 
 Sony MAX 2
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png
-http://107.167.16.138/sonymax2/index.m3u8?token=test
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3182&token=rkdyiptv&key=rkdy5a8cba
 
-ZEE Cinema HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/zee-cinema-hd-in.png
-http://103.151.60.162:2122/play/a012/index.m3u8?hls
+Zee Cinema
+https://raw.githubusercontent.com/tv-logo/tv-logos/refs/heads/main/countries/india/zee-cinema-in.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3186&token=rkdyiptv&key=rkdy5a8cba
+
+Zee Action
+https://www.lyngsat.com/logo/tv/zz/zee-action-in.svg
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3188&token=rkdyiptv&key=rkdy5a8cba
+
+Zee Anmol Cinema
+https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol_Cinema.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=474203&token=rkdyiptv&key=rkdy5a8cba
+
+Star Utsav Movies
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/a2407a251df5edb83da3dceb823317d2.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3208&token=rkdyiptv&key=rkdy5a8cba
+
+Sony Wah
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/10_258.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3108&token=rkdyiptv&key=rkdy5a8cba
 
 Colors Cineplex
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa1e0b003da3eaef8602cbfb2833231f.png
