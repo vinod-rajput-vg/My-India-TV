@@ -6,6 +6,14 @@ Sony BBC Earth HD
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
 https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3153&token=rkdyiptv&key=rkdy5a8cbb
 
+Animal Planet HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3160&token=rkdyiptv&key=rkdy5a8cbb
+
+Nat Geo Wild HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3156&token=rkdyiptv&key=rkdy5a8cbb
+
 National Geographic HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png
 https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3155&token=rkdyiptv&key=rkdy5a8cbb
