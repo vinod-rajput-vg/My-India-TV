@@ -27,9 +27,12 @@ https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Ic
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/rambo.txt
 
 Jurassic Park
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jurassic_park.txt
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jurassic_park.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jurassic_park.txt
 
+King Kong
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/king_kong.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/king_kong.png
 Jaws
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jaws.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jaws.txt
