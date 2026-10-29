@@ -379,27 +379,34 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
     }
 
     private fun ensureSelectedVisible() {
+        if (names.isEmpty() || width <= 0 || height <= 0) {
+            scrollOffset = 0f
+            return
+        }
+
         val side = dp(38f)
         val gap = dp(16f)
-        val top = dp(95f)
+        val contentTop = dp(95f)
         val rowGap = dp(50f)
-        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
-        val rowHeight = cw + rowGap
+        val cellWidth = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val rowHeight = cellWidth + rowGap
         val row = selected / columns
-        val itemTop = top + row * rowHeight
-        val itemBottom = itemTop + cw + dp(30f)
-        val visibleTop = scrollOffset + top
-        val visibleBottom = scrollOffset + height
 
-        if (itemTop < visibleTop) {
-            scrollOffset = itemTop - top
-        } else if (itemBottom > visibleBottom) {
-            scrollOffset += itemBottom - visibleBottom
+        // Item bounds are in content coordinates. The viewport runs from contentTop
+        // to the actual bottom of the view; compare the translated bounds against it.
+        val selectedTop = contentTop + row * rowHeight
+        val selectedBottom = selectedTop + cellWidth + dp(30f)
+        val viewportBottom = height.toFloat()
+
+        if (selectedTop - scrollOffset < contentTop) {
+            scrollOffset = selectedTop - contentTop
+        } else if (selectedBottom - scrollOffset > viewportBottom) {
+            scrollOffset = selectedBottom - viewportBottom
         }
 
         val rowCount = (names.size + columns - 1) / columns
-        val contentBottom = top + rowCount * rowHeight - rowGap + dp(30f)
-        val maxScroll = maxOf(0f, contentBottom - height + dp(12f))
+        val contentBottom = contentTop + (rowCount - 1) * rowHeight + cellWidth + dp(30f)
+        val maxScroll = maxOf(0f, contentBottom - viewportBottom)
         scrollOffset = scrollOffset.coerceIn(0f, maxScroll)
     }
 
