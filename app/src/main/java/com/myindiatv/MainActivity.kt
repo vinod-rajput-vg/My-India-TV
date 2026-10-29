@@ -13,7 +13,6 @@ import android.os.Looper
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
-import com.google.firebase.messaging.FirebaseMessaging
 import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
@@ -230,50 +229,11 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
-        runCatching { FirebaseMessaging.getInstance().subscribeToTopic(CatalogMessagingService.CATALOG_TOPIC) }
         RemoteChannelRepository.loadCategories(this) { loaded ->
             // Keep the exact order from Categories/categories.txt; do not alphabetize.
             categories = loaded.toList()
             homeView.setCategories(categories)
             if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        CatalogRefreshCoordinator.setListener { runOnUiThread { refreshCatalogIfPending() } }
-    }
-
-    override fun onStop() {
-        CatalogRefreshCoordinator.clearListener()
-        super.onStop()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        refreshCatalogIfPending()
-    }
-
-    private fun refreshCatalogIfPending() {
-        if (!CatalogRefreshCoordinator.consumePending(this)) return
-        refreshCatalog()
-    }
-
-    private fun refreshCatalog() {
-        RemoteChannelRepository.loadCategories(this) { loaded ->
-            val refreshed = loaded.toList()
-            if (refreshed != categories) {
-                categories = refreshed
-                homeView.setCategories(categories)
-            }
-
-            val current = activeCategory
-            val view = channelView
-            if (current != null && view != null) {
-                val replacement = categories.firstOrNull { it.name == current.name } ?: current
-                activeCategory = replacement
-                refreshCategory(replacement, view)
-            }
         }
     }
 
