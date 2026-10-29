@@ -227,22 +227,14 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
-        RemoteChannelRepository.loadCategories(this) { loaded ->
+        LocalChannelRepository.loadCategories(this) { loaded ->
             categories = loaded
             homeView.setCategories(loaded)
-            if (loaded.isEmpty()) {
-                Toast.makeText(this, "No categories configured yet. Waiting for catalog updates.", Toast.LENGTH_LONG).show()
-            }
-            // Keep GitHub polling to detect catalog changes.
-            RemoteChannelRepository.startWatchingChanges(this) { fullRefresh, changedPaths ->
-                handleCatalogChanges(fullRefresh, changedPaths)
-            }
+            if (loaded.isEmpty()) Toast.makeText(this, "No local categories are available.", Toast.LENGTH_LONG).show()
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
+    override fun onPause() { super.onPause() }
 
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
@@ -251,94 +243,13 @@ class MainActivity : Activity() {
         activeCategory = category
         setContentView(view)
         view.requestFocus()
-
         refreshCategory(category, view)
     }
 
-    private fun refreshCategory(category: Category, view: ChannelView, forceRefresh: Boolean = false) {
-        // Fetch this category's configured remote TXT; use last successful cached data offline.
-        RemoteChannelRepository.loadChannels(this, category, forceRefresh) { channels ->
+    private fun refreshCategory(category: Category, view: ChannelView) {
+        LocalChannelRepository.loadChannels(this, category) { channels ->
             if (channelView !== view || activeCategory != category) return@loadChannels
-            if (channels == null) {
-                Toast.makeText(this, "Unable to load channels. Check your internet connection.", Toast.LENGTH_LONG).show()
-                return@loadChannels
-            }
             view.replaceChannels(channels)
-        }
-    }
-
-    private fun handleCatalogChanges(fullRefresh: Boolean, changedPaths: Set<String>) {
-        val categoryIconsChanged = changedPaths.any { it.startsWith("Category Icons/") }
-        val channelIconsChanged = changedPaths.any { it.startsWith("Channel Icons/") }
-        if (categoryIconsChanged || channelIconsChanged) {
-            val knownIconUrls = buildList {
-                if (categoryIconsChanged) addAll(categories.map { it.iconUrl })
-                if (channelIconsChanged) addAll(channelView?.currentIconUrls().orEmpty())
-            }
-            ChannelIconLoader.invalidateChanged(this, changedPaths, knownIconUrls)
-            if (categoryIconsChanged) homeView.reloadCategoryIcons()
-            if (channelIconsChanged) channelView?.reloadChannelIcons()
-        }
-        val categoriesChanged = fullRefresh || changedPaths.contains("Categories/categories.txt")
-
-        fun refreshAffectedChannels(targetCategories: List<Category>, paths: Set<String>, refreshAll: Boolean) {
-            val onRefreshed: (Map<String, List<Channel>>) -> Unit = { refreshedChannels ->
-                val current = activeCategory
-                val visibleView = channelView
-                if (current != null && visibleView != null) {
-                    val updatedCategory = targetCategories.firstOrNull { it.channelsUrl == current.channelsUrl }
-                        ?: targetCategories.firstOrNull { it.name.equals(current.name, ignoreCase = true) }
-                    if (updatedCategory != null && refreshedChannels.containsKey(updatedCategory.channelsUrl)) {
-                        // Apply the complete freshly fetched category list directly to the open
-                        // screen. Do not issue a second network request after receiving the event.
-                        activeCategory = updatedCategory
-                        visibleView.replaceChannels(refreshedChannels[updatedCategory.channelsUrl].orEmpty())
-                    }
-                }
-            }
-            if (refreshAll) {
-                RemoteChannelRepository.refreshAllChannels(this, targetCategories, onRefreshed)
-            } else {
-                RemoteChannelRepository.refreshChangedChannels(this, targetCategories, paths, onRefreshed)
-            }
-        }
-
-        if (categoriesChanged) {
-            val previousCategories = categories
-            RemoteChannelRepository.loadCategories(this, forceRefresh = true) { updated ->
-                categories = updated
-                homeView.setCategories(updated)
-
-                val pathsToRefresh = changedPaths.toMutableSet()
-                if (fullRefresh) {
-                    refreshAffectedChannels(updated, pathsToRefresh, refreshAll = true)
-                } else {
-                    // If the category configuration points to a new channel file, refresh
-                    // that file only; unchanged category channel files remain cached.
-                    updated.forEach { category ->
-                        val previous = previousCategories.firstOrNull {
-                            it.name.equals(category.name, ignoreCase = true)
-                        } ?: previousCategories.firstOrNull { it.channelsUrl == category.channelsUrl }
-                        if (previous == null || previous.channelsUrl != category.channelsUrl) {
-                            pathsToRefresh.add("Category Channels/" + category.channelsUrl.substringAfterLast('/').substringBefore('?'))
-                        }
-                    }
-                    refreshAffectedChannels(updated, pathsToRefresh, refreshAll = false)
-                }
-
-                val current = activeCategory
-                if (current != null) {
-                    val replacement = updated.firstOrNull { it.channelsUrl == current.channelsUrl }
-                        ?: updated.firstOrNull { it.name.equals(current.name, ignoreCase = true) }
-                    if (replacement == null) {
-                        showHome()
-                    } else {
-                        activeCategory = replacement
-                    }
-                }
-            }
-        } else {
-            refreshAffectedChannels(categories, changedPaths, refreshAll = false)
         }
     }
 
@@ -352,18 +263,11 @@ class MainActivity : Activity() {
 
     fun openStream(url: String) {
         val streamUrl = url.trim()
-        if (streamUrl.isEmpty()) {
-            Toast.makeText(this, "Stream unavailable", Toast.LENGTH_SHORT).show()
-            return
-        }
-
+        if (streamUrl.isEmpty()) { Toast.makeText(this, "Stream unavailable", Toast.LENGTH_SHORT).show(); return }
         val uri = Uri.parse(streamUrl)
-        if (uri.scheme?.lowercase() !in setOf("https", "http") || uri.host.isNullOrBlank() ||
-            uri.userInfo != null) {
-            Toast.makeText(this, "Invalid stream URL", Toast.LENGTH_SHORT).show()
-            return
+        if (uri.scheme?.lowercase() !in setOf("https", "http") || uri.host.isNullOrBlank() || uri.userInfo != null) {
+            Toast.makeText(this, "Invalid stream URL", Toast.LENGTH_SHORT).show(); return
         }
-
         try {
             startActivity(Intent(Intent.ACTION_VIEW, uri))
         } catch (_: ActivityNotFoundException) {
@@ -371,11 +275,6 @@ class MainActivity : Activity() {
         } catch (_: SecurityException) {
             Toast.makeText(this, "Unable to open stream", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    override fun onDestroy() {
-        RemoteChannelRepository.stopWatchingChanges()
-        super.onDestroy()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
