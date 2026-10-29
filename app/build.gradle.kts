@@ -2,11 +2,6 @@ plugins {
     id("com.android.application")
 }
 
-// The Firebase config is supplied per Firebase project. Keep local builds working until it is added.
-if (file("google-services.json").exists()) {
-    apply(plugin = "com.google.gms.google-services")
-}
-
 android {
     namespace = "com.myindiatv"
     compileSdk = 36
