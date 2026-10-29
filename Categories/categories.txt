@@ -26,6 +26,10 @@ Rambo
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/rambo.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/rambo.txt
 
+King Kong
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/king_kong.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/king_kong.txt
+
 Jaws
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Category%20Icons/jaws.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/jaws.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jaws.txt
