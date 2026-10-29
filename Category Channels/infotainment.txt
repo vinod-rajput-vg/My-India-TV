@@ -1,6 +1,6 @@
 Sony BBC Earth HD
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
-https://sliv.tgaadi.workers.dev/sonybbcearthhd.m3u8
+http://livebox.pro/live/Lohit/Lohit/98871.ts
 
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
