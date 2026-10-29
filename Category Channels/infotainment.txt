@@ -4,7 +4,7 @@ http://216.227.149.26/CF5A68754DSTZZZ148d393895a3d4ce696238f6aa0f6592547c3efc78e
 
 Sony BBC Earth HD
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
-http://216.227.149.26/CF5A68754DSTZZZ148d393895a3d4ce681259270ade25f325fd9f2c1/index.m3u8?token=2d680f751c0eb84402f106827e42b90f
+http://216.227.149.26/CF5A68754DSTZZZ148d393895a3d4ce681259270ade25f325fd9f2c1/index.m3u8?token=db68f5a42f91ccf9ea0d9e4ca2d70aa8
 
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
