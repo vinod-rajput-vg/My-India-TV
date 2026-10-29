@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "838052035937",
+    "project_id": "my-india-tv-admin",
+    "storage_bucket": "my-india-tv-admin.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:838052035937:android:77ed831a43280f90791920",
+        "android_client_info": {
+          "package_name": "com.myindiatv"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkZsBJpdmQEFWU8JDYJ4P6KJMn98T6x8M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
