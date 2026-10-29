@@ -227,10 +227,10 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
-        LocalChannelRepository.loadCategories(this) { loaded ->
+        RemoteChannelRepository.loadCategories(this) { loaded ->
             categories = loaded
             homeView.setCategories(loaded)
-            if (loaded.isEmpty()) Toast.makeText(this, "No local categories are available.", Toast.LENGTH_LONG).show()
+            if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -247,7 +247,7 @@ class MainActivity : Activity() {
     }
 
     private fun refreshCategory(category: Category, view: ChannelView) {
-        LocalChannelRepository.loadChannels(this, category) { channels ->
+        RemoteChannelRepository.loadChannels(this, category) { channels ->
             if (channelView !== view || activeCategory != category) return@loadChannels
             view.replaceChannels(channels)
         }
