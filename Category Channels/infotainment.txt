@@ -1,7 +1,3 @@
-Discovery HD
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
-https://drk6xq0vhn.gpcdn.net/live/discovery_hd_abr/live/discovery_hd/chunks.m3u8
-
 Animal Planet HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png
 https:\\drk6xq0vhn.gpcdn.net\live\animal_planet_hd_abr\index.m3u8
