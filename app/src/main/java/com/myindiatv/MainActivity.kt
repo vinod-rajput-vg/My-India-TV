@@ -297,6 +297,9 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
     private var bitmaps = arrayOfNulls<Bitmap>(categories.size)
     private val columns = 5
     private var selected = 0
+    private var scrollOffset = 0f
+    private var lastTouchY = 0f
+    private var touchDragging = false
     private var lastBackPressTime = 0L
 
     init {
@@ -339,6 +342,9 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
         val top = dp(95f)
         val rowGap = dp(50f)
         val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        c.save()
+        c.clipRect(0f, top, width.toFloat(), height.toFloat())
+        c.translate(0f, -scrollOffset)
         repeat(names.size) { i ->
             val row = i / columns
             val column = i % columns
@@ -369,6 +375,55 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             title.textSize = dp(17f)
             c.drawText(names[i], r.centerX(), r.bottom + dp(30f), title)
         }
+        c.restore()
+    }
+
+    private fun ensureSelectedVisible() {
+        val side = dp(38f)
+        val gap = dp(16f)
+        val top = dp(95f)
+        val rowGap = dp(50f)
+        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val rowHeight = cw + rowGap
+        val row = selected / columns
+        val itemTop = top + row * rowHeight
+        val itemBottom = itemTop + cw + dp(30f)
+        val visibleTop = scrollOffset + top
+        val visibleBottom = scrollOffset + height
+
+        if (itemTop < visibleTop) {
+            scrollOffset = itemTop - top
+        } else if (itemBottom > visibleBottom) {
+            scrollOffset += itemBottom - visibleBottom
+        }
+
+        val rowCount = (names.size + columns - 1) / columns
+        val contentBottom = top + rowCount * rowHeight - rowGap + dp(30f)
+        val maxScroll = maxOf(0f, contentBottom - height + dp(12f))
+        scrollOffset = scrollOffset.coerceIn(0f, maxScroll)
+    }
+
+    private fun scrollByPixels(delta: Float) {
+        if (delta == 0f) return
+        val side = dp(38f)
+        val gap = dp(16f)
+        val top = dp(95f)
+        val rowGap = dp(50f)
+        val cw = (width - side * 2 - gap * (columns - 1)) / columns.toFloat()
+        val rowHeight = cw + rowGap
+        val rowCount = (names.size + columns - 1) / columns
+        val contentBottom = top + rowCount * rowHeight - rowGap + dp(30f)
+        val maxScroll = maxOf(0f, contentBottom - height + dp(12f))
+        scrollOffset = (scrollOffset + delta).coerceIn(0f, maxScroll)
+        postInvalidateOnAnimation()
+    }
+
+    private fun moveSelection(newIndex: Int) {
+        if (newIndex in names.indices) {
+            selected = newIndex
+            ensureSelectedVisible()
+            postInvalidateOnAnimation()
+        }
     }
 
     private fun adjacentRowTarget(index: Int, itemCount: Int, columns: Int, direction: Int): Int? {
@@ -385,10 +440,10 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
 
     fun handleDpadKey(k: Int): Boolean {
         when (k) {
-            KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) selected--; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < names.lastIndex) selected++; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, names.size, columns, -1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
-            KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { selected = it }; postInvalidateOnAnimation(); return true }
+            KeyEvent.KEYCODE_DPAD_LEFT -> { if (selected > 0) moveSelection(selected - 1); return true }
+            KeyEvent.KEYCODE_DPAD_RIGHT -> { if (selected < names.lastIndex) moveSelection(selected + 1); return true }
+            KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, names.size, columns, -1)?.let { moveSelection(it) }; return true }
+            KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
                 val now = System.currentTimeMillis()
@@ -397,6 +452,36 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             }
         }
         return false
+    }
+
+    override fun onTouchEvent(event: android.view.MotionEvent): Boolean {
+        when (event.actionMasked) {
+            android.view.MotionEvent.ACTION_DOWN -> {
+                lastTouchY = event.y
+                touchDragging = false
+                return true
+            }
+            android.view.MotionEvent.ACTION_MOVE -> {
+                val dy = lastTouchY - event.y
+                if (!touchDragging && kotlin.math.abs(dy) > dp(4f)) touchDragging = true
+                if (touchDragging) scrollByPixels(dy)
+                lastTouchY = event.y
+                return true
+            }
+            android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                touchDragging = false
+                return true
+            }
+        }
+        return true
+    }
+
+    override fun onGenericMotionEvent(event: android.view.MotionEvent): Boolean {
+        if (event.action == android.view.MotionEvent.ACTION_SCROLL) {
+            scrollByPixels(-event.getAxisValue(android.view.MotionEvent.AXIS_VSCROLL) * dp(40f))
+            return true
+        }
+        return super.onGenericMotionEvent(event)
     }
 
     override fun onKeyDown(k: Int, e: KeyEvent): Boolean = if (handleDpadKey(k)) true else super.onKeyDown(k, e)
