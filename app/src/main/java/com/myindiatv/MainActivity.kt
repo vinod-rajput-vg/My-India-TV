@@ -222,6 +222,43 @@ class MainActivity : Activity() {
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
+    private val catalogPollHandler = Handler(Looper.getMainLooper())
+    private val catalogPollIntervalMs = 3_000L
+    private var catalogPollingStarted = false
+
+    private val catalogPollRunnable = object : Runnable {
+        override fun run() {
+            if (isFinishing || isDestroyed) return
+            RemoteChannelRepository.scanForChanges { update ->
+                if (!isFinishing && !isDestroyed && update != null) {
+                    if (update.categoriesChanged) {
+                        categories = update.categories
+                        homeView.setCategories(categories)
+                    }
+
+                    // Apply the scan as a batch; refresh only the affected category.
+                    update.changedCategoryNames.forEach { changedName ->
+                        val active = activeCategory
+                        val view = channelView
+                        if (active != null && view != null &&
+                            active.name.equals(changedName, ignoreCase = true)
+                        ) {
+                            val refreshedCategory = categories.firstOrNull {
+                                it.name.equals(changedName, ignoreCase = true)
+                            }
+                            if (refreshedCategory != null) {
+                                activeCategory = refreshedCategory
+                                refreshCategory(refreshedCategory, view)
+                            }
+                        }
+                    }
+                }
+                if (!isFinishing && !isDestroyed) {
+                    catalogPollHandler.postDelayed(this, catalogPollIntervalMs)
+                }
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -234,7 +271,16 @@ class MainActivity : Activity() {
             categories = loaded.toList()
             homeView.setCategories(categories)
             if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
+            if (!catalogPollingStarted) {
+                catalogPollingStarted = true
+                catalogPollHandler.postDelayed(catalogPollRunnable, catalogPollIntervalMs)
+            }
         }
+    }
+
+    override fun onDestroy() {
+        catalogPollHandler.removeCallbacks(catalogPollRunnable)
+        super.onDestroy()
     }
 
     fun openCategory(index: Int) {
@@ -775,39 +821,27 @@ internal data class Category(
  * Loads Categories/categories.txt and each category's channel file URL.
  * Catalog text files stay in the repository instead of being bundled in the APK.
  */
+internal data class CatalogUpdate(
+    val categories: List<Category>,
+    val categoriesChanged: Boolean,
+    val changedCategoryNames: Set<String>
+)
+
 internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
 
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
+    private var categoriesSnapshot: String? = null
+    private val channelSnapshots = mutableMapOf<String, String>()
 
     fun loadCategories(context: Context, callback: (List<Category>) -> Unit) {
         executor.execute {
             val categories = runCatching {
-                val lines = fetchText(CATEGORIES_URL).lines()
-                val result = mutableListOf<Category>()
-                var index = 0
-
-                while (index < lines.size) {
-                    val name = lines[index].trim()
-                    if (name.isEmpty()) {
-                        index++
-                        continue
-                    }
-
-                    val iconUrl = lines.getOrNull(index + 1)?.trim().orEmpty()
-                    val channelsUrl = lines.getOrNull(index + 2)?.trim().orEmpty()
-                    if (iconUrl.startsWith("https://") &&
-                        (channelsUrl.startsWith("https://") || channelsUrl.startsWith("http://"))
-                    ) {
-                        result += Category(name, iconUrl, channelsUrl)
-                        index += 3
-                    } else {
-                        index++
-                    }
-                }
-                result
+                val catalogText = fetchText(CATEGORIES_URL)
+                categoriesSnapshot = sha256(catalogText)
+                parseCategories(catalogText)
             }.getOrDefault(emptyList())
 
             mainHandler.post { callback(categories) }
@@ -817,11 +851,76 @@ internal object RemoteChannelRepository {
     fun loadChannels(context: Context, category: Category, callback: (List<Channel>) -> Unit) {
         executor.execute {
             val channels = runCatching {
-                parseChannelText(fetchText(category.channelsUrl))
+                val content = fetchText(category.channelsUrl)
+                channelSnapshots[category.name.lowercase()] = sha256(content)
+                parseChannelText(content)
             }.getOrDefault(emptyList())
 
             mainHandler.post { callback(channels) }
         }
+    }
+
+    /**
+     * Poll the category index and all category catalogs in one scan. Changes are collected
+     * and delivered as a batch, so each changed category is refreshed only once per scan.
+     */
+    fun scanForChanges(callback: (CatalogUpdate?) -> Unit) {
+        executor.execute {
+            val result = runCatching {
+                val catalogText = fetchText(CATEGORIES_URL)
+                val currentCategories = parseCategories(catalogText)
+                val currentCatalogHash = sha256(catalogText)
+                val categoriesChanged = categoriesSnapshot != null &&
+                    categoriesSnapshot != currentCatalogHash
+                categoriesSnapshot = currentCatalogHash
+
+                val changed = linkedSetOf<String>()
+                currentCategories.forEach { category ->
+                    val content = fetchText(category.channelsUrl)
+                    val hash = sha256(content)
+                    val key = category.name.lowercase()
+                    val previous = channelSnapshots[key]
+                    if (previous != null && previous != hash) changed.add(category.name)
+                    channelSnapshots[key] = hash
+                }
+
+                val currentKeys = currentCategories.map { it.name.lowercase() }.toSet()
+                channelSnapshots.keys.retainAll(currentKeys)
+                CatalogUpdate(currentCategories, categoriesChanged, changed)
+            }.getOrNull()
+
+            mainHandler.post { callback(result) }
+        }
+    }
+
+    private fun parseCategories(text: String): List<Category> {
+        val lines = text.lines()
+        val result = mutableListOf<Category>()
+        var index = 0
+        while (index < lines.size) {
+            val name = lines[index].trim()
+            if (name.isEmpty()) {
+                index++
+                continue
+            }
+            val iconUrl = lines.getOrNull(index + 1)?.trim().orEmpty()
+            val channelsUrl = lines.getOrNull(index + 2)?.trim().orEmpty()
+            if (iconUrl.startsWith("https://") &&
+                (channelsUrl.startsWith("https://") || channelsUrl.startsWith("http://"))
+            ) {
+                result += Category(name, iconUrl, channelsUrl)
+                index += 3
+            } else {
+                index++
+            }
+        }
+        return result
+    }
+
+    private fun sha256(value: String): String {
+        val digest = java.security.MessageDigest.getInstance("SHA-256")
+        return digest.digest(value.toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
     }
 
     private fun fetchText(source: String): String {
