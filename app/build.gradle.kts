@@ -1,6 +1,5 @@
 plugins {
     id("com.android.application")
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -31,6 +30,3 @@ kotlin {
     jvmToolchain(17)
 }
 
-dependencies {
-    implementation("com.google.firebase:firebase-messaging:24.1.2")
-}
