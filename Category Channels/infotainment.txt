@@ -1,3 +1,11 @@
+Discovery HD
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3142&token=rkdyiptv&key=rkdy5a8cbb
+
+Sony BBC Earth HD
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
+https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3153&token=rkdyiptv&key=rkdy5a8cbb
+
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
 http://103.185.24.134:3001/NATGEO-WILD-HD/index.m3u8
