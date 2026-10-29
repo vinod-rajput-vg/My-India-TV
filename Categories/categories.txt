@@ -33,3 +33,7 @@ https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Ch
 Jaws
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/jaws.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jaws.txt
+
+Deep Blue Sea
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/deep_blue_sea.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/deep_blue_sea.txt
