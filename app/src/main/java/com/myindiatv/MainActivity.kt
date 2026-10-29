@@ -669,10 +669,6 @@ data class Channel(
 )
 
 // ---- Inlined from RemoteChannelRepository.kt ----
-import android.content.Context
-import java.net.HttpURLConnection
-import java.net.URL
-import java.util.concurrent.Executors
 
 internal data class Category(
     val name: String,
