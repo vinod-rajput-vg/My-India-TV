@@ -223,7 +223,7 @@ class MainActivity : Activity() {
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
     private val catalogPollHandler = Handler(Looper.getMainLooper())
-    private val catalogPollIntervalMs = 3_000L
+    private val catalogPollIntervalMs = 30_000L
     private var catalogPollingStarted = false
 
     private val catalogPollRunnable = object : Runnable {
@@ -296,6 +296,8 @@ class MainActivity : Activity() {
     private fun refreshCategory(category: Category, view: ChannelView) {
         RemoteChannelRepository.loadChannels(this, category) { channels ->
             if (channelView !== view || activeCategory != category) return@loadChannels
+            // Remove only stale icon cache entries belonging to changed/removed channels.
+            ChannelIconLoader.reconcileChannels(this, view.currentChannels(), channels)
             // Keep the exact order from this category's Category Channels/*.txt file.
             view.replaceChannels(channels.toList())
         }
@@ -581,6 +583,8 @@ private class ChannelView(
         postInvalidateOnAnimation()
     }
 
+    fun currentChannels(): List<Channel> = channels
+
     fun currentIconUrls(): List<String> = channels.map { it.iconUrl }
 
     fun reloadChannelIcons() {
@@ -861,8 +865,9 @@ internal object RemoteChannelRepository {
     }
 
     /**
-     * Poll the category index and all category catalogs in one scan. Changes are collected
-     * and delivered as a batch, so each changed category is refreshed only once per scan.
+     * Poll the category index and channel catalogs. A failed category fetch is isolated:
+     * its last successful snapshot is preserved so the next poll can retry it.
+     * Changes are delivered as a batch, and only changed categories are refreshed.
      */
     fun scanForChanges(callback: (CatalogUpdate?) -> Unit) {
         executor.execute {
@@ -872,20 +877,22 @@ internal object RemoteChannelRepository {
                 val currentCatalogHash = sha256(catalogText)
                 val categoriesChanged = categoriesSnapshot != null &&
                     categoriesSnapshot != currentCatalogHash
-                categoriesSnapshot = currentCatalogHash
 
                 val changed = linkedSetOf<String>()
                 currentCategories.forEach { category ->
-                    val content = fetchText(category.channelsUrl)
-                    val hash = sha256(content)
                     val key = category.name.lowercase()
+                    val content = runCatching { fetchText(category.channelsUrl) }.getOrNull()
+                        ?: return@forEach
+                    val hash = sha256(content)
                     val previous = channelSnapshots[key]
                     if (previous != null && previous != hash) changed.add(category.name)
+                    // Update the snapshot only after this category was fetched successfully.
                     channelSnapshots[key] = hash
                 }
 
                 val currentKeys = currentCategories.map { it.name.lowercase() }.toSet()
                 channelSnapshots.keys.retainAll(currentKeys)
+                categoriesSnapshot = currentCatalogHash
                 CatalogUpdate(currentCategories, categoriesChanged, changed)
             }.getOrNull()
 
