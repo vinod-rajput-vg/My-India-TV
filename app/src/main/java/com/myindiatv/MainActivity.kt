@@ -222,40 +222,17 @@ class MainActivity : Activity() {
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
-    private val catalogPollHandler = Handler(Looper.getMainLooper())
-    private val catalogPollIntervalMs = 30_000L
-    private var catalogPollingStarted = false
+    /**
+     * Check the remote catalog once on each app launch. There is no timed polling
+     * interval; the next check happens when the app is restarted.
+     */
+    private fun checkCatalogOnStartup() {
+        RemoteChannelRepository.scanForChanges { update ->
+            if (isFinishing || isDestroyed || update == null) return@scanForChanges
 
-    private val catalogPollRunnable = object : Runnable {
-        override fun run() {
-            if (isFinishing || isDestroyed) return
-            RemoteChannelRepository.scanForChanges { update ->
-                if (!isFinishing && !isDestroyed && update != null) {
-                    if (update.categoriesChanged) {
-                        categories = update.categories
-                        homeView.setCategories(categories)
-                    }
-
-                    // Apply the scan as a batch; refresh only the affected category.
-                    update.changedCategoryNames.forEach { changedName ->
-                        val active = activeCategory
-                        val view = channelView
-                        if (active != null && view != null &&
-                            active.name.equals(changedName, ignoreCase = true)
-                        ) {
-                            val refreshedCategory = categories.firstOrNull {
-                                it.name.equals(changedName, ignoreCase = true)
-                            }
-                            if (refreshedCategory != null) {
-                                activeCategory = refreshedCategory
-                                refreshCategory(refreshedCategory, view)
-                            }
-                        }
-                    }
-                }
-                if (!isFinishing && !isDestroyed) {
-                    catalogPollHandler.postDelayed(this, catalogPollIntervalMs)
-                }
+            if (update.categoriesChanged) {
+                categories = update.categories
+                homeView.setCategories(categories)
             }
         }
     }
@@ -271,15 +248,11 @@ class MainActivity : Activity() {
             categories = loaded.toList()
             homeView.setCategories(categories)
             if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
-            if (!catalogPollingStarted) {
-                catalogPollingStarted = true
-                catalogPollHandler.postDelayed(catalogPollRunnable, catalogPollIntervalMs)
-            }
+            checkCatalogOnStartup()
         }
     }
 
     override fun onDestroy() {
-        catalogPollHandler.removeCallbacks(catalogPollRunnable)
         super.onDestroy()
     }
 
