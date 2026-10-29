@@ -230,7 +230,7 @@ class MainActivity : Activity() {
         homeView = HomeView(this, emptyList())
         setContentView(homeView)
         homeView.requestFocus()
-        FirebaseMessaging.getInstance().subscribeToTopic(CatalogMessagingService.CATALOG_TOPIC)
+        runCatching { FirebaseMessaging.getInstance().subscribeToTopic(CatalogMessagingService.CATALOG_TOPIC) }
         RemoteChannelRepository.loadCategories(this) { loaded ->
             // Keep the exact order from Categories/categories.txt; do not alphabetize.
             categories = loaded.toList()
