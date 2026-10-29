@@ -826,9 +826,6 @@ internal object RemoteChannelRepository {
 
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
-    private var categoriesSnapshot: String? = null
-    private val channelSnapshots = mutableMapOf<String, String>()
-
     fun loadCategories(context: Context, callback: (List<Category>) -> Unit) {
         executor.execute {
             val categories = runCatching {
@@ -852,8 +849,8 @@ internal object RemoteChannelRepository {
     }
 
     /**
-     * Poll the category index and channel catalogs. A failed category fetch is isolated:
-     * its last successful snapshot is preserved so the next poll can retry it.
+     * Compare the remote catalog with the last successful scan persisted across app launches.
+     * Failed channel fetches keep their previous fingerprints so the next startup can retry.
      * Changes are delivered as a batch, and only changed categories are refreshed.
      */
     fun scanForChanges(context: Context, callback: (CatalogUpdate?) -> Unit) {
