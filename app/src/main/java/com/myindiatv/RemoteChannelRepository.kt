@@ -7,52 +7,62 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.Executors
 
-internal data class Category(val name: String, val iconUrl: String, val channelsUrl: String)
+internal data class Category(
+    val name: String,
+    val iconUrl: String,
+    val channelsUrl: String
+)
 
 /**
- * Loads category and channel lists from the repository's existing text files.
- * Channel records stay in the repository root rather than being bundled into the APK.
+ * Loads categories from Categories/categories.txt and each category's channels
+ * from the channel-file URL specified in that entry. Catalog data is not bundled
+ * inside the APK.
  */
 internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
+
     private val executor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
 
     fun loadCategories(context: Context, callback: (List<Category>) -> Unit) {
         executor.execute {
             val categories = runCatching {
-                val text = fetchText(CATEGORIES_URL)
-                val lines = text.lines()
+                val lines = fetchText(CATEGORIES_URL).lines()
                 val result = mutableListOf<Category>()
-                var i = 0
-                while (i < lines.size) {
-                    val name = lines[i].trim()
+                var index = 0
+
+                while (index < lines.size) {
+                    val name = lines[index].trim()
                     if (name.isEmpty()) {
-                        i++
+                        index++
                         continue
                     }
-                    val iconUrl = lines.getOrNull(i + 1)?.trim().orEmpty()
-                    val channelsUrl = lines.getOrNull(i + 2)?.trim().orEmpty()
+
+                    val iconUrl = lines.getOrNull(index + 1)?.trim().orEmpty()
+                    val channelsUrl = lines.getOrNull(index + 2)?.trim().orEmpty()
                     if (iconUrl.startsWith("https://") &&
                         (channelsUrl.startsWith("https://") || channelsUrl.startsWith("http://"))
                     ) {
                         result += Category(name, iconUrl, channelsUrl)
-                        i += 3
+                        index += 3
                     } else {
-                        i++
+                        index++
                     }
                 }
                 result
             }.getOrDefault(emptyList())
+
             mainHandler.post { callback(categories) }
         }
     }
 
     fun loadChannels(context: Context, category: Category, callback: (List<Channel>) -> Unit) {
         executor.execute {
-            val channels = runCatching { parseChannelText(fetchText(category.channelsUrl)) }
-                .getOrDefault(emptyList())
+            val channels = runCatching {
+                parseChannelText(fetchText(category.channelsUrl))
+            }.getOrDefault(emptyList())
+
             mainHandler.post { callback(channels) }
         }
     }
@@ -75,18 +85,26 @@ internal object RemoteChannelRepository {
         }
     }
 
+    /**
+     * Repository channel files use three lines per record:
+     * channel name, icon URL, and stream URL, separated by blank lines.
+     * Also supports M3U files if one is used as a category source later.
+     */
     private fun parseChannelText(text: String): List<Channel> {
         val lines = text.lines()
         if (lines.any { it.trim().startsWith("#EXTINF:", ignoreCase = true) }) {
             val result = mutableListOf<Channel>()
             var name: String? = null
             var iconUrl = ""
+
             for (rawLine in lines) {
                 val line = rawLine.trim()
                 if (line.isEmpty() || line.equals("#EXTM3U", ignoreCase = true)) continue
+
                 if (line.startsWith("#EXTINF:", ignoreCase = true)) {
                     val comma = line.indexOf(',')
                     if (comma < 0) continue
+
                     val attributes = line.substring(0, comma)
                     name = line.substring(comma + 1).trim()
                     iconUrl = Regex("""tvg-logo="([^"]*)"""", RegexOption.IGNORE_CASE)
@@ -100,8 +118,13 @@ internal object RemoteChannelRepository {
             return result
         }
 
-        return lines.map { it.trim() }
-            .filter { it.isNotEmpty() && !it.startsWith("#") }
+        val records = mutableListOf<String>()
+        for (rawLine in lines) {
+            val line = rawLine.trim()
+            if (line.isNotEmpty() && !line.startsWith("#")) records += line
+        }
+
+        return records
             .chunked(3)
             .filter { it.size == 3 && it[0].isNotBlank() && it[2].isNotBlank() }
             .map { Channel(name = it[0], iconUrl = it[1], streamUrl = it[2]) }
