@@ -1,19 +1,19 @@
-Rambo: 1
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Movie%20Posters/Rambo_1.png
+Rambo
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Movie%20Posters/Rambo/Rambo_1.png
 https://archive.org/download/rambo-i-first-blood-1982-hindi-dubbed-movie-480p/Rambo_I_First_Blood_%281982%29_Hindi_Dubbed_Movie_480p.mp4
 
 Rambo: 2
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Movie%20Posters/Rambo_2.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Movie%20Posters/Rambo/Rambo_2.png
 https://archive.org/download/rambo-ii-1985-hindi-dubbed-movie-480p/Rambo_II_%281985%29_Hindi_Dubbed_Movie_480p.mp4
 
 Rambo: 3
-https://images7.alphacoders.com/117/thumb-1920-1173804.jpg
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Movie%20Posters/Rambo/Rambo_3.png
 https://archive.org/download/rambo-iii-1988-hindi-dubbed-movie-480p/Rambo_III_%281988%29_Hindi_Dubbed_Movie_480p.mp4
 
 Rambo: 4
-https://m.media-amazon.com/images/M/MV5BMTI5Mjg1MzM4NF5BMl5BanBnXkFtZTcwNTAyNzUzMw@@._V1_FMjpg_UY2048_.jpg
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Movie%20Posters/Rambo/Rambo_4.png
 https://archive.org/download/rambo-iiii-2008-hindi-dubbed-720p/Rambo_IIII_%282008%29_Hindi_Dubbed_720p.mp4
 
 Rambo: 5
-https://upload.wikimedia.org/wikipedia/en/b/b1/Rambo_-_Last_Blood_official_theatrical_poster.jpg
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Movie%20Posters/Rambo/Rambo_5.png
 https://archive.org/download/rambo-iiiii-last-blood-2019-org-hindi-dubbed-720p/Rambo_IIIII_Last_Blood_%282019%29_ORG_Hindi_Dubbed_720p.mp4
