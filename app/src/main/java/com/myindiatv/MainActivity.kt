@@ -482,7 +482,13 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
-                (context as? Activity)?.finishAndRemoveTask()
+                val now = System.currentTimeMillis()
+                if (now - lastBackPressTime <= 2000L) {
+                    (context as? Activity)?.finishAndRemoveTask()
+                } else {
+                    lastBackPressTime = now
+                    Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show()
+                }
                 return true
             }
         }
@@ -746,7 +752,7 @@ private class ChannelView(
                 return true
             }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
-                (context as? Activity)?.finishAndRemoveTask()
+                (context as? MainActivity)?.showHome()
                 return true
             }
         }
