@@ -228,8 +228,9 @@ class MainActivity : Activity() {
         setContentView(homeView)
         homeView.requestFocus()
         RemoteChannelRepository.loadCategories(this) { loaded ->
-            categories = loaded
-            homeView.setCategories(loaded)
+            // Keep the exact order from Categories/categories.txt; do not alphabetize.
+            categories = loaded.toList()
+            homeView.setCategories(categories)
             if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
         }
     }
@@ -249,7 +250,8 @@ class MainActivity : Activity() {
     private fun refreshCategory(category: Category, view: ChannelView) {
         RemoteChannelRepository.loadChannels(this, category) { channels ->
             if (channelView !== view || activeCategory != category) return@loadChannels
-            view.replaceChannels(channels)
+            // Keep the exact order from this category's Category Channels/*.txt file.
+            view.replaceChannels(channels.toList())
         }
     }
 
