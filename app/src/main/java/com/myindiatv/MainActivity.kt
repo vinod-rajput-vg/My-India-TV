@@ -8,6 +8,8 @@ import android.graphics.*
 import android.util.LruCache
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
@@ -668,8 +670,6 @@ data class Channel(
 
 // ---- Inlined from RemoteChannelRepository.kt ----
 import android.content.Context
-import android.os.Handler
-import android.os.Looper
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.concurrent.Executors
