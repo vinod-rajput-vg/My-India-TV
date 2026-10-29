@@ -538,451 +538,451 @@ Zee News
 https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_News.png
 https://dknttpxmr0dwf.cloudfront.net/index_2.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938348/list/1920x1080listfcb8614f3e134a70a68c4a7f91fa7869.png" group-title="ZEE5 Worldwide",Somnath Temple
+Somnath Temple
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938348/list/1920x1080listfcb8614f3e134a70a68c4a7f91fa7869.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938348.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5946519/list/1920x1080list8859cf73709c45b0a1c505fbd63c7eb9.png" group-title="ZEE5 Worldwide",Shree Naga Sai  Temple - Coimbatore
+Shree Naga Sai  Temple - Coimbatore
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5946519/list/1920x1080list8859cf73709c45b0a1c505fbd63c7eb9.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5946519.m3u8
 
-Shirdi" tvg-category="Devotional" group-logo="https://yt3.googleusercontent.com/lyA_tGOMIiCHSVvdjC8ExJE3BsXMjyjipa1vL5g736p7Gu1mAkTDqLbMttOYMVdgvEs0NYEtZw=s900-c-k-c0x00ffffff-no-rj" tvg-logo="https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938343/list/1920x1080list23240713a29a4abda387ad336c66b9fd.png" group-title="ZEE5 Worldwide",Sai Baba, Shirdi
+Shirdi
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938343/list/1920x1080list23240713a29a4abda387ad336c66b9fd.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938343.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5946518/list/1920x1080list164900487c7a428795c4786ef8318830.png" group-title="ZEE5 Worldwide",Patna Sahib
+Patna Sahib
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5946518/list/1920x1080list164900487c7a428795c4786ef8318830.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5946518.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938351/list/1920x1080list6e05767874a241f49b24a29a035b2292.png" group-title="ZEE5 Worldwide",Mahavir Mandir Patna
+Mahavir Mandir Patna
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938351/list/1920x1080list6e05767874a241f49b24a29a035b2292.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938351.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938347/list/1920x1080b54008b0d7be4deda1236b32f675ffd8.png" group-title="ZEE5 Worldwide",Ma Naina Devi
+Ma Naina Devi
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938347/list/1920x1080b54008b0d7be4deda1236b32f675ffd8.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938347.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938349/list/1920x1080list68d3487d41a94c5485d8624564d623da.png" group-title="ZEE5 Worldwide",Kashi Vishwanath
+Kashi Vishwanath
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938349/list/1920x1080list68d3487d41a94c5485d8624564d623da.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938349.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938346/list/1920x1080lista1ad77e99fdb4182b024a321b04bf510.png" group-title="ZEE5 Worldwide",Iskcon Vrindavan
+Iskcon Vrindavan
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938346/list/1920x1080lista1ad77e99fdb4182b024a321b04bf510.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938346.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938345/list/1920x1080list01e244654b18462fb0dbe2bdd96e18e3.png" group-title="ZEE5 Worldwide",Dagdusheth Halwai Ganpati Mandir
+Dagdusheth Halwai Ganpati Mandir
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5938345/list/1920x1080list01e244654b18462fb0dbe2bdd96e18e3.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5938345.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeyuva/list/1920x1080list5dd504da63d94665be555d032df9000c.png" group-title="ZEE5 Worldwide",Zee Yuva
+Zee Yuva
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeyuva/list/1920x1080list5dd504da63d94665be555d032df9000c.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeeyuva.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1586895760/list/1920x1080listf53510abab6741be9e466c02f6897a6f.png" group-title="ZEE5 Worldwide",Zee TV USA
+Zee TV USA
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1586895760/list/1920x1080listf53510abab6741be9e466c02f6897a6f.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_1586895760.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-tvme/list/1920x1080listbae3c1818b08472fa49e231c7a98cc78.png" group-title="ZEE5 Worldwide",Zee TV ME
+Zee TV ME
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-tvme/list/1920x1080listbae3c1818b08472fa49e231c7a98cc78.png
 https://premiumplug.fun/tee/zee5.php/0-9-tvme.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_341994370/list/1920x1080listbecc8245db8f419bbf2a71c51fcabe2c.png" group-title="ZEE5 Worldwide",Zee TV HD USA
+Zee TV HD USA
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_341994370/list/1920x1080listbecc8245db8f419bbf2a71c51fcabe2c.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_341994370.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetvuk/list/1920x1080list404f827960494873a0f99692d1e8f54f.png" group-title="ZEE5 Worldwide",Zee TV HD UK
+Zee TV HD UK
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetvuk/list/1920x1080list404f827960494873a0f99692d1e8f54f.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetvuk.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1017420475/list/1920x1080list2c847277b04f4f8f8f52f2edfba55c36.png" group-title="ZEE5 Worldwide",Zee TV HD Canada
+Zee TV HD Canada
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1017420475/list/1920x1080list2c847277b04f4f8f8f52f2edfba55c36.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_1017420475.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetvhd/list/1920x1080list3424a135de534b88a95bfd69d193ae1c.png" group-title="ZEE5 Worldwide",Zee TV HD
+Zee TV HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetvhd/list/1920x1080list3424a135de534b88a95bfd69d193ae1c.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetvhd.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5898964/list/zeetvhdpfthumbnail1920x1080013ba10b9bcc4d20b0df9cb57e917c49.png" group-title="ZEE5 Worldwide",Zee TV DE
+Zee TV DE
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5898964/list/zeetvhdpfthumbnail1920x1080013ba10b9bcc4d20b0df9cb57e917c49.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5898964.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetvapac/list/1920x1080list9d19430d882842cdb42aef55e83e2010.png" group-title="ZEE5 Worldwide",Zee TV APAC HD
+Zee TV APAC HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetvapac/list/1920x1080list9d19430d882842cdb42aef55e83e2010.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetvapac.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetv/list/1920x1080lista5ee31338b52425094454cd07e6981b1.png" group-title="ZEE5 Worldwide",Zee TV
+Zee TV
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetv/list/1920x1080lista5ee31338b52425094454cd07e6981b1.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetv.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetelugu/list/1920x1080list7d962673d8684a68b275025f4af506aa.png" group-title="ZEE5 Worldwide",Zee Telugu HD
+Zee Telugu HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetelugu/list/1920x1080list7d962673d8684a68b275025f4af506aa.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetelugu.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383485/list/1920x1080list2bed10081fb542f3b3353b1922d2504e.png" group-title="ZEE5 Worldwide",Zee Telugu
+Zee Telugu
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383485/list/1920x1080list2bed10081fb542f3b3353b1922d2504e.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383485.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-360/list/1920x1080listef67d9a80c9345bdb8254aa042944e0b7ad5084c9f924e2f8b42e4bd7b673fde.png" group-title="ZEE5 Worldwide",Zee Tamil HD APAC
+Zee Tamil HD APAC
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-360/list/1920x1080listef67d9a80c9345bdb8254aa042944e0b7ad5084c9f924e2f8b42e4bd7b673fde.png
 https://premiumplug.fun/tee/zee5.php/0-9-360.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetamil/list/1920x1080listef67d9a80c9345bdb8254aa042944e0b.png" group-title="ZEE5 Worldwide",Zee Tamil HD
+Zee Tamil HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetamil/list/1920x1080listef67d9a80c9345bdb8254aa042944e0b.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetamil.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383487/list/1920x1080listf00742d846d24c75ae2016840ffc0c40.png" group-title="ZEE5 Worldwide",Zee Tamil
+Zee Tamil
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383487/list/1920x1080listf00742d846d24c75ae2016840ffc0c40.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383487.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-sarthaktv/list/1920x1080listaba3fb2c9c384395b15c9fb3b7936586.png" group-title="ZEE5 Worldwide",Zee Sarthak
+Zee Sarthak
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-sarthaktv/list/1920x1080listaba3fb2c9c384395b15c9fb3b7936586.png
 https://premiumplug.fun/tee/zee5.php/0-9-sarthaktv.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5950417/list/1920x1080listafcc61b571eb4b23b55110e56c45b755.png" group-title="ZEE5 Worldwide",Zee Punjabi HD UK
+Zee Punjabi HD UK
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5950417/list/1920x1080listafcc61b571eb4b23b55110e56c45b755.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5950417.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-215/list/1920x1080list480fac72c9754914bae975f1553ad4cb.png" group-title="ZEE5 Worldwide",Zee Punjabi
+Zee Punjabi
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-215/list/1920x1080list480fac72c9754914bae975f1553ad4cb.png
 https://premiumplug.fun/tee/zee5.php/0-9-215.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-241/list/1920x1080listd5138bd1283846adbe7cdaa408265ce1.png" group-title="ZEE5 Worldwide",Zee Power HD
+Zee Power HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-241/list/1920x1080listd5138bd1283846adbe7cdaa408265ce1.png
 https://premiumplug.fun/tee/zee5.php/0-9-241.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-161/list/1920x1080list7cf53e98073d411e94a239e84d866ecf.png" group-title="ZEE5 Worldwide",Zee One German
+Zee One German
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-161/list/1920x1080list7cf53e98073d411e94a239e84d866ecf.png
 https://premiumplug.fun/tee/zee5.php/0-9-161.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5829362/list/1920x1080listf34b0c1bacb3417faf7985f38e8d235b.png" group-title="ZEE5 Worldwide",Zee One French
+Zee One French
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5829362/list/1920x1080listf34b0c1bacb3417faf7985f38e8d235b.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5829362.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5825786/list/1920x1080list3968dbaad0b24538986f7b4a558fbbb0.png" group-title="ZEE5 Worldwide",Zee One
+Zee One
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5825786/list/1920x1080list3968dbaad0b24538986f7b4a558fbbb0.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5825786.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_926372368/list/1920x1080list77f6a2a9e7dc4fb7bc152faad4e16f34.png" group-title="ZEE5 Worldwide",Zee Marathi USA
+Zee Marathi USA
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_926372368/list/1920x1080list77f6a2a9e7dc4fb7bc152faad4e16f34.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_926372368.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeemarathi/list/1920x1080lista6bc790589c84a0b83e6060c225fcb0d.png" group-title="ZEE5 Worldwide",Zee Marathi HD
+Zee Marathi HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeemarathi/list/1920x1080lista6bc790589c84a0b83e6060c225fcb0d.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeemarathi.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383486/list/1920x1080list316302a18c3a496bac142aa413fb9cad8987627b0d824a2bb1ba9bd5ecbf73d8.png" group-title="ZEE5 Worldwide",Zee Marathi
+Zee Marathi
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383486/list/1920x1080list316302a18c3a496bac142aa413fb9cad8987627b0d824a2bb1ba9bd5ecbf73d8.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383486.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-129/list/1920x1080list28fd564242df4f358b7b3671b8bdf99a.png" group-title="ZEE5 Worldwide",Zee Keralam HD
+Zee Keralam HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-129/list/1920x1080list28fd564242df4f358b7b3671b8bdf99a.png
 https://premiumplug.fun/tee/zee5.php/0-9-129.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeekannada/list/1920x1080list6d595ac187f94ee8a066a848374117fe.png" group-title="ZEE5 Worldwide",Zee Kannada HD
+Zee Kannada HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeekannada/list/1920x1080list6d595ac187f94ee8a066a848374117fe.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeekannada.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383466/list/1920x1080listfd49e00fc50544278290170f04bc63c0.png" group-title="ZEE5 Worldwide",Zee Kannada
+Zee Kannada
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383466/list/1920x1080listfd49e00fc50544278290170f04bc63c0.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383466.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-366/list/1920x1080lista0006de49f9b4d14b3e63b76723b7e8d.png" group-title="ZEE5 Worldwide",Zee Bangla International
+Zee Bangla International
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-366/list/1920x1080lista0006de49f9b4d14b3e63b76723b7e8d.png
 https://premiumplug.fun/tee/zee5.php/0-9-366.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebangla/list/1920x1080listdf1822e039924461b4723428ec83c127.png" group-title="ZEE5 Worldwide",Zee Bangla HD
+Zee Bangla HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebangla/list/1920x1080listdf1822e039924461b4723428ec83c127.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeebangla.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383484/list/1920x1080list907975089cce4bdf92d0d72c193d3fc5.png" group-title="ZEE5 Worldwide",Zee Bangla
+Zee Bangla
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383484/list/1920x1080list907975089cce4bdf92d0d72c193d3fc5.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383484.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5817234/list/zeealwanhdpfthumbnail1920x1080f213bc5fb3ce4e28a1469737915b40e5.png" group-title="ZEE5 Worldwide",Zee Alwan HD
+Zee Alwan HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5817234/list/zeealwanhdpfthumbnail1920x1080f213bc5fb3ce4e28a1469737915b40e5.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5817234.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeealwan/list/zeealwanpfthumbnail1920x1080d29cc3acf6a5414893eeceb9009aa030.png" group-title="ZEE5 Worldwide",Zee Alwan
+Zee Alwan
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeealwan/list/zeealwanpfthumbnail1920x1080d29cc3acf6a5414893eeceb9009aa030.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeealwan.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910525/list/1920x1080list51ecd4e5ad064965a16e206953156849.png" group-title="ZEE5 Worldwide",POP
+POP
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910525/list/1920x1080list51ecd4e5ad064965a16e206953156849.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5910525.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-bigmagic_1786965389/list/1920x1080listde632d881f1f4a879a94669005bb7256.png" group-title="ZEE5 Worldwide",Big Magic
+Big Magic
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-bigmagic_1786965389/list/1920x1080listde632d881f1f4a879a94669005bb7256.png
 https://premiumplug.fun/tee/zee5.php/0-9-bigmagic_1786965389.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeanmol/list/1920x1080listef6865f9714b40139037d98300559cd7.png" group-title="ZEE5 Worldwide",Anmol TV
+Anmol TV
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeanmol/list/1920x1080listef6865f9714b40139037d98300559cd7.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeeanmol.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1510237423/list/1920x1080list26d04b21315949609f8b5a37a0b2d679.png" group-title="ZEE5 Worldwide",&TV HD USA
+&TV HD USA
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1510237423/list/1920x1080list26d04b21315949609f8b5a37a0b2d679.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_1510237423.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-tvhd_0/list/1920x1080list8cecf80ef6884ff09063a5abd21f81d6.png" group-title="ZEE5 Worldwide",&TV HD
+&TV HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-tvhd_0/list/1920x1080list8cecf80ef6884ff09063a5abd21f81d6.png
 https://premiumplug.fun/tee/zee5.php/0-9-tvhd_0.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_122044711/list/1920x1080list823b2c22c4344831a7e5f42e44410e50.png" group-title="ZEE5 Worldwide",&TV HD
+&TV HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_122044711/list/1920x1080list823b2c22c4344831a7e5f42e44410e50.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_122044711.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910526/list/1920x1080list167ee27b9ca34f9e9fedea9957e88b73.png" group-title="ZEE5 Worldwide",Tiny Pop
+Tiny Pop
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910526/list/1920x1080list167ee27b9ca34f9e9fedea9957e88b73.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5910526.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910527/list/1920x1080list8dc1ec2e49de47fd8100d7699181666c.png" group-title="ZEE5 Worldwide",POP UP
+POP UP
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910527/list/1920x1080list8dc1ec2e49de47fd8100d7699181666c.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5910527.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-348/list/1920x1080list7568db782c114329afd8bb7e030eca0d.png" group-title="ZEE5 Worldwide",Zee Zest HD
+Zee Zest HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-348/list/1920x1080list7568db782c114329afd8bb7e030eca0d.png
 https://premiumplug.fun/tee/zee5.php/0-9-348.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-224/list/1920x1080listb7f3310976d14ed59a22940af7587e9a.png" group-title="ZEE5 Worldwide",Zee Thirai HD
+Zee Thirai HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-224/list/1920x1080listb7f3310976d14ed59a22940af7587e9a.png
 https://premiumplug.fun/tee/zee5.php/0-9-224.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetalkies/list/1920x1080list8db83dea9fb7450aa0d1bf6a4e5f30f5.png" group-title="ZEE5 Worldwide",Zee Talkies HD
+Zee Talkies HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeetalkies/list/1920x1080list8db83dea9fb7450aa0d1bf6a4e5f30f5.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeetalkies.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383489/list/1920x1080list43aaeb0656a9484e855f731963eeeb20.png" group-title="ZEE5 Worldwide",Zee Talkies
+Zee Talkies
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383489/list/1920x1080list43aaeb0656a9484e855f731963eeeb20.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383489.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-176/list/1920x1080list18cba842de654a3cb92b33556dfa0bc2.png" group-title="ZEE5 Worldwide",Zee Classic
+Zee Classic
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-176/list/1920x1080list18cba842de654a3cb92b33556dfa0bc2.png
 https://premiumplug.fun/tee/zee5.php/0-9-176.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemalu/list/1920x1080list1c86aa59112c4737ba7db3b4d7d521b4.png" group-title="ZEE5 Worldwide",Zee Cinemalu HD
+Zee Cinemalu HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemalu/list/1920x1080list1c86aa59112c4737ba7db3b4d7d521b4.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeecinemalu.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383488/list/1920x1080list8147fef103204cf4a2bc7a8aef2b9221.png" group-title="ZEE5 Worldwide",Zee Cinemalu
+Zee Cinemalu
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5383488/list/1920x1080list8147fef103204cf4a2bc7a8aef2b9221.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5383488.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-179/list/1920x1080list7fae74f5533b4aaea330d6060f7f5f94.png" group-title="ZEE5 Worldwide",Zee Cinema USA
+Zee Cinema USA
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-179/list/1920x1080list7fae74f5533b4aaea330d6060f7f5f94.png
 https://premiumplug.fun/tee/zee5.php/0-9-179.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemauk/list/1920x1080listd6f35a1a8d4f4acbb39d29d200db8290.png" group-title="ZEE5 Worldwide",Zee Cinema UK
+Zee Cinema UK
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemauk/list/1920x1080listd6f35a1a8d4f4acbb39d29d200db8290.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeecinemauk.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemaintl/list/1920x1080listb14aad0d90b644e8ba27a9d15842fe9c.png" group-title="ZEE5 Worldwide",Zee Cinema ME
+Zee Cinema ME
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemaintl/list/1920x1080listb14aad0d90b644e8ba27a9d15842fe9c.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeecinemaintl.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemahd/list/1920x1080listb0707389e11d47edb651c329f76a0755.png" group-title="ZEE5 Worldwide",Zee Cinema HD
+Zee Cinema HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinemahd/list/1920x1080listb0707389e11d47edb651c329f76a0755.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeecinemahd.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinema/list/1920x1080list403630fe2cb2485db8bddad83245f88b.png" group-title="ZEE5 Worldwide",Zee Cinema
+Zee Cinema
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeecinema/list/1920x1080list403630fe2cb2485db8bddad83245f88b.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeecinema.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeclassic/list/1920x1080list993a532d3c6040d78b2e69a2862f4e28.png" group-title="ZEE5 Worldwide",Zee Bollywood
+Zee Bollywood
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeclassic/list/1920x1080list993a532d3c6040d78b2e69a2862f4e28.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeeclassic.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-216/list/1920x1080list277eec9ca86a41f2bdc68935794767e9.png" group-title="ZEE5 Worldwide",Zee Biskope
+Zee Biskope
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-216/list/1920x1080list277eec9ca86a41f2bdc68935794767e9.png
 https://premiumplug.fun/tee/zee5.php/0-9-216.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebioskop/list/1920x1080list5409a17e022443fbb70d5e3d0d4ec9f2.png" group-title="ZEE5 Worldwide",Zee Bioskop
+Zee Bioskop
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebioskop/list/1920x1080list5409a17e022443fbb70d5e3d0d4ec9f2.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeebioskop.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebanglacinema/list/1920x1080list63969e710a85462aacd4c38d07ce52af.png" group-title="ZEE5 Worldwide",Zee Bangla Sonar
+Zee Bangla Sonar
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebanglacinema/list/1920x1080list63969e710a85462aacd4c38d07ce52af.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeebanglacinema.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5817235/list/zeeaflamhdpfthumbnail1920x1080fb725a0b2d5f4a7c851c75880e8333e7.png" group-title="ZEE5 Worldwide",Zee Aflam HD
+Zee Aflam HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5817235/list/zeeaflamhdpfthumbnail1920x1080fb725a0b2d5f4a7c851c75880e8333e7.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5817235.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeaflam/list/zeeaflampfthumbnail1920x108094e49cea51934c7d9afe7bc68f9257e7.png" group-title="ZEE5 Worldwide",Zee Aflam
+Zee Aflam
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeaflam/list/zeeaflampfthumbnail1920x108094e49cea51934c7d9afe7bc68f9257e7.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeeaflam.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeaction/list/1920x1080list109ad06dd3c2485a97dbaddc85d22130.png" group-title="ZEE5 Worldwide",Zee Action
+Zee Action
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeaction/list/1920x1080list109ad06dd3c2485a97dbaddc85d22130.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeeaction.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910523/list/1920x1080list93b0575cd13e421b85644fbe96334c30.png" group-title="ZEE5 Worldwide",Great! Mystery
+Great! Mystery
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910523/list/1920x1080list93b0575cd13e421b85644fbe96334c30.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5910523.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910243/list/1920x1080list245d80214f924d4898bfb7d5d2b949e2.png" group-title="ZEE5 Worldwide",Great! Movies
+Great! Movies
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910243/list/1920x1080list245d80214f924d4898bfb7d5d2b949e2.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5910243.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910524/list/1920x1080list29ad1cd5c9c14a4488f0aec0a22f3d69.png" group-title="ZEE5 Worldwide",Great! Christmas
+Great! Christmas
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5910524/list/1920x1080list29ad1cd5c9c14a4488f0aec0a22f3d69.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5910524.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-bigganga/list/1920x1080list07c314433276453ca706229ab5e5c042.png" group-title="ZEE5 Worldwide",Anmol Cinema 2
+Anmol Cinema 2
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-bigganga/list/1920x1080list07c314433276453ca706229ab5e5c042.png
 https://premiumplug.fun/tee/zee5.php/0-9-bigganga.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeanmolcinema/list/1920x1080listfa46ad9c89684d268b5c141e7987de38.png" group-title="ZEE5 Worldwide",Anmol Cinema
+Anmol Cinema
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeeanmolcinema/list/1920x1080listfa46ad9c89684d268b5c141e7987de38.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeeanmolcinema.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-209/list/1920x1080list1fb75b73f2e441d49af9bc4a1ad782de.png" group-title="ZEE5 Worldwide",&xplorHD
+&xplorHD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-209/list/1920x1080list1fb75b73f2e441d49af9bc4a1ad782de.png
 https://premiumplug.fun/tee/zee5.php/0-9-209.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-tvpictureshd/list/1920x1080listead02d49416241ce89c60432d7b879a6.png" group-title="ZEE5 Worldwide",&Pictures HD
+&Pictures HD
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-tvpictureshd/list/1920x1080listead02d49416241ce89c60432d7b879a6.png
 https://premiumplug.fun/tee/zee5.php/0-9-tvpictureshd.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-pictures/list/1920x1080liste1864f84ee8f422e9a726e5fe401050c.png" group-title="ZEE5 Worldwide",&Pictures
+&Pictures
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-pictures/list/1920x1080liste1864f84ee8f422e9a726e5fe401050c.png
 https://premiumplug.fun/tee/zee5.php/0-9-pictures.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1643519345/list/1920x1080listclean721faf534a79451fa714b25d2102de48.png" group-title="ZEE5 Worldwide",Zing USA
+Zing USA
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_1643519345/list/1920x1080listclean721faf534a79451fa714b25d2102de48.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_1643519345.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zing/list/1920x1080list47035ca213b8483fb3985b221724ae7b.png" group-title="ZEE5 Worldwide",Zing
+Zing
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zing/list/1920x1080list47035ca213b8483fb3985b221724ae7b.png
 https://premiumplug.fun/tee/zee5.php/0-9-zing.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeerajasthannews/list/1920x1080list3a5b6daaa25e4cd4b35a9c252bbf0b19.png" group-title="ZEE5 Worldwide",Zee Rajasthan News
+Zee Rajasthan News
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeerajasthannews/list/1920x1080list3a5b6daaa25e4cd4b35a9c252bbf0b19.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeerajasthannews.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeepunjabharyanahima/list/1920x1080listc512a6acc3bd401f8a245c6b3d98ed18.png" group-title="ZEE5 Worldwide",Zee Punjab Haryana Himachal Pradesh
+Zee Punjab Haryana Himachal Pradesh
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeepunjabharyanahima/list/1920x1080listc512a6acc3bd401f8a245c6b3d98ed18.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeepunjabharyanahima.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_265145625/list/1920x1080listbf42a88acc514eb8b563d9e55e219e39.png" group-title="ZEE5 Worldwide",Zee News Uttar Pradesh Uttrakhand
+Zee News Uttar Pradesh Uttrakhand
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-channel_265145625/list/1920x1080listbf42a88acc514eb8b563d9e55e219e39.png
 https://premiumplug.fun/tee/zee5.php/0-9-channel_265145625.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z583538/list/1920x1080listbb95a40331fb43089c0d84cfbfc15452.png" group-title="ZEE5 Worldwide",Zee News Telugu
+Zee News Telugu
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z583538/list/1920x1080listbb95a40331fb43089c0d84cfbfc15452.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z583538.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z583537/list/1920x1080list358dd49ed7aa4d228a21ddec9e1a562f.png" group-title="ZEE5 Worldwide",Zee News Kannada
+Zee News Kannada
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z583537/list/1920x1080list358dd49ed7aa4d228a21ddec9e1a562f.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z583537.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeenews/list/1920x1080list6f46ce2b3345452aaf6486f1138faf55.png" group-title="ZEE5 Worldwide",Zee News
+Zee News
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeenews/list/1920x1080list6f46ce2b3345452aaf6486f1138faf55.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeenews.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeemadhyapradeshchat/list/1920x1080list81c20075a9f74485aa1dacda518011f9.png" group-title="ZEE5 Worldwide",Zee Madhya Pradesh Chhattisgarh
+Zee Madhya Pradesh Chhattisgarh
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeemadhyapradeshchat/list/1920x1080list81c20075a9f74485aa1dacda518011f9.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeemadhyapradeshchat.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeekalinganews/list/1920x1080list83f2035960de4ef4abac7cf5f9b05b3d.png" group-title="ZEE5 Worldwide",Zee Delhi NCR Haryana
+Zee Delhi NCR Haryana
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeekalinganews/list/1920x1080list83f2035960de4ef4abac7cf5f9b05b3d.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeekalinganews.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebusiness/list/1920x1080list3eaf400b00cb4c83bf320df01fda3fbe.png" group-title="ZEE5 Worldwide",Zee Business
+Zee Business
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebusiness/list/1920x1080list3eaf400b00cb4c83bf320df01fda3fbe.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeebusiness.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebiharjharkhand/list/1920x1080lista938bfd0da624b799fde2c305bdf832f.png" group-title="ZEE5 Worldwide",Zee Bihar Jharkhand
+Zee Bihar Jharkhand
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeebiharjharkhand/list/1920x1080lista938bfd0da624b799fde2c305bdf832f.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeebiharjharkhand.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeehindustan/list/1920x1080listdff5782e739a44828d0b3066f740fb9e.png" group-title="ZEE5 Worldwide",Zee Bharat
+Zee Bharat
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeehindustan/list/1920x1080listdff5782e739a44828d0b3066f740fb9e.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeehindustan.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zee24taas/list/1920x1080list802d44dac3654efaa0e854eebada19f2.png" group-title="ZEE5 Worldwide",Zee 24 Taas
+Zee 24 Taas
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zee24taas/list/1920x1080list802d44dac3654efaa0e854eebada19f2.png
 https://premiumplug.fun/tee/zee5.php/0-9-zee24taas.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zee24kalak/list/1920x1080listc5fe23e8d53b47ff8972e1923d74a629.png" group-title="ZEE5 Worldwide",Zee 24 Kalak
+Zee 24 Kalak
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zee24kalak/list/1920x1080listc5fe23e8d53b47ff8972e1923d74a629.png
 https://premiumplug.fun/tee/zee5.php/0-9-zee24kalak.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-24ghantatv/list/1920x1080listc476445912954ccc93b909f11a387547.png" group-title="ZEE5 Worldwide",Zee 24 Ghanta
+Zee 24 Ghanta
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-24ghantatv/list/1920x1080listc476445912954ccc93b909f11a387547.png
 https://premiumplug.fun/tee/zee5.php/0-9-24ghantatv.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-wion/list/1920x1080listc74581d3907f4df09b0d23cede8ee172.png" group-title="ZEE5 Worldwide",WION
+WION
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-wion/list/1920x1080listc74581d3907f4df09b0d23cede8ee172.png
 https://premiumplug.fun/tee/zee5.php/0-9-wion.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-258/list/1920x1080listf159579f9b3641f9967581c6fe07d2f7.png" group-title="ZEE5 Worldwide",TV9 Telugu
+TV9 Telugu
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-258/list/1920x1080listf159579f9b3641f9967581c6fe07d2f7.png
 https://premiumplug.fun/tee/zee5.php/0-9-258.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-257/list/1920x1080list5117a7ffa60f4fbb89e4a983d9ff1fd3.png" group-title="ZEE5 Worldwide",TV9 Marathi
+TV9 Marathi
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-257/list/1920x1080list5117a7ffa60f4fbb89e4a983d9ff1fd3.png
 https://premiumplug.fun/tee/zee5.php/0-9-257.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-259/list/1920x1080lista505db213ec44e79a15958594030aee3.png" group-title="ZEE5 Worldwide",TV9 Kannada
+TV9 Kannada
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-259/list/1920x1080lista505db213ec44e79a15958594030aee3.png
 https://premiumplug.fun/tee/zee5.php/0-9-259.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-260/list/1920x1080listb129c32bd0c14c1d82d8cfc4d070f385.png" group-title="ZEE5 Worldwide",TV9 Gujarati
+TV9 Gujarati
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-260/list/1920x1080listb129c32bd0c14c1d82d8cfc4d070f385.png
 https://premiumplug.fun/tee/zee5.php/0-9-260.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-251/list/1920x1080list29d512d8cda14edd8bedf44c9ae60dfe.png" group-title="ZEE5 Worldwide",TV9 Bharatvarsh
+TV9 Bharatvarsh
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-251/list/1920x1080list29d512d8cda14edd8bedf44c9ae60dfe.png
 https://premiumplug.fun/tee/zee5.php/0-9-251.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-378/list/1920x1080list5a92a5aca71743c0881070b78d3305b0.png" group-title="ZEE5 Worldwide",TV9 Bangla
+TV9 Bangla
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-378/list/1920x1080list5a92a5aca71743c0881070b78d3305b0.png
 https://premiumplug.fun/tee/zee5.php/0-9-378.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-201/list/1920x1080list18e77b64b1e443a893092a15e6abf46b.png" group-title="ZEE5 Worldwide",Suvarna News
+Suvarna News
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-201/list/1920x1080list18e77b64b1e443a893092a15e6abf46b.png
 https://premiumplug.fun/tee/zee5.php/0-9-201.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeesalaam/list/1920x1080listea24467092ca488db9a3bacc63eb6d9f.png" group-title="ZEE5 Worldwide",Salaam TV
+Salaam TV
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-zeesalaam/list/1920x1080listea24467092ca488db9a3bacc63eb6d9f.png
 https://premiumplug.fun/tee/zee5.php/0-9-zeesalaam.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-203/list/1920x1080list40293db0c0da4a28b3f10e2134f13bc8.png" group-title="ZEE5 Worldwide",Polimer News
+Polimer News
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-203/list/1920x1080list40293db0c0da4a28b3f10e2134f13bc8.png
 https://premiumplug.fun/tee/zee5.php/0-9-203.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-261/list/1920x1080list13d09c26c3784c1ab25e55d0950f2ca7.png" group-title="ZEE5 Worldwide",News 9
+News 9
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-261/list/1920x1080list13d09c26c3784c1ab25e55d0950f2ca7.png
 https://premiumplug.fun/tee/zee5.php/0-9-261.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942784/list/1920x1080list458ac1c9d3ce45f0a665658188b40ef0.png" group-title="ZEE5 Worldwide",NDTV Profit
+NDTV Profit
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942784/list/1920x1080list458ac1c9d3ce45f0a665658188b40ef0.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5942784.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942785/list/1920x1080listf3c00f12d45f4ef99cb6c05dd34b9bbd.png" group-title="ZEE5 Worldwide",NDTV Marathi
+NDTV Marathi
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942785/list/1920x1080listf3c00f12d45f4ef99cb6c05dd34b9bbd.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5942785.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942783/list/1920x1080listb9b2d987b12f4b9ba5927030844cc937.png" group-title="ZEE5 Worldwide",NDTV India
+NDTV India
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942783/list/1920x1080listb9b2d987b12f4b9ba5927030844cc937.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5942783.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942782/list/1920x1080list037398cd6ada454db42a52ddd1b8db8d.png" group-title="ZEE5 Worldwide",NDTV
+NDTV
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-9z5942782/list/1920x1080list037398cd6ada454db42a52ddd1b8db8d.png
 https://premiumplug.fun/tee/zee5.php/0-9-9z5942782.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-indiatoday/list/rszindiatoday1170x658withlogo410d6610b5e84f34beb1298b4e227b12.png" group-title="ZEE5 Worldwide",India Today
+India Today
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-indiatoday/list/rszindiatoday1170x658withlogo410d6610b5e84f34beb1298b4e227b12.png
 https://premiumplug.fun/tee/zee5.php/0-9-indiatoday.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-255/list/rszgoodnews1170x658withlogof6c4a3ed182348079c1710c2311eccf1.png" group-title="ZEE5 Worldwide",Good News Today
+Good News Today
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-255/list/rszgoodnews1170x658withlogof6c4a3ed182348079c1710c2311eccf1.png
 https://premiumplug.fun/tee/zee5.php/0-9-255.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-200/list/1920x1080list20a59c86a81f4ff2b755a7389ffc30b0.png" group-title="ZEE5 Worldwide",Asianet News
+Asianet News
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-200/list/1920x1080list20a59c86a81f4ff2b755a7389ffc30b0.png
 https://premiumplug.fun/tee/zee5.php/0-9-200.m3u8
 
-h_396,c_scale,f_webp,q_auto:eco/resources/0-9-aajtak/list/1920x1080list935cdb804dd94a7ea7cc62f203b5c3dd.png" group-title="ZEE5 Worldwide",Aaj Tak
+Aaj Tak
 https://akamaividz2.zee5.com/image/upload/w_auto,h_396,c_scale,f_webp,q_auto:eco/resources/0-9-aajtak/list/1920x1080list935cdb804dd94a7ea7cc62f203b5c3dd.png
 https://premiumplug.fun/tee/zee5.php/0-9-aajtak.m3u8
 
@@ -1166,7 +1166,7 @@ TATA IPL LIVE TV
 https://img10.hotstar.com/image/upload/sources/r1/cms/prod/5897/1782285865897-h.jpg
 https://livetv.hotstar.com/out/v1/llg-tv-mum/1540072843_hindi_5e0a66fc/gec-india_hls_unencrypted/master-ap-1080-4.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/ct-1644165913136.jpg" group-title="JioHotstar",Colors Tamil HD
+Colors Tamil HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/ct-1644165913136.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsTamilHD/JioHotstar/JS_ColorsTamilHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
@@ -1174,35 +1174,35 @@ Savdhaan India: Crime 24/7
 https://img1.hotstarext.com/image/upload/f_auto/sources/r1/cms/prod/3562/1788267743562-h.jpg
 https://livetv.hotstar.com/out/v1/llg-tv-mum/1540077800_hindi_7537fdaa/gec-india_hls_unencrypted/master-ap-1080-4.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_1090,h_613/v3Storage/assets/colors-hindi--16x9-1714557869344.jpg" group-title="JioHotstar",Colors HD
+Colors HD
 https://v3img.voot.com/resizeMedium,w_1090,h_613/v3Storage/assets/colors-hindi--16x9-1714557869344.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsHD/JioHotstar/JS_ColorsHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-super-live-channels-16x9-4-1642744939924.jpg" group-title="JioHotstar",Colors Super
+Colors Super
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-super-live-channels-16x9-4-1642744939924.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsSuperKannada/JioHotstar/JS_ColorsSuperKannada.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/collors-rishtey-live-channels-16x9-3-1642676080416-1674198105431-1697532377978.jpg" group-title="JioHotstar",Colors Rishtey
+Colors Rishtey
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/collors-rishtey-live-channels-16x9-3-1642676080416-1674198105431-1697532377978.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsRishtey/JioHotstar/JS_ColorsRishtey.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-gujarati-16x9-1713269620328.jpg" group-title="JioHotstar",Colors Gujarati
+Colors Gujarati
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-gujarati-16x9-1713269620328.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsGujarati/JioHotstar/JS_ColorsGujarati.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-kannada-16x9-1677754085834.jpg" group-title="JioHotstar",Colors Kannada HD
+Colors Kannada HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-kannada-16x9-1677754085834.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsKannadaHD/JioHotstar/JS_ColorsKannadaHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-infinity-live-channels-16x9-1642496946057.jpg" group-title="JioHotstar",Colors Infinity HD
+Colors Infinity HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-infinity-live-channels-16x9-1642496946057.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsInfinityHD/JioHotstar/JS_ColorsInfinityHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-bangla-new-16x9-4-1649659533344.jpg" group-title="JioHotstar",Colors Bangla HD
+Colors Bangla HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-bangla-new-16x9-4-1649659533344.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsBanglaHD/JioHotstar/JS_ColorsBanglaHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-marathi-live-channels-16x9-4-6-apr-1649257093359.jpg" group-title="JioHotstar",Colors Marathi HD
+Colors Marathi HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-marathi-live-channels-16x9-4-6-apr-1649257093359.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsMarathiHD/JioHotstar/JS_ColorsMarathiHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
@@ -1230,43 +1230,43 @@ Bigboss 24/7 live-TAMIL
 https://img10.hotstar.com/image/upload/sources/r1/cms/prod/2305/1788708712305-h.jpg
 https://live09p.hotstar.com/mp2/incagbsgallow-biggboss-tam-2026/0e8f0050df134b708ab297477fbf0e86/index_6.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_960,h_540/v3Storage/assets/colors-cineplex-superhit%2016x9-1648793655358.jpg" group-title="JioHotstar",Colors Cineplex Superhits
+Colors Cineplex Superhits
 https://v3img.voot.com/resizeMedium,w_960,h_540/v3Storage/assets/colors-cineplex-superhit%2016x9-1648793655358.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsCineplexSuperhit/JioHotstar/JS_ColorsCineplexSuperhit.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/cineplex-1713963820848.jpeg" group-title="JioHotstar",Colors Cineplex Bollywood
+Colors Cineplex Bollywood
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/cineplex-1713963820848.jpeg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsCineplexBollywood/JioHotstar/JS_ColorsCineplexBollywood.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/Live-Tv-Channels-colors-cineplex-1607514413063.jpg" group-title="JioHotstar",Colors Cineplex HD
+Colors Cineplex HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/Live-Tv-Channels-colors-cineplex-1607514413063.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsCineplexHD/JioHotstar/JS_ColorsCineplexHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/colors-kannada-cinema-16x9-1713963481807.jpg" group-title="JioHotstar",Colors Kannada Cinema
+Colors Kannada Cinema
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/colors-kannada-cinema-16x9-1713963481807.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_ColorsKannadaCinema/JioHotstar/JS_ColorsKannadaCinema.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets//16x9-1719554242246.jpg" group-title="JioHotstar",Nick
+Nick
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets//16x9-1719554242246.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_NickSD/JioHotstar/JS_NickSD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/nick-jr-16x9-2-1626708077243.jpg" group-title="JioHotstar",Nick Jr
+Nick Jr
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/nick-jr-16x9-2-1626708077243.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_NickJr/JioHotstar/JS_NickJr.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/sonic-16x9-2-1626707025539.jpg" group-title="JioHotstar",Sonic
+Sonic
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/sonic-16x9-2-1626707025539.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_SonicNick/JioHotstar/JS_SonicNick.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_1090,h_613/v3Storage/assets/nick-hd-plus-live-channels-16x9-4-1642585145139.jpg" group-title="JioHotstar",Nick HD+
+Nick HD+
 https://v3img.voot.com/resizeMedium,w_1090,h_613/v3Storage/assets/nick-hd-plus-live-channels-16x9-4-1642585145139.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_NickHD/JioHotstar/JS_NickHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_450,h_253/v3Storage/assets/mtv-16x9-1714316345624.jpg" group-title="JioHotstar",MTV HD
+MTV HD
 https://v3img.voot.com/resizeMedium,w_450,h_253/v3Storage/assets/mtv-16x9-1714316345624.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_MTVHD/JioHotstar/JS_MTVHD.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_1090,h_613/v3Storage/assets/cnbc-awaaz-16x9-1702387934761.jpg" group-title="JioHotstar",CNBC Awaaz
+CNBC Awaaz
 https://v3img.voot.com/resizeMedium,w_1090,h_613/v3Storage/assets/cnbc-awaaz-16x9-1702387934761.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_CNBCAwaaz/JioHotstar/JS_CNBCAwaaz.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
@@ -1278,7 +1278,7 @@ CNN News18
 http://jiotv.catchup.cdn.jio.com/dare_images/images/CNN_NEWS_18.png
 https://jcevents.hotstar.com/bpk-tv/JS_CNNNews18/JioHotstar/JS_CNNNews18.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_1090,h_613/v3Storage/assets/cnbc18-shereen-bhan-16x9-2-1693479472079.jpg" group-title="JioHotstar",CNBC TV18
+CNBC TV18
 https://v3img.voot.com/resizeMedium,w_1090,h_613/v3Storage/assets/cnbc18-shereen-bhan-16x9-2-1693479472079.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_CNBCTV18/JioHotstar/JS_CNBCTV18.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
@@ -1298,7 +1298,7 @@ News18 Tamilnadu
 http://jiotv.catchup.cdn.jio.com/dare_images/images/News_18_Tamilnadu.png
 https://jcevents.hotstar.com/bpk-tv/JS_News18Tamilnadu/JioHotstar/JS_News18Tamilnadu.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
-w_1090,h_613/v3Storage/assets/whatsapp16x9-1693491956187.jpg" group-title="JioHotstar",CNBC Bazaar
+CNBC Bazaar
 https://v3img.voot.com/resizeMedium,w_1090,h_613/v3Storage/assets/whatsapp16x9-1693491956187.jpg
 https://jcevents.hotstar.com/bpk-tv/JS_CNBCBazaar/JioHotstar/JS_CNBCBazaar.m3u8?|cookie=hdntl=exp=1793325556~acl=%2f*~id=7593ea317885985675e846611d732270~data=hdntl~hmac=03679ae9019342be5281dc6047c6c08a7e998c6d586334811db5b2da76ca7850&referer=https://www.hotstar.com/&origin=https://www.hotstar.com&user-agent=Hotstar;in.startv.hotstar/25.02.24.8.11169@Premium Plugx(Android/15)
 
@@ -1418,23 +1418,23 @@ Zee News
 https://imagesv2.dsp1.ott.kaltura.com/Service.svc/GetImage/p/5093/entry_id/128fce7a4db546efa5ba4eae006e0816/version/0
 https://d2o8pibksxtln6.cloudfront.net/live/media/Zee_News/hls_fta/Zee_News.m3u8
 
-2026 [English]" tvg-category="Sports" group-logo="https://www.google.com/s2/favicons?domain=fancode.com&sz=128" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/West-Indies-tour-of-Bangladesh-web-.jpg" group-title="FanCode",West Indies tour of Bangladesh, 2026 [English]
+2026 [English]
 https://www.fancode.com/skillup-uploads/cms-media/West-Indies-tour-of-Bangladesh-web-.jpg
 https://in-mc-flive.fancode.com/mumbai/4250526_english_hls_d3c070eb3076082_1ta-di_h264/1080p.m3u8?hdntl=Expires=1793330253~_GO=Generated~acl=/mumbai/4250526_english_hls_d3c070eb3076082_1ta-di_h264/*~SessionID=fc-app_sportsguruand_620_watcho_2056b625-19e5-45~Signature=ATFKiJvxPd3vrFHhu8UaYmf8XOx6yhKSEKezji-PTp9b-LiO3dZUqcmpOMmwFFrXoGMDodvYOOpIrxegjhvvPk-BHaEH
 
-2026 [English]" tvg-category="Sports" group-logo="https://www.google.com/s2/favicons?domain=fancode.com&sz=128" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/ICC-CWC-League_Web-match-card.png" group-title="FanCode",ICC CWC League 2 UAE, 2026 [English]
+2026 [English]
 https://www.fancode.com/skillup-uploads/cms-media/ICC-CWC-League_Web-match-card.png
 https://in-mc-flive.fancode.com/mumbai/4250518_english_hls_923ba3241185095_1ta-di_h264/1080p.m3u8?hdntl=Expires=1793337594~_GO=Generated~acl=/mumbai/4250518_english_hls_923ba3241185095_1ta-di_h264/*~SessionID=fc-app_sportsguruand_0c7_watcho_a03b2693-2ec1-4c~Signature=ATFKiJs1-8tCSQXSHlC6YinSkItnxPapjvNxlVoUkSQ32aD3iMmE0KKO5uX_Y-iQyVdItl6KAIm4uphXmdeZht8MOnYM
 
-2026 [English]" tvg-category="Sports" group-logo="https://www.google.com/s2/favicons?domain=fancode.com&sz=128" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4250359_53124_JKB_KMG_fc-Web.jpg" group-title="FanCode",Nepal Premier League Season 3, 2026 [English]
+2026 [English]
 https://www.fancode.com/skillup-uploads/cms-media/4250359_53124_JKB_KMG_fc-Web.jpg
 https://in-mc-flive.fancode.com/mumbai/4250359_english_hls_11dff5b23576540_1ta-di_h264/1080p.m3u8?hdntl=Expires=1793341883~_GO=Generated~acl=/mumbai/4250359_english_hls_11dff5b23576540_1ta-di_h264/*~SessionID=fc-app_sportsguruand_f70_watcho_5bfcfd8c-ca97-4c~Signature=ATFKiJtZh8lFjTQ9XpZaqz98ftRuCI7CoaMSITBEM5kKOv0aHVnop6H4HE3NTkfcEIeA6TlMIG_ce7nxq6Wlul3t93EK
 
-2026 [English]" tvg-category="Sports" group-logo="https://www.google.com/s2/favicons?domain=fancode.com&sz=128" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/4250388_53125_MS-W_HB-W_fc-web_1793256237758.jpg" group-title="FanCode",Women's Big Bash League, 2026 [English]
+2026 [English]
 https://www.fancode.com/skillup-uploads/cms-media/4250388_53125_MS-W_HB-W_fc-web_1793256237758.jpg
 https://in-mc-flive.fancode.com/mumbai/4250388_english_hls_321fb9e3fd90092_1ta-di_h264/1080p.m3u8?hdntl=Expires=1793347352~_GO=Generated~acl=/mumbai/4250388_english_hls_321fb9e3fd90092_1ta-di_h264/*~SessionID=fc-app_sportsguruand_e43_watcho_79ac5ec9-360e-4f~Signature=ATFKiJsCM5YUhyTyoSI2iLmhLP__icE3JvouOn4nM1Av64mBIWxJqoRnWJsy_5fGAEAlveD1HszghYuP1s7Kp2qPp_YL
 
-2026 [English]" tvg-category="Sports" group-logo="https://www.google.com/s2/favicons?domain=fancode.com&sz=128" tvg-logo="https://www.fancode.com/skillup-uploads/cms-media/AUS-vs-SA-test_Web-match-card.png" group-title="FanCode",Australia tour of South Africa, 2026 [English]
+2026 [English]
 https://www.fancode.com/skillup-uploads/cms-media/AUS-vs-SA-test_Web-match-card.png
 https://in-mc-flive.fancode.com/mumbai/4249783_english_hls_97c5a4780098274_1ta-di_h264/1080p.m3u8?hdntl=Expires=1793347353~_GO=Generated~acl=/mumbai/4249783_english_hls_97c5a4780098274_1ta-di_h264/*~SessionID=fc-app_sportsguruand_9dc_watcho_451ef59e-7c99-4a~Signature=ATFKiJu8fmmi_uw3HRIpmryRB05f-MiQCtorybNbAZgW9zjJ0vP7019vYJ2ss2HdxEiH9eTP0DyCEasp-Jg065Tq-HYB
 
@@ -1461,3 +1461,4 @@ https://live-bangla.akamaized.net/liveabr/playlist.m3u8
 Bhojpuri
 https://dangaplay-json.s3.ap-south-1.amazonaws.com/BhojpuriCinema_16x9.jpg
 https://live-bhojpuri.akamaized.net/liveabr/playlist.m3u8
+
