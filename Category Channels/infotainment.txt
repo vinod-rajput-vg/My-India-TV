@@ -1,10 +1,10 @@
 Discovery HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3142&token=rkdyiptv&key=rkdy5a8cbb
+http://216.227.149.26/CF5A68754DSTZZZ148d393895a3d4ce696238f6aa0f6592547c3efc78e1e/index.m3u8?token=972cb82f48542a47c6d3a17ce34f15a0
 
 Sony BBC Earth HD
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3153&token=rkdyiptv&key=rkdy5a8cbb
+http://216.227.149.26/CF5A68754DSTZZZ148d393895a3d4ce681259270ade25f325fd9f2c1/index.m3u8?token=2d680f751c0eb84402f106827e42b90f
 
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
