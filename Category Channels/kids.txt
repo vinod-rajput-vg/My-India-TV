@@ -22,18 +22,6 @@ Cartoon Network
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-in.png
 https://drk6xq0vhn.gpcdn.net/live/cn_sd_abr/index.m3u8
 
-Cartoon Network HD+
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/cartoon-network-hd-plus-in.png
-http://27.116.22.53:5001/live/3436.m3u8
-
-Hungama TV
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/hungama-in.png
-http://103.185.24.134:3001/HUNGAMA/index.m3u8
-
-Super Hungama
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/super-hungama-in.png
-http://103.185.24.134:3001/SUPER-HUNGAMA/index.m3u8
-
 Discovery Kids
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/discovery-kids-in.png
 https://drk6xq0vhn.gpcdn.net/live/discovery_kids_abr/index.m3u8
