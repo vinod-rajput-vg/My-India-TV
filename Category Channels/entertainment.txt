@@ -18,10 +18,6 @@ Eros Universe Entertainment
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/81dd5906024a3ab3b43d700a7814abfe.png
 https://eros-entrtnmnt.cdn.runn.tv/eros/stream/ersent/playlist.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
 
-Shemaroo Bollywood
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/2f66f13b85531977f2990c18ca414e83.png
-https://jiotvmblive.cdn.jio.com/bpk-tv/smrbol/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
-
 NH BollyFlix
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/8228bc36611e03cd44fe1bcc0524cd79.png
 https://jiotvmblive.cdn.jio.com/bpk-tv/blyflx/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
