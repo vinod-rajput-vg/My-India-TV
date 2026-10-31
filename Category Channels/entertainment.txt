@@ -18,26 +18,6 @@ Eros Universe Entertainment
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/81dd5906024a3ab3b43d700a7814abfe.png
 https://eros-entrtnmnt.cdn.runn.tv/eros/stream/ersent/playlist.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
 
-NH BollyFlix
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/8228bc36611e03cd44fe1bcc0524cd79.png
-https://jiotvmblive.cdn.jio.com/bpk-tv/blyflx/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
-
-NH BollyGold
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/4483eb84a85a0dac68973cd2eb0ac90c.png
-https://jiotvmblive.cdn.jio.com/bpk-tv/blygld/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
-
-Superfine Films
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/da81487fc22fd58bdee4bae75346db7d.png
-https://jiotvmblive.cdn.jio.com/bpk-tv/p_supjio/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
-
-B4U Kadak
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-kadak-in.png
-https://jiotvmblive.cdn.jio.com/bpk-tv/b4u_kadak/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
-
-B4U Movies
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png
-https://jiotvmblive.cdn.jio.com/bpk-tv/b4u_movies/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
-
 Goldmines
 https://goldmines.co.in/assets/img/sites/s1.jpg
 https://cdn.pishow.tv/ott/live/1459/master.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
