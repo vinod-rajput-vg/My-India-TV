@@ -1,63 +1,63 @@
-Star Gold HD
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/db73db401054f2d63b642af12169d31a.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3172&token=rkdyiptv&key=rkdy5a8cba
+Sony Max
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/1_248.png
+https://sliv.tgaadi.workers.dev/sonymaxsd.m3u8
 
-Star Gold 2 HD
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/8bd0df3e5ad35c9b42efa4a720c3680c.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3174&token=rkdyiptv&key=rkdy5a8cba
-
-Star Gold Thrills
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/6fd63a1a3719b03299aa45daedad36ed.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=481591&token=rkdyiptv&key=rkdy5a8cba
-
-Star Gold Romance
-https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-romance.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=481590&token=rkdyiptv&key=rkdy5a8cba
-
-Star Gold Select HD
-https://images.weserv.nl/?url=https://tv-site.b-cdn.net/images/channel-logo/star-gold-select-hd.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3176&token=rkdyiptv&key=rkdy5a8cba
-
-Sony MAX HD
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-hd-in.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3180&token=rkdyiptv&key=rkdy5a8cba
-
-Sony MAX 2
-https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-max-2-in.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3182&token=rkdyiptv&key=rkdy5a8cba
-
-Zee Cinema
-https://raw.githubusercontent.com/tv-logo/tv-logos/refs/heads/main/countries/india/zee-cinema-in.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3186&token=rkdyiptv&key=rkdy5a8cba
-
-Zee Action
-https://www.lyngsat.com/logo/tv/zz/zee-action-in.svg
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3188&token=rkdyiptv&key=rkdy5a8cba
-
-Zee Anmol Cinema
-https://jiotv.catchup.cdn.jio.com/dare_images/images/Zee_Anmol_Cinema.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=474203&token=rkdyiptv&key=rkdy5a8cba
-
-Star Utsav Movies
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/a2407a251df5edb83da3dceb823317d2.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3208&token=rkdyiptv&key=rkdy5a8cba
+Sony Max 2
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/2_250.png
+https://sliv.tgaadi.workers.dev/max2.m3u8
 
 Sony Wah
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/10_258.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3108&token=rkdyiptv&key=rkdy5a8cba
+https://sliv.tgaadi.workers.dev/sonywah.m3u8
 
-Colors Cineplex
-https://jiotvimages.cdn.jio.com/dare_images/images/channel/fa1e0b003da3eaef8602cbfb2833231f.png
-https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/gb/YuppTV/ColorsCineplexUK.m3u8
+Eros Universe Bollywood Cinema
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/b59deb98404cd369b8b8d2ddfed845ba.png
+https://eros-blywdcnm.cdn.runn.tv/eros/stream/blywcm/playlist.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
+
+Eros Universe Entertainment
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/81dd5906024a3ab3b43d700a7814abfe.png
+https://eros-entrtnmnt.cdn.runn.tv/eros/stream/ersent/playlist.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
+
+Shemaroo Bollywood
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/2f66f13b85531977f2990c18ca414e83.png
+https://jiotvmblive.cdn.jio.com/bpk-tv/smrbol/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
+
+NH BollyFlix
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/8228bc36611e03cd44fe1bcc0524cd79.png
+https://jiotvmblive.cdn.jio.com/bpk-tv/blyflx/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
+
+NH BollyGold
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/4483eb84a85a0dac68973cd2eb0ac90c.png
+https://jiotvmblive.cdn.jio.com/bpk-tv/blygld/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
+
+Superfine Films
+https://jiotvimages.cdn.jio.com/dare_images/images/channel/da81487fc22fd58bdee4bae75346db7d.png
+https://jiotvmblive.cdn.jio.com/bpk-tv/p_supjio/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
 
 B4U Kadak
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-kadak-in.png
-https://streams.tangotv.in/B4UKADAK/ORIGIN/index.m3u8
+https://jiotvmblive.cdn.jio.com/bpk-tv/b4u_kadak/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
 
 B4U Movies
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/b4u-movies-in.png
-https://streams.tangotv.in/B4UMOVIES/ORIGIN/index.m3u8
+https://jiotvmblive.cdn.jio.com/bpk-tv/b4u_movies/HLSPartner/index.m3u8?__hdnea__=st=1793449872~exp=1793471472~acl=/*~hmac=c6920ee1fd53b325df81e3360c16cb934d22eaa8e56f1fe5dfe1f455abdd2716
+
+Goldmines
+https://goldmines.co.in/assets/img/sites/s1.jpg
+https://cdn.pishow.tv/ott/live/1459/master.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
+
+Goldmines 2
+https://goldmines.co.in/assets/img/sites/s4.jpg
+https://cdn.pishow.tv/ott/live/1460/master.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
+
+Goldmines Action
+https://goldmines.co.in/assets/img/sites/s5.jpg
+https://mumt03.tangotv.in/Dsly5z3HGOLDMINESACTION/index.m3u8?__hdnea__=st=1786524310~exp=1786545910~acl=/*~hmac=e6b74e2af0ebc0ed9ff080a37b3a2f4846eda97325b621332f98e73bef516809
 
 Goldmines Bollywood
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Channel%20Icons/goldmines_bolywood.png
 https://mumt03.tangotv.in/Dsly5z3HGOLDMINESBOLLYWOOD/index.m3u8
+
+Somnath Temple
+https://api.somnath.org/upload/Photo%20Gallery%20Cover/2.png
+https://premiumplug.fun/tee/zee5.php/0-9-9z5938348.m3u8
