@@ -1,22 +1,22 @@
 Discovery HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/082c33fedac20343e59eb52d7d13a139.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3142&token=rkdyiptv&key=rkdy5a8cbb
+https://rkdy-linkgen.wasmer.app/play.php?id=bd6fd4948fa9bfd19959
 
 Sony BBC Earth HD
 https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/32_254.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3153&token=rkdyiptv&key=rkdy5a8cbb
+https://rkdy-linkgen.wasmer.app/play.php?id=020b0512cf9ed34b1e7a
 
 Animal Planet HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/36d31ab0f2693fcdc87bcb4ffec3bcb8.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3160&token=rkdyiptv&key=rkdy5a8cbb
+https://rkdy-linkgen.wasmer.app/play.php?id=430556104ed57fdd489e
 
 Nat Geo Wild HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/c6b17fad2bf31a052f3dd2c688ae3257.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3156&token=rkdyiptv&key=rkdy5a8cbb
+https://rkdy-linkgen.wasmer.app/play.php?id=0b0509a730764d9a3b9d
 
 National Geographic HD
 https://jiotvimages.cdn.jio.com/dare_images/images/channel/a59081e5d6c95ca73f6f89855fb37a18.png
-https://admin-rkdy.vercel.app/api/rkdyiptv/pluylust.m3u?action=stream&id=3155&token=rkdyiptv&key=rkdy5a8cbb
+https://rkdy-linkgen.wasmer.app/play.php?id=0b0509a730764d9a3b9d
 
 History TV18 HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/history-tv18-hd-in.png
