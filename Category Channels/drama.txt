@@ -2,6 +2,14 @@ Colors
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/colors-in.png
 https://raw.githubusercontent.com/amazeyourself/adaptive-streams/refs/heads/main/streams/sg/YuppTV/ColorsAPAC.m3u8
 
-SONY SAB
+Sony Entertainement Television HD
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/4_244.png
+https://sliv.tgaadi.workers.dev/sethd.m3u8
+
+Sony Sab HD
 https://raw.githubusercontent.com/tv-logo/tv-logos/main/countries/india/sony-sab-in.png
-http://103.151.60.162:2122/play/a01q/index.m3u8?hls
+https://sliv.tgaadi.workers.dev/sabhd.m3u8
+
+Sony Pal
+https://d2ljy97uzhlwv2.cloudfront.net/sonypicturesnetworksindia/logo/6_257.png
+https://sliv.tgaadi.workers.dev/sonypalsd.m3u8
