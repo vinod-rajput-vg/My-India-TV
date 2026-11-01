@@ -1,6 +1,6 @@
 Entertainment
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/entertainment.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/entertainment.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/IPTV-Automation/refs/heads/main/Output/entertainment.txt
 
 Infotainment
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/infotainment.png
