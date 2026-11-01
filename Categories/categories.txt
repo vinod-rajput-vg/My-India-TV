@@ -10,21 +10,9 @@ News
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/news.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/news.txt
 
-Music
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/music.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/music.txt
-
-Kids
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/kids.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/kids.txt
-
 Drama
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/drama.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/drama.txt
-
-Sports
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/sports.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/sports.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/IPTV-Automation/refs/heads/main/Output/drama.txt
 
 Rambo
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/rambo.png
