@@ -824,10 +824,12 @@ internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
 
-    private val executor = Executors.newSingleThreadExecutor()
+    // Keep interactive catalog requests isolated from the startup fingerprint scan.
+    private val catalogExecutor = Executors.newFixedThreadPool(2)
+    private val scanExecutor = Executors.newSingleThreadExecutor()
     private val mainHandler = Handler(Looper.getMainLooper())
     fun loadCategories(context: Context, callback: (List<Category>) -> Unit) {
-        executor.execute {
+        catalogExecutor.execute {
             val categories = runCatching {
                 val catalogText = fetchText(CATEGORIES_URL)
                 parseCategories(catalogText)
@@ -838,7 +840,7 @@ internal object RemoteChannelRepository {
     }
 
     fun loadChannels(context: Context, category: Category, callback: (List<Channel>) -> Unit) {
-        executor.execute {
+        catalogExecutor.execute {
             val channels = runCatching {
                 val content = fetchText(category.channelsUrl)
                 parseChannelText(content)
@@ -854,7 +856,7 @@ internal object RemoteChannelRepository {
      * Changes are delivered as a batch, and only changed categories are refreshed.
      */
     fun scanForChanges(context: Context, callback: (CatalogUpdate?) -> Unit) {
-        executor.execute {
+        scanExecutor.execute {
             val result = runCatching {
                 val catalogText = fetchText(CATEGORIES_URL)
                 val currentCategories = parseCategories(catalogText)
