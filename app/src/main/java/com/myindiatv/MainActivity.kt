@@ -176,7 +176,7 @@ class MainActivity : Activity() {
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
     private val catalogPollHandler = Handler(Looper.getMainLooper())
-    private val catalogPollIntervalMs = 5 * 60 * 1_000L
+    private val catalogPollIntervalMs = 10 * 1_000L
     private var catalogLoaded = false
     private var catalogPolling = false
     private var catalogScanInProgress = false
@@ -189,7 +189,7 @@ class MainActivity : Activity() {
         }
     }
 
-    /** Check remote catalog changes on a five-minute foreground polling interval. */
+    /** Check remote catalog changes on a ten-second foreground polling interval. */
     private fun checkCatalogOnStartup() {
         if (catalogScanInProgress) return
         catalogScanInProgress = true
