@@ -64,52 +64,6 @@ internal object ChannelIconLoader {
         }
     }
 
-    private val preloading = ConcurrentHashMap.newKeySet<String>()
-
-    /**
-     * Warm the in-memory and disk image caches in the background so channel logos are ready
-     * before a user opens a category. URLs already cached or being preloaded are skipped.
-     */
-    fun preloadAll(context: Context, sources: Collection<String>) {
-        val appContext = context.applicationContext
-        sources.forEach { source ->
-            val key = normalizeUrl(source)
-            if (!key.startsWith("http://") && !key.startsWith("https://")) return@forEach
-            if (cache.get(key) != null || !preloading.add(key)) return@forEach
-
-            executor.execute {
-                try {
-                    if (cache.get(key) != null) return@execute
-                    val bitmap = loadFromDisk(appContext, key) ?: download(key)
-                    if (bitmap != null) {
-                        val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
-                        saveToDisk(appContext, key, cached)
-                    }
-                } finally {
-                    preloading.remove(key)
-                }
-            }
-        }
-    }
-
-    fun invalidateChanged(context: Context, changedPaths: Set<String>, candidateUrls: Collection<String>) {
-        val changedNames = changedPaths
-            .filter { it.startsWith("Category Icons/") || it.startsWith("Channel Icons/") }
-            .map { it.substringAfterLast('/').substringBefore('?').lowercase() }
-            .toSet()
-        if (changedNames.isEmpty()) return
-
-        val allKnownUrls = (candidateUrls + cache.snapshot().keys).map(::normalizeUrl).toSet()
-        allKnownUrls.forEach { url ->
-            if (url.isBlank()) return@forEach
-            val fileName = Uri.parse(url).lastPathSegment.orEmpty().substringBefore('?').lowercase()
-            if (fileName in changedNames) {
-                cache.remove(url)
-                try { cacheFile(context, url).delete() } catch (_: Exception) {}
-            }
-        }
-    }
-
     /**
      * Remove disk and memory image caches for deleted or changed channel entries.
      * The current category view will download and save the replacement icon on refresh.
