@@ -16,7 +16,6 @@ import android.widget.Toast
 import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 
 
@@ -61,52 +60,6 @@ internal object ChannelIconLoader {
                 val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
                 saveToDisk(view.context, key, cached)
                 view.post { onLoaded(cached) }
-            }
-        }
-    }
-
-    private val preloading = ConcurrentHashMap.newKeySet<String>()
-
-    /**
-     * Warm the in-memory and disk image caches in the background so channel logos are ready
-     * before a user opens a category. URLs already cached or being preloaded are skipped.
-     */
-    fun preloadAll(context: Context, sources: Collection<String>) {
-        val appContext = context.applicationContext
-        sources.forEach { source ->
-            val key = normalizeUrl(source)
-            if (!key.startsWith("http://") && !key.startsWith("https://")) return@forEach
-            if (cache.get(key) != null || !preloading.add(key)) return@forEach
-
-            executor.execute {
-                try {
-                    if (cache.get(key) != null) return@execute
-                    val bitmap = loadFromDisk(appContext, key) ?: download(key)
-                    if (bitmap != null) {
-                        val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
-                        saveToDisk(appContext, key, cached)
-                    }
-                } finally {
-                    preloading.remove(key)
-                }
-            }
-        }
-    }
-
-    fun invalidateChanged(context: Context, changedPaths: Set<String>, candidateUrls: Collection<String>) {
-        val changedNames = changedPaths
-            .filter { it.startsWith("Category Icons/") || it.startsWith("Channel Icons/") }
-            .map { it.substringAfterLast('/').substringBefore('?').lowercase() }
-            .toSet()
-        if (changedNames.isEmpty()) return
-
-        val allKnownUrls = (candidateUrls + cache.snapshot().keys).map(::normalizeUrl).toSet()
-        allKnownUrls.forEach { url ->
-            if (url.isBlank()) return@forEach
-            val fileName = Uri.parse(url).lastPathSegment.orEmpty().substringBefore('?').lowercase()
-            if (fileName in changedNames) {
-                cache.remove(url)
-                try { cacheFile(context, url).delete() } catch (_: Exception) {}
             }
         }
     }
@@ -223,7 +176,7 @@ class MainActivity : Activity() {
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
     private val catalogPollHandler = Handler(Looper.getMainLooper())
-    private val catalogPollIntervalMs = 1_000L
+    private val catalogPollIntervalMs = 10 * 1_000L
     private var catalogLoaded = false
     private var catalogPolling = false
     private var catalogScanInProgress = false
@@ -236,7 +189,7 @@ class MainActivity : Activity() {
         }
     }
 
-    /** Check remote catalog changes on a 1-second foreground polling interval. */
+    /** Check remote catalog changes on a ten-second foreground polling interval. */
     private fun checkCatalogOnStartup() {
         if (catalogScanInProgress) return
         catalogScanInProgress = true
@@ -389,12 +342,6 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
         names = updated.map { it.name }
         bitmaps = arrayOfNulls(updated.size)
         selected = selected.coerceIn(0, maxOf(0, updated.lastIndex))
-        loadCategoryIcons()
-        postInvalidateOnAnimation()
-    }
-
-    fun reloadCategoryIcons() {
-        bitmaps = arrayOfNulls(categories.size)
         loadCategoryIcons()
         postInvalidateOnAnimation()
     }
@@ -611,14 +558,6 @@ private class ChannelView(
     }
 
     fun currentChannels(): List<Channel> = channels
-
-    fun currentIconUrls(): List<String> = channels.map { it.iconUrl }
-
-    fun reloadChannelIcons() {
-        bitmaps = arrayOfNulls(channels.size)
-        loadIcons()
-        postInvalidateOnAnimation()
-    }
 
     private fun loadIcons() {
         for (i in channels.indices) {
