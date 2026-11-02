@@ -222,10 +222,20 @@ class MainActivity : Activity() {
     private var channelView: ChannelView? = null
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
-    /**
-     * Check the remote catalog once on each app launch. There is no timed polling
-     * interval; the next check happens when the app is restarted.
-     */
+    private val catalogPollHandler = Handler(Looper.getMainLooper())
+    private val catalogPollIntervalMs = 1_000L
+    private var catalogLoaded = false
+    private var catalogPolling = false
+
+    private val catalogPollRunnable = object : Runnable {
+        override fun run() {
+            if (!catalogPolling || isFinishing || isDestroyed) return
+            checkCatalogOnStartup()
+            catalogPollHandler.postDelayed(this, catalogPollIntervalMs)
+        }
+    }
+
+    /** Check remote catalog changes on a 1-second foreground polling interval. */
     private fun checkCatalogOnStartup() {
         RemoteChannelRepository.scanForChanges(this) { update ->
             if (isFinishing || isDestroyed || update == null) return@scanForChanges
@@ -264,12 +274,36 @@ class MainActivity : Activity() {
             categories = loaded.toList()
             homeView.setCategories(categories)
             if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
-            checkCatalogOnStartup()
+            catalogLoaded = true
+            startCatalogPolling()
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (catalogLoaded) startCatalogPolling()
+    }
+
+    override fun onPause() {
+        stopCatalogPolling()
+        super.onPause()
+    }
+
     override fun onDestroy() {
+        stopCatalogPolling()
         super.onDestroy()
+    }
+
+    private fun startCatalogPolling() {
+        if (catalogPolling || !catalogLoaded || isFinishing || isDestroyed) return
+        catalogPolling = true
+        catalogPollHandler.removeCallbacks(catalogPollRunnable)
+        catalogPollRunnable.run()
+    }
+
+    private fun stopCatalogPolling() {
+        catalogPolling = false
+        catalogPollHandler.removeCallbacks(catalogPollRunnable)
     }
 
     fun openCategory(index: Int) {
