@@ -16,7 +16,6 @@ import android.widget.Toast
 import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 
 
@@ -223,7 +222,7 @@ class MainActivity : Activity() {
     private var activeCategory: Category? = null
     private var categories: List<Category> = emptyList()
     private val catalogPollHandler = Handler(Looper.getMainLooper())
-    private val catalogPollIntervalMs = 1_000L
+    private val catalogPollIntervalMs = 5 * 60 * 1_000L
     private var catalogLoaded = false
     private var catalogPolling = false
     private var catalogScanInProgress = false
@@ -236,7 +235,7 @@ class MainActivity : Activity() {
         }
     }
 
-    /** Check remote catalog changes on a 1-second foreground polling interval. */
+    /** Check remote catalog changes on a five-minute foreground polling interval. */
     private fun checkCatalogOnStartup() {
         if (catalogScanInProgress) return
         catalogScanInProgress = true
@@ -389,12 +388,6 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
         names = updated.map { it.name }
         bitmaps = arrayOfNulls(updated.size)
         selected = selected.coerceIn(0, maxOf(0, updated.lastIndex))
-        loadCategoryIcons()
-        postInvalidateOnAnimation()
-    }
-
-    fun reloadCategoryIcons() {
-        bitmaps = arrayOfNulls(categories.size)
         loadCategoryIcons()
         postInvalidateOnAnimation()
     }
@@ -611,14 +604,6 @@ private class ChannelView(
     }
 
     fun currentChannels(): List<Channel> = channels
-
-    fun currentIconUrls(): List<String> = channels.map { it.iconUrl }
-
-    fun reloadChannelIcons() {
-        bitmaps = arrayOfNulls(channels.size)
-        loadIcons()
-        postInvalidateOnAnimation()
-    }
 
     private fun loadIcons() {
         for (i in channels.indices) {
