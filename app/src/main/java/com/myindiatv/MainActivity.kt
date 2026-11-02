@@ -226,6 +226,7 @@ class MainActivity : Activity() {
     private val catalogPollIntervalMs = 1_000L
     private var catalogLoaded = false
     private var catalogPolling = false
+    private var catalogScanInProgress = false
 
     private val catalogPollRunnable = object : Runnable {
         override fun run() {
@@ -237,7 +238,10 @@ class MainActivity : Activity() {
 
     /** Check remote catalog changes on a 1-second foreground polling interval. */
     private fun checkCatalogOnStartup() {
+        if (catalogScanInProgress) return
+        catalogScanInProgress = true
         RemoteChannelRepository.scanForChanges(this) { update ->
+            catalogScanInProgress = false
             if (isFinishing || isDestroyed || update == null) return@scanForChanges
 
             if (update.categoriesChanged) {
