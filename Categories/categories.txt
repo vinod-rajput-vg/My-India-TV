@@ -1,6 +1,6 @@
 Infotainment
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/infotainment.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/infotainment.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/IPTV-Automation/refs/heads/main/Output/infotainment.txt
 
 News
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/news.png
