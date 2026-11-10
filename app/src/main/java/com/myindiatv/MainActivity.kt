@@ -16,6 +16,9 @@ import android.widget.Toast
 import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.Executors
 
 
@@ -27,8 +30,16 @@ internal object ChannelIconLoader {
         }
     }
     private const val CACHE_DIR = "channel_icons"
+    @Volatile private var cacheGeneration = 0
+
+    fun clearAll(context: Context) {
+        cacheGeneration++
+        cache.evictAll()
+        try { java.io.File(context.filesDir, CACHE_DIR).deleteRecursively() } catch (_: Exception) {}
+    }
 
     fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
+        val generation = cacheGeneration
         val key = normalizeUrl(source)
         if (key.isEmpty()) return
 
@@ -37,29 +48,31 @@ internal object ChannelIconLoader {
             val resourceId = view.resources.getIdentifier(resourceName, "drawable", view.context.packageName)
             if (resourceId != 0) {
                 val bitmap = BitmapFactory.decodeResource(view.resources, resourceId)
-                if (bitmap != null) view.post { onLoaded(bitmap) }
+                if (bitmap != null) view.post { if (generation == cacheGeneration) onLoaded(bitmap) }
             }
             return
         }
 
         cache[key]?.let { bitmap ->
-            view.post { onLoaded(bitmap) }
+            view.post { if (generation == cacheGeneration) onLoaded(bitmap) }
             return
         }
 
         executor.execute {
             val cachedBitmap = loadFromDisk(view.context, key)
             if (cachedBitmap != null) {
+                if (generation != cacheGeneration) return@execute
                 cache.put(key, cachedBitmap)
-                view.post { onLoaded(cachedBitmap) }
+                view.post { if (generation == cacheGeneration) onLoaded(cachedBitmap) }
                 return@execute
             }
 
             val bitmap = download(key)
-            if (bitmap != null) {
+            if (bitmap != null && generation == cacheGeneration) {
                 val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
+                if (generation != cacheGeneration) return@execute
                 saveToDisk(view.context, key, cached)
-                view.post { onLoaded(cached) }
+                view.post { if (generation == cacheGeneration) onLoaded(cached) }
             }
         }
     }
@@ -180,6 +193,7 @@ class MainActivity : Activity() {
     private var catalogLoaded = false
     private var catalogPolling = false
     private var catalogScanInProgress = false
+    private var fullRefreshInProgress = false
 
     private val catalogPollRunnable = object : Runnable {
         override fun run() {
@@ -263,6 +277,52 @@ class MainActivity : Activity() {
         catalogPollHandler.removeCallbacks(catalogPollRunnable)
     }
 
+
+    fun refreshAllCatalogs() {
+        if (fullRefreshInProgress) return
+        fullRefreshInProgress = true
+        Toast.makeText(this, "Refreshing all categories and channels...", Toast.LENGTH_SHORT).show()
+        RemoteChannelRepository.refreshAll(this) { result ->
+            fullRefreshInProgress = false
+            if (isFinishing || isDestroyed) return@refreshAll
+            if (result == null) {
+                Toast.makeText(this, "Refresh failed. Check your internet connection.", Toast.LENGTH_LONG).show()
+                return@refreshAll
+            }
+
+            ChannelIconLoader.clearAll(this)
+            categories = result.categories
+            homeView.setCategories(categories)
+
+            val active = activeCategory
+            val view = channelView
+            if (active != null && view != null) {
+                val refreshedCategory = categories.firstOrNull {
+                    it.name.equals(active.name, ignoreCase = true)
+                }
+                if (refreshedCategory != null) {
+                    activeCategory = refreshedCategory
+                    val refreshedChannels = result.channelsByCategory[refreshedCategory.name.lowercase()]
+                    if (refreshedChannels != null) {
+                        ChannelIconLoader.reconcileChannels(this, view.currentChannels(), refreshedChannels)
+                        view.replaceChannels(refreshedChannels)
+                    } else {
+                        refreshCategory(refreshedCategory, view)
+                    }
+                } else {
+                    showHome()
+                }
+            }
+
+            val message = if (result.failedCategoryNames.isEmpty()) {
+                "All categories and channels refreshed"
+            } else {
+                "Refresh completed with ${result.failedCategoryNames.size} category errors"
+            }
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        }
+    }
+
     fun openCategory(index: Int) {
         val category = categories.getOrNull(index) ?: return
         val view = ChannelView(this, emptyList())
@@ -328,6 +388,20 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
     private var scrollOffset = 0f
     private var lastTouchY = 0f
     private var touchDragging = false
+    private var refreshPressed = false
+    private val clockPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.WHITE
+        typeface = Typeface.DEFAULT_BOLD
+        textSize = dp(22f)
+    }
+    private val refreshPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.WHITE
+        style = Paint.Style.STROKE
+        strokeWidth = dp(3f)
+        strokeCap = Paint.Cap.ROUND
+        strokeJoin = Paint.Join.ROUND
+    }
+    private val refreshBounds = RectF()
     private var lastBackPressTime = 0L
 
     init {
@@ -359,6 +433,24 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
+
+        clockPaint.textSize = dp(22f)
+        c.drawText(SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date()), dp(40f), dp(48f), clockPaint)
+        val refreshSize = dp(54f)
+        refreshBounds.set(width - dp(40f) - refreshSize, dp(12f), width - dp(40f), dp(12f) + refreshSize)
+        val centerX = refreshBounds.centerX()
+        val centerY = refreshBounds.centerY()
+        val radius = dp(15f)
+        c.drawArc(RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
+            -55f, 285f, false, refreshPaint)
+        val arrow = Path().apply {
+            moveTo(centerX + radius - dp(1f), centerY - radius - dp(2f))
+            lineTo(centerX + radius + dp(7f), centerY - radius + dp(1f))
+            lineTo(centerX + radius - dp(1f), centerY - radius + dp(7f))
+        }
+        c.drawPath(arrow, refreshPaint)
+        postInvalidateDelayed(1000L)
+
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(95f)
@@ -474,6 +566,7 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, names.size, columns, -1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+            KeyEvent.KEYCODE_REFRESH, KeyEvent.KEYCODE_F5 -> { (context as? MainActivity)?.refreshAllCatalogs(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
                 val now = System.currentTimeMillis()
                 if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else { lastBackPressTime = now; Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show() }
@@ -488,16 +581,27 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             android.view.MotionEvent.ACTION_DOWN -> {
                 lastTouchY = event.y
                 touchDragging = false
+                refreshPressed = refreshBounds.contains(event.x, event.y)
                 return true
             }
             android.view.MotionEvent.ACTION_MOVE -> {
+                if (refreshPressed) return true
                 val dy = lastTouchY - event.y
                 if (!touchDragging && kotlin.math.abs(dy) > dp(4f)) touchDragging = true
                 if (touchDragging) scrollByPixels(dy)
                 lastTouchY = event.y
                 return true
             }
-            android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+            android.view.MotionEvent.ACTION_UP -> {
+                if (refreshPressed && refreshBounds.contains(event.x, event.y)) {
+                    (context as? MainActivity)?.refreshAllCatalogs()
+                }
+                refreshPressed = false
+                touchDragging = false
+                return true
+            }
+            android.view.MotionEvent.ACTION_CANCEL -> {
+                refreshPressed = false
                 touchDragging = false
                 return true
             }
@@ -797,6 +901,13 @@ internal data class CatalogUpdate(
     val changedCategoryNames: Set<String>
 )
 
+
+internal data class FullCatalogRefresh(
+    val categories: List<Category>,
+    val channelsByCategory: Map<String, List<Channel>>,
+    val failedCategoryNames: Set<String>
+)
+
 internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
@@ -824,6 +935,47 @@ internal object RemoteChannelRepository {
             }.getOrDefault(emptyList())
 
             mainHandler.post { callback(channels) }
+        }
+    }
+
+
+    fun refreshAll(context: Context, callback: (FullCatalogRefresh?) -> Unit) {
+        scanExecutor.execute {
+            val result = runCatching {
+                val catalogText = fetchText(CATEGORIES_URL)
+                val currentCategories = parseCategories(catalogText)
+                if (currentCategories.isEmpty()) throw IllegalStateException("Remote catalog contains no valid categories")
+
+                val preferences = context.applicationContext.getSharedPreferences(
+                    "remote_catalog_snapshots",
+                    Context.MODE_PRIVATE
+                )
+                val channelsByCategory = linkedMapOf<String, List<Channel>>()
+                val failedCategoryNames = linkedSetOf<String>()
+                val successfulHashes = linkedMapOf<String, String>()
+
+                currentCategories.forEach { category ->
+                    val key = category.name.lowercase()
+                    val content = runCatching { fetchText(category.channelsUrl) }.getOrNull()
+                    if (content == null) {
+                        failedCategoryNames.add(category.name)
+                    } else {
+                        channelsByCategory[key] = parseChannelText(content)
+                        successfulHashes[key] = sha256(content)
+                    }
+                }
+
+                val editor = preferences.edit().putString("categories_sha256", sha256(catalogText))
+                successfulHashes.forEach { (key, hash) -> editor.putString("channel_$key", hash) }
+                val currentKeys = currentCategories.map { "channel_${it.name.lowercase()}" }.toSet()
+                preferences.all.keys.filter { it.startsWith("channel_") && it !in currentKeys }
+                    .forEach(editor::remove)
+                editor.apply()
+
+                FullCatalogRefresh(currentCategories, channelsByCategory, failedCategoryNames)
+            }.getOrNull()
+
+            mainHandler.post { callback(result) }
         }
     }
 
