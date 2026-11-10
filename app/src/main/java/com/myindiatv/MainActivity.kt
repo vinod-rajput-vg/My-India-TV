@@ -282,16 +282,15 @@ class MainActivity : Activity() {
         if (fullRefreshInProgress) return
         fullRefreshInProgress = true
         Toast.makeText(this, "Refreshing all categories and channels...", Toast.LENGTH_SHORT).show()
-        ChannelIconLoader.clearAll(this)
         RemoteChannelRepository.refreshAll(this) { result ->
             fullRefreshInProgress = false
             if (isFinishing || isDestroyed) return@refreshAll
             if (result == null) {
                 Toast.makeText(this, "Refresh failed. Check your internet connection.", Toast.LENGTH_LONG).show()
-                homeView.setCategories(categories)
                 return@refreshAll
             }
 
+            ChannelIconLoader.clearAll(this)
             categories = result.categories
             homeView.setCategories(categories)
 
