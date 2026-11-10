@@ -16,6 +16,9 @@ import android.widget.Toast
 import java.io.BufferedInputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.Executors
 
 
@@ -27,8 +30,16 @@ internal object ChannelIconLoader {
         }
     }
     private const val CACHE_DIR = "channel_icons"
+    @Volatile private var cacheGeneration = 0
+
+    fun clearAll(context: Context) {
+        cacheGeneration++
+        cache.evictAll()
+        try { java.io.File(context.filesDir, CACHE_DIR).deleteRecursively() } catch (_: Exception) {}
+    }
 
     fun load(source: String, view: View, onLoaded: (Bitmap) -> Unit) {
+        val generation = cacheGeneration
         val key = normalizeUrl(source)
         if (key.isEmpty()) return
 
@@ -37,29 +48,31 @@ internal object ChannelIconLoader {
             val resourceId = view.resources.getIdentifier(resourceName, "drawable", view.context.packageName)
             if (resourceId != 0) {
                 val bitmap = BitmapFactory.decodeResource(view.resources, resourceId)
-                if (bitmap != null) view.post { onLoaded(bitmap) }
+                if (bitmap != null) view.post { if (generation == cacheGeneration) onLoaded(bitmap) }
             }
             return
         }
 
         cache[key]?.let { bitmap ->
-            view.post { onLoaded(bitmap) }
+            view.post { if (generation == cacheGeneration) onLoaded(bitmap) }
             return
         }
 
         executor.execute {
             val cachedBitmap = loadFromDisk(view.context, key)
             if (cachedBitmap != null) {
+                if (generation != cacheGeneration) return@execute
                 cache.put(key, cachedBitmap)
-                view.post { onLoaded(cachedBitmap) }
+                view.post { if (generation == cacheGeneration) onLoaded(cachedBitmap) }
                 return@execute
             }
 
             val bitmap = download(key)
-            if (bitmap != null) {
+            if (bitmap != null && generation == cacheGeneration) {
                 val cached = synchronized(cache) { cache.get(key) ?: bitmap.also { cache.put(key, it) } }
+                if (generation != cacheGeneration) return@execute
                 saveToDisk(view.context, key, cached)
-                view.post { onLoaded(cached) }
+                view.post { if (generation == cacheGeneration) onLoaded(cached) }
             }
         }
     }
