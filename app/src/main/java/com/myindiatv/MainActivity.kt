@@ -193,6 +193,7 @@ class MainActivity : Activity() {
     private var catalogLoaded = false
     private var catalogPolling = false
     private var catalogScanInProgress = false
+    private var fullRefreshInProgress = false
 
     private val catalogPollRunnable = object : Runnable {
         override fun run() {
@@ -274,6 +275,53 @@ class MainActivity : Activity() {
     private fun stopCatalogPolling() {
         catalogPolling = false
         catalogPollHandler.removeCallbacks(catalogPollRunnable)
+    }
+
+
+    fun refreshAllCatalogs() {
+        if (fullRefreshInProgress) return
+        fullRefreshInProgress = true
+        Toast.makeText(this, "Refreshing all categories and channels...", Toast.LENGTH_SHORT).show()
+        ChannelIconLoader.clearAll(this)
+        RemoteChannelRepository.refreshAll(this) { result ->
+            fullRefreshInProgress = false
+            if (isFinishing || isDestroyed) return@refreshAll
+            if (result == null) {
+                Toast.makeText(this, "Refresh failed. Check your internet connection.", Toast.LENGTH_LONG).show()
+                homeView.setCategories(categories)
+                return@refreshAll
+            }
+
+            categories = result.categories
+            homeView.setCategories(categories)
+
+            val active = activeCategory
+            val view = channelView
+            if (active != null && view != null) {
+                val refreshedCategory = categories.firstOrNull {
+                    it.name.equals(active.name, ignoreCase = true)
+                }
+                if (refreshedCategory != null) {
+                    activeCategory = refreshedCategory
+                    val refreshedChannels = result.channelsByCategory[refreshedCategory.name.lowercase()]
+                    if (refreshedChannels != null) {
+                        ChannelIconLoader.reconcileChannels(this, view.currentChannels(), refreshedChannels)
+                        view.replaceChannels(refreshedChannels)
+                    } else {
+                        refreshCategory(refreshedCategory, view)
+                    }
+                } else {
+                    showHome()
+                }
+            }
+
+            val message = if (result.failedCategoryNames.isEmpty()) {
+                "All categories and channels refreshed"
+            } else {
+                "Refresh completed with ${result.failedCategoryNames.size} category errors"
+            }
+            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        }
     }
 
     fun openCategory(index: Int) {
@@ -810,6 +858,13 @@ internal data class CatalogUpdate(
     val changedCategoryNames: Set<String>
 )
 
+
+internal data class FullCatalogRefresh(
+    val categories: List<Category>,
+    val channelsByCategory: Map<String, List<Channel>>,
+    val failedCategoryNames: Set<String>
+)
+
 internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
@@ -837,6 +892,47 @@ internal object RemoteChannelRepository {
             }.getOrDefault(emptyList())
 
             mainHandler.post { callback(channels) }
+        }
+    }
+
+
+    fun refreshAll(context: Context, callback: (FullCatalogRefresh?) -> Unit) {
+        scanExecutor.execute {
+            val result = runCatching {
+                val catalogText = fetchText(CATEGORIES_URL)
+                val currentCategories = parseCategories(catalogText)
+                if (currentCategories.isEmpty()) throw IllegalStateException("Remote catalog contains no valid categories")
+
+                val preferences = context.applicationContext.getSharedPreferences(
+                    "remote_catalog_snapshots",
+                    Context.MODE_PRIVATE
+                )
+                val channelsByCategory = linkedMapOf<String, List<Channel>>()
+                val failedCategoryNames = linkedSetOf<String>()
+                val successfulHashes = linkedMapOf<String, String>()
+
+                currentCategories.forEach { category ->
+                    val key = category.name.lowercase()
+                    val content = runCatching { fetchText(category.channelsUrl) }.getOrNull()
+                    if (content == null) {
+                        failedCategoryNames.add(category.name)
+                    } else {
+                        channelsByCategory[key] = parseChannelText(content)
+                        successfulHashes[key] = sha256(content)
+                    }
+                }
+
+                val editor = preferences.edit().putString("categories_sha256", sha256(catalogText))
+                successfulHashes.forEach { (key, hash) -> editor.putString("channel_$key", hash) }
+                val currentKeys = currentCategories.map { "channel_${it.name.lowercase()}" }.toSet()
+                preferences.all.keys.filter { it.startsWith("channel_") && it !in currentKeys }
+                    .forEach(editor::remove)
+                editor.apply()
+
+                FullCatalogRefresh(currentCategories, channelsByCategory, failedCategoryNames)
+            }.getOrNull()
+
+            mainHandler.post { callback(result) }
         }
     }
 
