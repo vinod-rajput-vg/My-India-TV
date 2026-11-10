@@ -389,6 +389,20 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
     private var scrollOffset = 0f
     private var lastTouchY = 0f
     private var touchDragging = false
+    private var refreshPressed = false
+    private val clockPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.WHITE
+        typeface = Typeface.DEFAULT_BOLD
+        textSize = dp(22f)
+    }
+    private val refreshPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.WHITE
+        style = Paint.Style.STROKE
+        strokeWidth = dp(3f)
+        strokeCap = Paint.Cap.ROUND
+        strokeJoin = Paint.Join.ROUND
+    }
+    private val refreshBounds = RectF()
     private var lastBackPressTime = 0L
 
     init {
@@ -420,6 +434,24 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
 
     override fun onDraw(c: Canvas) {
         c.drawColor(Color.rgb(32, 32, 32))
+
+        clockPaint.textSize = dp(22f)
+        c.drawText(SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date()), dp(40f), dp(48f), clockPaint)
+        val refreshSize = dp(54f)
+        refreshBounds.set(width - dp(40f) - refreshSize, dp(12f), width - dp(40f), dp(12f) + refreshSize)
+        val centerX = refreshBounds.centerX()
+        val centerY = refreshBounds.centerY()
+        val radius = dp(15f)
+        c.drawArc(RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
+            -55f, 285f, false, refreshPaint)
+        val arrow = Path().apply {
+            moveTo(centerX + radius - dp(1f), centerY - radius - dp(2f))
+            lineTo(centerX + radius + dp(7f), centerY - radius + dp(1f))
+            lineTo(centerX + radius - dp(1f), centerY - radius + dp(7f))
+        }
+        c.drawPath(arrow, refreshPaint)
+        postInvalidateDelayed(1000L)
+
         val side = dp(38f)
         val gap = dp(16f)
         val top = dp(95f)
@@ -535,6 +567,7 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             KeyEvent.KEYCODE_DPAD_UP -> { adjacentRowTarget(selected, names.size, columns, -1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_DOWN -> { adjacentRowTarget(selected, names.size, columns, +1)?.let { moveSelection(it) }; return true }
             KeyEvent.KEYCODE_DPAD_CENTER, KeyEvent.KEYCODE_ENTER -> { (context as? MainActivity)?.openCategory(selected); return true }
+            KeyEvent.KEYCODE_REFRESH, KeyEvent.KEYCODE_F5 -> { (context as? MainActivity)?.refreshAllCatalogs(); return true }
             KeyEvent.KEYCODE_BACK, KeyEvent.KEYCODE_ESCAPE -> {
                 val now = System.currentTimeMillis()
                 if (now - lastBackPressTime <= 2000L) (context as? Activity)?.finish() else { lastBackPressTime = now; Toast.makeText(context, "Press back again to exit", Toast.LENGTH_SHORT).show() }
@@ -549,16 +582,27 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
             android.view.MotionEvent.ACTION_DOWN -> {
                 lastTouchY = event.y
                 touchDragging = false
+                refreshPressed = refreshBounds.contains(event.x, event.y)
                 return true
             }
             android.view.MotionEvent.ACTION_MOVE -> {
+                if (refreshPressed) return true
                 val dy = lastTouchY - event.y
                 if (!touchDragging && kotlin.math.abs(dy) > dp(4f)) touchDragging = true
                 if (touchDragging) scrollByPixels(dy)
                 lastTouchY = event.y
                 return true
             }
-            android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+            android.view.MotionEvent.ACTION_UP -> {
+                if (refreshPressed && refreshBounds.contains(event.x, event.y)) {
+                    (context as? MainActivity)?.refreshAllCatalogs()
+                }
+                refreshPressed = false
+                touchDragging = false
+                return true
+            }
+            android.view.MotionEvent.ACTION_CANCEL -> {
+                refreshPressed = false
                 touchDragging = false
                 return true
             }
