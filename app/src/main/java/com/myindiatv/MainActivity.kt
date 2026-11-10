@@ -394,19 +394,30 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
         typeface = Typeface.DEFAULT_BOLD
         textSize = dp(22f)
     }
+    private val refreshButtonPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.rgb(55, 55, 55)
+        style = Paint.Style.FILL
+    }
+    private val refreshBorderPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
+        color = Color.rgb(92, 92, 92)
+        style = Paint.Style.STROKE
+        strokeWidth = dp(1.2f)
+    }
     private val refreshPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.WHITE
         style = Paint.Style.STROKE
-        strokeWidth = dp(3f)
+        strokeWidth = dp(2.8f)
         strokeCap = Paint.Cap.ROUND
         strokeJoin = Paint.Join.ROUND
     }
     private val refreshBounds = RectF()
+    private val refreshIconBounds = RectF()
     private var lastBackPressTime = 0L
 
     init {
         isFocusable = true
         isFocusableInTouchMode = true
+        contentDescription = "Categories. Refresh all categories and channels using the refresh button."
         requestFocus()
         loadCategoryIcons()
     }
@@ -436,17 +447,25 @@ private class HomeView(context: Context, initialCategories: List<Category>) : Vi
 
         clockPaint.textSize = dp(22f)
         c.drawText(SimpleDateFormat("hh:mm a", Locale.getDefault()).format(Date()), dp(40f), dp(48f), clockPaint)
-        val refreshSize = dp(54f)
-        refreshBounds.set(width - dp(40f) - refreshSize, dp(12f), width - dp(40f), dp(12f) + refreshSize)
+        val refreshWidth = dp(64f)
+        val refreshHeight = dp(48f)
+        refreshBounds.set(width - dp(40f) - refreshWidth, dp(14f),
+            width - dp(40f), dp(14f) + refreshHeight)
+        refreshButtonPaint.color = if (refreshPressed) Color.rgb(82, 82, 82) else Color.rgb(55, 55, 55)
+        c.drawRoundRect(refreshBounds, dp(16f), dp(16f), refreshButtonPaint)
+        c.drawRoundRect(refreshBounds, dp(16f), dp(16f), refreshBorderPaint)
+
         val centerX = refreshBounds.centerX()
         val centerY = refreshBounds.centerY()
-        val radius = dp(15f)
-        c.drawArc(RectF(centerX - radius, centerY - radius, centerX + radius, centerY + radius),
-            -55f, 285f, false, refreshPaint)
+        val radius = dp(11f)
+        refreshIconBounds.set(centerX - radius, centerY - radius,
+            centerX + radius, centerY + radius)
+        c.drawArc(refreshIconBounds, -48f, 292f, false, refreshPaint)
+
         val arrow = Path().apply {
-            moveTo(centerX + radius - dp(1f), centerY - radius - dp(2f))
-            lineTo(centerX + radius + dp(7f), centerY - radius + dp(1f))
-            lineTo(centerX + radius - dp(1f), centerY - radius + dp(7f))
+            moveTo(centerX + radius - dp(1f), centerY - radius - dp(1f))
+            lineTo(centerX + radius + dp(6f), centerY - radius + dp(1f))
+            lineTo(centerX + radius - dp(1f), centerY - radius + dp(6f))
         }
         c.drawPath(arrow, refreshPaint)
         postInvalidateDelayed(1000L)
