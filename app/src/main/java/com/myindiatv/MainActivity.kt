@@ -77,7 +77,17 @@ internal object ChannelIconLoader {
                 if (old.iconUrl.isNotBlank()) urlsToInvalidate.add(normalizeUrl(old.iconUrl))
             }
         }
-        urlsToInvalidate.forEach { url ->
+        invalidateUrls(context, urlsToInvalidate)
+    }
+
+    fun reconcileCatalog(context: Context, previousUrls: Set<String>, updatedUrls: Set<String>) {
+        invalidateUrls(context, previousUrls - updatedUrls)
+    }
+
+    private fun invalidateUrls(context: Context, urls: Set<String>) {
+        urls.forEach { source ->
+            val url = normalizeUrl(source)
+            if (url.isBlank()) return@forEach
             cache.remove(url)
             try { cacheFile(context, url).delete() } catch (_: Exception) {}
         }
@@ -180,6 +190,8 @@ class MainActivity : Activity() {
     private var catalogLoaded = false
     private var catalogPolling = false
     private var catalogScanInProgress = false
+    private var fullRefreshInProgress = false
+    private var fullRefreshRequested = false
 
     private val catalogPollRunnable = object : Runnable {
         override fun run() {
@@ -232,6 +244,7 @@ class MainActivity : Activity() {
             homeView.setCategories(categories)
             if (loaded.isEmpty()) Toast.makeText(this, "Unable to load categories. Check your internet connection.", Toast.LENGTH_LONG).show()
             catalogLoaded = true
+            refreshAllCatalogs()
             startCatalogPolling()
         }
     }
@@ -283,12 +296,71 @@ class MainActivity : Activity() {
         }
     }
 
+    /** Fetch the complete remote catalog and reconcile categories, channels, and icon cache. */
+    private fun refreshAllCatalogs() {
+        if (fullRefreshInProgress) {
+            fullRefreshRequested = true
+            return
+        }
+        fullRefreshInProgress = true
+        RemoteChannelRepository.loadAllCatalogs(this) { snapshot ->
+            fullRefreshInProgress = false
+            if (!isFinishing && !isDestroyed && snapshot != null) {
+                val previousCategory = activeCategory
+                val currentView = channelView
+                categories = snapshot.categories
+                homeView.setCategories(categories)
+
+                val currentIconUrls = linkedSetOf<String>()
+                categories.forEach { category ->
+                    if (category.iconUrl.isNotBlank()) currentIconUrls.add(category.iconUrl)
+                    snapshot.channelsByCategory[category.name.lowercase()].orEmpty()
+                        .forEach { channel ->
+                            if (channel.iconUrl.isNotBlank()) currentIconUrls.add(channel.iconUrl)
+                        }
+                }
+
+                val preferences = getSharedPreferences("remote_catalog_snapshots", Context.MODE_PRIVATE)
+                val previousIconUrls = preferences.getStringSet("catalog_icon_urls", emptySet())
+                    ?.toSet().orEmpty()
+                ChannelIconLoader.reconcileCatalog(this, previousIconUrls, currentIconUrls)
+                preferences.edit().putStringSet("catalog_icon_urls", currentIconUrls).apply()
+
+                if (previousCategory != null && currentView != null) {
+                    val refreshedCategory = categories.firstOrNull {
+                        it.name.equals(previousCategory.name, ignoreCase = true)
+                    }
+                    val refreshedChannels = refreshedCategory?.let {
+                        snapshot.channelsByCategory[it.name.lowercase()]
+                    }
+                    if (refreshedCategory != null && refreshedChannels != null) {
+                        activeCategory = refreshedCategory
+                        ChannelIconLoader.reconcileChannels(
+                            this,
+                            currentView.currentChannels(),
+                            refreshedChannels
+                        )
+                        currentView.replaceChannels(refreshedChannels)
+                    } else if (refreshedCategory == null) {
+                        showHome()
+                    }
+                }
+            }
+
+            if (fullRefreshRequested && !isFinishing && !isDestroyed) {
+                fullRefreshRequested = false
+                refreshAllCatalogs()
+            }
+        }
+    }
+
     fun showHome() {
         activeCategory = null
         channelView = null
         setContentView(homeView)
         homeView.requestFocus()
         homeView.postInvalidateOnAnimation()
+        refreshAllCatalogs()
     }
 
     fun openStream(url: String) {
@@ -797,6 +869,11 @@ internal data class CatalogUpdate(
     val changedCategoryNames: Set<String>
 )
 
+internal data class FullCatalogSnapshot(
+    val categories: List<Category>,
+    val channelsByCategory: Map<String, List<Channel>>
+)
+
 internal object RemoteChannelRepository {
     private const val CATEGORIES_URL =
         "https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Categories/categories.txt"
@@ -824,6 +901,31 @@ internal object RemoteChannelRepository {
             }.getOrDefault(emptyList())
 
             mainHandler.post { callback(channels) }
+        }
+    }
+
+    /** Fetch every category and channel list in one background task. */
+    fun loadAllCatalogs(context: Context, callback: (FullCatalogSnapshot?) -> Unit) {
+        catalogExecutor.execute {
+            val snapshot = runCatching {
+                val catalogText = fetchText(CATEGORIES_URL)
+                val currentCategories = parseCategories(catalogText)
+                if (currentCategories.isEmpty()) {
+                    throw IllegalStateException("Remote category catalog is empty or invalid")
+                }
+
+                val channelsByCategory = linkedMapOf<String, List<Channel>>()
+                currentCategories.forEach { category ->
+                    runCatching {
+                        parseChannelText(fetchText(category.channelsUrl))
+                    }.onSuccess { channels ->
+                        channelsByCategory[category.name.lowercase()] = channels
+                    }
+                }
+                FullCatalogSnapshot(currentCategories, channelsByCategory)
+            }.getOrNull()
+
+            mainHandler.post { callback(snapshot) }
         }
     }
 
