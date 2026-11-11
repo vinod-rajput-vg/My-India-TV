@@ -360,7 +360,6 @@ class MainActivity : Activity() {
         setContentView(homeView)
         homeView.requestFocus()
         homeView.postInvalidateOnAnimation()
-        refreshAllCatalogs()
     }
 
     fun openStream(url: String) {
