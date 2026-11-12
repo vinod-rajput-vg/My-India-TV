@@ -18,6 +18,10 @@ Drama
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/drama.png
 https://raw.githubusercontent.com/vinod-rajput-vg/IPTV-Automation/refs/heads/main/Output/drama.txt
 
+Bollywood
+https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/India_film_clapperboard_%28variant%29.svg/120px-India_film_clapperboard_%28variant%29.svg.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/bollywood.txt
+
 Rambo
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/rambo.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/rambo.txt
