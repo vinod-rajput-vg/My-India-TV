@@ -34,13 +34,9 @@ Stuart Little
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/stuart_little.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/stuart_little.txt
 
-Jaws
+Shark Movies
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/jaws.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/jaws.txt
-
-Deep Blue Sea
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/deep_blue_sea.png
-https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/deep_blue_sea.txt
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/shark_movies.txt
 
 Titanic
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Icons/titanic.png
