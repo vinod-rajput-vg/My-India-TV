@@ -7,5 +7,5 @@ https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/India_film_clapperboard
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/bollywood.txt
 
 Hollywood
-https://static.vecteezy.com/system/resources/thumbnails/056/418/500/small_2x/classic-film-reel-and-clapperboard-a-vintage-hollywood-production-scene-png.png
+https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/refs/heads/main/Category%20Icons/hollywood.png
 https://raw.githubusercontent.com/vinod-rajput-vg/My-India-TV/main/Category%20Channels/hollywood.txt
